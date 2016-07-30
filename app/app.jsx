@@ -1,18 +1,18 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const Home = require('./home.jsx');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-const App = React.createClass({
+import Home from './home.jsx';
+
+class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Our App</h1>
-        <Home/>
+        <h1>Good Location App</h1>
+        <Home />
       </div>
     );
   }
-});
-
-module.exports = App;
+};
 
 ReactDOM.render(<App />, document.getElementById('app'));
+
