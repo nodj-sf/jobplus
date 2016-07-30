@@ -1,12 +1,7 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
+import React from 'react';
 
-const Home = React.createClass({
-  render: function() {
-    return (
-        <p>This index.html page is a placeholder with the CSS, font and favicon. It's just waiting for you to add some content! If you need some help hit up the <a href="http://www.getskeleton.com">Skeleton documentation</a>.</p>
-    );
-  }
-})
+const Home = () => {
+    return  <p>Home Component</p>
+}
 
-module.exports = Home;
+export default Home;
