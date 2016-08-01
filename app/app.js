@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
 import SearchBar from './components/search_bar';
@@ -6,7 +6,7 @@ import JobList from './components/job_list';
 // Need to import api function or figure out how to make own....
 const API_Key = 'dsflkjhaerthag';
 
-class App extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     // Dummy data put in for now
@@ -29,7 +29,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <SearchBar onSearchTermChange={term => this.jobSearch(term)}/>
+        <SearchBar onSearchTermChange={term => this.jobSearch(term)} />
         <JobList jobs={this.state.jobs} />
       </div>
     );
