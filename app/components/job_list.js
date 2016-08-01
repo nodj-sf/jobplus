@@ -1,5 +1,5 @@
 import React from 'react';
-import JobListItem from './job_list_item.js';
+import JobListItem from './job_list_item';
 
 const JobList = (props) => {
   const jobItems = props.jobs.map((job) => {

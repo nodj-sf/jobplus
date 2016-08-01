@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import SearchBar from './components/search_bar.jsx';
-import JobList from './components/job_list.jsx';
+import SearchBar from './components/search_bar';
+import JobList from './components/job_list';
 // Need to import api function or figure out how to make own....
 const API_Key = 'dsflkjhaerthag';
 
