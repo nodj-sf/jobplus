@@ -7,7 +7,7 @@ const JobList = (props) => {
   });
   
   return (
-    <ul>
+    <ul className="jobsUL">
       {jobItems}
     </ul>
   );
