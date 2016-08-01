@@ -2,7 +2,7 @@ import React from 'react';
 
 const JobListItem = ({job}) => {
   return (
-    <li>
+    <li onClick={() => this.props}>
       <h3>{job.title}</h3>
     </li>
   );
