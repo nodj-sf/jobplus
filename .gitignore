@@ -30,5 +30,3 @@ dist/
 node_modules/
 bower_components/
 
-# Files
-public/js/main.js
