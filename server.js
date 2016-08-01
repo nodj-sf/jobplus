@@ -1,9 +1,7 @@
-const express = require('express');
-const path = require('path');
-const app = express();
+const app = require('./server/router.js');
 
-app.use(express.static(path.join(__dirname, 'public')));
+const port = process.env.PORT || 3000;
 
-app.listen(3000, () => {
-  console.log('Server up running on localhost:3000');
+app.listen(port, () => {
+  console.log('Server up running on localhost:' + port);
 });

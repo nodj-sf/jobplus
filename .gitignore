@@ -3,6 +3,8 @@
 # Logs
 logs
 *.log
+.env
+.DS_Store
 
 # Runtime data
 pids
