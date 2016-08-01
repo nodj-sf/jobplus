@@ -17,6 +17,7 @@ if (!process.env.SESSION_SECRET) {
 */
 const exampleController = require('./controllers/example');
 const getJobController = require('./controllers/getJob');
+const testController = require('./controllers/getJob');
 
 app.use(express.static(path.join(__dirname, '../public')));
 
