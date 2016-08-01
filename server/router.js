@@ -12,6 +12,18 @@ if (!process.env.SESSION_SECRET) {
   dotenv.load({ path: '.env' });
 }
 
+/*
+** Route Controllers
+*/
+const exampleController = require('./controllers/example');
+const getJobController = require('./controllers/getJob');
+
 app.use(express.static(path.join(__dirname, '../public')));
+
+/*
+** App routes.
+*/
+app.get('/api/v1/example', exampleController.index);
+app.get('/api/v1/jobs', getJobController.get);
 
 module.exports = app;
