@@ -1,0 +1,14 @@
+
+body {
+  position: absolute;
+  width: 100%;
+}
+
+.jobsUL {
+  position: relative;
+  display: inline-block;
+  width: 45%;
+  min-height: 300px;
+  box-shadow: 0 2px 4px 0.5px DimGray;
+}
+
