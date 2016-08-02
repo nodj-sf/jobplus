@@ -12,7 +12,7 @@ class JobDetail extends Component {
           <h3>Details for:</h3>
           <div>{this.props.job.title}</div>
         </div>
-      );
+    );
   }
 }
 
