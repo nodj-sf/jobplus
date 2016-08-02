@@ -38,6 +38,7 @@
     "redux": "^3.5.2",
     "redux-promise": "^0.5.3",
     "request": "^2.74.0",
-    "skeleton-css": "^2.0.4"
+    "skeleton-css": "^2.0.4",
+    "yelp": "^1.0.1"
   }
 }
