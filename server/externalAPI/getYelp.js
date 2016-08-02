@@ -8,7 +8,7 @@ var yelp = new Yelp({
   token_secret: process.env.TOKENSECRET
 });
 
-var getYelp = function(food, location, limit, callback) {
+let getYelp = function(food, location, limit, callback) {
   yelp.search({ term: food, location: location })
   .then(function (data) {
     var restaurants = data.businesses.slice(0, limit);
@@ -29,4 +29,6 @@ var getYelp = function(food, location, limit, callback) {
   });
 }
 
-getYelp('food', 'San Francisco', 15)
+module.exports = getYelp;
+
+
