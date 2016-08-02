@@ -27,6 +27,8 @@ class SearchBar extends Component {
           type="search"
           className="searchBar"
 
+          type="search"
+          className="searchBar"
           value={ this.state.term }
           onChange={ this.onInputChange } />
         <button type="submit">Search</button>
