@@ -1,0 +1,26 @@
+
+body {
+  position: relative;
+  width: 100%;
+}
+
+ul.jobsUL {
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  min-height: 350px;
+  float: left;
+}
+
+li.jobLI {
+  position: relative;
+  display: list-item;
+  width: 100%;
+  min-height: 100px;
+  margin: 10px 0;
+  list-style-type: none;
+  border: solid 0.5px DimGray;
+  border-bottom: none;
+  box-shadow: 0 4px 0.5px rgba(172, 172, 172, 0.85);
+}
+
