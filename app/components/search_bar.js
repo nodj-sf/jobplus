@@ -11,6 +11,8 @@ class SearchBar extends Component {
     return (
       <div>
         <input 
+          type="search"
+          className="searchBar"
           value={ this.state.term }
           onChange={ event => this.onInputChange(event.target.value)}
         />

@@ -31,6 +31,7 @@ class App extends Component {
       <div>
         <SearchBar onSearchTermChange={term => this.jobSearch(term)} />
         <JobList jobs={this.state.jobs} />
+
       </div>
     );
   }
