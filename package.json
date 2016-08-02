@@ -26,11 +26,14 @@
     "webpack": "^1.13.1"
   },
   "dependencies": {
+    "axios": "^0.13.1",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "node": "0.0.0",
+    "nodemon": "^1.10.0",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
+    "request": "^2.74.0",
     "skeleton-css": "^2.0.4"
   }
 }
