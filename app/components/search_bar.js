@@ -5,22 +5,29 @@ class SearchBar extends Component {
     super(props);
 
     this.state = { term: '' };
+    this.onInputChange = this.onInputChange.bind(this);
+  }
+
+  onInputChange(event) {
+    this.setState({term: event.target.value});
+  }
+
+  onFormSubmit(event) {
+    event.preventDefault();
+
+    // We need to go and fetch job data
   }
 
   render() {
     return (
-      <div>
+      <form onSubmit={this.onFormSubmit}>
         <input 
+          placeholder="Search for a job"
           value={ this.state.term }
-          onChange={ event => this.onInputChange(event.target.value)}
-        />
-      </div>
+          onChange={ this.onInputChange } />
+        <button type="submit">Search</button>
+      </form>
     );
-  }
-
-  onInputChange(term) {
-    this.setState({term});
-    this.props.onSearchTermChange(term);
   }
 };
 
