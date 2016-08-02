@@ -1,10 +1,12 @@
 'use strict';
 
-const example = require('../models/restaurant');
+const getYelp = require('../models/restaurant');
+console.log('getYelp in model: ', getYelp);
 
 exports.get = (req, res) => {
-  console.log('getting restuarant!!');
-  res.send(example);
+  var data = getYelp('pho', 'San Francisco')(res);
+  return data;
+  res.end();
 };
 
 
