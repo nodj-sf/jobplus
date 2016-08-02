@@ -1,39 +1,29 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
+import store from './createStore.js';
 import SearchBar from './components/search_bar';
-import JobList from './components/job_list';
-// Need to import api function or figure out how to make own....
-const API_Key = 'dsflkjhaerthag';
+import JobList from './containers/job_list';
+import JobDetail from './containers/job_detail';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    // Dummy data put in for now
-    this.state = { jobs: [{title: 'Front-End', id: '1'}, {title: 'Back-End', id: '2'}, {title: 'Full-Stack', id: '3'}] };
-
-    // Uncomment when api figured out. first call for data
-    // this.jobSearch('programmer');
-  }
-
   jobSearch(term) { 
     console.log(term);
-    // Need to use API Here....
-    // GLASSDOORSearch({key: API_KEY, term: term}, (jobs) => {
-    //   this.setState({
-    //     jobs: jobs
-    //   });
-    // });
   }
 
   render() {
     return (
       <div>
         <SearchBar onSearchTermChange={term => this.jobSearch(term)} />
-        <JobList jobs={this.state.jobs} />
+        <JobList />
+        <JobDetail />
       </div>
     );
   }
 };
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(
+<Provider store={store} >
+  <App />
+</Provider>, document.getElementById('app'));
