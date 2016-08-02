@@ -23,14 +23,9 @@ class SearchBar extends Component {
       <form onSubmit={this.onFormSubmit}>
         <input 
           placeholder="Search for a job"
-
-          type="search"
-          className="searchBar"
-
-          type="search"
           className="searchBar"
           value={ this.state.term }
-          onChange={ this.onInputChange } />
+          onChange={ this.onInputChange } />  
         <button type="submit">Search</button>
       </form>
     );
