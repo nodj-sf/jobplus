@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const request = require('request');
 
 /*
 ** Load local environment variables from .env 
@@ -18,6 +19,8 @@ if (!process.env.SESSION_SECRET) {
 const exampleController = require('./controllers/example');
 const getJobController = require('./controllers/getJob');
 const testController = require('./controllers/getJob');
+const getRestaurant = require('./controllers/getRestaurant');
+const getIndeed = require('./controllers/getIndeed');
 
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -25,6 +28,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 ** App routes.
 */
 app.get('/api/v1/example', exampleController.index);
-app.get('/api/v1/jobs', getJobController.get);
+app.get('/api/v1/jobs', getIndeed.get);
+app.get('/api/v1/food', getRestaurant.get);
 
 module.exports = app;
