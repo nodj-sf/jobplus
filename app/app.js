@@ -7,7 +7,6 @@ import SearchBar from './components/search_bar';
 import JobList from './containers/job_list';
 import JobDetail from './containers/job_detail';
 
-
 class App extends Component {
   jobSearch(term) { 
     console.log(term);
@@ -19,20 +18,14 @@ class App extends Component {
         <SearchBar onSearchTermChange={term => this.jobSearch(term)} />
         <JobList />
         <JobDetail />
-
-        <JobList jobs={this.state.jobs} />
-
-
       </div>
     );
   }
 };
 
-
 ReactDOM.render(
 <Provider store={store}>
   <App />
 </Provider>, document.getElementById('app'));
-
 
 export default App;
