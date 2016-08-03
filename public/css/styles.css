@@ -20,19 +20,19 @@ li.jobLI {
   position: relative;
   display: list-item;
   width: 100%;
-  min-height: 100px;
-  margin: 10px 0;
+  min-height: 65px;
+  margin: 20px 0;
   list-style-type: none;
-  border: solid 0.5px DimGray;
-  border-bottom: none;
+  /* border: solid 0.5px DimGray; */
   box-shadow: 0 4px 0.5px rgba(172, 172, 172, 0.85);
 }
 
 li.jobLI h2,
 h2.jobListingTitle {
   line-height: 46px;
-  font-weight: 300;
+  font-weight: 400;
   font-variant: small-caps;
+  letter-spacing: 0.5rem;
 }
 
 .navLogoText {
@@ -74,7 +74,7 @@ ul.jobsList {
 ul.jobsList li {  
   padding: 20px;
   background-color: #ECECEC;
-  box-shadow: 0 0 2px 0 #A7A5A5;
+  /* box-shadow: 0 0 2px 0 #A7A5A5; */
 }
 
 ul.jobsList li:hover {

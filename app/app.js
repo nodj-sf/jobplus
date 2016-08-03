@@ -8,6 +8,7 @@ import SearchBar from './components/search_bar';
 import JobList from './containers/job_list';
 import JobDetail from './containers/job_detail';
 
+
 class App extends Component {
   jobSearch(term) { 
     console.log(term);

@@ -3,18 +3,18 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { selectJob } from '../actions/index';
+import JobListItem from "../components/job_list_item";
 
 
 class JobList extends Component {
   renderList() {
     return this.props.jobs.map((job) => {
       return (
-          <li key={job.title} onClick={() => this.props.selectJob(job)}>
-            <h2 className="jobListingTitle">{job.title}</h2>
-          </li>
-        );
+        <JobListItem key={job.id} /*job={job}*/ />
+      ); 
     });
   }
+
 
   render() {
     return (
@@ -39,3 +39,12 @@ function mapDispatchToProps(dispatch) {
 
 // Promote JobList to a container
 export default connect(mapStateToProps, mapDispatchToProps)(JobList);
+
+
+  //<li key={job.title} onClick={() => this.props.selectJob(job)}>
+  //  <h2 className="jobListingTitle">{job.title}</h2>
+  //</li>
+
+  // const jobItems = props.jobs.map((job) => {
+  //   return <JobListItem key={job.id} job={job} />; 
+  // });
