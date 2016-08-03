@@ -137,6 +137,7 @@ button.button-primary {
   font: 900 20px/50px Raleway;
   /* transform: translateX(-50%); */
   background-color: #771DE5;
+  /* background-color: #33C3F0; */
   /* background-color: #FFF; */
   color: #A7A5A5;
   /* border: 1px solid #D1D1D1; */
@@ -144,6 +145,10 @@ button.button-primary {
   box-shadow: none;
   box-sizing: content-box;
   transition: background 0.25s ease-out, color 0.25s ease-out;
+}
+
+button.button-primary:focus {
+  background-color: #1EAEDB;
 }
 
 button.button-primary:hover {
