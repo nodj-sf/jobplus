@@ -40,8 +40,6 @@ class SearchBar extends Component {
                 onChange={this.onInputChange} />
           </div>
         </div>
-
-        <button type="submit" className="button-primary">Search</button>
       </form>
     );
   }
