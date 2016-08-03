@@ -1,17 +1,17 @@
 'use strict';
 const request = require('request');
-const jobs = require('../externalAPI/indeed.json');
 
-let getIndeed = (callback, query, location, userIP) => {
+let getIndeed = (query, city, userIP) => {
   query = encodeURI(query);
-  location = encodeURI(location);
+  city = encodeURI(city);
+
   return (res) => {
     request('http://api.indeed.com/ads/apisearch?format=json&publisher=' + 
       process.env.INDEED + '&q=' + 
       query + '&l=' + 
-      location + '&radius=.5&st=jobsite&jt=fulltime&limit=15&filter=1&latlong=1&co=us&userip=' +
+      city + '&radius=.5&st=jobsite&jt=fulltime&limit=15&filter=1&latlong=1&co=us&userip=' +
       userIP + '&v=2', 
-      function(error, response, body) {
+      (error, response, body) => {
         return res.send(body);
       });
   }
