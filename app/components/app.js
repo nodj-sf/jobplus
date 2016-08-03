@@ -12,12 +12,14 @@ class App extends Component {
     return (
       <div>
         <Banner />
-        <SearchBar className="twelve columns" />
-        
-        <JobList />
-        <JobDetail />
 
-        
+        <div id="appContainer" className="appContainer">
+          <SearchBar className="twelve columns" />
+          
+          <JobList />
+          <JobDetail />
+
+        </div>        
 
         <Footer />
       </div>
