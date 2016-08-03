@@ -2,11 +2,17 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const request = require('request');
+const bodyParser = require('body-parser');
+
+//Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 /*
 ** Load local environment variables from .env 
 ** file where secrets and keys are configured.
 */
+
 let dotenv;
 if (!process.env.SESSION_SECRET) {
   dotenv = require('dotenv');
@@ -16,19 +22,17 @@ if (!process.env.SESSION_SECRET) {
 /*
 ** Route Controllers
 */
-const exampleController = require('./controllers/example');
-const getJobController = require('./controllers/getJob');
-const testController = require('./controllers/getJob');
+
 const getRestaurant = require('./controllers/getRestaurant');
-const getIndeed = require('./controllers/getIndeed');
+const getJob = require('./controllers/getJob');
 
 app.use(express.static(path.join(__dirname, '../public')));
 
 /*
 ** App routes.
 */
-app.get('/api/v1/example', exampleController.index);
-app.get('/api/v1/jobs', getIndeed.get);
-app.get('/api/v1/food', getRestaurant.get);
+
+app.post('/api/v1/jobs', getJob.post);
+app.post('/api/v1/food', getRestaurant.post);
 
 module.exports = app;

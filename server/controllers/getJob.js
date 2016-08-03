@@ -1,7 +1,17 @@
-'use strict';
+const request = require('request');
+const getIndeed = require('../models/jobs');
 
-const jobs = require('../models/jobs');
+exports.post = (req, res) => {
+  let jobTitle = req.body.jobTitle,
+      city = req.body.city;
 
-exports.get = (req, res) => {
-  res.send(jobs);
-};
+  let ip = req.headers['x-forwarded-for'] || 
+      req.connection.remoteAddress || 
+      req.socket.remoteAddress ||
+      req.connection.socket.remoteAddress;
+
+  let data = getIndeed(jobTitle, city, ip)(res);
+  res.setHeader('Content-Type', 'application/json');
+  return data;
+  res.end();
+}
