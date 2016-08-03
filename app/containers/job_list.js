@@ -3,23 +3,27 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { selectJob } from '../actions/index';
+import JobListItem from "../components/job_list_item";
+
 
 class JobList extends Component {
   renderList() {
     return this.props.jobs.map((job) => {
       return (
-          <li key={job.title} onClick={() => this.props.selectJob(job)}>
-            <h3>{job.title}</h3>
-          </li>
-        );
+        <JobListItem key={job.id} job={job} />
+      );
     });
   }
 
+
   render() {
     return (
-      <ul>
-        {this.renderList()}
-      </ul>
+      <div className="jobsPaneLeft">
+        <b>Select A Job!</b>;
+        <ul className="jobsList">
+          {this.renderList()}
+        </ul>
+      </div>
     );
   }
 }
@@ -30,9 +34,9 @@ function mapStateToProps(state) {
   };
 }
 
-// anything returned from this function will end up as props on Joblist container
+// Anything returned from this function will end up as props on Joblist container
 function mapDispatchToProps(dispatch) {
-  // whenever loadJobs is called, the result should be passed to all reducers
+  // Whenever loadJobs is called, the result should be passed to all reducers
   return bindActionCreators( { selectJob: selectJob }, dispatch)
 }
 
