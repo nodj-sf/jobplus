@@ -15,6 +15,7 @@ class JobList extends Component {
     });
   }
 
+
   render() {
     return (
       <div className="jobsPaneLeft">
@@ -33,11 +34,12 @@ function mapStateToProps(state) {
   };
 }
 
-// anything returned from this function will end up as props on Joblist container
+// Anything returned from this function will end up as props on Joblist container
 function mapDispatchToProps(dispatch) {
-  // whenever loadJobs is called, the result should be passed to all reducers
+  // Whenever loadJobs is called, the result should be passed to all reducers
   return bindActionCreators( { selectJob: selectJob }, dispatch)
 }
 
 // Promote JobList to a container
 export default connect(mapStateToProps, mapDispatchToProps)(JobList);
+

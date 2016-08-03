@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+
 class JobDetail extends Component {
+
   render() {
     if (!this.props.job) {
       return <b style={{ color: "rgba(0, 0, 0, 0)" }}>Select A Job!</b>;
@@ -16,10 +18,12 @@ class JobDetail extends Component {
   }
 }
 
+
 function mapStateToProps(state) {
   return {
     job: state.activeJob
   };
 }
+
 
 export default connect(mapStateToProps)(JobDetail);

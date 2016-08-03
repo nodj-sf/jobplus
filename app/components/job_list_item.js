@@ -27,6 +27,7 @@ const customStyles = {
 };
 
 
+
 class JobListItem extends Component {
   constructor(props) {
     super(props);
