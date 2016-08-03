@@ -30,8 +30,8 @@
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .container {
   position: relative;
-  width: 100%;
-  max-width: 960px;
+  width: 90%;
+  /* max-width: 960px; */
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box; }
@@ -51,13 +51,18 @@
 /* For devices larger than 550px */
 @media (min-width: 550px) {
   .container {
-    width: 80%; }
+    position: relative;
+    width: 90%; 
+    margin: 0 auto;
+  }
   .column,
   .columns {
-    margin-left: 4%; }
+    margin-left: 4%; 
+  }
   .column:first-child,
   .columns:first-child {
-    margin-left: 0; }
+    margin-left: 0; 
+  }
 
   .one.column,
   .one.columns                    { width: 4.66666666667%; }
@@ -71,7 +76,10 @@
   .nine.columns                   { width: 74.0%;          }
   .ten.columns                    { width: 82.6666666667%; }
   .eleven.columns                 { width: 91.3333333333%; }
-  .twelve.columns                 { width: 100%; margin-left: 0; }
+  .twelve.columns                 { width: 100%; 
+                                    margin-left: 0; 
+                                    min-height: 500px;
+                                  }
 
   .one-third.column               { width: 30.6666666667%; }
   .two-thirds.column              { width: 65.3333333333%; }
@@ -234,8 +242,13 @@ input[type="url"],
 input[type="password"],
 textarea,
 select {
+  position: absolute;
+  width: 70%;
+  left: 50%;
   height: 38px;
+  margin: 20px auto;
   padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+  transform: translateX(-50%);
   background-color: #fff;
   border: 1px solid #D1D1D1;
   border-radius: 4px;
@@ -301,7 +314,10 @@ ol ul {
   margin: 1.5rem 0 1.5rem 3rem;
   font-size: 90%; }
 li {
-  margin-bottom: 1rem; }
+  margin-bottom: 2rem; 
+  list-style-type: none;
+  background-color: Silver;
+}
 
 
 /* Code
@@ -354,7 +370,13 @@ p,
 ul,
 ol,
 form {
-  margin-bottom: 2.5rem; }
+  /*position: absolute;*/
+  width: 100%;
+  /*left: 50%;*/
+  margin: 20px auto;
+  margin-bottom: 2.5rem; 
+  /*transform: translateX(-50%);*/
+}
 
 
 /* Utilities
