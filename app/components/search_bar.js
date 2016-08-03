@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchJobs } from '../actions/index';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -6,6 +9,7 @@ class SearchBar extends Component {
 
     this.state = { term: '' };
     this.onInputChange = this.onInputChange.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   onInputChange(event) {
@@ -14,8 +18,9 @@ class SearchBar extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-
     // We need to go and fetch job data
+    this.props.fetchJobs(this.state.term);
+    this.setState({ term: '' });
   }
 
   render() {
@@ -23,18 +28,17 @@ class SearchBar extends Component {
       <form onSubmit={this.onFormSubmit}>
         <input 
           placeholder="Search for a job"
-
-          type="search"
-          className="searchBar"
-
-          type="search"
           className="searchBar"
           value={ this.state.term }
-          onChange={ this.onInputChange } />
+          onChange={ this.onInputChange } />  
         <button type="submit">Search</button>
       </form>
     );
   }
 };
 
-export default SearchBar;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchJobs }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(SearchBar);
