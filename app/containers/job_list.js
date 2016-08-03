@@ -17,7 +17,7 @@ class JobList extends Component {
 
   render() {
     return (
-      <ul>
+      <ul className="jobsList">
         {this.renderList()}
       </ul>
     );

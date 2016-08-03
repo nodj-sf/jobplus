@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -21,20 +21,29 @@ class SearchBar extends Component {
   render() {
     return (
       <form onSubmit={this.onFormSubmit}>
-        <input 
-          placeholder="Search for a job"
 
-          type="search"
-          className="searchBar"
+        <div className="box">
+          <div className="container-3">
+              <span className="icon"><i className="fa fa-search"></i></span>
+              <input type="search" id="search" placeholder="Search..." />
+          </div>
+        </div>
 
-          type="search"
-          className="searchBar"
-          value={ this.state.term }
-          onChange={ this.onInputChange } />
-        <button type="submit">Search</button>
+        <button type="submit" className="button-primary">Search</button>
       </form>
     );
   }
 };
 
 export default SearchBar;
+
+        // <input 
+        //   placeholder="Search for a job"
+
+        //   type="search"
+        //   className="searchBar"
+
+        //   type="search"
+        //   className="searchBar"
+        //   value={ this.state.term }
+        //   onChange={ this.onInputChange } />
