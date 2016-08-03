@@ -10,7 +10,7 @@ class JobList extends Component {
   renderList() {
     return this.props.jobs.map((job) => {
       return (
-        <JobListItem key={job.id} /*job={job}*/ />
+        <JobListItem key={job.id} job={job} />
       ); 
     });
   }
@@ -18,9 +18,12 @@ class JobList extends Component {
 
   render() {
     return (
-      <ul className="jobsList">
-        {this.renderList()}
-      </ul>
+      <div className="jobsPaneLeft">
+        <b>Select A Job!</b>;
+        <ul className="jobsList">
+          {this.renderList()}
+        </ul>
+      </div>
     );
   }
 }

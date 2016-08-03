@@ -52,9 +52,18 @@ h2.jobListingTitle {
   box-shadow: 0 5px 4px 0.5px #ADADAD;
 }
 
+.footerCont {
+  position: fixed;
+  width: 100%;
+  height: 65px;
+  bottom: 0;
+  left: 0;
+  background: #7A7A7A;
+}
+
 #app {
   position: relative;
-  margin-top: 20%;
+  margin-top: 250px;
   background: #FFF;
 }
 
@@ -63,12 +72,23 @@ h2.jobListingTitle {
   display: inline-block;
 }
 
-ul.jobsList {
+div.jobsPaneLeft {
   display: inline-block;
   width: 35%;
   margin: 5% auto;
   margin-left: 25px;
-  float: left;
+}
+
+div.jobsPaneLeft b {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+  line-height: 0;
+}
+
+ul.jobsList {
+  width: 100%;
 }
 
 ul.jobsList li {  
@@ -81,6 +101,7 @@ ul.jobsList li:hover {
   background-color: #F1F1F1;
   box-shadow: 0 5px 5px #8D8D8D;
   cursor: pointer;
+  border-left: 5px solid #771DE5;
 }
 
 button.button-primary {
@@ -139,6 +160,7 @@ button.button-primary:hover {
      -moz-border-radius: 5px;
           border-radius: 5px;
   color: #FFF;
+  letter-spacing: 0.25rem;
   text-indent: 25px;
   transition: background-color 0.25s ease-in;
 }
@@ -148,9 +170,20 @@ button.button-primary:hover {
   /* background-color: #F1F1F1; */
 }
 .container-3 input#search:focus::-webkit-input-placeholder {
-  text-indent: 90%;
+  text-indent: 85%;
 }
 
+
+#search {
+  -webkit-appearance: textfield;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
 
 input::-webkit-input-placeholder {                  /* Apple Safari / Google Chrome browsers */
    font: 20px/50px Raleway, Helvetica, sans-serif;
@@ -176,4 +209,20 @@ input:-ms-input-placeholder {                       /* Microsoft (MS) Internet E
   text-indent: 20px;
   color: #FFF;
   opacity: 0.80; 
+}
+
+h2.modalJobTitle {
+  text-align: center;
+}
+
+i.XButton {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 40px;
+  color: #771DE5;
+}
+
+i.XButton:hover {
+  cursor: pointer;
 }

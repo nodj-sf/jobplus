@@ -25,7 +25,7 @@ class SearchBar extends Component {
         <div className="box">
           <div className="container-3">
               <span className="icon"><i className="fa fa-search"></i></span>
-              <input type="search" id="search" placeholder="Search..." />
+              <input id="search" type="search" results="4" autoSave="Developer Jobs" placeholder="Search..." />
           </div>
         </div>
 

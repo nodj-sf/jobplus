@@ -7,6 +7,7 @@ import Banner from "./components/banner_component";
 import SearchBar from './components/search_bar';
 import JobList from './containers/job_list';
 import JobDetail from './containers/job_detail';
+import Footer from "./components/footer_component";
 
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
         <SearchBar className="twelve columns" onSearchTermChange={term => this.jobSearch(term)} />
         <JobList />
         <JobDetail />
+        <Footer />
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 import Modal from "react-modal";
+import onClickOutside from "react-onclickoutside";
 
 
 const customStyles = {
@@ -13,6 +14,8 @@ const customStyles = {
     backgroundColor: "rgba(193, 193, 193, 0.75)"
   },
   content: {
+    minWidth: "500px",
+    minHeight: "500px",
     top: "50%",
     left: "50%",
     right: "auto",
@@ -39,22 +42,26 @@ class JobListItem extends Component {
     this.setState({isModalOpen: false});
   }
 
+  handleClickOutside(evt) {
+    this.closeModal();
+  }
 
   render() {
     return (
       <li className="jobLI" onClick={() => this.openModal()}>
-        <h2>Job</h2> 
+        <h2>{this.props.job.title}</h2> 
 
-        <div>
           <Modal
             isOpen={this.state.isModalOpen}
             onClose={() => this.closeModal()}
             style={customStyles} >
 
-            <h2 ref="subtitle">Hello</h2>
-            <button onClick={() => this.closeModal()}>close</button>
+            <h2 className="modalJobTitle" ref="subtitle">{this.props.job.title}</h2>
+            <hr />
+
+            <i className="fa fa-times-circle XButton" onClick={() => this.closeModal()}></i>
           </Modal>
-        </div>
+
       </li>
     );
   }
