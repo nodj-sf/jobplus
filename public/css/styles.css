@@ -1,5 +1,6 @@
 
 html {
+  height: 2000px;
   background-color: #F9F9F9;
 }
 
@@ -8,14 +9,19 @@ body {
   width: 100%;
 }
 
-.appContainer {
+/*appContainer*/
+#app {
+  position: relative;
+  display: block;
   width: 90%;
+  height: 500px;
   margin: 0 auto;
+  margin-top: 250px;
 }
 
 .appCols {
-  width: 100%;
-  min-height: 500px;
+  /* width: 100%; */
+  /* min-height: 500px; */
 }
 
 /*ul.jobsUL {
@@ -61,9 +67,11 @@ h2.jobListingTitle {
   height: 200px;
   top: 0;
   left: 0;
-  background: #771DE5;
-  /*background: #F321AD;*/
+  background: linear-gradient(to bottom right, #771DE5 30%, rgba(119, 29, 221, 0.6));
+  /* background: #771DE5; */
+  /* background: #F321AD; */
   box-shadow: 0 5px 4px 0.5px #ADADAD;
+  z-index: 100;
 }
 
 .footerCont {
@@ -75,15 +83,31 @@ h2.jobListingTitle {
   background: #7A7A7A;
 }
 
-#app {
+#jobsContainer {
   position: relative;
-  margin-top: 250px;
+  display: inline-block;
+  /*margin-top: 250px;*/
   background: #FFF;
+  float: left;
 }
 
-#app,
-#mapsContainer {
+#chartContainer {
+  position: relative;
   display: inline-block;
+  width: 40%;
+  height: 150px;
+  float: right;
+  background-color: green;
+}
+
+#mapsContainer {
+  position: relative;
+  display: block;
+  width: 90%;
+  height: 300px;
+  margin: auto;
+  margin-top: 50px;
+  border: 3px solid red;
 }
 
 div.jobsPaneLeft {
@@ -159,7 +183,9 @@ button.button-primary:hover {
 .container-3 {
   position: relative;
   width: 70%;
+  height: 45px;
   margin: auto;
+  margin-top: 20px;
   vertical-align: middle;
   white-space: nowrap;
 }
@@ -178,6 +204,7 @@ button.button-primary:hover {
   height: 50px;
   background: #7A7A7A;
   /* background: #2B303B; */
+  padding: 0;
   border: none;
   font-size: 25px;
   /*float: left;*/
@@ -186,22 +213,33 @@ button.button-primary:hover {
      -moz-border-radius: 5px;
           border-radius: 5px;
   color: #FFF;
-  letter-spacing: 0.25rem;
-  text-indent: 25px;
-  transition: background-color 0.25s ease-in;
+  letter-spacing: 0.35rem;
+  text-indent: 50px;
+  transition: background-color 0.25s ease-in, padding 0.25s ease-in;
 }
 
 .container-3 input#search:focus {
+  padding: 30px 0;
   background: #2B303B;
   /* background-color: #F1F1F1; */
 }
+
 .container-3 input#search:focus::-webkit-input-placeholder {
   text-indent: 85%;
 }
 
+.container-3 input#search:focus + span.icon {
+  position: absolute;
+  margin: 20px 14px;
+  line-height: 65px;
+  font-size: 3rem;
+  z-index: 10;
+  color: #FFF;
+}
 
 #search {
   -webkit-appearance: textfield;
+  transition: padding 0.25s ease-out;
 }
 
 input[type="search"] {

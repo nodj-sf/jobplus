@@ -13,8 +13,12 @@ class App extends Component {
       <div>
         <Banner />
         <SearchBar className="twelve columns" />
+        
         <JobList />
         <JobDetail />
+
+        
+
         <Footer />
       </div>
     );
