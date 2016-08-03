@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchJobs } from '../actions/index';
@@ -26,16 +26,25 @@ class SearchBar extends Component {
   render() {
     return (
       <form onSubmit={this.onFormSubmit}>
-        <input 
-          placeholder="Search for a job"
-          className="searchBar"
-          value={ this.state.term }
-          onChange={ this.onInputChange } />  
-        <button type="submit">Search</button>
+        <div className="box">
+          <div className="container-3">
+              <span className="icon"><i className="fa fa-search"></i></span>
+              <input 
+                id="search" 
+                type="search" 
+                results="4" 
+                autoSave="Developer Jobs" 
+                placeholder="Search..."
+                onChange={this.onInputChange} />
+          </div>
+        </div>
+
+        <button type="submit" className="button-primary">Search</button>
       </form>
     );
   }
 };
+
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchJobs }, dispatch);

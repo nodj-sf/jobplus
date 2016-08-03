@@ -3,23 +3,26 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { selectJob } from '../actions/index';
+import JobListItem from "../components/job_list_item";
+
 
 class JobList extends Component {
   renderList() {
     return this.props.jobs.map((job) => {
       return (
-          <li key={job.title} onClick={() => this.props.selectJob(job)}>
-            <h3>{job.title}</h3>
-          </li>
-        );
+        <JobListItem key={job.id} job={job} />
+      );
     });
   }
 
   render() {
     return (
-      <ul>
-        {this.renderList()}
-      </ul>
+      <div className="jobsPaneLeft">
+        <b>Select A Job!</b>;
+        <ul className="jobsList">
+          {this.renderList()}
+        </ul>
+      </div>
     );
   }
 }
