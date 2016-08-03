@@ -1,11 +1,12 @@
-import React from 'react';
+// old format kept for reference
+// import React from 'react';
 
-const JobListItem = ({job}) => {
-  return (
-    <li className="jobLI">
-      <h3>{job.title}</h3>
-    </li>
-  );
-}
+// const JobListItem = ({job}) => {
+//   return (
+//     <li className="jobLI">
+//       <h3>{job.title}</h3>
+//     </li>
+//   );
+// }
 
-export default JobListItem;
+// export default JobListItem;
