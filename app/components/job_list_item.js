@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 import Modal from "react-modal";
-import onClickOutside from "react-onclickoutside";
 
 
 const customStyles = {
