@@ -28,6 +28,19 @@ li.jobLI {
   box-shadow: 0 4px 0.5px rgba(172, 172, 172, 0.85);
 }
 
+li.jobLI h2,
+h2.jobListingTitle {
+  line-height: 46px;
+  font-weight: 300;
+  font-variant: small-caps;
+}
+
+.navLogoText {
+  position: absolute;
+  left: 50px;
+  font: 90px/200px Oxygen, "Open Sans", Helvetica, Raleway;
+}
+
 .bannerCont {
   position: fixed;
   width: 100%;
@@ -67,9 +80,10 @@ ul.jobsList li {
 ul.jobsList li:hover {
   background-color: #F1F1F1;
   box-shadow: 0 5px 5px #8D8D8D;
+  cursor: pointer;
 }
 
-.button-primary {
+button.button-primary {
   /* position: absolute; */
   width: 10%;
   height: 50px;
@@ -78,12 +92,21 @@ ul.jobsList li:hover {
   margin-left: 25px;
   margin-bottom: 1rem;
   padding: 0px 4px;
+  font: 900 20px/50px Raleway;
   /* transform: translateX(-50%); */
-  background-color: #fff;
-  border: 1px solid #D1D1D1;
+  background-color: #771DE5;
+  /* background-color: #FFF; */
+  color: #A7A5A5;
+  /* border: 1px solid #D1D1D1; */
   border-radius: 4px;
   box-shadow: none;
   box-sizing: content-box;
+  transition: background 0.25s ease-out, color 0.25s ease-out;
+}
+
+button.button-primary:hover {
+  color: #771DE5;
+  background-color: #A7A5A5;
 }
 
 .container-3 {
@@ -109,14 +132,14 @@ ul.jobsList li:hover {
   background: #7A7A7A;
   /* background: #2B303B; */
   border: none;
-  font-size: 10pt;
-  float: left;
-  color: #262626;
+  font-size: 25px;
+  /*float: left;*/
   padding-left: 45px;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;
   color: #FFF;
+  text-indent: 25px;
   transition: background-color 0.25s ease-in;
 }
 
@@ -124,35 +147,31 @@ ul.jobsList li:hover {
   background: #2B303B;
   /* background-color: #F1F1F1; */
 }
-
 .container-3 input#search:focus::-webkit-input-placeholder {
-  text-indent: 80%;
+  text-indent: 90%;
 }
 
 
-input::-webkit-input-placeholder {
+input::-webkit-input-placeholder {                  /* Apple Safari / Google Chrome browsers */
    font: 20px/50px Raleway, Helvetica, sans-serif;
    text-indent: 20px;
    color: #FFF;
    opacity: 0.80;
    transition: text-indent 0.25s ease-out;
 }
-
-input:-moz-placeholder { /* Firefox 18- */
+input:-moz-placeholder {                            /* Firefox 18- */
   font: 20px/50px Raleway, Helvetica, sans-serif;
   text-indent: 20px;
   color: #FFF;
   opacity: 0.80;
 }
-
-input::-moz-placeholder {  /* Firefox 19+ */
+input::-moz-placeholder {                           /* Firefox 19+ */
   font: 20px/50px Raleway, Helvetica, sans-serif;
   text-indent: 20px;
   color: #FFF;
   opacity: 0.80;
 }
-
-input:-ms-input-placeholder {  
+input:-ms-input-placeholder {                       /* Microsoft (MS) Internet Explorer (IE) */
   font: 20px/50px Raleway, Helvetica, sans-serif;
   text-indent: 20px;
   color: #FFF;

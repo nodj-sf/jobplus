@@ -207,7 +207,8 @@ input[type="reset"]:focus,
 input[type="button"]:focus {
   color: #333;
   border-color: #888;
-  outline: 0; }
+  outline: 0; 
+}
 .button.button-primary,
 button.button-primary,
 input[type="submit"].button-primary,
@@ -215,7 +216,8 @@ input[type="reset"].button-primary,
 input[type="button"].button-primary {
   color: #FFF;
   background-color: #33C3F0;
-  border-color: #33C3F0; }
+  /* border-color: #33C3F0; */
+}
 .button.button-primary:hover,
 button.button-primary:hover,
 input[type="submit"].button-primary:hover,
@@ -228,7 +230,8 @@ input[type="reset"].button-primary:focus,
 input[type="button"].button-primary:focus {
   color: #FFF;
   background-color: #1EAEDB;
-  border-color: #1EAEDB; }
+  /* border-color: #1EAEDB; */
+}
 
 
 /* Forms
@@ -253,7 +256,8 @@ select {
   border: 1px solid #D1D1D1;
   border-radius: 4px;
   box-shadow: none;
-  box-sizing: border-box; }
+  box-sizing: border-box; 
+}
 /* Removes awkward default styles on some inputs for iOS */
 input[type="email"],
 input[type="number"],
@@ -265,11 +269,13 @@ input[type="password"],
 textarea {
   -webkit-appearance: none;
      -moz-appearance: none;
-          appearance: none; }
+          appearance: none; 
+}
 textarea {
   min-height: 65px;
   padding-top: 6px;
-  padding-bottom: 6px; }
+  padding-bottom: 6px; 
+}
 input[type="email"]:focus,
 input[type="number"]:focus,
 input[type="search"]:focus,
@@ -280,39 +286,48 @@ input[type="password"]:focus,
 textarea:focus,
 select:focus {
   border: 1px solid #33C3F0;
-  outline: 0; }
+  outline: 0; 
+}
 label,
 legend {
   display: block;
   margin-bottom: .5rem;
-  font-weight: 600; }
+  font-weight: 600; 
+}
 fieldset {
   padding: 0;
-  border-width: 0; }
+  border-width: 0; 
+}
 input[type="checkbox"],
 input[type="radio"] {
-  display: inline; }
+  display: inline; 
+}
 label > .label-body {
   display: inline-block;
   margin-left: .5rem;
-  font-weight: normal; }
+  font-weight: normal; 
+}
 
 
 /* Lists
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 ul {
-  list-style: circle inside; }
+  list-style: circle inside; 
+}
 ol {
-  list-style: decimal inside; }
+  list-style: decimal inside; 
+}
 ol, ul {
   padding-left: 0;
-  margin-top: 0; }
+  margin-top: 0; 
+}
 ul ul,
 ul ol,
 ol ol,
 ol ul {
   margin: 1.5rem 0 1.5rem 3rem;
-  font-size: 90%; }
+  font-size: 90%; 
+}
 li {
   margin-bottom: 2rem; 
   list-style-type: none;
@@ -329,11 +344,13 @@ code {
   white-space: nowrap;
   background: #F1F1F1;
   border: 1px solid #E1E1E1;
-  border-radius: 4px; }
+  border-radius: 4px; 
+}
 pre > code {
   display: block;
   padding: 1rem 1.5rem;
-  white-space: pre; }
+  white-space: pre; 
+}
 
 
 /* Tables
