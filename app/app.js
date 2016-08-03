@@ -31,5 +31,9 @@ ReactDOM.render(
   </Provider>, 
   document.getElementById('app')
 );
+<<<<<<< HEAD
+=======
+
+>>>>>>> f613d4fab7e609f442ebb3861c52f33b8c274b62
 
 export default App;
