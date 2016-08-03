@@ -54,6 +54,7 @@ class JobListItem extends Component {
           <Modal
             isOpen={this.state.isModalOpen}
             onClose={() => this.closeModal()}
+            // closeTimeoutMS={3000}
             style={customStyles} >
 
             <h2 className="modalJobTitle" ref="subtitle">{this.props.job.title}</h2>

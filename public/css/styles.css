@@ -94,13 +94,17 @@ ul.jobsList {
 ul.jobsList li {  
   padding: 20px;
   background-color: #ECECEC;
+  box-sizing: border-box;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
   /* box-shadow: 0 0 2px 0 #A7A5A5; */
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1.0);       /* box-shadow, border-left */
 }
 
 ul.jobsList li:hover {
   background-color: #F1F1F1;
-  box-shadow: 0 5px 5px #8D8D8D;
   cursor: pointer;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0 5px 5px #8D8D8D; */
   border-left: 5px solid #771DE5;
 }
 
