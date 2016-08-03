@@ -4,7 +4,7 @@ import SearchBar from './search_bar';
 import JobDetail from '../containers/job_detail';
 import Footer from "./footer_component";
 import JobList from '../containers/job_list';
-import NodjMap from './google_map'
+import NodjMap from './google_map';
 
 class App extends Component {
   render() {
