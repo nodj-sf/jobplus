@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <div>
         <Banner />
-        <SearchBar className="twelve columns" onSearchTermChange={term => this.jobSearch(term)} />
+        <SearchBar className="twelve columns" />
         <JobList />
         <JobDetail />
         <Footer />

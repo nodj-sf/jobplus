@@ -8,13 +8,25 @@ body {
   width: 100%;
 }
 
-ul.jobsUL {
+.appContainer {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.appCols {
+  width: 100%;
+  min-height: 500px;
+}
+
+/*ul.jobsUL {
   position: relative;
   display: inline-block;
   width: 50%;
   min-height: 350px;
   float: left;
-}
+  width: 100%;
+  margin: 20px auto;
+}*/
 
 li.jobLI {
   position: relative;
@@ -22,9 +34,11 @@ li.jobLI {
   width: 100%;
   min-height: 65px;
   margin: 20px 0;
+  margin-bottom: 2rem; 
   list-style-type: none;
   /* border: solid 0.5px DimGray; */
   box-shadow: 0 4px 0.5px rgba(172, 172, 172, 0.85);
+  background-color: Silver;
 }
 
 li.jobLI h2,
@@ -98,6 +112,9 @@ ul.jobsList li {
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
   /* box-shadow: 0 0 2px 0 #A7A5A5; */
   transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1.0);       /* box-shadow, border-left */
+  margin-bottom: 2rem; 
+  list-style-type: none;
+  /*background-color: Silver;*/
 }
 
 ul.jobsList li:hover {
@@ -180,6 +197,15 @@ button.button-primary:hover {
 
 #search {
   -webkit-appearance: textfield;
+}
+
+input[type="search"] {
+  position: absolute;
+  width: 70%;
+  left: 50%;
+  margin: 20px auto;
+  transform: translateX(-50%);
+  box-sizing: border-box;
 }
 
 input[type="search"]::-webkit-search-decoration,

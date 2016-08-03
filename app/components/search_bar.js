@@ -36,6 +36,7 @@ class SearchBar extends Component {
                 results="4" 
                 autoSave="Developer Jobs" 
                 placeholder="Search..."
+                value={this.state.term}
                 onChange={this.onInputChange} />
           </div>
         </div>

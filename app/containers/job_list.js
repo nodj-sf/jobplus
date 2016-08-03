@@ -42,4 +42,3 @@ function mapDispatchToProps(dispatch) {
 
 // Promote JobList to a container
 export default connect(mapStateToProps, mapDispatchToProps)(JobList);
-
