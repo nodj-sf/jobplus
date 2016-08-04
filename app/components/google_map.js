@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {GoogleMapLoader, GoogleMap, Marker} from 'react-google-maps';
 
-import InfoBox from "react-google-maps/lib/addons/InfoBox";
+// import InfoBox from "react-google-maps/lib/addons/InfoBox";
 
 
 export default (props) => {

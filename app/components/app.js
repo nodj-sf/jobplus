@@ -23,11 +23,11 @@ class App extends Component {
         </div>        
 
         <br /> <br />
+
         <h1 style={{width: "90%", margin: "auto", textAlign: "center"}}>NODJ Map</h1>
         <GoogleMap />
 
         <Footer />
-        <NodjMap />
       </div>
     );
   }
