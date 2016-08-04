@@ -19,7 +19,7 @@ export function fetchJobs(city) {
 }
 
 export function selectJob(job) {
-  console.log('A job has been selected:', job.title);
+  console.log('A job has been selected:', job);
   return {
     type: 'JOB_SELECTED',
     payload: job
