@@ -60,7 +60,7 @@ class JobListItem extends Component {
             onClose={() => this.closeModal()}
             style={customStyles} >
 
-            <h2 className='modalJobTitle' ref='subtitle'>{this.props.job.title}</h2>
+            <h2 className='modalJobTitle' ref='subtitle'>{this.props.job.jobtitle}</h2>
             <hr />
 
             <i className='fa fa-times-circle XButton' onClick={() => this.closeModal()}></i>
