@@ -7,7 +7,6 @@ html {
 body {
   position: relative;
   width: 100%;
-  height: 3000px
 }
 
 #appContainer {
@@ -19,10 +18,7 @@ body {
   background: #FFF;
 }
 
-.appCols {
-  /* width: 100%; */
-  /* min-height: 500px; */
-}
+.appCols {  }
 
 #jobInfoBody {
   position: relative;
@@ -40,7 +36,6 @@ body {
   display: inline-block;
   width: 40%;
   min-height: 200px;
-  /* margin: 15px 50px; */
   float: left;
 }
 
@@ -50,10 +45,9 @@ body {
   width: 40%;
   min-height: 200px;
   float: right;
-  background: linear-gradient(299deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
   background: -webkit-linear-gradient(209deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
-  background: -o-linear-gradient(209deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
-  background: linear-gradient(299deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
+  background:      -o-linear-gradient(209deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
+  background:         linear-gradient(299deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
 }
 
 #mapsContainer {
@@ -70,15 +64,19 @@ body {
 div#overlay {
   position: relative; 
   width: 100%;
-  min-height: 500px;              /* your iframe height */
-  top: 500px;                     /* your iframe height */
-  margin-top: -500px;             /* your iframe height */
+  min-height: 500px;              /* <iframe> height */
+  top: 500px;                     /* <iframe> height */
+  margin-top: -500px;             /* <iframe> height */
   background: transparent; 
   z-index: 10;
 }
 
-#headSection1 {
+.ReactModal__Overlay {
+  z-index: 150;
+  background: rgba(41, 37, 37, 0.59);
 }
+
+#headSection1 {  }
 
 #searchForm { 
   position: relative;
@@ -96,16 +94,6 @@ div.box {
   transform: translate(-50%, -50%);
 }
 
-/*ul.jobsUL {
-  position: relative;
-  display: inline-block;
-  width: 50%;
-  min-height: 350px;
-  float: left;
-  width: 100%;
-  margin: 20px auto;
-}*/
-
 li.jobLI {
   position: relative;
   display: list-item;
@@ -114,7 +102,6 @@ li.jobLI {
   margin: 20px 0;
   margin-bottom: 2rem; 
   list-style-type: none;
-  /* border: solid 0.5px DimGray; */
   box-shadow: 0 4px 0.5px rgba(172, 172, 172, 0.85);
   background-color: Silver;
 }
@@ -131,7 +118,7 @@ h2.jobListingTitle {
 .navLogoText {
   position: absolute;
   left: 50px;
-  font: 90px/125px "Open Sans", Helvetica, Raleway, Arial;
+  font: 90px/125px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
 }
 
 .bannerCont {
@@ -140,12 +127,9 @@ h2.jobListingTitle {
   height: 125px;
   top: 0;
   left: 0;
-  background: linear-gradient(321deg, rgb(95, 20, 181) 15%, #771DE5 34%, rgb(169, 115, 231) 82%);
   background: -webkit-linear-gradient(231deg, rgb(95, 20, 181) 15%, #771DE5 34%, rgb(169, 115, 231) 82%);
-  background: -o-linear-gradient(231deg, rgb(95, 20, 181) 15%, #771DE5 34%, rgb(169, 115, 231) 82%);
-  background: linear-gradient(321deg, rgb(95, 20, 181) 15%, #771DE5 34%, rgb(169, 115, 231) 82%);
-  /* background: #771DE5; */
-  /* background: #F321AD; */
+  background:      -o-linear-gradient(231deg, rgb(95, 20, 181) 15%, #771DE5 34%, rgb(169, 115, 231) 82%);
+  background:         linear-gradient(321deg, rgb(95, 20, 181) 15%, #771DE5 34%, rgb(169, 115, 231) 82%);
   box-shadow: 0 5px 4px 0.5px #ADADAD;
   z-index: 100;
 }
@@ -167,13 +151,6 @@ svg.rd3-chart {
   z-index: 100;
 }
 
-/*div.jobsPaneLeft {
-  display: inline-block;
-  width: 35%;
-  margin: 5% auto;
-  margin-left: 25px;
-}*/
-
 div.jobsPaneLeft b {
   position: relative;
   display: block;
@@ -191,25 +168,22 @@ ul.jobsList {
 
 ul.jobsList li {  
   padding: 20px;
-  background-color: #ECECEC;
-  box-sizing: border-box;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
-  /* box-shadow: 0 0 2px 0 #A7A5A5; */
-  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1.0);       /* box-shadow, border-left */
   margin-bottom: 2rem; 
   list-style-type: none;
+  box-sizing: border-box;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+  background-color: #ECECEC;
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1.0);       /* box-shadow, border-left */
 }
 
 ul.jobsList li:hover {
   background-color: #F1F1F1;
   cursor: pointer;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.3);
-  /* box-shadow: 0 5px 5px #8D8D8D; */
   border-left: 5px solid #771DE5;
 }
 
 button.button-primary {
-  /* position: absolute; */
   width: 10%;
   height: 50px;
   left: 3%;
@@ -217,13 +191,9 @@ button.button-primary {
   margin-left: 25px;
   margin-bottom: 1rem;
   padding: 0px 4px;
-  font: 900 20px/50px Raleway;
-  /* transform: translateX(-50%); */
+  font: 900 20px/50px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
   background-color: #771DE5;
-  /* background-color: #33C3F0; */
-  /* background-color: #FFF; */
   color: #A7A5A5;
-  /* border: 1px solid #D1D1D1; */
   border-radius: 4px;
   box-shadow: none;
   box-sizing: content-box;
@@ -253,11 +223,9 @@ button.button-primary:hover {
   width: 100%;
   height: 50px;
   background: #7A7A7A;
-  /* background: #2B303B; */
   padding: 0;
   border: none;
   font-size: 25px;
-  /*float: left;*/
   padding-left: 45px;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
@@ -271,7 +239,6 @@ button.button-primary:hover {
 .container-3 input#search:focus {
   padding: 30px 0;
   background: #2B303B;
-  /* background-color: #F1F1F1; */
 }
 
 .container-3 input#search:focus::-webkit-input-placeholder {
@@ -291,10 +258,10 @@ button.button-primary:hover {
 .container-3 input#search:focus + span.icon {
   position: absolute;
   margin: 0 14px;
+  color: #FFF;
   line-height: 60px;
   font-size: 3rem;
   z-index: 10;
-  color: #FFF;
 }
 
 #search {
@@ -302,7 +269,7 @@ button.button-primary:hover {
   transition: padding 0.25s ease-out;
 }
 
-input[type="search"] {
+input[type='search'] {
   position: absolute;
   width: 70%;
   left: 50%;
@@ -311,34 +278,34 @@ input[type="search"] {
   box-sizing: border-box;
 }
 
-input[type="search"]::-webkit-search-decoration,
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-results-button,
-input[type="search"]::-webkit-search-results-decoration {
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
   display: none;
 }
 
 input::-webkit-input-placeholder {                  /* Apple Safari / Google Chrome browsers */
-   font: 20px/50px Raleway, Helvetica, sans-serif;
+   font: 20px/50px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
    text-indent: 20px;
    color: #FFF;
    opacity: 0.80;
    transition: text-indent 0.25s ease-out;
 }
 input:-moz-placeholder {                            /* Firefox 18- */
-  font: 20px/50px Raleway, Helvetica, sans-serif;
+  font: 20px/50px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
   text-indent: 20px;
   color: #FFF;
   opacity: 0.80;
 }
 input::-moz-placeholder {                           /* Firefox 19+ */
-  font: 20px/50px Raleway, Helvetica, sans-serif;
+  font: 20px/50px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
   text-indent: 20px;
   color: #FFF;
   opacity: 0.80;
 }
 input:-ms-input-placeholder {                       /* Microsoft (MS) Internet Explorer (IE) */
-  font: 20px/50px Raleway, Helvetica, sans-serif;
+  font: 20px/50px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
   text-indent: 20px;
   color: #FFF;
   opacity: 0.80; 

@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { selectJob } from '../actions/index';
-import JobListItem from "../components/job_list_item";
+import JobListItem from '../components/job_list_item';
 
 
 class JobList extends Component {
@@ -15,12 +15,11 @@ class JobList extends Component {
     });
   }
 
-
   render() {
     return (
-      <div id="jobsContainer" className="jobsPaneLeft appCols">
+      <div id='jobsContainer' className='jobsPaneLeft appCols'>
         <b>Select A Job!</b>
-        <ul className="jobsList">
+        <ul className='jobsList'>
           {this.renderList()}
         </ul>
       </div>
