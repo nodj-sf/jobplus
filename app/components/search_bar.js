@@ -26,7 +26,7 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <form onSubmit={this.onFormSubmit}>
+      <form id="searchForm" onSubmit={this.onFormSubmit}>
         <div className="box">
           <div className="container-3">
               <input 
