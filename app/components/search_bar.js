@@ -29,7 +29,6 @@ class SearchBar extends Component {
       <form onSubmit={this.onFormSubmit}>
         <div className="box">
           <div className="container-3">
-              <span className="icon"><i className="fa fa-search"></i></span>
               <input 
                 id="search" 
                 type="search" 
@@ -38,6 +37,8 @@ class SearchBar extends Component {
                 placeholder="Search..."
                 value={this.state.term}
                 onChange={this.onInputChange} />
+                
+              <span className="icon"><i className="fa fa-search"></i></span>
           </div>
         </div>
       </form>
