@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 import Modal from "react-modal";
 
+import { selectJob } from "../actions/index";
+
 
 const customStyles = {
   overlay : {
@@ -45,9 +47,14 @@ class JobListItem extends Component {
     this.closeModal();
   }
 
+  clickAction() {
+    this.openModal();
+    selectJob(this.props.job);
+  }
+
   render() {
     return (
-      <li className="jobLI" onClick={() => this.openModal()}>
+      <li className="jobLI" onClick={() => this.clickAction()}>
         <h2>{this.props.job.title}</h2> 
 
           <Modal
