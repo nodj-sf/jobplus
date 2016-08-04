@@ -1,17 +1,28 @@
-import React, {Component} from 'react';
-import {GoogleMapLoader, GoogleMap, Marker} from 'react-google-maps';
+import React, { Component } from 'react';
+import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
+import { default as InfoBox } from 'react-google-maps/lib/addons/InfoBox';
+import mapStylesObject from '../constants/google_map_styles.json';
 
-export default (props) => {
-  return (
-    <div className="map-container" style={{height: "500px", width: '500px'}}>
-    <h1>NodjMap</h1>
+
+class GMap extends Component {
+  render() {
+    return (
       <GoogleMapLoader
-        containerElement={ <div style={{height: "100%"}}/> }
+        containerElement={ 
+          <div id='mapsContainer' /> 
+        }   
         googleMapElement={
-          <GoogleMap defaultZoom={12} defaultCenter={{ lat: 37.735185, lng: -122.3867543 }} >
+          <GoogleMap 
+            defaultZoom={12} 
+            defaultCenter={{ lat: 37.745951, lng: -122.439421 }}
+            maxZoom={14}
+            defaultOptions={{styles: mapStylesObject}}
+            scrollwheel={false} >
           </GoogleMap>
-        }
+        } 
       />
-    </div>
-  );
+    );
+  }
 }
+
+export default GMap;
