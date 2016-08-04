@@ -1,22 +1,21 @@
 
 html {
   height: 2000px;
-  background-color: #F9F9F9;
+  background-color: #F5F5F5;
 }
 
 body {
   position: relative;
   width: 100%;
+  height: 3000px
 }
 
-/*appContainer*/
 #appContainer {
   position: relative;
   display: block;
   width: 90%;
   min-height: 600px;
-  margin: 0 auto;
-  margin-top: 250px;
+  margin: 200px auto 50px auto;
   background: #FFF;
 }
 
@@ -25,10 +24,77 @@ body {
   /* min-height: 500px; */
 }
 
-#headSection1 {
-
+#jobInfoBody {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 450px;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  align-content: space-around;
 }
 
+#jobsContainer {
+  position: relative;
+  display: inline-block;
+  width: 40%;
+  min-height: 200px;
+  /* margin: 15px 50px; */
+  float: left;
+}
+
+#chartContainer {
+  position: relative;
+  display: inline-block;
+  width: 40%;
+  min-height: 200px;
+  float: right;
+  background: linear-gradient(299deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
+  background: -webkit-linear-gradient(209deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
+  background: -o-linear-gradient(209deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
+  background: linear-gradient(299deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
+}
+
+#mapsContainer {
+  position: relative;
+  display: block;
+  width: 90%;
+  height: 500px;
+  margin: auto;
+  pointer-events: none; 
+  border: 3px solid transparent;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+div#overlay {
+  position: relative; 
+  width: 100%;
+  min-height: 500px;              /* your iframe height */
+  top: 500px;                     /* your iframe height */
+  margin-top: -500px;             /* your iframe height */
+  background: transparent; 
+  z-index: 10;
+}
+
+#headSection1 {
+}
+
+#searchForm { 
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100px;
+  margin-bottom: 0;
+}
+
+div.box {
+  position: absolute;
+  left: 50%;
+  width: 100%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 
 /*ul.jobsUL {
   position: relative;
@@ -59,29 +125,36 @@ h2.jobListingTitle {
   font-weight: 400;
   font-variant: small-caps;
   letter-spacing: 0.5rem;
+  margin: 0 auto;
 }
 
 .navLogoText {
   position: absolute;
   left: 50px;
-  font: 90px/200px Oxygen, "Open Sans", Helvetica, Raleway;
+  font: 90px/125px "Open Sans", Helvetica, Raleway, Arial;
 }
 
 .bannerCont {
   position: fixed;
   width: 100%;
-  height: 200px;
+  height: 125px;
   top: 0;
   left: 0;
-  background: linear-gradient(140deg, rgb(95, 20, 181) 10%, #771DE5 30%, rgba(119, 29, 221, 0.6)); 
-  /*background-image: background: -webkit-linear-gradient(50deg, rgb(95, 20, 181) 10%, #771DE5 30%, rgba(119, 29, 221, 0.6));
-  background-image: background: -o-linear-gradient(50deg, rgb(95, 20, 181) 10%, #771DE5 30%, rgba(119, 29, 221, 0.6));
-  background-image: background: linear-gradient(140deg, rgb(95, 20, 181) 10%, #771DE5 30%, rgba(119, 29, 221, 0.6)); */
-
+  background: linear-gradient(321deg, rgb(95, 20, 181) 15%, #771DE5 34%, rgb(169, 115, 231) 82%);
+  background: -webkit-linear-gradient(231deg, rgb(95, 20, 181) 15%, #771DE5 34%, rgb(169, 115, 231) 82%);
+  background: -o-linear-gradient(231deg, rgb(95, 20, 181) 15%, #771DE5 34%, rgb(169, 115, 231) 82%);
+  background: linear-gradient(321deg, rgb(95, 20, 181) 15%, #771DE5 34%, rgb(169, 115, 231) 82%);
   /* background: #771DE5; */
   /* background: #F321AD; */
   box-shadow: 0 5px 4px 0.5px #ADADAD;
   z-index: 100;
+}
+
+svg.rd3-chart {
+  position: relative;
+  display: block;
+  width: 80%;
+  margin: auto;
 }
 
 .footerCont {
@@ -91,45 +164,21 @@ h2.jobListingTitle {
   bottom: 0;
   left: 0;
   background: #7A7A7A;
+  z-index: 100;
 }
 
-#jobsContainer {
-  position: relative;
-  display: inline-block;
-  width: 40%;
-  margin: 50px;
-  float: left;
-}
-
-#chartContainer {
-  position: relative;
-  display: inline-block;
-  width: 40%;
-  height: 150px;
-  float: right;
-  background-color: green;
-}
-
-#mapsContainer {
-  position: relative;
-  display: block;
-  width: 90%;
-  height: 400px;
-  margin: auto;
-  /* border: 3px solid red; */
-}
-
-div.jobsPaneLeft {
+/*div.jobsPaneLeft {
   display: inline-block;
   width: 35%;
   margin: 5% auto;
   margin-left: 25px;
-}
+}*/
 
 div.jobsPaneLeft b {
   position: relative;
   display: block;
   width: 100%;
+  height: 24px;
   bottom: -20px;
   text-align: center;
   font-size: 24px;
@@ -200,15 +249,6 @@ button.button-primary:hover {
   white-space: nowrap;
 }
 
-.container-3 span {
-  position: absolute;
-  margin: 20px 14px;
-  line-height: 50px;
-  font-size: 2.5rem;
-  z-index: 10;
-  color: #FFF;
-}
- 
 .container-3 input#search {
   width: 100%;
   height: 50px;
@@ -238,10 +278,20 @@ button.button-primary:hover {
   text-indent: 85%;
 }
 
+.container-3 span {
+  position: absolute;
+  margin: 0 14px;
+  line-height: 50px;
+  font-size: 2.5rem;
+  z-index: 10;
+  color: #FFF;
+  transition: font-size 0.35s ease-in;
+}
+
 .container-3 input#search:focus + span.icon {
   position: absolute;
-  margin: 20px 14px;
-  line-height: 65px;
+  margin: 0 14px;
+  line-height: 60px;
   font-size: 3rem;
   z-index: 10;
   color: #FFF;
@@ -256,7 +306,7 @@ input[type="search"] {
   position: absolute;
   width: 70%;
   left: 50%;
-  margin: 20px auto;
+  margin: auto;
   transform: translateX(-50%);
   box-sizing: border-box;
 }

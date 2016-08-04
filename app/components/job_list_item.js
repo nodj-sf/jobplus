@@ -23,16 +23,16 @@ const customStyles = {
     bottom: "auto",
     borderRadius: "8px",
     marginRight: "-50%",
-    transform: "translate(-50%, -50%)"
+    transform: "translate(-50%, -50%)",
+    zIndex: "200"
   }
 };
-
 
 
 class JobListItem extends Component {
   constructor(props) {
     super(props);
-    this.state = {isModalOpen: false}
+    this.state = {isModalOpen: false};
   }
 
   openModal() {
@@ -56,7 +56,6 @@ class JobListItem extends Component {
     return (
       <li className="jobLI" onClick={() => this.clickAction()}>
         <h2>{this.props.job.title}</h2> 
-
           <Modal
             isOpen={this.state.isModalOpen}
             onClose={() => this.closeModal()}
@@ -67,7 +66,6 @@ class JobListItem extends Component {
 
             <i className="fa fa-times-circle XButton" onClick={() => this.closeModal()}></i>
           </Modal>
-
       </li>
     );
   }

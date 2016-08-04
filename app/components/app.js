@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import Banner from "./banner_component";
 import SearchBar from './search_bar';
 import JobDetail from '../containers/job_detail';
-import GoogleMap from "./google_map.js";
+// import GoogleMap from "./google_map.js";
 import Footer from "./footer_component";
 import JobList from '../containers/job_list';
-import NodjMap from './google_map';
+import DataDiagram from './diagram_component';
+import GMap from './google_map';
+
 
 class App extends Component {
   render() {
@@ -16,15 +18,17 @@ class App extends Component {
         <div id="appContainer" className="appContainer">
           <SearchBar className="twelve columns" />
           
-          <JobList />
           <JobDetail />
           
+          <div id="jobInfoBody">
+            <JobList />
+            <DataDiagram />
+          </div>
+
         </div>        
 
-        <br /> <br />
-
         <h1 style={{width: "90%", margin: "auto", textAlign: "center"}}>NODJ Map</h1>
-        <GoogleMap />
+        <GMap />
 
         <Footer />
       </div>
