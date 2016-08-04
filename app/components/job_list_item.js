@@ -54,7 +54,7 @@ class JobListItem extends Component {
   render() {
     return (
       <li className='jobLI' onClick={() => this.clickAction()}>
-        <h2>{this.props.job.title}</h2> 
+        <h2>{this.props.job.jobtitle}</h2> 
           <Modal
             isOpen={this.state.isModalOpen}
             onClose={() => this.closeModal()}

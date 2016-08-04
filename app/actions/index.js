@@ -1,11 +1,8 @@
-import axios from 'axios';
-
-export function fetchJobs(city) {
-  console.log('Request:', city);
-
+export function fetchJobs(jobData) {
+  console.log('Redux Action:', jobData);
   return {
     type: 'FETCH_JOBS',
-    payload: city
+    payload: jobData
   };
 }
 

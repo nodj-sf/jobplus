@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchJobs } from '../actions/index';
-
+import axios from 'axios';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -11,6 +11,7 @@ class SearchBar extends Component {
     this.state = { term: '' };
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.searchJob = this.searchJob.bind(this);
   }
 
   onInputChange(event) {
@@ -20,9 +21,25 @@ class SearchBar extends Component {
   onFormSubmit(event) {
     event.preventDefault();
     // We need to go and fetch job data
-    this.props.fetchJobs(this.state.term);
+    this.searchJob(this.state.term);
+    
     this.setState({ term: '' });
   }
+  
+  // Todo: break out into separate component
+  searchJob(term) {
+    console.log(term, 'Term');
+    axios.post('/api/v1/jobs', {
+      jobTitle: term,
+      city: 'San Francisco' // Hardcoded
+    }).then(function(response) {
+      console.log(response.data.results, 'response');
+      this.props.fetchJobs(response.data.results);
+    }.bind(this)).catch(function(error) {
+      console.log(error);
+    });
+  }
+
 
   render() {
     return (

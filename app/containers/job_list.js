@@ -5,12 +5,11 @@ import { connect } from 'react-redux';
 import { selectJob } from '../actions/index';
 import JobListItem from '../components/job_list_item';
 
-
 class JobList extends Component {
   renderList() {
     return this.props.jobs.map((job) => {
       return (
-        <JobListItem key={job.id} job={job} />
+        <JobListItem key={job.jobkey} job={job} />
       );
     });
   }
@@ -34,6 +33,8 @@ function mapStateToProps(state) {
 }
 
 // Anything returned from this function will end up as props on Joblist container
+// We now have an action thats going to change the state of our DOM. We need to 
+// notify all containers of the action that can be triggered
 function mapDispatchToProps(dispatch) {
   // Whenever loadJobs is called, the result should be passed to all reducers
   return bindActionCreators( { selectJob: selectJob }, dispatch)

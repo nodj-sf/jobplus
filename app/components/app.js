@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Banner from './banner_component';
-import SearchBar from './search_bar';
+import SearchBar from '../containers/search_bar';
 import JobDetail from '../containers/job_detail';
 import Footer from './footer_component';
 import JobList from '../containers/job_list';
@@ -13,22 +13,17 @@ class App extends Component {
     return (
       <div>
         <Banner />
-
         <div id='appContainer' className='appContainer'>
-          <SearchBar className='twelve columns' />
-          
-          <JobDetail />
-          
+          <SearchBar className='twelve columns' />   
+          <JobDetail />      
           <div id='jobInfoBody'>
             <JobList />
             <DataDiagram />
           </div>
-
         </div>        
 
         <h1 style={{width: '90%', margin: 'auto', textAlign: 'center'}}>NODJ Map</h1>
         <GMap />
-
         <Footer />
       </div>
     );
