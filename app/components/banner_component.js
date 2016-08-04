@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 
 class Banner extends Component {
@@ -8,8 +8,8 @@ class Banner extends Component {
 
   render() {
     return (
-      <div className="bannerCont">
-        <h1 className="navLogoText">NODJ</h1>
+      <div className='bannerCont'>
+        <h1 className='navLogoText'>NODJ</h1>
       </div>
     );
   };
