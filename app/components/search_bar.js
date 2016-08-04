@@ -50,4 +50,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchJobs }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(SearchBar);
+export default connect(mapDispatchToProps)(SearchBar);
