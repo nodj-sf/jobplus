@@ -2,7 +2,6 @@ import axios from 'axios';
 
 export function fetchJobs(city) {
   console.log('Request:', city);
-
   return {
     type: 'FETCH_JOBS',
     payload: city
