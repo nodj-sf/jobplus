@@ -102,7 +102,6 @@ export default class GMap extends Component {
             scrollwheel={false}
             ref="map" >
 
-
             <Modal
               isOpen={this.state.isModalOpen}
               onClose={() => this.closeModal()}
@@ -110,7 +109,7 @@ export default class GMap extends Component {
 
               <GoogleMapLoader
                 containerElement={
-                  <div  {...this.props}  className="GMap_Modal" style={{ height: "90vh", width: "90vw" }} />
+                  <div {...this.props} className="GMap_Modal" style={{height: "90vh", width: "90vw"}} />
                 }
                 googleMapElement={
                   <GoogleMap 
@@ -134,30 +133,15 @@ export default class GMap extends Component {
                         </Marker>
                       );
                     })}
-
                   </GoogleMap>
                 }
               />
 
               <i className="fa fa-times-circle XButton" onClick={() => this.closeModal()}></i>
             </Modal>
-
-
           </GoogleMap>
         } 
       />
     );
   }
 }
-
-
-// export default GMap;
-
-// { 
-//     Show info window only if the 'showInfo' key of the marker is true.
-//     That is, when the Marker pin has been clicked and 'handleMarkerClick' has been
-//     Successfully fired.
-  
-
-//   {marker.showInfo ? this.renderInfoWindow(ref, marker) : null}
-//  }
