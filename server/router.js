@@ -19,6 +19,13 @@ if (!process.env.SESSION_SECRET) {
   dotenv.load({ path: '.env' });
 }
 
+const redisClient = require('redis').createClient;
+const redis = redisClient(6379, 'localhost');
+
+redis.on('connect', () => {
+  console.log('connected');
+});
+
 /*
 ** Route Controllers
 */
