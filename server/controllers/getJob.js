@@ -38,12 +38,12 @@ exports.post = (req, res) => {
       */
       getIndeed(jobTitle, city, ip)(res)
         // Return data when a promise is return.
-        .then((res) => {
+        .then((response) => {
           // Cache data using request body as key
-          redis.set(key, res.data);
+          redis.set(key, response.data);
           // Set cache to expire in an hour
           redis.expire(key, 3600);
-          res.respond;
+          response.respond;
           res.end();
         }, (err) => {
           console.log('err: ', err);
