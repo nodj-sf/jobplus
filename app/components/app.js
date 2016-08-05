@@ -1,31 +1,27 @@
 import React, {Component} from 'react';
-import Banner from './banner_component';
-import SearchBar from '../containers/search_bar';
-import JobDetail from '../containers/job_detail';
-import JobList from '../containers/job_list';
-import DataDiagram from './diagram_component';
-import GMap from './google_map';
-import Footer from './footer_component';
 
+import Banner from './banner_component';
+import DataDiagram from './diagram_component';
+import Footer from './footer_component';
+import GMap from './google_map';
+import JobList from '../containers/job_list';
+import JobDetail from '../containers/job_detail';
+import SearchBar from '../containers/search_bar';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Banner />
-        
+        <Banner />        
         <div id="appContainer" className="appContainer">
           <SearchBar className="twelve columns" />   
-          <JobDetail />      
-          
+          <JobDetail />             
           <div id="jobMain">
             <div id="jobResultsPane">
               <GMap />
               <JobList />
             </div>
-
-            <div id="jobInfoBody">
-            
+            <div id="jobInfoBody">           
             </div>
           </div>
         </div>        
