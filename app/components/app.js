@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 
 import Banner from './banner_component';
+import SearchBar from '../containers/search_bar';
 import DataDiagram from './diagram_component';
-import Footer from './footer_component';
 import GMap from './google_map';
+import JobInfo from './job_info_component';
 import JobList from '../containers/job_list';
 import JobDetail from '../containers/job_detail';
-import SearchBar from '../containers/search_bar';
+import Footer from './footer_component';
+
 
 class App extends Component {
   render() {
@@ -21,7 +23,9 @@ class App extends Component {
               <GMap />
               <JobList />
             </div>
-            <div id="jobInfoBody">           
+
+            <div id="jobInfoBody">
+              <JobInfo />
             </div>
           </div>
         </div>        
