@@ -5,6 +5,7 @@ import JobDetail from '../containers/job_detail';
 import JobList from '../containers/job_list';
 import DataDiagram from './diagram_component';
 import GMap from './google_map';
+import JobInfo from './job_info_component';
 import Footer from './footer_component';
 
 
@@ -25,7 +26,7 @@ class App extends Component {
             </div>
 
             <div id="jobInfoBody">
-            
+              <JobInfo />
             </div>
           </div>
         </div>        
