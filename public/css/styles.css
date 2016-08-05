@@ -148,29 +148,26 @@ ul.jobsList li {
   /* box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37); */
   /* box-shadow: 0 4px 0.5px rgba(172, 172, 172, 0.85); */
   background-color: #ECECEC;
-  /* background-color: Silver; */
   transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1.0);       /* box-shadow, border-left */
 }
 
 li.jobLI h2,
 h2.jobListingTitle {
   margin: 0 auto;
-  text-overflow: ellipsis;
-  font-size: 30px;
-  /* overflow-y: hidden; */
   max-height: 60px;
+  overflow: hidden;
+  font: small-caps lighter 30px/60px "Raleway", "Open Sans", Helvetica, Arial, sans-serif;
+  letter-spacing: 0.15rem;
   word-break: break-word;
   word-wrap: break-word;
-  line-height: 60px;
-  font-weight: 400;
-  font-variant: small-caps;
-  letter-spacing: 0.35rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .navLogoText {
   position: absolute;
   left: 50px;
-  font: 60px/75px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
+  font: 60px/75px "Raleway", "Open Sans", Helvetica, Arial, sans-serif;
 }
 
 .bannerCont {
