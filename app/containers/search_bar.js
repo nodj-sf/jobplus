@@ -29,7 +29,7 @@ class SearchBar extends Component {
   searchJob(term) {
     axios.post('/api/v1/jobs', {
       jobTitle: term,
-      city: 'San Francisco' // Hardcoded
+      city: 'San Francisco'                         // Hardcoded
     }).then(function(response) {
       this.props.fetchJobs(response.data.results);
       hashHistory.push('results');
