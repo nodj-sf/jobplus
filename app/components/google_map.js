@@ -28,6 +28,30 @@ const customStyles = {
   }
 };
 
+const mapOptions = {
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapTypeControl: true,
+    mapTypeControlOptions: {
+      style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+      position: google.maps.ControlPosition.TOP_RIGHT
+    },
+    panControl: true,
+    panControlOptions: {
+      position: google.maps.ControlPosition.RIGHT_TOP
+    },
+    zoomControl: true,
+    zoomControlOptions: {
+      style: google.maps.ZoomControlStyle.LARGE,
+      position: google.maps.ControlPosition.RIGHT_TOP
+    },
+    scaleControl: true,
+    scaleControlOptions: {
+      position: google.maps.ControlPosition.RIGHT_TOP
+    },
+    streetViewControl: false,
+    scrollwheel: false
+  };
+
 
 export default class GMap extends Component {
   constructor(props) {
@@ -69,7 +93,6 @@ export default class GMap extends Component {
     });
   }
 
-
   // Modal controls:
   openModal() {
     this.setState({isModalOpen: true});
@@ -83,23 +106,25 @@ export default class GMap extends Component {
     this.closeModal();
   }
 
-  clickAction() {
-    this.openModal();
-  }
-
   render() {
     return (
       <GoogleMapLoader
         containerElement={ 
-          <div id="mapsContainer" onClick={() => this.clickAction()} /> 
+          <div id="mapsContainer" onClick={() => this.openModal()} /> 
         }   
         googleMapElement={
           <GoogleMap 
-            defaultZoom={13} 
+            {...this.state.mapOptions}
+            defaultOptions={{ styles: mapStylesObject }}
             defaultCenter={{ lat: 37.745951, lng: -122.439421 }}
+            defaultZoom={13} 
             maxZoom={14}
-            defaultOptions={{styles: mapStylesObject}}
+            zoomControlOptions={{
+              style: google.maps.ZoomControlStyle.LARGE,
+              position: google.maps.ControlPosition.LEFT_TOP
+            }}
             scrollwheel={false}
+            zoomControl={false}
             ref="map" >
 
             <Modal
@@ -109,14 +134,15 @@ export default class GMap extends Component {
 
               <GoogleMapLoader
                 containerElement={
-                  <div {...this.props} className="GMap_Modal" style={{height: "90vh", width: "90vw"}} />
+                  <div {...this.props.containerElementProps} className="GMap_Modal" style={{ height: "90vh", width: "90vw" }} />
                 }
                 googleMapElement={
                   <GoogleMap 
-                    defaultZoom={13} 
+                    {...this.state.mapOptions}
+                    defaultOptions={{ styles: mapStylesObject }}
                     defaultCenter={{ lat: 37.745951, lng: -122.439421 }}
+                    defaultZoom={13} 
                     maxZoom={14}
-                    defaultOptions={{styles: mapStylesObject}}
                     scrollwheel={false}
                     ref="map" >
 
