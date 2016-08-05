@@ -10,24 +10,29 @@ const yelp = new Yelp({
 
 let getYelp = (food, location, limit) => {
   return (res) => {
-    yelp.search({ term: food, location: location })
-    .then((data) => {
-      let restaurants = data.businesses.slice(0, limit);
-      restaurants = restaurants.map((obj) => {
-        let parseData = {};
-        parseData.name = obj.name;
-        parseData.url = obj.url;
-        parseData.rating = obj.rating;
-        parseData.review_count = obj.review_count;
-        parseData.phone = obj.phone;
-        parseData.coordinate = obj.location.coordinate;
-        return parseData;
+    return yelp.search({ term: food, location: location })
+      .then((data) => {
+        let restaurants = data.businesses.slice(0, limit);
+        
+        restaurants = restaurants.map((obj) => {
+          return {
+            name: obj.name,
+            url: obj.url,
+            rating: obj.rating,
+            review_count: obj.review_count,
+            phone: obj.phone,
+            coordinate: obj.location.coordinate
+          };
+        });
+
+        return {
+          respond: res.send(restaurants),
+          data: restaurants
+        };
+      })
+      .catch((err) => {
+        console.error(err);
       });
-      return res.send(restaurants);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
   }
 }
 
