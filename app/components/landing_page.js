@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SearchBar from '../containers/search_bar';
 
+import SearchBar from '../containers/search_bar';
 
 class LandingPage extends Component {
  render() {
@@ -11,7 +11,6 @@ class LandingPage extends Component {
      </div>
    );
  }
-
 }
 
 export default LandingPage;
