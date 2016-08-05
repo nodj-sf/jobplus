@@ -13,13 +13,6 @@ describe('getIndeed', function() {
   });
 
   it('should do something', function() {
-    var res = {
-      send: function(results) {
-        return results;
-      }
-    };
-    var func = getIndeed('software engineer', 'San Francisco', '69.181.59.152');
-    console.log('func:    ', func());
-    expect(func(res)).to.be.a('array');
+
   });
 });
