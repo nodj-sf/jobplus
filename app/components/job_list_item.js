@@ -53,19 +53,22 @@ class JobListItem extends Component {
 
   render() {
     return (
-      <li className='jobLI' onClick={() => this.clickAction()}>
+      <div>
+      <li className="jobLI" onClick={() => this.clickAction()}>
         <h2>{this.props.job.jobtitle}</h2> 
-          <Modal
-            isOpen={this.state.isModalOpen}
-            onClose={() => this.closeModal()}
-            style={customStyles} >
+        <Modal
+          isOpen={this.state.isModalOpen}
+          onClose={() => this.closeModal()}
+          style={customStyles} >
 
-            <h2 className='modalJobTitle' ref='subtitle'>{this.props.job.jobtitle}</h2>
-            <hr />
+          <h2 className="modalJobTitle" ref="subtitle">{this.props.job.jobtitle}</h2>
+          <hr />
 
-            <i className='fa fa-times-circle XButton' onClick={() => this.closeModal()}></i>
-          </Modal>
+          <i className="fa fa-times-circle XButton" onClick={() => this.closeModal()}></i>
+        </Modal>
       </li>
+      <hr />
+      </div>
     );
   }
 }

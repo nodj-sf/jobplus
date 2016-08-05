@@ -1,6 +1,6 @@
 
 html {
-  height: 2000px;
+  /* height: 2000px; */
   background-color: #F5F5F5;
 }
 
@@ -9,25 +9,59 @@ body {
   width: 100%;
 }
 
+hr {
+  margin: 0;
+  box-sizing: border-box;
+  border-width: 0;
+  border-top: 1px solid #E1E1E1;
+}
+
 #app {
   position: relative;
+  width: 100vw;
   top: 0;
-  bottom: 65px;
-  padding-bottom: 100px;
+  /* bottom: 65px;  */              /* Used to prevent occlusion of body from overlap with Footer */
+  /* padding-bottom: 100px; */      /* Used to prevent occlusion of body from overlap with Footer */
 }
 
 #appContainer {
   position: relative;
   display: block;
-  width: 90%;
-  min-height: 600px;
-  margin: 200px auto 50px auto;
+  width: 96vw;
+  height: 88vh;
+  min-height: 700px;
+  top: 9vh;
+  margin: 0 auto;
   background: #FFF;
+  overflow: hidden;
+  /* box-sizing: border-box; */     /* Potential candidate for inclusion at later point */
 }
 
 .appCols {  }
 
-#jobInfoBody {
+#jobMain {
+  position: relative;
+  height: 85%;
+  min-height: 700px;
+  top: 50%;
+  padding: 0 25px 25px 25px;
+  transform: translateY(-50%);
+}
+
+#jobResultsPane {
+  position: relative;
+  display: inline-block;
+  width: 35%;
+  height: 100%;
+  min-height: 700px;
+  float: left;
+  border: 4px solid red;
+  box-sizing: border-box;
+  background: #ECECEC;
+  overflow: hidden;
+}
+
+/* #jobResultsPane {
   position: relative;
   display: flex;
   width: 100%;
@@ -36,15 +70,29 @@ body {
   justify-content: space-around;
   align-items: center;
   align-content: space-around;
+} */
+
+#jobInfoBody {
+  position: relative;
+  display: inline-block;
+  width: 65%;
+  height: 100%;
+  min-height: 700px;
+  float: right;
+  border: 4px solid blue;
+  box-sizing: border-box;
 }
 
 #jobsContainer {
   position: relative;
-  display: inline-block;
-  width: 40%;
-  min-height: 200px;
-  float: left;
+  display: block;
+  width: 100%;
 }
+
+/* #jobsContainer > div {
+  overflow-x: hidden;
+  overflow-y: scroll;
+} */
 
 #chartContainer {
   position: relative;
@@ -60,12 +108,12 @@ body {
 #mapsContainer {
   position: relative;
   display: block;
-  width: 90%;
-  height: 500px;
-  margin: auto;
+  width: 100%;
+  height: 300px;
   /* pointer-events: none; */
   border: 3px solid transparent;
   box-shadow: 0 0 14px 2px rgba(0, 0, 0, 0.2), 0 0 14px 2px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
 }
 
 div#overlay {
@@ -89,7 +137,8 @@ div#overlay {
   position: relative;
   display: block;
   width: 100%;
-  height: 100px;
+  height: 5%;
+  top: 2.5%;
   margin-bottom: 0;
 }
 
@@ -101,37 +150,44 @@ div.box {
   transform: translate(-50%, -50%);
 }
 
-li.jobLI {
+
+li.jobLI,
+ul.jobsList li {
   position: relative;
   display: list-item;
   width: 100%;
-  min-height: 65px;
-  margin: 20px 0;
-  margin-bottom: 2rem; 
+  min-height: 60px;
+  margin-bottom: 6px;
+  padding: 4px 10px 4px 20px;
   list-style-type: none;
-  box-shadow: 0 4px 0.5px rgba(172, 172, 172, 0.85);
-  background-color: Silver;
+  box-sizing: border-box;
+  /* box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37); */
+  /* box-shadow: 0 4px 0.5px rgba(172, 172, 172, 0.85); */
+  background-color: #ECECEC;
+  /* background-color: Silver; */
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1.0);       /* box-shadow, border-left */
 }
 
 li.jobLI h2,
 h2.jobListingTitle {
-  line-height: 46px;
+  margin: 0 auto;
+  font-size: 30px;
+  line-height: 60px;
   font-weight: 400;
   font-variant: small-caps;
-  letter-spacing: 0.5rem;
-  margin: 0 auto;
+  letter-spacing: 0.35rem;
 }
 
 .navLogoText {
   position: absolute;
   left: 50px;
-  font: 90px/125px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
+  font: 60px/75px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
 }
 
 .bannerCont {
   position: fixed;
   width: 100%;
-  height: 125px;
+  height: 6vh;
   top: 0;
   left: 0;
   background: -webkit-linear-gradient(231deg, rgb(95, 20, 181) 15%, #771DE5 34%, rgb(169, 115, 231) 82%);
@@ -162,26 +218,30 @@ div.jobsPaneLeft b {
   position: relative;
   display: block;
   width: 100%;
-  height: 24px;
-  bottom: -20px;
+  padding: 4px 0;
   text-align: center;
   font-size: 24px;
-  line-height: 0;
+  line-height: 28px;
+  background: #a973e7;
 }
 
 ul.jobsList {
   width: 100%;
+  height: 580px;
+  margin: 0;
+  background-color: #ECECEC;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
-ul.jobsList li {  
+/* ul.jobsList li {  
   padding: 20px;
-  margin-bottom: 2rem; 
   list-style-type: none;
   box-sizing: border-box;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
   background-color: #ECECEC;
-  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1.0);       /* box-shadow, border-left */
-}
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1.0);       / box-shadow, border-left /
+} */
 
 ul.jobsList li:hover {
   background-color: #F1F1F1;

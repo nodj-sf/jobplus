@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { fetchJobs } from '../actions/index';
 import axios from 'axios';
 
+
 class SearchBar extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,6 @@ class SearchBar extends Component {
     event.preventDefault();
     // We need to go and fetch job data
     this.searchJob(this.state.term);
-    
     this.setState({ term: '' });
   }
   
@@ -39,7 +39,6 @@ class SearchBar extends Component {
       console.log(error);
     });
   }
-
 
   render() {
     return (

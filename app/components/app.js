@@ -13,18 +13,23 @@ class App extends Component {
     return (
       <div>
         <Banner />
-        <div id='appContainer' className='appContainer'>
-          <SearchBar className='twelve columns' />   
+        
+        <div id="appContainer" className="appContainer">
+          <SearchBar className="twelve columns" />   
           <JobDetail />      
-          <div id='jobInfoBody'>
-            <JobList />
-            <DataDiagram />
-          </div>
-        </div>        
+          
+          <div id="jobMain">
+            <div id="jobResultsPane">
+              <GMap />
+              <JobList />
+            </div>
 
-        <h1 style={{width: '90%', margin: 'auto', textAlign: 'center'}}>NODJ Map</h1>
-        <GMap />
-        <Footer />
+            <div id="jobInfoBody">
+            
+            </div>
+          </div>
+
+        </div>        
       </div>
     );
   }
