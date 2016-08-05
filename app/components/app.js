@@ -12,20 +12,16 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Banner />
-        
+        <Banner />        
         <div id="appContainer" className="appContainer">
           <SearchBar className="twelve columns" />   
-          <JobDetail />      
-          
+          <JobDetail />             
           <div id="jobMain">
             <div id="jobResultsPane">
               <GMap />
               <JobList />
             </div>
-
-            <div id="jobInfoBody">
-            
+            <div id="jobInfoBody">           
             </div>
           </div>
         </div>        

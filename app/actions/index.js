@@ -13,3 +13,24 @@ export function selectJob(job) {
     payload: job
   };
 }
+
+
+// export function login() {
+//   return {
+//     type: LOGGED_IN,
+//     payload: {
+//       userId: 123
+//     },
+//     meta: {
+//       transition: (state, action) => ({
+//         path: `/logged-in/${action.payload.userId}`,
+//         query: {
+//           some: 'queryParam'
+//         },
+//         state: {
+//           some: 'state'
+//         }
+//       })
+//     }
+//   };
+// }

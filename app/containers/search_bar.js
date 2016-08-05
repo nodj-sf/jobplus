@@ -1,11 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchJobs } from '../actions/index';
 import axios from 'axios';
+import { Router, Route, hashHistory } from 'react-router';
+
+
 
 
 class SearchBar extends Component {
+
   constructor(props) {
     super(props);
 
@@ -14,6 +18,10 @@ class SearchBar extends Component {
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.searchJob = this.searchJob.bind(this);
   }
+
+  // static contextTypes = { 
+  //   router: PropTypes.object
+  // }
 
   onInputChange(event) {
     this.setState({term: event.target.value});
@@ -35,6 +43,7 @@ class SearchBar extends Component {
     }).then(function(response) {
       console.log(response.data.results, 'response');
       this.props.fetchJobs(response.data.results);
+      hashHistory.push('results');
     }.bind(this)).catch(function(error) {
       console.log(error);
     });
