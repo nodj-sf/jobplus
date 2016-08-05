@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component, PropTypes } from 'react';
+import { Router, Route, hashHistory } from 'react-router';
 import { bindActionCreators } from 'redux';
-import { fetchJobs } from '../actions/index';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
+import { fetchJobs } from '../actions/index';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -21,20 +22,17 @@ class SearchBar extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    // We need to go and fetch job data
     this.searchJob(this.state.term);
     this.setState({ term: '' });
   }
   
-  // Todo: break out into separate component
   searchJob(term) {
-    console.log(term, 'Term');
     axios.post('/api/v1/jobs', {
       jobTitle: term,
       city: 'San Francisco' // Hardcoded
     }).then(function(response) {
-      console.log(response.data.results, 'response');
       this.props.fetchJobs(response.data.results);
+      hashHistory.push('results');
     }.bind(this)).catch(function(error) {
       console.log(error);
     });
