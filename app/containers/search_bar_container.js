@@ -6,6 +6,7 @@ import axios from 'axios';
 
 import { fetchJobs } from '../actions/index';
 
+
 class SearchBar extends Component {
   constructor(props) {
     super(props);
@@ -54,28 +55,31 @@ class SearchBar extends Component {
       <form id="searchForm" onSubmit={this.onFormSubmit}>
         <div className="box">
           <div className="container-3">
+
+            <div id="searchInputsBoundary">
               <input 
                 id="search" 
+                className="formSearchInpt"
                 type="search" 
                 results="4" 
                 autoSave="Developer Jobs" 
                 placeholder="Job"
                 value={this.state.jobTerm}
-                onChange={this.onJobTitleInputChange} 
-              />
-              <span className="icon"><i className="fa fa-search"></i></span>
+                onChange={this.onJobTitleInputChange} />
+              
+              <input 
+                id="searchLocation"
+                className="formSearchInpt"
+                type="search"
+                results="4"
+                placeholder="City"
+                autoSave="San Francisco"
+                value={this.state.locationTerm}
+                onChange={this.onLocationInputChange} />
+            </div>
           </div>
-      <form id="searchForm2" onSubmit={this.onFormSubmit}>
-          <div className="container-3 "> //search bar for location
-            <input 
-              id="search"
-              type="search"
-              placeholder="Location"
-              value={this.state.locationTerm}
-              onChange={this.onLocationInputChange}
-            />
-          </div>
-        </form>
+
+          <button id="jobSearchSubmitBtn" type="submit">Submit</button>
         </div>
       </form>
     );
@@ -88,3 +92,11 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(null, mapDispatchToProps)(SearchBar);
+
+
+// id: searchJobInpt
+// id: searchLocationInpt
+
+// <form id="searchForm2" onSubmit={this.onFormSubmit}>
+
+// <span className="icon"><i className="fa fa-search"></i></span>

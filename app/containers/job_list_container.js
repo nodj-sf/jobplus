@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { selectJob } from '../actions/index';
 import JobItem from '../components/job_item_component';
 
+
 class JobList extends Component {
   renderList() {
     return this.props.jobs.map((job) => {
@@ -37,7 +38,7 @@ function mapStateToProps(state) {
 // notify all containers of the action that can be triggered
 function mapDispatchToProps(dispatch) {
   // Whenever loadJobs is called, the result should be passed to all reducers
-  return bindActionCreators( { selectJob: selectJob }, dispatch)
+  return bindActionCreators({ selectJob: selectJob }, dispatch)
 }
 
 // Promote JobList to a container
