@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { selectJob } from '../actions/index';
 import JobItem from '../components/job_item_component';
 
+
 class JobList extends Component {
   renderList() {
     return this.props.jobs.map((job) => {

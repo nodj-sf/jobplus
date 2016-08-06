@@ -21,7 +21,9 @@ class Results extends Component {
               <GMap />
               <JobList />
             </div>
+
             <div id="jobInfoBody">           
+
             </div>
           </div>
         </div>        
