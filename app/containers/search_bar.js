@@ -11,14 +11,19 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { term: '' };
+    this.state = { term: '', location: "San Francisco" };
     this.onInputChange = this.onInputChange.bind(this);
+    this.onLocationInputChange = this.onLocationInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.searchJob = this.searchJob.bind(this);
   }
 
   onInputChange(event) {
     this.setState({term: event.target.value});
+  }
+
+  onLocationInputChange(evt) {
+    this.setState({ location: '' });
   }
 
   onFormSubmit(event) {
@@ -42,17 +47,31 @@ class SearchBar extends Component {
       <form id="searchForm" onSubmit={this.onFormSubmit}>
         <div className="box">
           <div className="container-3">
+            
+            <div id="searchInputsBoundary">
+              <label>
               <input 
-                id="search" 
+                id="search"  
+                className="formSearchInpt"
                 type="search" 
                 results="4" 
                 autoSave="Developer Jobs" 
                 placeholder="Search..."
                 value={this.state.term}
-                onChange={this.onInputChange} />
-                
+                onChange={this.onInputChange}
+                required />
               <span className="icon"><i className="fa fa-search"></i></span>
+              </label>
+              <input
+                id="searchLocation"
+                className="formSearchInpt"
+                type="search"
+                results="4"
+                autoSave="San Francisco"
+                placeholder="City" />
+            </div>
           </div>
+          <button id="jobSearchSubmitBtn" type="submit">Submit</button>
         </div>
       </form>
     );
@@ -65,3 +84,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(null, mapDispatchToProps)(SearchBar);
+
+
+// value={this.state.location}
+// onChange={this.onLocationInputChange}
