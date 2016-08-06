@@ -1,4 +1,4 @@
-export function fetchJobs(jobData) {
+export const fetchJobs = (jobData) => {
   console.log('Redux Action:', jobData);
   return {
     type: 'FETCH_JOBS',
@@ -6,7 +6,7 @@ export function fetchJobs(jobData) {
   };
 }
 
-export function selectJob(job) {
+export const selectJob = (job) => {
   console.log('A job has been selected:', job);
   return {
     type: 'JOB_SELECTED',

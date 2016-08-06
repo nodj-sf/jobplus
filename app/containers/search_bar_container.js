@@ -6,30 +6,42 @@ import axios from 'axios';
 
 import { fetchJobs } from '../actions/index';
 
+
 class SearchBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { term: '' };
-    this.onInputChange = this.onInputChange.bind(this);
+    this.state = {
+      jobTerm: '',
+      locationTerm: ''
+     };
+
+    this.onJobTitleInputChange = this.onJobTitleInputChange.bind(this);
+    this.onLocationInputChange = this.onLocationInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.searchJob = this.searchJob.bind(this);
   }
 
-  onInputChange(event) {
-    this.setState({term: event.target.value});
+  onJobTitleInputChange(event) {
+    this.setState({jobTerm: event.target.value});
+  }
+
+  onLocationInputChange(event) {
+    this.setState({locationTerm: event.target.value});
   }
 
   onFormSubmit(event) {
     event.preventDefault();
-    this.searchJob(this.state.term);
-    this.setState({ term: '' });
+    this.searchJob(this.state.jobTerm, this.state.locationTerm);
+    this.setState({ jobTerm: '' });
+    this.setState({ locationTerm: '' });
   }
   
-  searchJob(term) {
+  searchJob(jobTerm, locationTerm) {
+    console.log('logging in searchJob');
     axios.post('/api/v1/jobs', {
-      jobTitle: term,
-      city: 'San Francisco' // Hardcoded
+      jobTitle: jobTerm,
+      city: locationTerm // Hardcoded
     }).then(function(response) {
       this.props.fetchJobs(response.data.results);
       hashHistory.push('results');
@@ -43,17 +55,31 @@ class SearchBar extends Component {
       <form id="searchForm" onSubmit={this.onFormSubmit}>
         <div className="box">
           <div className="container-3">
+
+            <div id="searchInputsBoundary">
               <input 
                 id="search" 
+                className="formSearchInpt"
                 type="search" 
                 results="4" 
                 autoSave="Developer Jobs" 
-                placeholder="Search..."
-                value={this.state.term}
-                onChange={this.onInputChange} />
-                
-              <span className="icon"><i className="fa fa-search"></i></span>
+                placeholder="Job"
+                value={this.state.jobTerm}
+                onChange={this.onJobTitleInputChange} />
+              
+              <input 
+                id="searchLocation"
+                className="formSearchInpt"
+                type="search"
+                results="4"
+                placeholder="City"
+                autoSave="San Francisco"
+                value={this.state.locationTerm}
+                onChange={this.onLocationInputChange} />
+            </div>
           </div>
+
+          <button id="jobSearchSubmitBtn" type="submit">Submit</button>
         </div>
       </form>
     );
@@ -66,3 +92,11 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(null, mapDispatchToProps)(SearchBar);
+
+
+// id: searchJobInpt
+// id: searchLocationInpt
+
+// <form id="searchForm2" onSubmit={this.onFormSubmit}>
+
+// <span className="icon"><i className="fa fa-search"></i></span>
