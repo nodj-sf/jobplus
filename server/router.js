@@ -19,22 +19,12 @@ if (!process.env.SESSION_SECRET) {
   dotenv.load({ path: '.env' });
 }
 
-<<<<<<< HEAD
 // const redisClient = require('redis').createClient;
 // const redis = redisClient(6379, 'localhost');
 
 // redis.on('connect', () => {
 //   console.log('connected');
 // });
-=======
-const redisClient = require('redis').createClient;
-const redis = redisClient(6379, 'localhost');
-
-redis.on('connect', () => {
-  console.log('connected');
-});
-
->>>>>>> b8e04cafb2b86b8f9871804aa46162478aee40ec
 
 /*
 ** Route Controllers
