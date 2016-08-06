@@ -41,7 +41,7 @@ class SearchBar extends Component {
     console.log('logging in searchJob');
     axios.post('/api/v1/jobs', {
       jobTitle: jobTerm,
-      city: locationTerm // Hardcoded
+      city: locationTerm                            // Hardcoded
     }).then(function(response) {
       this.props.fetchJobs(response.data.results);
       hashHistory.push('results');

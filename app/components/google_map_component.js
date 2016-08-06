@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { GoogleMapLoader, GoogleMap, Marker, SearchBox } from 'react-google-maps';
 import { default as InfoBox } from 'react-google-maps/lib/addons/InfoBox';
 import Modal from 'react-modal';
+
 import mapStylesObject from '../constants/google_map_styles.json';
+import { fetchJobs } from '../actions/index';
 
 
 const customStyles = {
@@ -38,16 +40,16 @@ export default class GMap extends Component {
       center: {
         lat: 37.745951, 
         lng: -122.439421
-      },
+      }
 
       // Dummy Data: Array of objects of markers
-      markers: [{
-        position: new google.maps.LatLng(37.745, -122.439421),
-        showInfo: false,
-      }, {
-        position: new google.maps.LatLng(37.743, -122.419421),
-        showInfo: false,
-      }]
+      // markers: [{
+      //   position: new google.maps.LatLng(37.745, -122.439421),
+      //   showInfo: false
+      // }, {
+      //   position: new google.maps.LatLng(37.743, -122.419421),
+      //   showInfo: false
+      // }]
     }
   }
 
@@ -83,15 +85,18 @@ export default class GMap extends Component {
     this.closeModal();
   }
 
-  clickAction() {
+  handleDoubleClick() {
     this.openModal();
+    this.setState({ markers: fetchJobs()})
   }
 
   render() {
     return (
       <GoogleMapLoader
         containerElement={ 
-          <div id="mapsContainer" onClick={() => this.clickAction()} /> 
+          <div 
+            id="mapsContainer" 
+            onDoubleClick={() => this.handleDoubleClick()} /> 
         }   
         googleMapElement={
           <GoogleMap 
@@ -120,19 +125,17 @@ export default class GMap extends Component {
                     scrollwheel={false}
                     ref="map" >
 
-                    {this.state.markers.map((marker, index) => {
-                      const ref = `marker_${index}`;
-                      const onClick = () => this.handleMarkerClick(marker);
 
+                    {this.state.markers.map((marker, index) => {
                       return (
                         <Marker
-                          key={index}
-                          ref={ref}
-                          position={marker.position}
-                          onClick={onClick} >
-                        </Marker>
+                          {...marker}
+                          onRightclick={() => props.onMarkerRightclick(index)} />
                       );
                     })}
+
+
+
                   </GoogleMap>
                 }
               />
@@ -145,3 +148,18 @@ export default class GMap extends Component {
     );
   }
 }
+
+
+                    // {this.state.markers.map((marker, index) => {
+                    //   const ref = `marker_${index}`;
+                    //   const onClick = () => this.handleMarkerClick(marker);
+
+                    //   return (
+                    //     <Marker
+                    //       key={index}
+                    //       ref={ref}
+                    //       position={marker.position}
+                    //       onClick={onClick} >
+                    //     </Marker>
+                    //   );
+                    // })}
