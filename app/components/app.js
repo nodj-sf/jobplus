@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Banner from './banner_component';
+
 // import SearchBar from '../containers/search_bar';
 import DataDiagram from './diagram_component';
 import GMap from './google_map';
