@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { GoogleMapLoader, GoogleMap, Marker, SearchBox } from 'react-google-maps';
 import { default as InfoBox } from 'react-google-maps/lib/addons/InfoBox';
 import Modal from 'react-modal';
+import axios from 'axios';
 
 import mapStylesObject from '../constants/google_map_styles.json';
 import { fetchJobs } from '../actions/index';
@@ -87,7 +88,7 @@ export default class GMap extends Component {
 
   handleDoubleClick() {
     this.openModal();
-    this.setState({ markers: fetchJobs()})
+    this.setState({ markers: fetchJobs("Truck Driver", "San Francisco").payload })
   }
 
   render() {
@@ -126,13 +127,7 @@ export default class GMap extends Component {
                     ref="map" >
 
 
-                    {this.state.markers.map((marker, index) => {
-                      return (
-                        <Marker
-                          {...marker}
-                          onRightclick={() => props.onMarkerRightclick(index)} />
-                      );
-                    })}
+            
 
 
 

@@ -48,6 +48,7 @@ class SearchBar extends Component {
     }.bind(this)).catch(function(error) {
       console.log(error);
     });
+    console.log("hashHistory:", hashHistory);
   }
 
   render() {
