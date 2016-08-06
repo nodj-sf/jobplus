@@ -35,6 +35,7 @@ class SearchBar extends Component {
       jobTerm: '',
       locationTerm: '' 
     });
+    console.log("hashHistory:", hashHistory);
   }
 
   render() {

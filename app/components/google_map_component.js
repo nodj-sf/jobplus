@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { GoogleMapLoader, GoogleMap, Marker, SearchBox } from 'react-google-maps';
 import { default as InfoBox } from 'react-google-maps/lib/addons/InfoBox';
 import Modal from 'react-modal';
+import axios from 'axios';
+
 import mapStylesObject from '../constants/google_map_styles.json';
 
 
@@ -120,19 +122,7 @@ export default class GMap extends Component {
                     scrollwheel={false}
                     ref="map" >
 
-                    {this.state.markers.map((marker, index) => {
-                      const ref = `marker_${index}`;
-                      const onClick = () => this.handleMarkerClick(marker);
 
-                      return (
-                        <Marker
-                          key={index}
-                          ref={ref}
-                          position={marker.position}
-                          onClick={onClick} >
-                        </Marker>
-                      );
-                    })}
                   </GoogleMap>
                 }
               />
