@@ -16,6 +16,7 @@ export default class Results extends Component {
       <div>
         <Banner />        
         <div id="appContainer" className="appContainer">
+
           <JobDetail />             
           <div id="jobMain">
             <div id="jobResultsPane">

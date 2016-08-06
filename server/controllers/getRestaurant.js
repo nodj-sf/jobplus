@@ -8,7 +8,7 @@ exports.post = (req, res) => {
   // Create key based on request body to use for caching
   let key = JSON.stringify(req.body);
 
-  // redis.del(key);
+  redis.del(key);
 
   /*
    * Check if redis has a sesson stored

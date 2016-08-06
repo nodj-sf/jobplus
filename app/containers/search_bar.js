@@ -69,7 +69,7 @@ class SearchBar extends Component {
                 placeholder="City" />
             </div>
           </div>
-
+          
           <button id="jobSearchSubmitBtn" type="submit">Submit</button>
         </div>
       </form>
