@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import SearchBar from '../containers/search_bar_container';
 
 
-class Banner extends Component {
+export default class Banner extends Component {
   constructor(props) {
     super(props);
   }
@@ -17,5 +17,3 @@ class Banner extends Component {
     );
   };
 }
-
-export default Banner;

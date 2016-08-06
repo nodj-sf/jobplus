@@ -10,7 +10,7 @@ import SearchBar from '../containers/search_bar_container';
 import Footer from './footer_component';
 
 
-class Results extends Component {
+export default class Results extends Component {
   render() {
     return (
       <div>
@@ -32,5 +32,3 @@ class Results extends Component {
     );
   }
 };
-
-export default Results; 
