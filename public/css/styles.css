@@ -432,3 +432,30 @@ i.XButton {
 i.XButton:hover {
   cursor: pointer;
 }
+
+
+@media only screen
+  and (max-width: 700px) {
+
+  #appContainer { 
+    height: auto;
+    background: transparent;
+  }
+
+  #jobMain {
+    display: flex;
+    flex-direction: column;
+    transform: none;
+  }
+
+  #jobResultsPane,
+  #jobInfoBody {
+    position: relative;
+    display: block;
+    width: 88vw;
+    max-height: 300px;
+    margin: 25px 0;
+    box-shadow: 0 4px 8px 1.5px rgba(0, 0, 0, 0.37);
+  }
+
+}
