@@ -6,7 +6,7 @@ export default class JobItem extends Component {
   render() {
     return (
       <div>
-        <li className="jobLI" onClick={() => selectJob(this.props.job)}>
+        <li className="jobLI" onClick={() => this.props.jobFunc(this.props.job)}>
           <h2>
             {this.props.job.jobtitle
               .split(" ")
