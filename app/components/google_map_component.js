@@ -54,7 +54,6 @@ class GMap extends Component {
 
   handleDoubleClick() {
     this.openModal();
-    this.setState({ markers: fetchJobs("Truck Driver", "San Francisco").payload })
   }
 
   render() {
