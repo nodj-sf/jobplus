@@ -4,7 +4,7 @@
   "description": "[![Stories in Ready](https://badge.waffle.io/mks-sf-40-nodj/nodj.svg?label=ready&title=Ready)](http://waffle.io/mks-sf-40-nodj/nodj)",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -w app/test/helpers/browser.js app/test/_test.js"
   },
   "repository": {
     "type": "git",
@@ -42,9 +42,10 @@
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "node": "0.0.0",
+    "react-addons-test-utils": "^15.3.0",
     "react-redux": "^4.4.5",
-    "redis": "^2.6.2",
     "react-router": "^2.6.1",
+    "redis": "^2.6.2",
     "redux": "^3.5.2",
     "redux-promise": "^0.5.3",
     "request": "^2.74.0",
