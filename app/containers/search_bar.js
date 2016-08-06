@@ -50,7 +50,7 @@ class SearchBar extends Component {
             
             <div id="searchInputsBoundary">
               <input 
-                id="search"  
+                id="search" 
                 className="formSearchInpt"
                 type="search" 
                 results="4" 
@@ -69,6 +69,7 @@ class SearchBar extends Component {
                 placeholder="City" />
             </div>
           </div>
+
           <button id="jobSearchSubmitBtn" type="submit">Submit</button>
         </div>
       </form>
