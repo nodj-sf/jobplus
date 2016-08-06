@@ -1,4 +1,4 @@
-export default const customStyles = {
+const customStyles = {
   overlay : {
     position: 'fixed',
     top: 0,
