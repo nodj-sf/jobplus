@@ -54,6 +54,7 @@ class GMap extends Component {
 
   handleDoubleClick() {
     this.openModal();
+    this.setState({ markers: fetchJobs()})
   }
 
   render() {
@@ -103,3 +104,4 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(GMap);
+

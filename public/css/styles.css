@@ -360,13 +360,6 @@ button.button-primary:hover {
   box-sizing: border-box;
 }
 
-/*.container-3 input:focus,
-.container-3 input:target,
-.container-3 input:target ~ input,
-.container-3 input:focus ~ input,
-.formSearchInpt ~ .formSearchInpt:focus,
-#search.formSearchInpt + .formSearchInpt:focus,
-.formSearchInpt:focus*/
 #searchInputsBoundary *:focus ~ *, 
 #searchInputsBoundary *:focus, 
 #searchInputsBoundary * ~ *:focus, 
