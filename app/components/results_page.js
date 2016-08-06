@@ -14,7 +14,6 @@ class Results extends Component {
       <div>
         <Banner />        
         <div id="appContainer" className="appContainer">
-          <SearchBar className="twelve columns" />   
           <JobDetail />             
           <div id="jobMain">
             <div id="jobResultsPane">
