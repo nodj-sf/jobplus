@@ -6,6 +6,7 @@ import axios from 'axios';
 
 import { fetchJobs } from '../actions/index';
 
+
 class SearchBar extends Component {
   constructor(props) {
     super(props);
@@ -33,9 +34,7 @@ class SearchBar extends Component {
     }).then(function(response) {
       this.props.fetchJobs(response.data.results);
       hashHistory.push('results');
-    }.bind(this)).catch(function(error) {
-      console.log(error);
-    });
+    }.bind(this)).catch(error => console.log(error));
   }
 
   render() {
