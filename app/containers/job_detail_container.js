@@ -5,13 +5,13 @@ import { connect } from 'react-redux';
 class JobDetail extends Component {
   render() {
     if (!this.props.job) {
-      return <b style={{ color: "rgba(0, 0, 0, 0)", display: "none" }}>Select A Job!</b>;
+      return <h1>Job</h1>;
     }
-
+    console.log("PROPS", this.props.job);
     return (
       <div>
         <h3>Details for:</h3>
-        <div>{this.props.job.title}</div>
+        <div>{this.props.job.jobtitle}</div>
       </div>
     );
   }

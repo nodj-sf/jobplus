@@ -6,7 +6,6 @@ import axios from 'axios';
 
 import { fetchJobs } from '../actions/index';
 
-
 class SearchBar extends Component {
   constructor(props) {
     super(props);
@@ -86,17 +85,8 @@ class SearchBar extends Component {
   }
 };
 
-
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchJobs }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(SearchBar);
-
-
-// id: searchJobInpt
-// id: searchLocationInpt
-
-// <form id="searchForm2" onSubmit={this.onFormSubmit}>
-
-// <span className="icon"><i className="fa fa-search"></i></span>
