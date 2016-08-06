@@ -11,7 +11,7 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { term: '', location: "San Francisco" };
+    this.state = { term: '', location: 'San Francisco' };
     this.onInputChange = this.onInputChange.bind(this);
     this.onLocationInputChange = this.onLocationInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -49,7 +49,6 @@ class SearchBar extends Component {
           <div className="container-3">
             
             <div id="searchInputsBoundary">
-              <label>
               <input 
                 id="search"  
                 className="formSearchInpt"
@@ -60,8 +59,7 @@ class SearchBar extends Component {
                 value={this.state.term}
                 onChange={this.onInputChange}
                 required />
-              <span className="icon"><i className="fa fa-search"></i></span>
-              </label>
+
               <input
                 id="searchLocation"
                 className="formSearchInpt"
@@ -88,3 +86,5 @@ export default connect(null, mapDispatchToProps)(SearchBar);
 
 // value={this.state.location}
 // onChange={this.onLocationInputChange}
+
+// <span className="icon"><i className="fa fa-search"></i></span>
