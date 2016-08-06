@@ -26,10 +26,10 @@ exports.post = (req, res) => {
       // console.log('api');
       getYelp(restaurant, city)(res)
         .then((data) => {
-          console.log('data: ', data);
-          Cache data using request body as key
+          // console.log('data: ', data);
+          // Cache data using request body as key
           redis.set(key, JSON.stringify(data.data));
-          Set cache to expire in an hour
+          // Set cache to expire in an hour
           redis.expire(key, 3600);
           return data.respond;
           res.end();
