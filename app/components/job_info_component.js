@@ -8,7 +8,9 @@ export default class JobInfo extends Component {
 
   render() {
     return (
-      <div></div>
+      <div>
+        <h1></h1>
+      </div>
     );
   }
 }
