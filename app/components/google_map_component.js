@@ -3,9 +3,11 @@ import { GoogleMapLoader, GoogleMap, Marker, SearchBox } from 'react-google-maps
 import { default as InfoBox } from 'react-google-maps/lib/addons/InfoBox';
 import Modal from 'react-modal';
 import axios from 'axios';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import mapStylesObject from '../constants/google_map_styles.json';
-import { fetchJobs } from '../actions/index';
+import { fetchJobs, selectJob } from '../actions/index';
 
 
 const customStyles = {
@@ -41,7 +43,9 @@ export default class GMap extends Component {
       center: {
         lat: 37.745951, 
         lng: -122.439421
-      }
+      },
+      lat: 0,
+      lng: 0
 
       // Dummy Data: Array of objects of markers
       // markers: [{
@@ -151,6 +155,19 @@ export default class GMap extends Component {
     );
   }
 }
+
+
+function mapDispatchToProps(dispatch) {
+  // let coords = {
+  //   lat: this.state.job.latitude,
+  //   lng: this.state.job.longitude
+  // };
+  //   console.log("Coordinates:", coords);
+  // return coords;
+  return bindActionCreators({ selectJob: selectJob }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(GMap);
 
 
                     // {this.state.markers.map((marker, index) => {

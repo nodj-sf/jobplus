@@ -14,8 +14,18 @@ export default class JobItem extends Component {
                 memo += `${index.charAt(0).toUpperCase()}${index.slice(1).toLowerCase()} `, '')
               .trim()
             }
-          </h2> 
-          <h6><b>{this.props.job.company}</b></h6>
+          </h2>
+          <div className="jobLI_MetaInfo"> 
+            <h6><b>{this.props.job.company}</b></h6>
+            <i className="daysSincePosted">
+              {
+               this.props.job.formattedRelativeTime
+                .match(/(\w+){1,}/gmi)
+                .map(str => `${str[0].toUpperCase()}${str.slice(1)}`)
+                .join(" ") 
+              }
+            </i>
+          </div>
         </li>
         <hr />
       </div>
