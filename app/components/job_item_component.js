@@ -15,7 +15,7 @@ export default class JobItem extends Component {
               .trim()
             }
           </h2>
-          <div className="jobLI_MetaInfo"> 
+          <div className="jobLI_MetaInfo">
             <h6><b>{this.props.job.company || "Unlisted"}</b></h6>
             <i className="daysSincePosted">
               {
