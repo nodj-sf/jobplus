@@ -31,8 +31,10 @@ class SearchBar extends Component {
     event.preventDefault();
     this.props.fetchJobs(this.state.jobTerm, this.state.locationTerm);
     hashHistory.push('results');
-    this.setState({ jobTerm: '' });
-    this.setState({ locationTerm: '' });
+    this.setState({
+      jobTerm: '',
+      locationTerm: '' 
+    });
   }
 
   render() {
