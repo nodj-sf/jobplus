@@ -1,8 +1,16 @@
-export const fetchJobs = (jobData) => {
-  console.log('Redux Action:', jobData);
+import axios from 'axios';
+
+export const fetchJobs = (jobSearch, city) => {
+  const request = axios.post('/api/v1/jobs', {
+    jobTitle: jobSearch,
+    city: city
+  });
+
+  console.log('request: ', request);
+
   return {
     type: 'FETCH_JOBS',
-    payload: jobData
+    payload: request
   };
 };
 
