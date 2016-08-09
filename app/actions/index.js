@@ -6,26 +6,31 @@ export const fetchJobs = (jobSearch, city) => {
     city: city
   });
 
-  console.log('request: ', request);
-
   return {
     type: 'FETCH_JOBS',
     payload: request
   };
 };
 
+export const fetchYelp = (long, lat) => {
+  const request = axios.post('/api/v1/food', {
+    lat: lat,
+    long: long
+  });
+
+  console.log('longlat',long, lat);
+  
+  return {
+    type: 'FETCH_YELP',
+    payload: request
+  };
+};
+
 export const selectJob = (job) => {
-  console.log('A job has been selected:', job);
+  console.log('selectjob', job);
   return {
     type: 'JOB_SELECTED',
     payload: job
   };
 };
-
-export const fetchYelp = (long, lat) => {
-  const request = axios.post('/api/v1/food', {
-    long: long,
-    lat: lat
-  });
-
-  // indeed gives us longitude latitude as keys
+  
