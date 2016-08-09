@@ -7,7 +7,7 @@ export const fetchJobs = (jobSearch, city) => {
     city: city
   });
 
-  console.log('request: ', request);
+  console.log(`Request ${request}`);
   return {
     type: 'FETCH_JOBS',
     payload: request
@@ -15,9 +15,17 @@ export const fetchJobs = (jobSearch, city) => {
 };
 
 export const selectJob = (job) => {
-  console.log('A job has been selected:', job);
+  console.log(`Job selected: ${job}`);
   return {
     type: 'JOB_SELECTED',
     payload: job
   };
 };
+
+// export const closeModalView = () => {
+//   console.log(`Google Maps Modal view closed!`);
+//   return {
+//     type: 'CLOSE_MODAL',
+//     payload: 
+//   };
+// }

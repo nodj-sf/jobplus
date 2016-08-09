@@ -14,7 +14,7 @@ class SearchBar extends Component {
     this.state = {
       jobTerm: '',
       locationTerm: ''
-     };
+    };
 
     this.onJobTitleInputChange = this.onJobTitleInputChange.bind(this);
     this.onLocationInputChange = this.onLocationInputChange.bind(this);
