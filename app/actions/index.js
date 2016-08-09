@@ -21,3 +21,11 @@ export const selectJob = (job) => {
     payload: job
   };
 };
+
+export const fetchYelp = (long, lat) => {
+  const request = axios.post('/api/v1/food', {
+    long: long,
+    lat: lat
+  });
+
+  // indeed gives us longitude latitude as keys
