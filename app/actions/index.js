@@ -7,7 +7,7 @@ export const fetchJobs = (jobData) => {
     type: FETCH_JOBS,
     payload: jobData
   };
-}
+};
 
 export const selectJob = (job) => {
   console.log('A job has been selected:', job);
@@ -15,4 +15,4 @@ export const selectJob = (job) => {
     type: JOB_SELECTED,
     payload: job
   };
-}
+};

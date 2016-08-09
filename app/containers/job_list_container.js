@@ -10,7 +10,7 @@ class JobList extends Component {
   renderList() {
     return this.props.jobs.map((job) => {
       return (
-        <JobItem key={job.jobkey} job={job} />
+        <JobItem key={job.jobkey} jobFunc={this.props.selectJob} job={job} />
       );
     });
   }

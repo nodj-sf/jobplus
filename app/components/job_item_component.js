@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { selectJob } from '../actions/index';
 
 
-export default class JobListItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {isModalOpen: false};
-  }
-
+export default class JobItem extends Component {
   render() {
     return (
       <div>
-        <li className="jobLI" onClick={() => selectJob(this.props.job)}>
+        <li className="jobLI" onClick={() => this.props.jobFunc(this.props.job)}>
           <h2>{this.props.job.jobtitle}</h2> 
         </li>
         <hr />
