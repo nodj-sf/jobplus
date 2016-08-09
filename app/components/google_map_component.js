@@ -43,9 +43,7 @@ class GMap extends Component {
       center: {
         lat: 37.745951, 
         lng: -122.439421
-      },
-      lat: 0,
-      lng: 0
+      }
 
       // Dummy Data: Array of objects of markers
       // markers: [{
@@ -92,6 +90,7 @@ class GMap extends Component {
 
   handleDoubleClick() {
     this.openModal();
+    this.setState({ markers: fetchJobs("Truck Driver", "San Francisco").payload })
   }
 
   render() {
