@@ -1,4 +1,5 @@
 export default function(state = null, action) {
+// export default function(state = null, action) {
   switch(action.type) {
     case 'JOB_SELECTED':
       console.log(`Action ${action} on Active Jobs Reducer.`);

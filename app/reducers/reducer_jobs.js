@@ -22,7 +22,7 @@ const dummy = [{
 }];
 
 
-export default function(state = dummy, action) {
+export default (state = dummy, action) => {
   switch(action.type) {
     case 'FETCH_JOBS':
       console.log(`Action ${action} on Jobs Reducer.`);

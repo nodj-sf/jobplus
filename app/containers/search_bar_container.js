@@ -31,23 +31,12 @@ class SearchBar extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    this.searchJob(this.state.jobTerm, this.state.locationTerm);
-    this.setState({ jobTerm: '' });
-    this.setState({ locationTerm: '' });
-  }
-  
-  searchJob(jobTerm, locationTerm) {
-    console.log('logging in searchJob');
-    axios.post('/api/v1/jobs', {
-      jobTitle: jobTerm,
-      city: locationTerm                            // Hardcoded
-    }).then(function(response) {
-      this.props.fetchJobs(response.data.results);
-      hashHistory.push('results');
-    }.bind(this)).catch(function(error) {
-      console.log(error);
+    this.props.fetchJobs(this.state.jobTerm, this.state.locationTerm);
+    hashHistory.push('results');
+    this.setState({
+      jobTerm: '',
+      locationTerm: '' 
     });
-    console.log("hashHistory:", hashHistory);
   }
 
   render() {

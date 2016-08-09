@@ -26,7 +26,7 @@ export const fetchYelp = (city, long, lat) => {
   });
 
   console.log('longlat',long, lat);
-  
+  console.log('request: ', request);
   return {
     type: 'FETCH_YELP',
     payload: request
