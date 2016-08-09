@@ -14,10 +14,25 @@ export const fetchJobs = (jobSearch, city) => {
   };
 };
 
+export const fetchYelp = (long, lat) => {
+  const request = axios.post('/api/v1/food', {
+    lat: lat,
+    long: long
+  });
+
+  console.log('longlat',long, lat);
+  
+  return {
+    type: 'FETCH_YELP',
+    payload: request
+  };
+};
+
 export const selectJob = (job) => {
-  console.log('A job has been selected:', job);
+  console.log('selectjob', job);
   return {
     type: JOB_SELECTED,
     payload: job
   };
 };
+  
