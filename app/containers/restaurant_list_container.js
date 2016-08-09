@@ -1,47 +1,21 @@
 import React, { Component } from 'react';
 
-import RestaurantItem from '../components/retaurant_item_component';
-
-var dummyData = [{
-  id: '123456789',
-  name: 'pseudoRestaurant',
-  url: 'www.pesudo.com',
-  rating: 5,
-  review_count: 999,
-  phone: 123-456-7891,
-  coordinate: null
-}, {
-  id: '123456789',
-  name: 'pseudoRestaurant',
-  url: 'www.pesudo.com',
-  rating: 5,
-  review_count: 999,
-  phone: 123-456-7891,
-  coordinate: null
-}, {
-  id: '123456789',
-  name: 'pseudoRestaurant',
-  url: 'www.pesudo.com',
-  rating: 5,
-  review_count: 999,
-  phone: 123-456-7891,
-  coordinate: null
-}];
+import RestaurantItem from '../components/restaurant_item_component';
 
 class RetaurantList extends Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+    // super(props);
 
-    this.state = {restaurant: dummyData};
-  }
+    // this.state = {restaurant: dummyData};
+  // }
   //renderList
-  renderList() {
-    return this.state.restaurant.map(function(restaurant) {
-      return (
-        <RestaurantItem />
-      );
-    });
-  }
+  // renderList() {
+    // return this.state.restaurant.map(function(restaurant) {
+      // return (
+      //   <RestaurantItem />
+      // );
+    // });
+  // }
 
   render() {
     return (
