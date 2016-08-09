@@ -25,8 +25,8 @@ export const fetchYelp = (city, long, lat) => {
     }
   });
 
-  console.log('longlat',long, lat);
-  console.log('request: ', request);
+  console.log(`Coordinates:\n\tLatitude: ${lat}\n\tLongitude: ${lat}`);
+  console.log(`Request ${request}`);
   return {
     type: 'FETCH_YELP',
     payload: request

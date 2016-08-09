@@ -7,7 +7,6 @@ import ToggleModal from './reducer_toggle_modal_on';
 // import ToggleModalOff from './reducer_toggle_modal_off';
 
 
-
 const rootReducer = combineReducers({
   jobs: JobsReducer,
   activeJob: ActiveJob,
