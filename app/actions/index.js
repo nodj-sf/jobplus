@@ -1,11 +1,16 @@
-const FETCH_JOBS = 'FETCH_JOBS';
-const JOB_SELECTED = 'JOB_SELECTED';
+import axios from 'axios';
 
-export const fetchJobs = (jobData) => {
-  console.log('Redux Action:', jobData);
+export const fetchJobs = (jobSearch, city) => {
+  const request = axios.post('/api/v1/jobs', {
+    jobTitle: jobSearch,
+    city: city
+  });
+
+  console.log('request: ', request);
+
   return {
-    type: FETCH_JOBS,
-    payload: jobData
+    type: 'FETCH_JOBS',
+    payload: request
   };
 };
 
