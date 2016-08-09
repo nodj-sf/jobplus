@@ -4,7 +4,7 @@ class RestaurantListItem extends Component {
 
   render() {
     return (
-      <li className="restaurantLI"}>
+      <li className="restaurantLI">
       </li>
     );
   }
