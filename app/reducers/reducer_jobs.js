@@ -4,11 +4,15 @@ const dummy = [
   { jobtitle: 'Full-Stack', jobkey: '3', company: 'Go Daddy', formattedRelativeTime: '2 months ago' } 
 ];
 
-export default function(state = dummy, action) {
-    
+
+export default function(state = dummy, action) {    
   switch(action.type) {
     case 'FETCH_JOBS':
+      console.log(`Action ${action} on Jobs Reducer.`);
       return action.payload.data.results;
+    default:
+      console.log(`Unknown action <${action}> executed! Returning fallback output.`);
+      return state;
   }
   return state;
 }
