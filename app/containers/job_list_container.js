@@ -30,6 +30,7 @@ class JobList extends Component {
   }
 }
 
+
 function mapStateToProps(state) {
   return {
     jobs: state.jobs

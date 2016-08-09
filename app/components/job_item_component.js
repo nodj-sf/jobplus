@@ -16,7 +16,7 @@ export default class JobItem extends Component {
             }
           </h2>
           <div className="jobLI_MetaInfo"> 
-            <h6><b>{this.props.job.company}</b></h6>
+            <h6><b>{this.props.job.company || "Unlisted"}</b></h6>
             <i className="daysSincePosted">
               {
                this.props.job.formattedRelativeTime

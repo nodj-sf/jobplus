@@ -34,7 +34,7 @@ const customStyles = {
 };
 
 
-export default class GMap extends Component {
+class GMap extends Component {
   constructor(props) {
     super(props);
 
@@ -132,6 +132,7 @@ export default class GMap extends Component {
 
                   </GoogleMap>
                 }
+                
               />
 
               <i className="fa fa-times-circle XButton" onClick={() => this.closeModal()}></i>
@@ -144,18 +145,26 @@ export default class GMap extends Component {
 }
 
 
-function mapDispatchToProps(dispatch) {
-  // let coords = {
-  //   lat: this.state.job.latitude,
-  //   lng: this.state.job.longitude
-  // };
-  //   console.log("Coordinates:", coords);
-  // return coords;
-  return bindActionCreators({ selectJob: selectJob }, dispatch);
+function mapStateToProps(state) {
+  console.log("Maps: ", state.jobs.map(job => [job.latitude, job.longitude]));
+  return {
+    markers: [state.jobs.latitude, state.jobs.longitude]
+  };
 }
 
-export default connect(null, mapDispatchToProps)(GMap);
+export default connect(mapStateToProps)(GMap);
 
+// {this.state.markers.map((marker, index) => {
+//   const ref = `marker_${index}`;
+  
+//   return (
+//     <Marker
+//       key={index}
+//       ref={ref}
+//       position={new google.maps.LatLng(markers[0], markers[1])} >
+//     </Marker>
+//   );
+// })}
 
                     // {this.state.markers.map((marker, index) => {
                     //   const ref = `marker_${index}`;
