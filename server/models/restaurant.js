@@ -7,10 +7,10 @@ const yelp = new Yelp({
   token: process.env.TOKEN,
   token_secret: process.env.TOKENSECRET
 });
-
-let getYelp = (food, location, limit) => {
+//add latLong argument
+let getYelp = (food, city, coordinate, limit) => {
   return (res) => {
-    return yelp.search({ term: food, location: location })
+    return yelp.search({ term: food, location: city, cll: coordinate.lat + ',' + coordinate.long}) //implement 
       .then((data) => {
         let restaurants = data.businesses.slice(0, limit);
         
