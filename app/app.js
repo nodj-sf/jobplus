@@ -10,10 +10,9 @@ import LandingPage from './components/landing_page';
 import reducers from './reducers/index';
 
 
-const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
-
 class App extends Component {
   render() {
+    
     return (
       <Provider store={createStoreWithMiddleware(reducers)}>
         <Router history={hashHistory}>
