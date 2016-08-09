@@ -47,10 +47,10 @@ class GMap extends Component {
 
       // Dummy Data: Array of objects of markers
       // markers: [{
-      //   position: new google.maps.LatLng(37.745, -122.439421),
+      //   position: 
       //   showInfo: false
       // }, {
-      //   position: new google.maps.LatLng(37.743, -122.419421),
+      //   position: 
       //   showInfo: false
       // }]
     }
@@ -128,6 +128,21 @@ class GMap extends Component {
                     scrollwheel={false}
                     ref="map" >
 
+                  {
+                    this.props.markers.map((marker, index) => {
+                      const refID = `marker_${index}`;
+
+                      return (
+                        <Marker
+                          key={index}
+                          ref={refID}
+                          position={marker} >
+                        </Marker>
+                      );
+                    })
+
+                  }
+
 
                   </GoogleMap>
                 }
@@ -147,11 +162,13 @@ class GMap extends Component {
 function mapStateToProps(state) {
   console.log("Maps: ", state.jobs.map(job => [job.latitude, job.longitude]));
   return {
-    markers: [state.jobs.latitude, state.jobs.longitude]
+    markers: state.jobs.map(job => new google.maps.LatLng(job.latitude, job.longitude))
   };
 }
 
 export default connect(mapStateToProps)(GMap);
+
+
 
 // {this.state.markers.map((marker, index) => {
 //   const ref = `marker_${index}`;

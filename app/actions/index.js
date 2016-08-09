@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 export const fetchJobs = (jobSearch, city) => {
   const request = axios.post('/api/v1/jobs', {
     jobTitle: jobSearch,
@@ -7,7 +8,6 @@ export const fetchJobs = (jobSearch, city) => {
   });
 
   console.log('request: ', request);
-
   return {
     type: 'FETCH_JOBS',
     payload: request

@@ -42,7 +42,7 @@ function mapStateToProps(state) {
 // notify all containers of the action that can be triggered
 function mapDispatchToProps(dispatch) {
   // Whenever loadJobs is called, the result should be passed to all reducers
-  return bindActionCreators({ selectJob: selectJob }, dispatch)
+  return bindActionCreators({ selectJob: selectJob }, dispatch);
 }
 
 // Promote JobList to a container
