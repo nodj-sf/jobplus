@@ -104,3 +104,4 @@ export default connect(mapStateToProps)(GMap_Modal);
 // }
 
 // export default connect(null, mapDispatchToProps)(GMap_Modal);
+

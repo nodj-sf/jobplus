@@ -2,6 +2,7 @@ import axios from 'axios';
 const FETCH_JOBS = 'FETCH_JOBS';
 const JOB_SELECTED = 'JOB_SELECTED';
 
+
 export const fetchJobs = (jobSearch, city) => {
   const request = axios.post('/api/v1/jobs', {
     jobTitle: jobSearch,
