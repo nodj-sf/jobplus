@@ -4,7 +4,9 @@ const redisClient = require('redis').createClient;
 const redis = redisClient(6379, 'localhost');
 
 exports.post = (req, res) => {
-  let restaurant = req.body.restaurant, city = req.body.city;
+  let restaurant = req.body.restaurant, 
+      city = req.body.city, 
+      coordinate = req.body.coordinate;
   // Create key based on request body to use for caching
   let key = JSON.stringify(req.body);
 
@@ -24,7 +26,7 @@ exports.post = (req, res) => {
       res.end();
     } else {
       // console.log('api');
-      getYelp(restaurant, city)(res)
+      getYelp(restaurant, city, coordinate)(res)
         .then((data) => {
           // console.log('data: ', data);
           // Cache data using request body as key
