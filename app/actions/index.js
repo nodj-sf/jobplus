@@ -22,8 +22,6 @@ export const fetchYelp = (city, long, lat) => {
       long: long
     }
   });
-
-  console.log('longlat',long, lat);
   
   return {
     type: 'FETCH_YELP',
@@ -32,7 +30,6 @@ export const fetchYelp = (city, long, lat) => {
 };
 
 export const selectJob = (job) => {
-  console.log('selectjob', job);
   return {
     type: JOB_SELECTED,
     payload: job
