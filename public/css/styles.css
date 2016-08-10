@@ -565,6 +565,13 @@ p {
   margin-top: 33.784;
 }
 
+.restaurantList {
+  width: 500px;
+  height: 500px;
+  overflow: scroll;
+}
+
+
 .yelpDescription, 
 .nameRating {
   position: relative;
