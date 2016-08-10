@@ -7,7 +7,7 @@ class JobDetail extends Component {
     if (!this.props.job) {
       return <h1>Job</h1>;
     }
-
+    
     console.log(`PROPS: ${this.props.job}`);
     return (
       <div>

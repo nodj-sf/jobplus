@@ -91,8 +91,9 @@ function mapStateToProps(state) {
   console.log("Maps: ", state.jobs.map(job => [job.latitude, job.longitude]));
   return {
     markers: state.jobs.map(job => new google.maps.LatLng(job.latitude, job.longitude)),
-    // isModalOpen: state
+    isModalOpen: state
   };
 }
 
 export default connect(mapStateToProps)(GMap_Modal);
+

@@ -47,10 +47,6 @@ class GMap extends Component {
     this.setState({isModalOpen: true});
   }
 
-  toggleModal() {
-    console.log('clicked');
-    this.setState({isModalOpen: false});
-  }
 
   handleDoubleClick() {
     this.openModal();
