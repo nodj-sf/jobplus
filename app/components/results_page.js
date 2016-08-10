@@ -12,22 +12,21 @@ import Footer from './footer_component';
 export default class Results extends Component {
   render() {
     return (
-      <div>
-        <Banner />        
-        <div id="appContainer" className="appContainer">
-
-          <div id="jobMain">
-            <div id="jobResultsPane">
+      <article>
+        <Banner />  
+        <SearchBar />       
+        <div className="container">
+          <div className="row">
+            <div className="five columns">
               <GMap />
               <JobList />
             </div>
-            
-            <div id="jobInfoBody">           
-              <JobDetail />             
+            <div className="seven columns">
+              <JobDetail />
             </div>
           </div>
-        </div>        
-      </div>
+        </div> 
+      </article>
     );
   }
 };
