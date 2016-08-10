@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 
 class RestaurantListItem extends Component {
   render() {
-    console.log('this.props.restaurant: ', this.props.restaurant);
     var starRatingImage = this.props.restaurant.rating_img_url;
-    console.log('starRatingImage: ', starRatingImage);
     return (
       <li className="restaurantLI" style={{"list-style-type": "none"}} >
         <div className="nameRating">
