@@ -9,6 +9,7 @@ import Results from './components/results_page';
 import LandingPage from './components/landing_page';
 import reducers from './reducers/index';
 
+
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 class App extends Component {
