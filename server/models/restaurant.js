@@ -21,7 +21,8 @@ let getYelp = (food, city, coordinate, limit) => {
             rating: obj.rating,
             review_count: obj.review_count,
             phone: obj.phone,
-            coordinate: obj.location.coordinate
+            coordinate: obj.location.coordinate,
+            id: obj.id
           };
         });
 
