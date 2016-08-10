@@ -24,7 +24,8 @@ class JobList extends Component {
         <JobItem
           key={job.jobkey}
           jobFunc={this.jobFunc}
-          job={job} />
+          job={job}
+          lat={job.latitude} />
       );
     });
   }
@@ -43,6 +44,7 @@ class JobList extends Component {
 
 
 function mapStateToProps(state) {
+  console.log('state: ', state);
   return {
     jobs: state.jobs
   };
