@@ -7,17 +7,14 @@ export default class JobItem extends Component {
     return (
       <li onClick={() => this.props.jobFunc(this.props.job)}>
         <p>
-          <strong>{this.props.job.jobtitle
-              .split(" ")
-              .reduce((memo, index) => 
-                memo += `${index.charAt(0).toUpperCase()}${index.slice(1).toLowerCase()} `, '')
-              .trim()
-            }</strong> <small>(posted: {{
+          <strong>{this.props.job.company || 'Unlisted'} </strong> 
+          <small>(posted: {
                this.props.job.formattedRelativeTime
                 .match(/(\w+){1,}/gmi)
                 .map(str => `${str[0].toUpperCase()}${str.slice(1)}`)
                 .join(" ") 
-              }})</small><br/>{this.props.job.company || "Unlisted"}
+              })</small><br/>
+          {this.props.job.jobtitle}
         </p>
       </li>
     );
