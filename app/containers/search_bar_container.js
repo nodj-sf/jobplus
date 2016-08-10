@@ -50,7 +50,7 @@ class SearchBar extends Component {
                 className="formSearchInpt"
                 type="search" 
                 results="4" 
-                autoSave="Developer Jobs" 
+                // autoSave="Developer Jobs" 
                 placeholder="Job"
                 value={this.state.jobTerm}
                 onChange={this.onJobTitleInputChange} />
@@ -61,7 +61,7 @@ class SearchBar extends Component {
                 type="search"
                 results="4"
                 placeholder="City"
-                autoSave="San Francisco"
+                // autoSave="San Francisco"
                 value={this.state.locationTerm}
                 onChange={this.onLocationInputChange} />
             </div>

@@ -6,7 +6,7 @@ export default class JobItem extends Component {
   render() {
     return (
       <div>
-        <li className="jobLI" onClick={() => this.props.jobFunc(this.props.job)}>
+        <li className="jobLI" onClick={() => ( this.props.jobFunc(this.props.job), console.log("Active Job:", this.props.jobFunc(this.props.job)) ) }>
           <h2>
             {this.props.job.jobtitle
               .split(" ")
@@ -22,7 +22,7 @@ export default class JobItem extends Component {
                this.props.job.formattedRelativeTime
                 .match(/(\w+){1,}/gmi)
                 .map(str => `${str[0].toUpperCase()}${str.slice(1)}`)
-                .join(" ") 
+                .join(' ') 
               }
             </i>
           </div>

@@ -12,6 +12,8 @@ const rootReducer = combineReducers({
   activeJob: ActiveJob,
   activeYelp: ActiveYelp,
   toggleModal: ToggleModal
+  // toggleModalOn: ToggleModalOn,
+  // toggleModalOff: ToggleModalOff
 });
 
 export default rootReducer;
