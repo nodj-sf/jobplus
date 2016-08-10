@@ -33,7 +33,6 @@ class JobList extends Component {
     return (
       <div id="jobsContainer" className="jobsPaneLeft appCols">
         <ul className="jobsList">
-          <b>Select A Job!</b>
           { this.renderList() }
         </ul>
       </div>
