@@ -50,7 +50,6 @@ class SearchBar extends Component {
                 className="formSearchInpt"
                 type="search" 
                 results="4" 
-                // autoSave="Developer Jobs" 
                 placeholder="Job"
                 value={this.state.jobTerm}
                 onChange={this.onJobTitleInputChange} />
@@ -61,7 +60,6 @@ class SearchBar extends Component {
                 type="search"
                 results="4"
                 placeholder="City"
-                // autoSave="San Francisco"
                 value={this.state.locationTerm}
                 onChange={this.onLocationInputChange} />
             </div>
@@ -75,8 +73,8 @@ class SearchBar extends Component {
 };
 
 
-function mapDispatchToProps(dispatch) {
+let mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ fetchJobs }, dispatch);
-}
+};
 
 export default connect(null, mapDispatchToProps)(SearchBar);

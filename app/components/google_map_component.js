@@ -136,18 +136,18 @@ class GMap extends Component {
 }
 
 
-function mapStateToProps(state) {
+let mapStateToProps = (state) => {
   console.log("Maps:", state.jobs.map(job => [job.latitude, job.longitude]));
   return {
     markers: state.jobs.map(job => ({ coords: new google.maps.LatLng(job.latitude, job.longitude), company: job.company })),
     toggleModal: state.toggleModal
   };
-}
+};
 
-function mapDispatchToProps(dispatch) {
+let mapDispatchToProps = (dispatch) => {
   // Whenever loadJobs is called, the result should be passed to all reducers
   // return bindActionCreators({ selectJob: selectJob , fetchYelp: fetchYelp}, dispatch);
   return bindActionCreators({ toggleModal: toggleModal, toggleModalOff: toggleModalOff }, dispatch);
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(GMap);

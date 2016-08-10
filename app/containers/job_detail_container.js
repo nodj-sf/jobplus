@@ -18,10 +18,6 @@ class JobDetail extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    job: state.activeJob
-  };
-}
+let mapStateToProps = (state) => ({ job: state.activeJob });
 
 export default connect(mapStateToProps)(JobDetail);

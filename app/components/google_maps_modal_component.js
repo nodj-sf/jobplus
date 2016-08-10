@@ -96,12 +96,12 @@ export default class GMap_Modal extends Component {
 }
 
 
-function mapStateToProps(state) {
+let mapStateToProps = (state) => {
   console.log('Maps:', state.jobs.map(job => [job.latitude, job.longitude]));
   return {
     markers: state.jobs.map(job => ({ coords: new google.maps.LatLng(job.latitude, job.longitude), company: job.company })),
     toggleModal: state.toggleModal
   };
-}
+};
 
 export default connect(mapStateToProps)(GMap_Modal);

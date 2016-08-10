@@ -1,6 +1,6 @@
 import axios from 'axios';
-const FETCH_JOBS = 'FETCH_JOBS';
-const JOB_SELECTED = 'JOB_SELECTED';
+const FETCH_JOBS = 'FETCH_JOBS',
+      JOB_SELECTED = 'JOB_SELECTED';
 
 
 export const fetchJobs = (jobSearch, city) => {
@@ -16,12 +16,13 @@ export const fetchJobs = (jobSearch, city) => {
   };
 };
 
-export const fetchYelp = (city, long, lat) => {
+
+export const fetchYelp = (city, longitude, latitude) => {
   const request = axios.post('/api/v1/food', {
     city: city,
     coordinate: {
-      lat: lat,
-      long: long
+      latitude: latitude,
+      longitude: longitude
     }
   });
 
@@ -31,12 +32,14 @@ export const fetchYelp = (city, long, lat) => {
   };
 };
 
+
 export const selectJob = (job) => {
   return {
     type: JOB_SELECTED,
     payload: job
   };
 };
+
 
 export const toggleModal = () => {
   console.log(`Google Maps Modal view toggled ON!`);
@@ -45,6 +48,7 @@ export const toggleModal = () => {
     payload: true
   };
 };
+
 
 export const toggleModalOff = () => {
   console.log(`Google Maps Modal view toggled OFF!`);
