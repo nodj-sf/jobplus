@@ -4,7 +4,7 @@ const redisClient = require('redis').createClient;
 const redis = redisClient(6379, 'localhost');
 
 exports.post = (req, res) => {
-  let restaurant = 'restaurant', 
+  let restaurant = req.body.restaurant, 
       city = req.body.city, 
       coordinate = req.body.coordinate;
   // Create key based on request body to use for caching
