@@ -3,6 +3,7 @@ export default function(state = [], action) {
     case 'FETCH_YELP':
       // Returning initial state for now until we get backend data
       return action.payload.data;
+    default:
+      return state;
   }
-  return state;
 }

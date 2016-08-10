@@ -14,7 +14,7 @@ class JobList extends Component {
   }
 
   jobFunc(job) {
-    this.props.selectJob(job);
+    this.props.selectJob(job)
     this.props.fetchYelp(job.city, job.latitude, job.longitude);
   }
 
@@ -32,7 +32,6 @@ class JobList extends Component {
   render() {
     return (
       <div id="jobsContainer" className="jobsPaneLeft appCols">
-        <b>Select A Job!</b>
         <ul className="jobsList">
           { this.renderList() }
         </ul>
@@ -42,19 +41,15 @@ class JobList extends Component {
 }
 
 
-function mapStateToProps(state) {
-  return {
-    jobs: state.jobs
-  };
-}
+let mapStateToProps = (state) => ({ jobs: state.jobs });
 
 // Anything returned from this function will end up as props on Joblist container
 // We now have an action thats going to change the state of our DOM. We need to 
 // notify all containers of the action that can be triggered
-function mapDispatchToProps(dispatch) {
-  // Whenever loadJobs is called, the result should be passed to all reducers
-  return bindActionCreators({ selectJob: selectJob , fetchYelp: fetchYelp}, dispatch)
-}
+let mapDispatchToProps = (dispatch) =>  {
+  // Whenever loadJobs is called, the result should be passed to all reducers:
+  return bindActionCreators({ selectJob: selectJob , fetchYelp: fetchYelp}, dispatch);
+};
 
-// Promote JobList to a container
+// Promote JobList to a container:
 export default connect(mapStateToProps, mapDispatchToProps)(JobList);
