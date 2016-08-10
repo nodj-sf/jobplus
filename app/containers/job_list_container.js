@@ -24,7 +24,8 @@ class JobList extends Component {
         <JobItem
           key={job.jobkey}
           jobFunc={this.jobFunc}
-          job={job} />
+          job={job}
+          lat={job.latitude} />
       );
     });
   }

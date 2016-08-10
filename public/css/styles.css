@@ -551,3 +551,40 @@ i.XButton:hover {
     }
 
 }
+
+#restaurantContainer {
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  float: left;
+}
+
+p {
+  margin-top: 33.784;
+  margin-bottom: 0px;
+  margin-top: 33.784;
+}
+
+.restaurantList {
+  width: 500px;
+  height: 500px;
+  overflow: scroll;
+}
+
+
+.yelpDescription, 
+.nameRating {
+  position: relative;
+  display: inline-block;
+  width: 40%;
+  float: right;
+}
+
+.nameRating {
+  float: left;
+}
+
+.nameRating > a {
+  display: block;
+  width: 100%;
+}
