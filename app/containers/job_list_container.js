@@ -31,9 +31,9 @@ class JobList extends Component {
 
   render() {
     return (
-      <div id="jobsContainer" className="jobsPaneLeft appCols">
-        <b>Select A Job!</b>
-        <ul className="jobsList">
+      <div className="">
+        <strong>Select A Job!</strong>
+        <ul className="job-list">
           { this.renderList() }
         </ul>
       </div>

@@ -20,7 +20,7 @@ class RetaurantList extends Component {
   render() {
     return (
       <div id="restaurantContainer">
-        <h1>Restaurant List Container</h1>
+        <h4>Restaurant List Container</h4>
         <ul className="restaurantList">
           
         </ul>
