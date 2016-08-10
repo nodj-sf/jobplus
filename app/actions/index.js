@@ -14,8 +14,9 @@ export const fetchJobs = (jobSearch, city) => {
   };
 };
 
-export const fetchYelp = (long, lat) => {
+export const fetchYelp = (city, long, lat) => {
   const request = axios.post('/api/v1/food', {
+    city: city,
     coordinate: {
       lat: lat,
       long: long
