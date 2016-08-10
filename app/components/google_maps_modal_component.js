@@ -88,10 +88,10 @@ export default class GMap_Modal extends Component {
 // export default connect(mapStateToProps)(JobDetail);
 
 function mapStateToProps(state) {
-  console.log("Maps: ", state.jobs.map(job => [job.latitude, job.longitude]));
+  console.log("Maps:", state.jobs.map(job => [job.latitude, job.longitude]));
   return {
     markers: state.jobs.map(job => new google.maps.LatLng(job.latitude, job.longitude)),
-    isModalOpen: state
+    isModalOpen: state.toggleModal
   };
 }
 
