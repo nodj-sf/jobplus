@@ -11,7 +11,7 @@ const yelp = new Yelp({
 // Add latLong argument
 let getYelp = (food, city, coordinate, limit) => {
   return (res) => {
-    return yelp.search({ term: food, location: city, cll: `${coordinate.latitude},${coordinate.longitude}` }) //implement 
+    return yelp.search({ term: food, location: city, cll: coordinate.latitude + ',' + coordinate.longitude })   // Implement
       .then((data) => {
         let restaurants = data.businesses.slice(0, limit);
         

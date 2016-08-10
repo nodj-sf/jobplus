@@ -24,12 +24,12 @@ const geolocation = (() => {
         lng: position.coords.longitude
       };
 
-      console.log(`Location found: ${pos.lat} ${pos.lng}`);
-      console.log(`Google Maps LatLng: ${new google.maps.LatLng(pos.lat, pos.lng)}`);
+      // console.log(`Location found: ${pos.lat} ${pos.lng}`);
+      // console.log(`Google Maps LatLng: ${new google.maps.LatLng(pos.lat, pos.lng)}`);
       return new google.maps.LatLng(pos.lat, pos.lng);
     });
 
-    console.log(`Your browser doesn't support geolocation.`);
+    // console.log(`Your browser doesn't support geolocation.`);
     return new google.maps.LatLng(37.745951, -122.439421);
   }
 })();
@@ -45,12 +45,10 @@ class GMap extends Component {
     };
     this.modalNo = this.modalNo.bind(this);
   }
-    // defaultCenter: geolocation() new google.maps.LatLng(37.745951, -122.439421),
 
   centerMap() {
-    console.log(`First map marker coordinates: ${this.props.markers[0].coords}`);
+    // console.log(`First map marker coordinates: ${this.props.markers[0].coords}`);
     return this.props.markers.length ? this.props.markers[0].coords : this.state.defaultCenter;
-    // return this.state.defaultCenter;
   }
 
   centerZoomOverUSA() {
@@ -74,14 +72,13 @@ class GMap extends Component {
     });
   }
 
-
   modalYes() {
-    console.log(`Function \`modalYes\` called!`);
+    // console.log(`Function \`modalYes\` called!`);
     return this.props.toggleModal()
   }
 
   modalNo() {
-    console.log(`Function \`modalNo\` called!`);
+    // console.log(`Function \`modalNo\` called!`);
     return this.props.toggleModalOff();
   }
 
@@ -122,7 +119,6 @@ class GMap extends Component {
                 </Marker>
 
               if (index === 0) { m.setZIndex({MAX_ZINDEX} + 1); }
-
               return ( m );
             })}
 
@@ -137,7 +133,7 @@ class GMap extends Component {
 
 
 let mapStateToProps = (state) => {
-  console.log("Maps:", state.jobs.map(job => [job.latitude, job.longitude]));
+  // console.log("Maps:", state.jobs.map(job => [job.latitude, job.longitude]));
   return {
     markers: state.jobs.map(job => ({ coords: new google.maps.LatLng(job.latitude, job.longitude), company: job.company })),
     toggleModal: state.toggleModal
