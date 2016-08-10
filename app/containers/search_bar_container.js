@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import { fetchJobs } from '../actions/index';
 
+
 class SearchBar extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +13,7 @@ class SearchBar extends Component {
     this.state = {
       jobTerm: '',
       locationTerm: ''
-     };
+    };
 
     this.onJobTitleInputChange = this.onJobTitleInputChange.bind(this);
     this.onLocationInputChange = this.onLocationInputChange.bind(this);
@@ -72,6 +73,7 @@ class SearchBar extends Component {
     );
   }
 };
+
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchJobs }, dispatch);
