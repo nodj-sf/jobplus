@@ -40,34 +40,33 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <form id="searchForm" onSubmit={this.onFormSubmit}>
-        <div className="box">
-          <div className="container-3">
-
-            <div id="searchInputsBoundary">
-              <input 
-                id="search" 
-                className="formSearchInpt"
-                type="search" 
-                results="4" 
-                autoSave="Developer Jobs" 
-                placeholder="Job"
-                value={this.state.jobTerm}
-                onChange={this.onJobTitleInputChange} />
-              
-              <input 
-                id="searchLocation"
-                className="formSearchInpt"
-                type="search"
-                results="4"
-                placeholder="City"
-                autoSave="San Francisco"
-                value={this.state.locationTerm}
-                onChange={this.onLocationInputChange} />
-            </div>
+      <form className="container" onSubmit={this.onFormSubmit}>
+        <div className="row">
+          <div className="five columns">
+            <input 
+              type="search" 
+              autoSave="Developer Jobs" 
+              className="u-full-width"
+              placeholder="Search Job"
+              value={this.state.jobTerm}
+              onChange={this.onJobTitleInputChange} />
+          </div>
+          
+          <div className="five columns">
+            <input 
+              className=""
+              type="search"
+              className="u-full-width"
+              placeholder="City"
+              autoSave="San Francisco"
+              value={this.state.locationTerm}
+              onChange={this.onLocationInputChange} />
           </div>
 
-          <button id="jobSearchSubmitBtn" type="submit">Submit</button>
+          <div className="two columns">
+            <button className="button-primary" type="submit"><i className="fa fa-search" aria-hidden="true"></i> Search</button>
+          </div>
+
         </div>
       </form>
     );
