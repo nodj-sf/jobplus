@@ -44,7 +44,7 @@ export default class GMap_Modal extends Component {
       <Modal
         isOpen={this.props.modalState}
         onClose={() => this.props.modalState}
-        style={new Set(customStyles)} >
+        style={customStyles} >
 
         <GoogleMapLoader
           containerElement={
@@ -91,7 +91,7 @@ function mapStateToProps(state) {
   console.log("Maps: ", state.jobs.map(job => [job.latitude, job.longitude]));
   return {
     markers: state.jobs.map(job => new google.maps.LatLng(job.latitude, job.longitude)),
-    isModalOpen: state
+    // isModalOpen: state
   };
 }
 
