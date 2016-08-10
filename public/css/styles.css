@@ -299,6 +299,7 @@ button.button-primary:hover {
   color: #771DE5;
   background-color: #A7A5A5;
 }
+<<<<<<< HEAD
 * /
 
 .container-3 {
@@ -362,8 +363,6 @@ button.button-primary:hover {
           border-radius: 0 5px 5px 0;
   box-sizing: border-box;
 }
-
-<<<<<<< 183a9454932a7dec5d95c3f08702ab7e00a7e74e
 #searchInputsBoundary *:focus ~ *, 
 #searchInputsBoundary *:focus, 
 #searchInputsBoundary * ~ *:focus, 
