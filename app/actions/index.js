@@ -25,8 +25,6 @@ export const fetchYelp = (city, long, lat) => {
     }
   });
 
-  console.log(`Coordinates:\n\tLatitude: ${lat}\n\tLongitude: ${lat}`);
-  console.log(`Request ${request}`);
   return {
     type: 'FETCH_YELP',
     payload: request
@@ -34,7 +32,6 @@ export const fetchYelp = (city, long, lat) => {
 };
 
 export const selectJob = (job) => {
-  console.log(`Job selected: ${job}`);
   return {
     type: JOB_SELECTED,
     payload: job
