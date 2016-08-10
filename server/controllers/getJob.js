@@ -8,7 +8,7 @@ exports.post = (req, res) => {
       city = req.body.city;
   let key = JSON.stringify(req.body);
 
-  // redis.del(key);
+  redis.del(key);
 
   /*
    * Return data from cache if exists

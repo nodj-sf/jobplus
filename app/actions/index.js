@@ -38,10 +38,18 @@ export const selectJob = (job) => {
   };
 };
 
-// export const closeModalView = () => {
-//   console.log(`Google Maps Modal view closed!`);
-//   return {
-//     type: 'CLOSE_MODAL',
-//     payload: 
-//   };
-// }
+export const toggleModal = () => {
+  console.log(`Google Maps Modal view toggled ON!`);
+  return {
+    type: 'TOGGLE_MODAL_ON',
+    payload: true
+  };
+};
+
+export const toggleModalOff = () => {
+  console.log(`Google Maps Modal view toggled OFF!`);
+  return {
+    type: 'TOGGLE_MODAL_OFF',
+    payload: false
+  };
+};
