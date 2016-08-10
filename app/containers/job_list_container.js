@@ -15,7 +15,7 @@ class JobList extends Component {
 
   jobFunc(job) {
     this.props.selectJob(job);
-    this.props.fetchYelp(job.latitude, job.longitude);
+    this.props.fetchYelp(job.city, job.latitude, job.longitude);
   }
 
   renderList() {
