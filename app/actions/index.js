@@ -1,6 +1,6 @@
 import axios from 'axios';
-const FETCH_JOBS = 'FETCH_JOBS';
-const JOB_SELECTED = 'JOB_SELECTED';
+const FETCH_JOBS = 'FETCH_JOBS',
+      JOB_SELECTED = 'JOB_SELECTED';
 
 
 export const fetchJobs = (jobSearch, city) => {
@@ -9,19 +9,20 @@ export const fetchJobs = (jobSearch, city) => {
     city: city
   });
 
-  console.log(`Request ${request}`);
+  // console.log(`Request ${request}`);
   return {
     type: FETCH_JOBS,
     payload: request
   };
 };
 
+
 export const fetchYelp = (city, long, lat) => {
   const request = axios.post('/api/v1/food', {
     city: city,
     coordinate: {
-      lat: lat,
-      long: long
+      latitude: lat,
+      longitude: long
     }
   });
 
@@ -31,6 +32,7 @@ export const fetchYelp = (city, long, lat) => {
   };
 };
 
+
 export const selectJob = (job) => {
   return {
     type: JOB_SELECTED,
@@ -38,10 +40,20 @@ export const selectJob = (job) => {
   };
 };
 
-// export const closeModalView = () => {
-//   console.log(`Google Maps Modal view closed!`);
-//   return {
-//     type: 'CLOSE_MODAL',
-//     payload: 
-//   };
-// }
+
+export const toggleModal = () => {
+  // console.log(`Google Maps Modal view toggled ON!`);
+  return {
+    type: 'TOGGLE_MODAL_ON',
+    payload: true
+  };
+};
+
+
+export const toggleModalOff = () => {
+  // console.log(`Google Maps Modal view toggled OFF!`);
+  return {
+    type: 'TOGGLE_MODAL_OFF',
+    payload: false
+  };
+};

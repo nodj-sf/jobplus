@@ -25,11 +25,10 @@ const dummy = [{
 export default (state = dummy, action) => {
   switch(action.type) {
     case 'FETCH_JOBS':
-      console.log(`Action ${action} on Jobs Reducer.`);
+      // console.log(`Action ${action} on Jobs Reducer.`);
       return action.payload.data.results;
-    // default:
-    //   console.log(`Unknown action <${action}> executed! Returning fallback output.`);
-    //   return state;
+    default:
+      // console.log(`Unknown action <${action}> executed! Returning fallback output.`);
+      return state;
   }
-  return state;
 }
