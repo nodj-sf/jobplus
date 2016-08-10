@@ -19,7 +19,10 @@ export default class Results extends Component {
 
           <div id="jobMain">
             <div id="jobResultsPane">
-              <GMap />
+              <div>
+                <GMap />
+                <b>Select A Job!</b>
+              </div>
               <JobList />
             </div>
             
