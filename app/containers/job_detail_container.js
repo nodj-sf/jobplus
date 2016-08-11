@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 
 class JobDetail extends Component {
   tagFreeSnippet() {
-    var regex = /(<([^>]+)>)/ig;
-    var newSnippet = this.props.job.snippet.replace(regex, '');
-    return newSnippet;
+    if (this.props.job.snippet) {
+      var regex = /(<([^>]+)>)/ig;
+      var newSnippet = this.props.job.snippet.replace(regex, '');
+      return newSnippet;
+    }
   }
 
   render() {
