@@ -442,7 +442,7 @@ div.noResultsShown {
     position: absolute;
     width: 125%;
     height: 100%;
-    background-image: url("../img/frowny_face-white.png");
+    background-image: url("../img/frowny_face-white.svg");
     background-size: 75% auto;
     right: -35%;
     top: 85%;
