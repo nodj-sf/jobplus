@@ -27,8 +27,10 @@ export default class Results extends Component {
             </div>
             
             <div id="jobInfoBody">           
-              <JobDetail />             
-              <RetaurantList />
+              <JobDetail /> 
+              <div className="jobInfoBottomBlock">            
+                <RetaurantList />
+              </div>
             </div>
           </div>
         </div>        
