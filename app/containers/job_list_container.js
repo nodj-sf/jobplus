@@ -25,7 +25,7 @@ class JobList extends Component {
           key={job.jobkey}
           jobFunc={this.jobFunc}
           job={job}
-          lat={job.latitude} />
+        />
       );
     });
   }
