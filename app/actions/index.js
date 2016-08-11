@@ -34,9 +34,8 @@ export const fetchYelp = (city, long, lat) => {
   };
 };
 
-export const fetchGPlaces = (city, long, lat) => {
+export const fetchGPlaces = (lat, long) => {
   const request = axios.post('/api/v1/places', {
-    city: city,
     coordinate: {
       lat: lat,
       long: long
