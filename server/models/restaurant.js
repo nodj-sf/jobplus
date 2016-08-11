@@ -34,7 +34,7 @@ let getYelp = (food, city, coordinate, limit) => {
       .catch((err) => {
         console.error(err);
       });
-  }
-}
+  };
+};
 
 module.exports = getYelp;

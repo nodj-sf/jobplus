@@ -32,6 +32,7 @@ redis.on('connect', () => {
 
 const getRestaurant = require('./controllers/getRestaurant');
 const getJob = require('./controllers/getJob');
+const getPlace = require('./controllers/getPlace');
 
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -41,5 +42,6 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.post('/api/v1/jobs', getJob.post);
 app.post('/api/v1/food', getRestaurant.post);
+app.post('/api/v1/places', getPlace.post);
 
 module.exports = app;
