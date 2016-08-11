@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, hashHistory, browserHistory } from 'react-router'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+
 
 import { fetchJobs } from '../actions/index';
 
@@ -31,7 +33,7 @@ class SearchBar extends Component {
   onFormSubmit(event) {
     event.preventDefault();
     this.props.fetchJobs(this.state.jobTerm, this.state.locationTerm);
-    hashHistory.push('results');
+    this.props.push('/results');
     this.setState({
       jobTerm: '',
       locationTerm: '' 
@@ -76,7 +78,7 @@ class SearchBar extends Component {
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchJobs }, dispatch);
+  return bindActionCreators({ fetchJobs, push }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(SearchBar);

@@ -1,22 +1,26 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, hashHistory } from 'react-router';
-import { createStore, applyMiddleware } from 'redux'; 
+import { createStore, combineReducers, applyMiddleware } from 'redux'; 
 import { Provider } from 'react-redux';
-import ReduxPromise from 'redux-promise';
+import { Router, Route, hashHistory, browserHistory } from 'react-router'
+import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
+import promiseMiddleware from 'redux-promise';
 
 import Results from './components/results_page';
 import LandingPage from './components/landing_page';
+
 import reducers from './reducers/index';
 
-
-const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+const routerMid = routerMiddleware(browserHistory);
+const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, routerMid)(createStore);
+const store = createStoreWithMiddleware(reducers)
+const history = syncHistoryWithStore(browserHistory, store);
 
 class App extends Component {
   render() {
     return (
-      <Provider store={createStoreWithMiddleware(reducers)}>
-        <Router history={hashHistory}>
+      <Provider store={store}>
+        <Router history={history}>
           <Route path="/" component={LandingPage} />
           <Route path="results" component={Results} />
         </Router>
