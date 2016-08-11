@@ -39,7 +39,7 @@ export default class GMap_Modal extends Component {
   }
 
   render() {
-    console.log(`toggleModal: ${this.props.toggleModal}`);
+    // console.log(`toggleModal: ${this.props.toggleModal}`);
     return (
       <Modal
         isOpen={this.props.toggleModal}
