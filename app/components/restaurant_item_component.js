@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 
 class RestaurantListItem extends Component {
+
+  parsePhoneNumber(num) {
+    if (num) {
+      return num.replace(/^(\d{3})(\d{4})(\d{3})/, "+1 ($1) $2-$3");
+    }
+  }
+
   render() {
     var starRatingImage = this.props.restaurant.rating_img_url;
     return (
@@ -13,7 +20,7 @@ class RestaurantListItem extends Component {
           <p>{ this.props.restaurant.display_address[1] } </p>
           <p>{ this.props.restaurant.display_address[0] } </p>
           <p>{ this.props.restaurant.display_address[2] } </p>
-          <p>{ this.props.restaurant.phone.replace(/^(\d{3})(\d{4})(\d{3})/, "+1 ($1) $2-$3") } </p>
+          <p>{ this.parsePhoneNumber(this.props.restaurant.phone) }</p>
         </div>
       </li>
     );
