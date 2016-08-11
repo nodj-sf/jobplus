@@ -3,16 +3,25 @@ import { connect } from 'react-redux';
 
 
 class JobDetail extends Component {
+  tagFreeSnippet() {
+    var regex = /(<([^>]+)>)/ig;
+    var newSnippet = this.props.job.snippet.replace(regex, '');
+    return newSnippet;
+  }
+
   render() {
     if (!this.props.job) {
       return <h1>Job</h1>;
     }
     
-    console.log(`PROPS: ${this.props.job}`);
     return (
       <div>
-        <h3>Details for:</h3>
-        <div>{this.props.job.jobtitle}</div>
+        <h2>{ this.props.job.company }</h2> 
+        <h3>{ this.props.job.jobtitle }</h3>
+        <p>{ this.props.job.formattedRelativeTime }</p>
+        <p>{ this.props.job.formattedLocation }</p>
+        <p> { this.tagFreeSnippet() }</p>
+        <a href={this.props.job.url}>link</a>
       </div>
     );
   }
