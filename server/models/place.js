@@ -11,9 +11,12 @@ let getPlaces = (coordinate) => {
     type: 'subway_station|gym|parking'
   };
 
+  console.log('parameters: ', parameters);
+
   return (res) => {
     return new Promise((resolve, reject) => {
       return places.placeSearch(parameters, (status, data) => {
+        console.log('data: ', data);
         if (!data) {
           reject(data);
         } else {
