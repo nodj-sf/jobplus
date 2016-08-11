@@ -1,7 +1,7 @@
 'use strict';
 const getPlace = require('../models/place');
-// const redisClient = require('redis').createClient;
-// const redis = redisClient(6379, 'localhost');
+const redisClient = require('redis').createClient;
+const redis = redisClient(6379, 'localhost');
 
 exports.post = (req, res) => {
   let place = 'place', 
@@ -16,7 +16,7 @@ exports.post = (req, res) => {
    * Check if redis has a sesson stored
    * return data if session exist.
   */
-  // redis.get(key, (err, result) => {
+  redis.get(key, (err, result) => {
 
     res.setHeader('Content-Type', 'application/json');
 
@@ -30,12 +30,12 @@ exports.post = (req, res) => {
         .then((data) => {
           // console.log('data: ', data);
           // Cache data using request body as key
-          // redis.set(key, JSON.stringify(data.data));
+          redis.set(key, JSON.stringify(data.data));
           // Set cache to expire in an hour
-          // redis.expire(key, 3600);
+          redis.expire(key, 3600);
           return data.respond;
-          // res.end();
+          res.end();
         });
     }
-  // });
+  });
 };
