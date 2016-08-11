@@ -12,7 +12,6 @@ export const fetchJobs = (jobSearch, city) => {
     city: city
   });
 
-  // console.log(`Request ${request}`);
   return {
     type: FETCH_JOBS,
     payload: request
@@ -20,7 +19,7 @@ export const fetchJobs = (jobSearch, city) => {
 };
 
 
-export const fetchYelp = (city, long, lat) => {
+export const fetchYelp = (city, lat, long) => {
   const request = axios.post('/api/v1/food', {
     city: city,
     coordinate: {
