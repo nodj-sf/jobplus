@@ -3,6 +3,11 @@ import { connect } from 'react-redux';
 
 
 class JobDetail extends Component {
+  
+  parseJobDescription(descrip) {
+    return descrip.replace(/<[^>]+>|\.(?=\.{3,})/gmi, '');
+  }
+
   render() {
     if (!this.props.job) {
       return <h1>Job</h1>;
@@ -12,7 +17,10 @@ class JobDetail extends Component {
     return (
       <div>
         <h3>Details for:</h3>
-        <div>{this.props.job.jobtitle}</div>
+        <div>
+          <h1>{this.props.job.jobtitle}</h1>
+          <blockquote>{this.props.job.snippet}</blockquote>
+        </div>
       </div>
     );
   }

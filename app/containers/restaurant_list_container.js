@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import RestaurantItem from '../components/restaurant_item_component';
 
+
 class RetaurantList extends Component {
   renderList() {
     return this.props.activeYelp.map((restaurant) => {
@@ -18,7 +19,7 @@ class RetaurantList extends Component {
   render() {
     return (
       <div id="restaurantContainer">
-        <h1>Restaurant List Container</h1>
+        <h1>Nearby Eats</h1>
         <ul className="restaurantList">
           { this.renderList() }
         </ul>
@@ -27,10 +28,6 @@ class RetaurantList extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    activeYelp: state.activeYelp
-  };
-}
+let mapStateToProps = (state) => ({ activeYelp: state.activeYelp });
 
 export default connect(mapStateToProps)(RetaurantList);
