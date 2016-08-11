@@ -59,6 +59,7 @@ hr {
   background: #ECECEC;
   overflow: hidden;
   box-shadow: 5px 0 12.5px 0.5px #ADADAD;
+  z-index: 100;
 }
 
 #jobInfoBody {
@@ -67,6 +68,7 @@ hr {
   width: 65%;
   height: 100%;
   min-height: 700px;
+  /* padding-left: 25px; */
   float: right;
   /* border: 4px solid blue; */           /* To be removed in future commit */
   box-sizing: border-box;
@@ -90,6 +92,8 @@ hr {
     background: -webkit-linear-gradient(bottom, rgba(236, 236, 236, 1.0) 20%, rgba(236, 236, 236, 0.75) 35%, rgba(236, 236, 236, 0) 75%);
     background:      -o-linear-gradient(bottom, rgba(236, 236, 236, 1.0) 20%, rgba(236, 236, 236, 0.75) 35%, rgba(236, 236, 236, 0) 75%);
     background:         linear-gradient(to top, rgba(236, 236, 236, 1.0) 20%, rgba(236, 236, 236, 0.75) 35%, rgba(236, 236, 236, 0) 75%);
+    /* background: linear-gradient(to top, rgba(144, 143, 143, 0.9) 5%, rgba(65, 64, 64, 0.3) 15%, rgba(22, 20, 20, 0.01) 80%) */
+
   }
 
 #chartContainer {
@@ -179,7 +183,7 @@ div.box {
   background:      -o-linear-gradient(231deg, rgba(20,164,181,1) 15%, rgba(20,164,181,0.75) 84%, rgba(20,164,181,0.45) 160%);
   background:         linear-gradient(321deg, rgba(20,164,181,1) 15%, rgba(20,164,181,0.75) 84%, rgba(20,164,181,0.45) 160%);
   box-shadow: 0 5px 4px 0.5px #ADADAD;
-  z-index: 100;
+  z-index: 150;
 }
 
 svg.rd3-chart {
@@ -226,7 +230,11 @@ ul.jobsList {
 }
 
 ul.jobsList > div:last-child {
-    margin-bottom: 25px;
+    margin-bottom: 17.5px;
+}
+
+ul.jobsList > div.noResultsShown {
+    margin-bottom: 0;
 }
 
 li.jobLI,
@@ -383,7 +391,6 @@ button.button-primary:hover {
   box-sizing: border-box;
 }
 
-
 /* #searchForm:focus .input {} */
 #searchInputsBoundary *:focus ~ *, 
 #searchInputsBoundary *:focus, 
@@ -422,6 +429,40 @@ button.button-primary:hover {
   line-height: 60px;
   font-size: 3rem;
   z-index: 10;
+}
+
+div.noResultsShown {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+  div.noResultsShown::before {
+    position: absolute;
+    width: 125%;
+    height: 100%;
+    background-image: url("../img/frowny_face-white.png");
+    background-size: 75% auto;
+    right: -35%;
+    top: 85%;
+    background-repeat: no-repeat;
+    content: "";
+    transform: translateY(-50%);
+  }
+
+h4.noResultsShown {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  top: 25%;
+  overflow: hidden;
+  left: -5%;
+  line-height: 100px;
+  font-size: 50px;
+  font-weight: 900;
+  text-align: center;
+  transform: translateY(-50%) rotate(-32deg);
 }
 
 #search {
@@ -496,6 +537,128 @@ i.XButton:hover {
 }
 
 
+
+
+
+
+
+
+
+/*  *********************************************
+    *********************************************
+    ********************************************* */  
+
+
+#restaurantContainer {
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+}
+
+#restaurantContainer > div {
+  position: relative;
+  width: 100%;
+  background-blend-mode: color-dodge;
+  height: 15%;
+  background: hsl(0, 53%, 52%) url("../img/bckg_hero.png") no-repeat;
+  backface-visibility: initial;
+  /* background-size: 100%; */
+  background-position: 90% 50%;
+  background-attachment: scroll;
+  background-origin: border-box;
+}
+
+#restaurantContainer > div img {
+  position: absolute;
+  height: 90%;
+  top: 5%;
+  left: 15px;
+}
+
+#restaurantContainer > div h1 {
+  position: relative;
+  text-align: right;
+  right: 1.5rem;
+  top: 1rem;
+  font-weight: bolder;
+}
+
+p {
+  margin-top: 33.784;
+  margin-bottom: 0px;
+  margin-top: 33.784;
+}
+
+ul.restaurantList {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 90%;
+  background: #ECECEC;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+ul.restaurantList li.restaurantLI {
+  position: relative;
+  display: block;
+  width: 100%;
+  /* height: 100%; */
+  padding-left: 10px;
+  clear: both;
+  list-style-type: none;
+  border-bottom: 0.25px ridge #C7C7C7;
+}
+
+#jobInfoBody > div:first-child {
+  padding-left: 20px;
+}
+
+#jobInfoBody .yelpDescription, 
+#jobInfoBody .nameRating {
+  position: relative;
+  display: inline-block;
+  width: 55%;
+  float: right;
+}
+
+#jobInfoBody .yelpDescription {
+  width: 45%;
+}
+
+#jobInfoBody .yelpDescription p {
+  font-size: 12px;
+}
+
+#jobInfoBody div.nameRating {
+  float: left;
+}
+
+.nameRating > a {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+}
+
+#jobInfoBody div.jobInfoBottomBlock {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 50%;
+  min-height: 500px;
+  bottom: 0;
+  /*background: red;*/                  /* To be removed in a future commit */
+}
+
+
+/*  *********************************************
+    *********************************************
+    ********************************************* */  
+
+
 @media only screen
   and (max-width: 700px) {
 
@@ -552,39 +715,4 @@ i.XButton:hover {
 
 }
 
-#restaurantContainer {
-  position: relative;
-  display: inline-block;
-  width: 50%;
-  float: left;
-}
 
-p {
-  margin-top: 33.784;
-  margin-bottom: 0px;
-  margin-top: 33.784;
-}
-
-.restaurantList {
-  width: 500px;
-  height: 500px;
-  overflow: scroll;
-}
-
-
-.yelpDescription, 
-.nameRating {
-  position: relative;
-  display: inline-block;
-  width: 40%;
-  float: right;
-}
-
-.nameRating {
-  float: left;
-}
-
-.nameRating > a {
-  display: block;
-  width: 100%;
-}
