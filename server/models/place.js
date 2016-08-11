@@ -28,5 +28,3 @@ let getPlaces = (coordinate) => {
 };
 
 module.exports = getPlaces;
-
-//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.78976,-122.40253&radius=500&type=subway_station|gym|parking&rankby=distance&key=AIzaSyCbO9G9Z4TzOZlXfPFiV7ZAThWm6RQClqo
