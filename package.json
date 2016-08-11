@@ -25,6 +25,7 @@
     "chai": "^3.5.0",
     "d3": "^3.5.17",
     "enzyme": "^2.4.1",
+    "googleplaces": "^0.6.0",
     "json-loader": "^0.5.4",
     "mocha": "^3.0.0",
     "nodemon": "^1.10.0",
