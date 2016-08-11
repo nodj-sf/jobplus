@@ -44,4 +44,9 @@ app.post('/api/v1/jobs', getJob.post);
 app.post('/api/v1/food', getRestaurant.post);
 app.post('/api/v1/places', getPlace.post);
 
+app.get('/results', function(req, res){
+  res.redirect('/');
+  res.end();
+});
+
 module.exports = app;
