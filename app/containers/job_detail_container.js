@@ -3,12 +3,11 @@ import { connect } from 'react-redux';
 
 
 class JobDetail extends Component {
-  tagFreeSnippet() {
-    if (this.props.job.snippet) {
-      var regex = /(<([^>]+)>)/ig;
-      var newSnippet = this.props.job.snippet.replace(regex, '');
-      return newSnippet;
-    }
+
+  tagFreeSnippet(descrip) {
+    return descrip ? 
+      descrip.replace(/<[^>]+>|\.(?=\.{3,})/gmi, '') : 
+      descrip;
   }
 
   render() {
@@ -18,11 +17,11 @@ class JobDetail extends Component {
     
     return (
       <div>
+        <h1>{ this.props.job.jobtitle }</h1>
         <h2>{ this.props.job.company }</h2> 
-        <h3>{ this.props.job.jobtitle }</h3>
         <p>{ this.props.job.formattedRelativeTime }</p>
         <p>{ this.props.job.formattedLocation }</p>
-        <p> { this.tagFreeSnippet() }</p>
+        <blockquote>{ this.tagFreeSnippet(this.props.job.snippet) }</blockquote>
         <a href={this.props.job.url}>link</a>
       </div>
     );
