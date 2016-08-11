@@ -5,8 +5,8 @@ const getIndeed = require('../models/jobs');
 
 exports.post = (req, res) => {
   let jobTitle = req.body.jobTitle,
-      city = req.body.city;
-  let key = JSON.stringify(req.body);
+      city = req.body.city,
+      key = JSON.stringify(req.body);
 
   // redis.del(key);
 

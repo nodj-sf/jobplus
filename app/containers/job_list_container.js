@@ -19,15 +19,19 @@ class JobList extends Component {
   }
 
   renderList() {
-    return this.props.jobs.map((job) => {
-      return (
-        <JobItem
-          key={job.jobkey}
-          jobFunc={this.jobFunc}
-          job={job}
-          lat={job.latitude} />
-      );
-    });
+    return !this.props.jobs || !this.props.jobs.length ?
+      <div className="noResultsShown">
+        <h4 className="noResultsShown">No results now</h4>
+      </div> : 
+      this.props.jobs.map((job) => {
+        return (
+          <JobItem
+            key={job.jobkey}
+            jobFunc={this.jobFunc}
+            job={job}
+            lat={job.latitude} />
+        );
+      });
   }
 
   render() {
