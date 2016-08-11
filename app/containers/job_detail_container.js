@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 
 class JobDetail extends Component {
+  
   tagFreeSnippet() {
     if (this.props.job.snippet) {
       var regex = /(<([^>]+)>)/ig;
