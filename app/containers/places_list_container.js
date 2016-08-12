@@ -6,7 +6,7 @@ class PlacesList extends Component {
     return this.props.activePlaces.map((place) => {
       return (
         <li className="placesLI" 
-            style={{"list-style-type": "none"}}
+            style={{"listStyleType": "none"}}
             key={place.place_id} >
           <h4>{ place.name } <small>{ place.vicinity }</small></h4>
           <p>{ place.rating }</p>
