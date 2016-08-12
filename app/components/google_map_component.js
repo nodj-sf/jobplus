@@ -43,6 +43,8 @@ class GMap extends Component {
       zoomLevel: 10
     };
     this.modalNo = this.modalNo.bind(this);
+    this.addTimeDelayedMarker = this.addTimeDelayedMarker.bind(this);
+    this.markerCallbackHandler = this.markerCallbackHandler.bind(this);
   }
 
   centerMap() {
@@ -81,6 +83,40 @@ class GMap extends Component {
     return this.props.toggleModalOff();
   }
 
+  addTimeDelayedMarker(marker, index) {
+    const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+          MAX_ZINDEX = 1000;
+      console.log("marker", marker.coords);
+
+       window.setTimeout(() => {
+        // console.log(`Marker Coordinates: ${marker.coords["lat"]}, ${marker.coords["lng"]} | ${typeof marker.coords["lat"]}`);
+       
+        return (
+          <Marker
+            key={index}
+            ref={`marker_${index}`}
+            data-jobTitle={marker.jobTitle}
+            data-formattedLocation={marker.formattedLocation}
+            position={ new google.maps.LatLng(marker.coords) }
+            // position={ marker.coords }
+            animation={google.maps.Animation.DROP}
+            title={marker.company}
+            opacity={0.90}
+            zIndex={MAX_ZINDEX}
+            label={{ "text": `${ALPHABET[index++]}`, "fontFamily": "Raleway", "fontWeight": "bold" }} />
+        );
+        // console.log(m, marker.coords);
+        // return m;
+      }, index * 1000);
+     
+  }
+
+  markerCallbackHandler() {
+    console.log("New Log: ", this.props.markers); 
+    console.log(`Google Maps LatLng Class Object: ${this.props.markers.coords}`);
+    return this.props.markers.map((marker, index) => this.addTimeDelayedMarker(marker, index) );
+  }
+
   render() {
     return (
       <GoogleMapLoader
@@ -92,11 +128,10 @@ class GMap extends Component {
         googleMapElement={
           <GoogleMap 
             // defaultCenter={{ lat: 37.745951, lng: -122.439421 }}
-            defaultCenter={this.state.defaultCenter}
             center={this.centerMap()}
             defaultZoom={this.state.zoomLevel} 
             maxZoom={19}
-            defaultOptions={{styles: mapStylesObject}}
+            defaultOptions={{ styles: mapStylesObject }}
             scrollwheel={false}
             ref="map" >
 
@@ -131,13 +166,16 @@ class GMap extends Component {
 }
 
 
-let mapStateToProps = (state) => {
-  // console.log("Maps:", state.jobs.map(job => [job.latitude, job.longitude]));
-  return {
-    markers: state.jobs.map(job => ({ coords: new google.maps.LatLng(job.latitude, job.longitude), company: job.company })),
-    toggleModal: state.toggleModal
-  };
-};
+let mapStateToProps = (state) => ({
+  markers: state.jobs.map(job => ({ 
+    coords: { "lat": job.latitude, "lng": job.longitude },
+    jobTitle: job.jobtitle,
+    company: job.company, 
+    formattedLocation: job.formattedLocation,
+    showInfo: false
+  })),
+  toggleModal: state.toggleModal
+});
 
 let mapDispatchToProps = (dispatch) => {
   // Whenever loadJobs is called, the result should be passed to all reducers
