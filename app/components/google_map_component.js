@@ -116,6 +116,7 @@ class GMap extends BaseComponent {
           MAX_ZINDEX = 1000;
 
       return window.setTimeout(function() {
+        // console.log(`Marker Coordinates: ${marker.coords["lat"]}, ${marker.coords["lng"]} | ${typeof marker.coords["lat"]}`);
         return (
           <Marker
             key={index}

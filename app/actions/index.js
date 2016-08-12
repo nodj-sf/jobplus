@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 
-<<<<<<< d0a4d65a4eb98b577823df9d7afa468cda245b15
 const getCookie = (name) => {
   const value = '; ' + document.cookie;
   const parts = value.split('; ' + name + '=');
@@ -10,7 +9,7 @@ const getCookie = (name) => {
   }
   return '';
 }
-=======
+
 export const jobInputTerm = (jobTerm) => {
   return {
     type: 'JOB_INPUT_TERM',
@@ -45,7 +44,6 @@ export const selectJob = (job) => {
     payload: job
   };
 };
->>>>>>> Configured Redux to save users' jobTerm and locationTerm input queries
 
 export const jobInputTerm = (jobTerm) => {
   return {
@@ -112,19 +110,11 @@ export const fetchYelp = (city, lat, long) => {
 
 export const fetchGPlaces = (lat, long) => {
   const request = axios.post('/api/v1/places', {
-<<<<<<< d0a4d65a4eb98b577823df9d7afa468cda245b15
     coordinate: {
       lat: lat,
       long: long
     },
     _csrf: getCookie('_csrf')
-<<<<<<< 7b53573f80aa4709794ab1d67ad38ca26377d907
-=======
-    coordinate: { lat, long }
->>>>>>> Configured Redux to save users' jobTerm and locationTerm input queries
-=======
-    coordinate: { lat, long }
->>>>>>> Configured Redux to save users' jobTerm and locationTerm input queries
   });
   return {
     type: 'FETCH_GPLACES',
