@@ -47,6 +47,41 @@ export const selectJob = (job) => {
 };
 >>>>>>> Configured Redux to save users' jobTerm and locationTerm input queries
 
+export const jobInputTerm = (jobTerm) => {
+  return {
+    type: 'JOB_INPUT_TERM',
+    payload: { jobTerm }
+  };
+};
+
+export const locationInputTerm = (locationTerm) => {
+  return {
+    type: 'LOCATION_INPUT_TERM',
+    // payload: { locationTerm: locationTerm }
+    payload: { locationTerm }
+  };
+};
+
+export const userSearchInputs = (jobTerm, locationTerm) => {
+  // console.log(`
+  //   User\'s \`Job\` Search Input: ${jobTerm}
+  //   User\'s \`Location\` Search Input: ${locationTerm}`
+  // );
+  return {
+    type: 'SEARCH_INPUTS',
+    payload: { jobTerm, locationTerm }
+  };
+};
+
+export const selectJob = (job) => {
+  // console.log(`Job: ${job} ${Object.getOwnPropertyNames(job)}`);
+  // console.log(`Formatted Location: ${job.formattedLocation}`);
+  return {
+    type: 'JOB_SELECTED',
+    payload: job
+  };
+};
+
 export const fetchJobs = (jobSearch, city) => {
   const request = axios.post('/api/v1/jobs', {
     jobTitle: jobSearch,
@@ -83,6 +118,10 @@ export const fetchGPlaces = (lat, long) => {
       long: long
     },
     _csrf: getCookie('_csrf')
+<<<<<<< 7b53573f80aa4709794ab1d67ad38ca26377d907
+=======
+    coordinate: { lat, long }
+>>>>>>> Configured Redux to save users' jobTerm and locationTerm input queries
 =======
     coordinate: { lat, long }
 >>>>>>> Configured Redux to save users' jobTerm and locationTerm input queries
