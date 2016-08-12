@@ -102,7 +102,10 @@ hr {
   }
 
 #jobsContainer b > i {
+<<<<<<< eb757087060ec6501097e532b3713b94f9601386
   margin: auto 6px;
+=======
+>>>>>>> Configured Redux to save users' jobTerm and locationTerm input queries
   padding: 0 6px;
   outline: 1px solid #FFF;
   font-style: normal;
@@ -245,9 +248,15 @@ svg.rd3-chart {
   font-weight: lighter;
   line-height: 36px;
   color: #FFF;
+<<<<<<< eb757087060ec6501097e532b3713b94f9601386
   background: -webkit-linear-gradient(231deg, rgba(20,164,181,1) 15%, rgb(93, 188, 200) 44%, rgb(134, 202, 210) 100%);
   background:      -o-linear-gradient(231deg, rgba(20,164,181,1) 15%, rgb(93, 188, 200) 44%, rgb(134, 202, 210) 100%);
   background:         linear-gradient(321deg, rgba(20,164,181,1) 15%, rgb(93, 188, 200) 44%, rgb(134, 202, 210) 100%);
+=======
+  background: -webkit-linear-gradient(231deg, rgba(20,164,181,1) 15%, rgba(20,164,181,0.75) 44%, rgba(20,164,181,0.45) 100%);
+  background:      -o-linear-gradient(231deg, rgba(20,164,181,1) 15%, rgba(20,164,181,0.75) 44%, rgba(20,164,181,0.45) 100%);
+  background:         linear-gradient(321deg, rgba(20,164,181,1) 15%, rgba(20,164,181,0.75) 44%, rgba(20,164,181,0.45) 100%);
+>>>>>>> Configured Redux to save users' jobTerm and locationTerm input queries
 }
 
 #jobsContainer > div {
@@ -630,6 +639,7 @@ i.XButton:hover {
 >>>>>>> Implemented flex-box layout in Yelp container as well as selectively applied responsive text sizing
 #restaurantContainer > div a img {
   position: absolute;
+<<<<<<< eb757087060ec6501097e532b3713b94f9601386
   height: 85%;
   left: 50%;
   top: 7.5%;
@@ -637,6 +647,11 @@ i.XButton:hover {
   padding: 0;
   transform: translateX(-50%);
   box-sizing: border-box;
+=======
+  height: 65%;
+  top: 17.5%;
+  left: 15px;
+>>>>>>> Configured Redux to save users' jobTerm and locationTerm input queries
 }
 
 #restaurantContainer > div h1 {
@@ -812,6 +827,7 @@ li.restaurantLI > div.nameRating > img {
     bottom: 0;
   }
 
+<<<<<<< eb757087060ec6501097e532b3713b94f9601386
   #restaurantContainer {
     position: relative;
     display: block;
@@ -845,6 +861,10 @@ li.restaurantLI > div.nameRating > img {
     font-size: 1rem;
     letter-spacing: 0.35rem;
     text-indent: 0;
+=======
+/*.container-3 + button {
+    background: rgb(95, 20, 181);
+>>>>>>> Configured Redux to save users' jobTerm and locationTerm input queries
   }
   
   .container-3 + button {
@@ -853,8 +873,13 @@ li.restaurantLI > div.nameRating > img {
   }
     .container-3 + button:hover {
       background: #FFF;
+<<<<<<< eb757087060ec6501097e532b3713b94f9601386
       color: #14A4B5;
     } 
+=======
+      color: rgb(95, 20, 181);
+    } */
+>>>>>>> Configured Redux to save users' jobTerm and locationTerm input queries
 
 }
 

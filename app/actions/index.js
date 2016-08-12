@@ -45,6 +45,7 @@ export const selectJob = (job) => {
   };
 };
 
+<<<<<<< eb757087060ec6501097e532b3713b94f9601386
 export const jobInputTerm = (jobTerm) => {
   return {
     type: 'JOB_INPUT_TERM',
@@ -80,6 +81,8 @@ export const selectJob = (job) => {
   };
 };
 
+=======
+>>>>>>> Configured Redux to save users' jobTerm and locationTerm input queries
 export const fetchJobs = (jobSearch, city) => {
   const request = axios.post('/api/v1/jobs', {
     jobTitle: jobSearch,
