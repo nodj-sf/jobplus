@@ -169,7 +169,6 @@ class GMap extends BaseComponent {
   }
 }
 
-
 let mapStateToProps = (state) => ({
   markers: state.jobs.map(job => ({ 
     coords: { "lat": job.latitude, "lng": job.longitude },
@@ -187,6 +186,7 @@ let mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(GMap);
+
 
 
 // {
