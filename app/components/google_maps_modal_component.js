@@ -65,7 +65,6 @@ export default class GMap_Modal extends Component {
                       refLabel = ALPHABET[index++ % ALPHABET.length],
                       markerShading = marker.jobKey === this.props.activeJob ? 0.99 : 0.50;
 
-
                 return (
                   <Marker
                     key={index}
