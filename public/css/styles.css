@@ -880,15 +880,6 @@ li.restaurantLI > div.nameRating > img {
     letter-spacing: 0.35rem;
     text-indent: 0;
   }
-  
-  .container-3 + button {
-    background: #14A4B5;
-    font-size: 1rem;
-  }
-    .container-3 + button:hover {
-      background: #FFF;
-      color: #14A4B5;
-    } 
 
 }
 

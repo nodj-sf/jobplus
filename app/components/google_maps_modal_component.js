@@ -39,6 +39,7 @@ export default class GMap_Modal extends Component {
   }
 
   render() {
+    // console.log(`toggleModal: ${this.props.toggleModal}`);
     return (
       <Modal
         isOpen={this.props.toggleModal}
@@ -75,11 +76,7 @@ export default class GMap_Modal extends Component {
                     opacity={markerShading}
                     label={{ "text": refLabel, "fontFamily": "Open Sans", "fontWeight": "600" }} >
                   </Marker>
-<<<<<<< 6df2229b8ec0e5f6f6ae0d40a5a80b379a5542ac
                 );
-=======
-                , 3000)
->>>>>>> Implemented flex-box layout in Yelp container as well as selectively applied responsive text sizing
               })
             }
 
@@ -94,6 +91,7 @@ export default class GMap_Modal extends Component {
 
 
 let mapStateToProps = (state) => {
+  // console.log('Maps:', state.jobs.map(job => [job.latitude, job.longitude]));
   return {
     markers: state.jobs.map(job => ({ jobKey: job.jobkey, coords: new google.maps.LatLng(job.latitude, job.longitude), company: job.company })),
     toggleModal: state.toggleModal,
