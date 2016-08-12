@@ -39,11 +39,11 @@ exports.post = (req, res) => {
 
     res.setHeader('Content-Type', 'application/json');
 
-    if (result) {
-      // console.log('return from redis');
-      res.send(JSON.parse(result));
-      res.end();
-    } else {
+    // if (result) {
+    //   // console.log('return from redis');
+    //   res.send(JSON.parse(result));
+    //   res.end();
+    // } else {
       let ip = req.headers['x-forwarded-for']
             || req.connection.remoteAddress
             || req.socket.remoteAddress
