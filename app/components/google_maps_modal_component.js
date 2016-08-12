@@ -76,7 +76,7 @@ export default class GMap_Modal extends Component {
                     opacity={markerShading}
                     label={{ "text": refLabel, "fontFamily": "Open Sans", "fontWeight": "600" }} >
                   </Marker>
-                , 3000)
+                );
               })
             }
 
