@@ -117,7 +117,9 @@ class GMap extends BaseComponent {
     const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
           MAX_ZINDEX = 1000;
 
-      return window.setTimeout(function() {
+       return window.setTimeout(() => {
+        // console.log(`Marker Coordinates: ${marker.coords["lat"]}, ${marker.coords["lng"]} | ${typeof marker.coords["lat"]}`);
+       
         return (
           <Marker
             key={index}
@@ -132,8 +134,6 @@ class GMap extends BaseComponent {
             zIndex={MAX_ZINDEX}
             label={{ "text": `${ALPHABET[index++]}`, "fontFamily": "Raleway", "fontWeight": "bold" }} />
         );
-        // console.log(m, marker.coords);
-        // return m;
       }, index * 1000);
      
   }
@@ -154,6 +154,7 @@ class GMap extends BaseComponent {
           <GoogleMap 
             // defaultCenter={this.state.defaultCenter}
             center={this.centerMap()}
+            defaultCenter={this.state.defaultCenter}
             defaultZoom={this.state.zoomLevel} 
             maxZoom={19}
             defaultOptions={{ styles: mapStylesObject }}
