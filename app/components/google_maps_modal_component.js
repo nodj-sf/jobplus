@@ -66,7 +66,8 @@ export default class GMap_Modal extends Component {
                       refLabel = ALPHABET[index++ % ALPHABET.length],
                       markerShading = marker.jobKey === this.props.activeJob ? 0.99 : 0.50;
 
-                return window.setTimeout(() => 
+
+                return (
                   <Marker
                     key={index}
                     ref={refID}
@@ -76,7 +77,7 @@ export default class GMap_Modal extends Component {
                     opacity={markerShading}
                     label={{ "text": refLabel, "fontFamily": "Open Sans", "fontWeight": "600" }} >
                   </Marker>
-                , 3000)
+                );
               })
             }
 
