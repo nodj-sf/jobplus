@@ -6,10 +6,10 @@ const redis = redisClient(6379, 'localhost');
 exports.post = (req, res) => {
   let jobTitle = req.body.jobTitle,
       city = req.body.city,
-      key = JSON.stringify(req.body);
+      key = JSON.stringify(req.body).toLowerCase();
 
   // redis.del(key);
-
+  
   /*
    * Return data from cache if exists
   */
@@ -18,7 +18,7 @@ exports.post = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
     if (result) {
-      console.log('return from redis');
+      // console.log('return from redis');
       res.send(JSON.parse(result));
       res.end();
     } else {
