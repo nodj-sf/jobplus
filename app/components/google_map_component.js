@@ -45,6 +45,7 @@ class GMap extends BaseComponent {
 
     this.modalNo = this.modalNo.bind(this);
     this.addTimeDelayedMarker = this.addTimeDelayedMarker.bind(this);
+    this.markerCallbackHandler = this.markerCallbackHandler.bind(this);
   }
 
   centerMap() {
@@ -115,17 +116,19 @@ class GMap extends BaseComponent {
   addTimeDelayedMarker(marker, index) {
     const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
           MAX_ZINDEX = 1000;
-          console.log("marker");
+      console.log("marker", marker.coords);
 
-      return window.setTimeout(function() {
+       window.setTimeout(() => {
+        // console.log(`Marker Coordinates: ${marker.coords["lat"]}, ${marker.coords["lng"]} | ${typeof marker.coords["lat"]}`);
+       
         return (
           <Marker
             key={index}
             ref={`marker_${index}`}
             data-jobTitle={marker.jobTitle}
             data-formattedLocation={marker.formattedLocation}
-            // position={new google.maps.LatLng(marker.coords[0], marker.coords[1])}
-            position={marker.coords}
+            position={ new google.maps.LatLng(marker.coords) }
+            // position={ marker.coords }
             animation={google.maps.Animation.DROP}
             title={marker.company}
             opacity={0.90}
@@ -139,7 +142,8 @@ class GMap extends BaseComponent {
   }
 
   markerCallbackHandler() {
-    console.log("New Log: ", this.props.markers);
+    console.log("New Log: ", this.props.markers); 
+    console.log(`Google Maps LatLng Class Object: ${this.props.markers.coords}`);
     return this.props.markers.map((marker, index) => this.addTimeDelayedMarker(marker, index) );
   }
 
@@ -153,11 +157,11 @@ class GMap extends BaseComponent {
         }   
         googleMapElement={
           <GoogleMap 
-            defaultCenter={this.state.defaultCenter}
             center={this.centerMap()}
+            defaultCenter={this.state.defaultCenter}
             defaultZoom={this.state.zoomLevel} 
             maxZoom={19}
-            defaultOptions={{styles: mapStylesObject}}
+            defaultOptions={{ styles: mapStylesObject }}
             scrollwheel={false}
             ref="map" >
 
@@ -174,8 +178,7 @@ class GMap extends BaseComponent {
 
 let mapStateToProps = (state) => ({
   markers: state.jobs.map(job => ({ 
-    // coords: [job.latitude, job.longitude],
-    coords: new google.maps.LatLng(job.latitude, job.longitude),
+    coords: { "lat": job.latitude, "lng": job.longitude },
     jobTitle: job.jobtitle,
     company: job.company, 
     formattedLocation: job.formattedLocation,
