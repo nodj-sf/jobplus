@@ -169,10 +169,6 @@ class GMap extends BaseComponent {
 
 let mapStateToProps = (state) => ({
   markers: state.jobs.map(job => ({ 
-    coords: { "lat": job.latitude, "lng": job.longitude },
-
-let mapStateToProps = (state) => ({
-  markers: state.jobs.map(job => ({ 
     coords: new google.maps.LatLng(job.latitude, job.longitude),
     coords: { "lat": job.latitude, "lng": job.longitude },
     jobTitle: job.jobtitle,
