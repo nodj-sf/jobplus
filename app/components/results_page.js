@@ -67,7 +67,7 @@ export default class Results extends Component {
 
 let mapStateToProps = (state) => ({ jobs: state.jobs });
 
-let mapDispatchToProps = (dispatch) =>  {  // Whenever loadJobs is called, the result should be passed to all reducers:
+let mapDispatchToProps = (dispatch) =>  { 
   return bindActionCreators({ selectJob: selectJob , fetchYelp: fetchYelp, fetchGPlaces: fetchGPlaces}, dispatch);
 };
 
