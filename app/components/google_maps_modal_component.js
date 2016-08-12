@@ -60,25 +60,24 @@ export default class GMap_Modal extends Component {
 
 
               { this.props.markers.map((marker, index) => {
-                  const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-                        MAX_ZINDEX = 1000,
-                        refID = `marker_${index}`,
-                        refLabel = ALPHABET[index++ % ALPHABET.length];
+                // console.log(`Marker Key ID: ${marker.jobKey}\nActive Job Key ID: ${this.props.activeJob}`);
+                const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                      MAX_ZINDEX = 1000,
+                      refID = `marker_${index}`,
+                      refLabel = ALPHABET[index++ % ALPHABET.length],
+                      markerShading = marker.jobKey === this.props.activeJob ? 0.99 : 0.25;
 
-                  let markerZIndex = "auto";
-                  let m = <Marker
-                      key={index}
-                      ref={refID}
-                      position={marker.coords}
-                      animation={google.maps.Animation.DROP}
-                      title={marker.company}
-                      opacity={0.90}
-                      // zIndex={MAX_ZINDEX}
-                      label={{ "text": refLabel, "fontFamily": "Open Sans", "fontWeight": "600" }} >
-                    </Marker>
-
-                  // if (index === 0) { m.setZIndex({MAX_ZINDEX} + 1); }
-                  return ( m );
+                return (
+                  <Marker
+                    key={index}
+                    ref={refID}
+                    position={marker.coords}
+                    animation={google.maps.Animation.DROP}
+                    title={marker.company}
+                    opacity={markerShading}
+                    label={{ "text": refLabel, "fontFamily": "Open Sans", "fontWeight": "600" }} >
+                  </Marker>
+                );
               })}
 
             </GoogleMap>
