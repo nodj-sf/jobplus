@@ -7,8 +7,8 @@ const places = new GooglePlaces( process.env.GOOGLE_PLACES, 'json' );
 let getPlaces = (coordinate) => {
   const parameters = {
     location: coordinate.lat + ',' + coordinate.long,
-    radius: 500,
-    type: 'subway_station|gym|parking'
+    radius: 3219,
+    type: 'subway_station|train_station|bus_station|park|gym'
   };
 
   console.log('parameters: ', parameters);
