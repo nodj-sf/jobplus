@@ -1,8 +1,9 @@
-export default function(state = null, action) {
+export default function(state = {}, action) {
+  // console.log(`Action ${action} on Active Jobs Reducer.`);
   switch(action.type) {
     case 'JOB_SELECTED':
-      // console.log(`Action ${action} on Active Jobs Reducer.`);
-      return action.payload;
+      // console.log(`Active Job Key ID: ${action.payload.jobkey}`);
+      return action.payload.jobkey;
     default:
       // console.log(`Unknown action <${action}> executed! Returning fallback output.`);
       return state;

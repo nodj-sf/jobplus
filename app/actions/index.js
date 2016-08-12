@@ -1,10 +1,7 @@
 import axios from 'axios';
 
-const FETCH_JOBS = 'FETCH_JOBS';
-const JOB_SELECTED = 'JOB_SELECTED';
-const FETCH_YELP = 'FETCH_YELP';
-const FETCH_GPLACES = 'FETCH_GPLACES';
 
+<<<<<<< d0a4d65a4eb98b577823df9d7afa468cda245b15
 const getCookie = (name) => {
   const value = '; ' + document.cookie;
   const parts = value.split('; ' + name + '=');
@@ -13,6 +10,42 @@ const getCookie = (name) => {
   }
   return '';
 }
+=======
+export const jobInputTerm = (jobTerm) => {
+  return {
+    type: 'JOB_INPUT_TERM',
+    payload: { jobTerm }
+  };
+};
+
+export const locationInputTerm = (locationTerm) => {
+  return {
+    type: 'LOCATION_INPUT_TERM',
+    // payload: { locationTerm: locationTerm }
+    payload: { locationTerm }
+  };
+};
+
+export const userSearchInputs = (jobTerm, locationTerm) => {
+  // console.log(`
+  //   User\'s \`Job\` Search Input: ${jobTerm}
+  //   User\'s \`Location\` Search Input: ${locationTerm}`
+  // );
+  return {
+    type: 'SEARCH_INPUTS',
+    payload: { jobTerm, locationTerm }
+  };
+};
+
+export const selectJob = (job) => {
+  // console.log(`Job: ${job} ${Object.getOwnPropertyNames(job)}`);
+  // console.log(`Formatted Location: ${job.formattedLocation}`);
+  return {
+    type: 'JOB_SELECTED',
+    payload: job
+  };
+};
+>>>>>>> Configured Redux to save users' jobTerm and locationTerm input queries
 
 export const fetchJobs = (jobSearch, city) => {
   const request = axios.post('/api/v1/jobs', {
@@ -22,11 +55,10 @@ export const fetchJobs = (jobSearch, city) => {
   });
 
   return {
-    type: FETCH_JOBS,
+    type: 'FETCH_JOBS',
     payload: request
   };
 };
-
 
 export const fetchYelp = (city, lat, long) => {
   const request = axios.post('/api/v1/food', {
@@ -38,33 +70,28 @@ export const fetchYelp = (city, lat, long) => {
     _csrf: getCookie('_csrf')
   });
   return {
-    type: FETCH_YELP,
+    type: 'FETCH_YELP',
     payload: request
   };
 };
 
 export const fetchGPlaces = (lat, long) => {
   const request = axios.post('/api/v1/places', {
+<<<<<<< d0a4d65a4eb98b577823df9d7afa468cda245b15
     coordinate: {
       lat: lat,
       long: long
     },
     _csrf: getCookie('_csrf')
+=======
+    coordinate: { lat, long }
+>>>>>>> Configured Redux to save users' jobTerm and locationTerm input queries
   });
   return {
-    type: FETCH_GPLACES,
+    type: 'FETCH_GPLACES',
     payload: request
   };
 };
-
-
-export const selectJob = (job) => {
-  return {
-    type: JOB_SELECTED,
-    payload: job
-  };
-};
-
 
 export const toggleModal = () => {
   // console.log(`Google Maps Modal view toggled ON!`);
