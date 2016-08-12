@@ -154,9 +154,8 @@ class GMap extends BaseComponent {
         }   
         googleMapElement={
           <GoogleMap 
-            // defaultCenter={{ lat: 37.745951, lng: -122.439421 }}
+            // defaultCenter={this.state.defaultCenter}
             center={this.centerMap()}
-            defaultCenter={this.state.defaultCenter}
             defaultZoom={this.state.zoomLevel} 
             maxZoom={19}
             defaultOptions={{ styles: mapStylesObject }}
