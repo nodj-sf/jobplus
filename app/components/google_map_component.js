@@ -117,6 +117,7 @@ class GMap extends BaseComponent {
 
        window.setTimeout(() => {
         // console.log(`Marker Coordinates: ${marker.coords["lat"]}, ${marker.coords["lng"]} | ${typeof marker.coords["lat"]}`);
+       
         return (
           <Marker
             key={index}
