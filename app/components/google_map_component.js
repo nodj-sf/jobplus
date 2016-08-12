@@ -104,12 +104,10 @@ class GMap extends BaseComponent {
 
   // Class methods for control of the Google Maps Modal visibility:
   modalYes() {
-    // console.log(`Function \`modalYes\` called!`);
     return this.props.toggleModal()
   }
 
   modalNo() {
-    // console.log(`Function \`modalNo\` called!`);
     return this.props.toggleModalOff();
   }
 
@@ -119,7 +117,7 @@ class GMap extends BaseComponent {
 
        return window.setTimeout(() => {
         // console.log(`Marker Coordinates: ${marker.coords["lat"]}, ${marker.coords["lng"]} | ${typeof marker.coords["lat"]}`);
-       
+
         return (
           <Marker
             key={index}
@@ -128,6 +126,7 @@ class GMap extends BaseComponent {
             data-formattedLocation={marker.formattedLocation}
             position={ new google.maps.LatLng(marker.coords) }
             // position={ marker.coords }
+            position={marker.coords}
             animation={google.maps.Animation.DROP}
             title={marker.company}
             opacity={0.90}
@@ -174,6 +173,10 @@ class GMap extends BaseComponent {
 let mapStateToProps = (state) => ({
   markers: state.jobs.map(job => ({ 
     coords: { "lat": job.latitude, "lng": job.longitude },
+
+let mapStateToProps = (state) => ({
+  markers: state.jobs.map(job => ({ 
+    coords: new google.maps.LatLng(job.latitude, job.longitude),
     jobTitle: job.jobtitle,
     company: job.company, 
     formattedLocation: job.formattedLocation,
@@ -188,7 +191,6 @@ let mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(GMap);
-
 
 
 // {
