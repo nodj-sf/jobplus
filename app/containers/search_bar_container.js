@@ -4,40 +4,32 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
-
-import { fetchJobs } from '../actions/index';
+import { fetchJobs, userSearchInputs, jobInputTerm, locationInputTerm } from '../actions/index';
 
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      jobTerm: '',
-      locationTerm: ''
-    };
-
     this.onJobTitleInputChange = this.onJobTitleInputChange.bind(this);
     this.onLocationInputChange = this.onLocationInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
-  onJobTitleInputChange(event) {
-    this.setState({jobTerm: event.target.value});
+  onJobTitleInputChange(evt) {
+    evt.preventDefault();
+    this.props.jobInputTerm(evt.target.value).payload;
   }
 
-  onLocationInputChange(event) {
-    this.setState({locationTerm: event.target.value});
+  onLocationInputChange(evt) {
+    evt.preventDefault();
+    this.props.locationInputTerm(evt.target.value).payload;
   }
 
-  onFormSubmit(event) {
-    event.preventDefault();
-    this.props.fetchJobs(this.state.jobTerm, this.state.locationTerm);
+  onFormSubmit(evt) {
+    evt.preventDefault();
+    this.props.fetchJobs(this.props.jobTerm, this.props.locationTerm);
     this.props.push('/results');
-    this.setState({
-      jobTerm: '',
-      locationTerm: '' 
-    });
   }
 
   render() {
@@ -53,7 +45,7 @@ class SearchBar extends Component {
                 type="search" 
                 results="4" 
                 placeholder="Job"
-                value={this.state.jobTerm}
+                defaultValue={this.props.jobTerm}
                 onChange={this.onJobTitleInputChange} />
               
               <input 
@@ -62,7 +54,7 @@ class SearchBar extends Component {
                 type="search"
                 results="4"
                 placeholder="City"
-                value={this.state.locationTerm}
+                defaultValue={this.props.locationTerm}
                 onChange={this.onLocationInputChange} />
             </div>
           </div>
@@ -75,8 +67,17 @@ class SearchBar extends Component {
 };
 
 
-let mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchJobs, push }, dispatch);
-};
+let mapStateToProps = (state) => ({ 
+  jobTerm: state.jobInputTerm, 
+  locationTerm: state.locationInputTerm 
+});
 
-export default connect(null, mapDispatchToProps)(SearchBar);
+let mapDispatchToProps = (dispatch) => bindActionCreators({
+  fetchJobs,
+  jobInputTerm,
+  locationInputTerm,
+  userSearchInputs,
+  push 
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

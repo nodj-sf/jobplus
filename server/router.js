@@ -53,6 +53,13 @@ app.use((req, res, next) => {
   }
 });
 
+// const redisClient = require('redis').createClient;
+// const redis = redisClient(6379, 'localhost');
+
+// redis.on('connect', () => {
+//   console.log('connected');
+// });
+
 /*
 ** Route Controllers
 */
