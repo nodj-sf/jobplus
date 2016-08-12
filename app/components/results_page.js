@@ -22,8 +22,6 @@ export default class Results extends Component {
   }
 
   componentDidUpdate(nextProps) {
-    console.log('logging in componentWillReceiveProps');
-    console.log('jobs:', this.props.jobs);
     if (this.props.jobs.length > 0) {
      this.initJob(this.props.jobs[0]);
     }
