@@ -10,9 +10,7 @@ let getPlaces = (coordinate) => {
     radius: 3219,
     type: 'subway_station|train_station|bus_station|park|gym'
   };
-
-  console.log('parameters: ', parameters);
-
+  
   return (res) => {
     return new Promise((resolve, reject) => {
       return places.placeSearch(parameters, (status, data) => {
