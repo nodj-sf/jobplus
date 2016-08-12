@@ -80,7 +80,6 @@ export const fetchGPlaces = (lat, long) => {
       long: long
     },
     _csrf: getCookie('_csrf')
-    coordinate: { lat, long }
   });
   return {
     type: 'FETCH_GPLACES',

@@ -24,8 +24,11 @@ const geolocation = (() => {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
+      // console.log(`Location found: ${pos.lat} ${pos.lng}`);
+      // console.log(`Google Maps LatLng: ${new google.maps.LatLng(pos.lat, pos.lng)}`);
       return new google.maps.LatLng(pos.lat, pos.lng);
     });
+    // console.log(`Your browser doesn't support geolocation.`);
     return new google.maps.LatLng(37.745951, -122.439421);
   }
 })();
@@ -113,6 +116,7 @@ class GMap extends BaseComponent {
           MAX_ZINDEX = 1000;
 
        window.setTimeout(() => {
+        // console.log(`Marker Coordinates: ${marker.coords["lat"]}, ${marker.coords["lng"]} | ${typeof marker.coords["lat"]}`);
         return (
           <Marker
             key={index}
