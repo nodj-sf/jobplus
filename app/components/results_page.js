@@ -37,13 +37,13 @@ export default class Results extends Component {
     return (
       <div>
         <Banner />        
-        <div id="appContainer" className="appContainer">
+
 
           <div id="jobMain">
             <div id="jobResultsPane">
               <div>
                 <GMap />
-                <b>Select A Job!</b>
+
               </div>
               <JobList />
             </div>
@@ -56,7 +56,7 @@ export default class Results extends Component {
               </div>
             </div>
           </div>
-        </div>        
+
       </div>
     );
   }

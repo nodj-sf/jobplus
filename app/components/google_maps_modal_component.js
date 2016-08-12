@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GoogleMapLoader, GoogleMap, Marker, SearchBox } from 'react-google-maps';
+import { GoogleMapLoader, GoogleMap, Marker, InfoWindow, SearchBox } from 'react-google-maps';
 import { default as InfoBox } from 'react-google-maps/lib/addons/InfoBox';
 import Modal from 'react-modal';
 import axios from 'axios';
@@ -58,7 +58,6 @@ export default class GMap_Modal extends Component {
               scrollwheel={false}
               ref="map" >
 
-
               { this.props.markers.map((marker, index) => {
                 // console.log(`Marker Key ID: ${marker.jobKey}\nActive Job Key ID: ${this.props.activeJob}`);
                 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
@@ -93,8 +92,9 @@ export default class GMap_Modal extends Component {
 let mapStateToProps = (state) => {
   // console.log('Maps:', state.jobs.map(job => [job.latitude, job.longitude]));
   return {
-    markers: state.jobs.map(job => ({ coords: new google.maps.LatLng(job.latitude, job.longitude), company: job.company })),
-    toggleModal: state.toggleModal
+    markers: state.jobs.map(job => ({ jobKey: job.jobkey, coords: new google.maps.LatLng(job.latitude, job.longitude), company: job.company })),
+    toggleModal: state.toggleModal,
+    activeJob: state.selectJob
   };
 };
 
