@@ -112,10 +112,7 @@ class GMap extends BaseComponent {
     const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
           MAX_ZINDEX = 1000;
 
-      console.log("marker", marker.coords);
-
-     window.setTimeout(() => {
-      return window.setTimeout(function() {
+       window.setTimeout(() => {
         return (
           <Marker
             key={index}
@@ -124,7 +121,6 @@ class GMap extends BaseComponent {
             data-formattedLocation={marker.formattedLocation}
             position={ new google.maps.LatLng(marker.coords) }
             // position={ marker.coords }
-            position={marker.coords}
             animation={google.maps.Animation.DROP}
             title={marker.company}
             opacity={0.90}
@@ -175,6 +171,7 @@ let mapStateToProps = (state) => ({
 let mapStateToProps = (state) => ({
   markers: state.jobs.map(job => ({ 
     coords: new google.maps.LatLng(job.latitude, job.longitude),
+    coords: { "lat": job.latitude, "lng": job.longitude },
     jobTitle: job.jobtitle,
     company: job.company, 
     formattedLocation: job.formattedLocation,
