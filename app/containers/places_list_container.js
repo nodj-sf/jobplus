@@ -38,6 +38,7 @@ class PlacesList extends Component {
   }
 
   render() {
+    // console.log('ActivePlaces', this.props.activePlaces);
     return (
       <div id="placesContainer">
         <h1>Places List Container</h1>

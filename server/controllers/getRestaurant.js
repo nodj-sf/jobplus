@@ -9,7 +9,7 @@ exports.post = (req, res) => {
       coordinate = req.body.coordinate;
 
   // Create key based on request body to use for caching
-  let key = JSON.stringify(req.body);
+  let key = JSON.stringify(req.body).toLowerCase();
 
   // redis.del(key);
 
