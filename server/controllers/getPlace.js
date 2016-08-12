@@ -10,7 +10,7 @@ exports.post = (req, res) => {
       console.log('coordinate: ', coordinate);
       // console.log(coordinate);
   // Create key based on request body to use for caching
-  let key = JSON.stringify(req.body).toLowerCase();
+  let key = JSON.stringify(req.body);
 
   // redis.del(key);
 
@@ -22,11 +22,11 @@ exports.post = (req, res) => {
 
     res.setHeader('Content-Type', 'application/json');
 
-    if (result) {
-      // console.log('return from redis');
-      res.send(JSON.parse(result));
-      res.end();
-    } else {
+    // if (result) {
+    //   console.log('return from redis');
+    //   res.send(JSON.parse(result));
+    //   res.end();
+    // } else {
       // console.log('api');
       getPlace(coordinate)(res)
         .then((data) => {
@@ -42,6 +42,6 @@ exports.post = (req, res) => {
           res.setHeader('Content-Type', 'application/text');
           res.status(500).send('Something broke!');
         });
-    }
-  });
+  //   }
+  // });
 };

@@ -117,7 +117,9 @@ class GMap extends BaseComponent {
     const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
           MAX_ZINDEX = 1000;
 
-      return window.setTimeout(function() {
+       window.setTimeout(() => {
+        // console.log(`Marker Coordinates: ${marker.coords["lat"]}, ${marker.coords["lng"]} | ${typeof marker.coords["lat"]}`);
+       
         return (
           <Marker
             key={index}
@@ -154,6 +156,7 @@ class GMap extends BaseComponent {
           <GoogleMap 
             // defaultCenter={{ lat: 37.745951, lng: -122.439421 }}
             center={this.centerMap()}
+            defaultCenter={this.state.defaultCenter}
             defaultZoom={this.state.zoomLevel} 
             maxZoom={19}
             defaultOptions={{ styles: mapStylesObject }}
