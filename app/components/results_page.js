@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { selectJob, fetchYelp, fetchGPlaces } from '../actions/index';
+import { bindActionCreators } from 'redux';
 
 import Banner from './banner_component';
 import DataDiagram from './diagram_component';
@@ -12,6 +15,26 @@ import PlacesList from '../containers/places_list_container';
 
 
 export default class Results extends Component {
+  constructor(props) {
+    super(props);
+
+    this.initJob = this.initJob.bind(this);
+  }
+
+  componentDidUpdate(nextProps) {
+    console.log('logging in componentWillReceiveProps');
+    console.log('jobs:', this.props.jobs);
+    if (this.props.jobs.length > 0) {
+     this.initJob(this.props.jobs[0]);
+    }
+  }
+
+  initJob(job) {
+    this.props.selectJob(job);
+    this.props.fetchYelp(job.city, job.latitude, job.longitude);
+    this.props.fetchGPlaces(job.latitude, job.longitude);
+  }
+
   render() {
     return (
       <div>
@@ -40,3 +63,12 @@ export default class Results extends Component {
     );
   }
 };
+
+
+let mapStateToProps = (state) => ({ jobs: state.jobs });
+
+let mapDispatchToProps = (dispatch) =>  { 
+  return bindActionCreators({ selectJob: selectJob , fetchYelp: fetchYelp, fetchGPlaces: fetchGPlaces}, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Results);
