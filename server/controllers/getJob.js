@@ -21,8 +21,6 @@ exports.post = (req, res) => {
     key = JSON.stringify(reqBody).toLowerCase();
   }
 
-  // redis.del(key);
-
   req.check('city', 'City is required.').notEmpty();
   req.check('jobTitle', 'Job title is required.').notEmpty();
 
@@ -31,6 +29,8 @@ exports.post = (req, res) => {
     res.status(400).send('errors: ' + util.inspect(errors));
     return;
   }
+  
+  // redis.del(key);
   
   /*
    * Return data from cache if exists

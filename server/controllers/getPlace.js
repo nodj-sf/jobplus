@@ -46,7 +46,7 @@ exports.post = (req, res) => {
       res.end();
     } else {
       // console.log('api');
-      getPlace(coordinate)(res)
+      getPlace(coordinate, type)(res)
         .then((data) => {
           // console.log('data: ', data);
           // Cache data using request body as key
