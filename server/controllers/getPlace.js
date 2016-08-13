@@ -4,11 +4,11 @@ const redisClient = require('redis').createClient;
 const redis = redisClient(6379, 'localhost');
 const util = require('util');
 
-
 exports.post = (req, res) => {
   let place = 'place',
       reqBody = req.body,
       coordinate = reqBody.coordinate,
+      type = reqBody.type,
       key = JSON.stringify(reqBody).toLowerCase();
 
   // remove _csrf from req.body to presist caching
@@ -47,7 +47,7 @@ exports.post = (req, res) => {
       res.end();
     } else {
       // console.log('api');
-      getPlace(coordinate)(res)
+      getPlace(coordinate, type)(res)
         .then((data) => {
           // console.log('data: ', data);
           // Cache data using request body as key

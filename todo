@@ -1,0 +1,8 @@
+For Google Places / Yelp
+1. Narrow Search Result for Google Places:
+    - Subway subway_station
+    - Train train_station
+    - Bus bus_station
+    - Parking parking
+
+    - transit_station
