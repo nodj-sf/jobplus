@@ -37,7 +37,9 @@ app.use(function (req, res, next) {
 });
 
 app.use(lusca({
-  csrf: true,
+  csrf: {
+    cookie: '_csrf'
+  },
   xframe: 'SAMEORIGIN',
   xssProtection: true,
   nosniff: true
