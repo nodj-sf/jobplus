@@ -1,9 +1,11 @@
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
-  devtool: 'cheap-eval-source-map',
+  devtool: 'source-map',
   entry: [
+    'webpack-dev-server/client?http://localhost:3000',
+    'webpack/hot/only-dev-server',
     path.join(__dirname, 'app/app')
   ],
   output: {
@@ -13,11 +15,22 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.jsx?$/,
-      loaders: ['babel'],
+      loaders: ['react-hot', 'babel'],
       include: path.join(__dirname, 'app')
     }, { 
       test: /\.json$/, 
       loader: 'json'
     }]
-  }
+  },
+  devServer: {
+  contentBase: "./public",
+    noInfo: false,
+    hot: true,
+    inline: true,
+    port: 3000,
+    host: 'localhost'
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };
