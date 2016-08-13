@@ -3,10 +3,10 @@ const path = require('path');
 const app = express();
 const request = require('request');
 const bodyParser = require('body-parser');
-
-//Middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
+const lusca = require('lusca');
+const expressValidator = require('express-validator');
 
 /*
 ** Load local environment variables from .env 
@@ -14,16 +14,41 @@ app.use(bodyParser.urlencoded({ extended: true }));
 */
 
 let dotenv;
-if (!process.env.SESSION_SECRET) {
-  dotenv = require('dotenv');
-  dotenv.load({ path: '.env' });
-}
+dotenv = require('dotenv');
+dotenv.load({ path: '.env' });
 
-const redisClient = require('redis').createClient;
-const redis = redisClient(6379, 'localhost');
+//Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(expressValidator());
 
-redis.on('connect', () => {
-  console.log('connected');
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  store: new RedisStore()
+}));
+
+app.use(function (req, res, next) {
+  if (!req.session) {
+    return next(new Error('Session failed!'));
+  }
+  next();
+});
+
+app.use(lusca({
+  csrf: true,
+  xframe: 'SAMEORIGIN',
+  xssProtection: true,
+  nosniff: true
+}));
+
+app.use((req, res, next) => {
+  if (req.path === '/') {
+    next();
+  } else {
+    lusca.csrf()(req, res, next);
+  }
 });
 
 /*
