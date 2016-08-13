@@ -20,12 +20,16 @@ class RetaurantList extends Component {
     return (
       <div id="restaurantContainer">
         <div>
+          <a href="https://www.yelp.com" target="_blank">
+            <img src="../img/Yelp_logo-black.svg" alt="Yelp corporate logo (black glyph icon)" />
+          </a>
           <h1>Nearby Eats</h1>
-          <img src="../img/Yelp_logo-black.svg" alt="Yelp corporate logo (black glyph icon)" />
         </div>
-        <ul className="restaurantList">
-          { this.renderList() }
-        </ul>
+        <div className="overlay">
+          <ul className="restaurantList">
+            { this.renderList() }
+          </ul>
+        </div>
       </div>
     ); 
   }
