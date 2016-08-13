@@ -41,7 +41,6 @@ exports.post = (req, res) => {
         .catch(function(error) {
           res.setHeader('Content-Type', 'application/text');
           res.status(500).send('Something broke!');
-          // res.end('error');
         });
     }
   });
