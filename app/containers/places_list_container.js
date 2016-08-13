@@ -19,7 +19,7 @@ class PlacesList extends Component {
         gym.push(current);
       }
     }
-    console.log('train: ', train[0], 'bus: ', bus[0], 'park: ', park[0],'gym :', gym[0] );
+    // console.log('train: ', train[0], 'bus: ', bus[0], 'park: ', park[0],'gym :', gym[0] );
     return places;
   }
 

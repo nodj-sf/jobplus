@@ -45,6 +45,10 @@ exports.post = (req, res) => {
           redis.expire(key, 3600);
           response.respond;
           res.end();
+        })
+        .catch(function(error) {
+          res.setHeader('Content-Type', 'application/text');
+          res.status(500).send('Something broke!');
         });
     }
   });

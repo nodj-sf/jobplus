@@ -5,11 +5,20 @@ const JOB_SELECTED = 'JOB_SELECTED';
 const FETCH_YELP = 'FETCH_YELP';
 const FETCH_GPLACES = 'FETCH_GPLACES';
 
+const getCookie = (name) => {
+  const value = '; ' + document.cookie;
+  const parts = value.split('; ' + name + '=');
+  if (parts.length === 2) {
+    return decodeURIComponent(parts.pop().split(';').shift());
+  }
+  return '';
+}
 
 export const fetchJobs = (jobSearch, city) => {
   const request = axios.post('/api/v1/jobs', {
     jobTitle: jobSearch,
-    city: city
+    city: city,
+    _csrf: getCookie('_csrf')
   });
 
   return {
@@ -25,7 +34,8 @@ export const fetchYelp = (city, lat, long) => {
     coordinate: {
       latitude: lat,
       longitude: long
-    }
+    },
+    _csrf: getCookie('_csrf')
   });
   return {
     type: FETCH_YELP,
@@ -38,7 +48,8 @@ export const fetchGPlaces = (lat, long) => {
     coordinate: {
       lat: lat,
       long: long
-    }
+    },
+    _csrf: getCookie('_csrf')
   });
   return {
     type: FETCH_GPLACES,
