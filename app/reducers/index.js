@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 import JobsReducer from './reducer_jobs';
 import ActiveJob from './reducer_active_job';
@@ -9,10 +8,8 @@ import ActiveBus from './reducer_active_bus';
 import ActiveParks from './reducer_active_parks';
 import ActiveGyms from './reducer_active_gyms';
 import ToggleModal from './reducer_toggle_modal_on';
-import JobInputTerm from './reducer_job_search_term';
-import LocationInputTerm from './reducer_location_search_term';
-import SearchInputs from './reducer_search_inputs';
 
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 const rootReducer = combineReducers({
   jobs: JobsReducer,
@@ -23,10 +20,7 @@ const rootReducer = combineReducers({
   activeParks: ActiveParks,
   activeGyms: ActiveGyms,
   toggleModal: ToggleModal,
-  routing: routerReducer,
-  jobInputTerm: JobInputTerm,
-  locationInputTerm: LocationInputTerm,
-  searchInputs: SearchInputs
+  routing: routerReducer
 });
 
 export default rootReducer;
