@@ -5,7 +5,8 @@ const redis = redisClient(6379, 'localhost');
 
 exports.post = (req, res) => {
   let place = 'place', 
-      coordinate = req.body.coordinate;
+      coordinate = req.body.coordinate,
+      type = req.body.type;
       console.log('coordinate: ', coordinate);
       // console.log(coordinate);
   // Create key based on request body to use for caching
@@ -27,7 +28,7 @@ exports.post = (req, res) => {
       res.end();
     } else {
       // console.log('api');
-      getPlace(coordinate)(res)
+      getPlace(coordinate, type)(res)
         .then((data) => {
           // console.log('data: ', data);
           // Cache data using request body as key

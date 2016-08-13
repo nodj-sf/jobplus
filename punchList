@@ -1,0 +1,33 @@
+Punch List:
+
+README
+
+Home Page:
+  - Styling
+  *- Route to homepage on logo click
+
+Search Bar:
+  *- Search Bar color change on auto fill
+
+Map:
+  ?- All pins for jobs visible on map
+  *- Pins on map should reflect job list (A pin on map = A on list)
+  *- Info window for jobs when hovered over on map
+  - Change double click for map open to hover | button
+  - Change map pointer from drag icon to click
+  - Dynamically center selected job on map 
+
+Job Detail:
+  *- Default to first job on joblist (Highlight, update jobinfo/places/yelp)
+  - If data doesn't change for places/yelp make it appear to be updating
+  - Merge/Layout Places & Yelp
+  *- Display Search Parameters for user reference (possibly in bar above results)
+
+Job Analysis: 
+  - Find API for D3 analysis (possibly glass door)
+  - Create D3 visual for analysis
+  - display analysis for selected job/area on page
+
+*GlassDoor: 
+ *- Reasearch GlassDoor
+ *- Switch from Indeed to GlassDoor

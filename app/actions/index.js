@@ -2,8 +2,12 @@ import axios from 'axios';
 
 const FETCH_JOBS = 'FETCH_JOBS';
 const JOB_SELECTED = 'JOB_SELECTED';
+// const FETCH_GPLACES = 'FETCH_GPLACES'
 const FETCH_YELP = 'FETCH_YELP';
-const FETCH_GPLACES = 'FETCH_GPLACES';
+const FETCH_TRAINS = 'FETCH_TRAINS';
+const FETCH_BUS = 'FETCH_BUS';
+const FETCH_PARKS = 'FETCH_PARKS';
+const FETCH_GYMS = 'FETCH_GYMS';
 
 
 export const fetchJobs = (jobSearch, city) => {
@@ -33,15 +37,73 @@ export const fetchYelp = (city, lat, long) => {
   };
 };
 
-export const fetchGPlaces = (lat, long) => {
+// export const fetchGPlaces = (lat, long) => {
+//   const request = axios.post('/api/v1/places', {
+//     coordinate: {
+//       lat: lat,
+//       long: long
+//     }
+//   });
+//   return {
+//     type: FETCH_GPLACES,
+//     payload: request
+//   };
+// };
+
+export const fetchTrains = (lat, long) => {
   const request = axios.post('/api/v1/places', {
     coordinate: {
       lat: lat,
       long: long
-    }
+    },
+    type: 'subway_station|train_station' 
   });
   return {
-    type: FETCH_GPLACES,
+    type: FETCH_TRAINS,
+    payload: request
+  };
+};
+
+export const fetchBus = (lat, long) => {
+  const request = axios.post('/api/v1/places', {
+    coordinate: {
+      lat: lat,
+      long: long
+    },
+    type: 'bus_station' 
+  });
+  return {
+    type: FETCH_BUS,
+    payload: request
+  };
+};
+
+
+export const fetchParks = (lat, long) => {
+  const request = axios.post('/api/v1/places', {
+    coordinate: {
+      lat: lat,
+      long: long
+    },
+    type: 'park' 
+
+  });
+  return {
+    type: FETCH_PARKS,
+    payload: request
+  };
+};
+
+export const fetchGyms = (lat, long) => {
+  const request = axios.post('/api/v1/places', {
+    coordinate: {
+      lat: lat,
+      long: long
+    },
+    type: 'gym' 
+  });
+  return {
+    type: FETCH_GYMS,
     payload: request
   };
 };
