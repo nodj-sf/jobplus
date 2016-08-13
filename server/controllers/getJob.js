@@ -1,7 +1,8 @@
-const request = require('request');
+'use strict';
 const getIndeed = require('../models/jobs');
 const redisClient = require('redis').createClient;
 const redis = redisClient(6379, 'localhost');
+const util = require('util');
 
 exports.post = (req, res) => {
   let jobTitle = req.body.jobTitle,
@@ -9,6 +10,15 @@ exports.post = (req, res) => {
       key = JSON.stringify(req.body).toLowerCase();
 
   // redis.del(key);
+
+  req.check('city', 'City is required.').notEmpty();
+  req.check('jobTitle', 'Job title is required.').notEmpty();
+
+  let errors = req.validationErrors();
+  if (errors) {
+    res.send('errors: ' + util.inspect(errors), 400);
+    return;
+  }
   
   /*
    * Return data from cache if exists

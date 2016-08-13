@@ -2,6 +2,7 @@
 const getYelp = require('../models/restaurant');
 const redisClient = require('redis').createClient;
 const redis = redisClient(6379, 'localhost');
+const util = require('util');
 
 exports.post = (req, res) => {
   let restaurant = 'restaurant',
@@ -12,6 +13,16 @@ exports.post = (req, res) => {
   let key = JSON.stringify(req.body).toLowerCase();
 
   // redis.del(key);
+
+  req.check('city', 'City is required.').notEmpty();
+  req.check('coordinate.latitude', 'Latitude is required.').notEmpty();
+  req.check('coordinate.longitude', 'Longitude is required.').notEmpty();
+
+  let errors = req.validationErrors();
+  if (errors) {
+    res.send('errors: ' + util.inspect(errors), 400);
+    return;
+  }
 
   /*
    * Check if redis has a sesson stored

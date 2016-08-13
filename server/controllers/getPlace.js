@@ -2,17 +2,27 @@
 const getPlace = require('../models/place');
 const redisClient = require('redis').createClient;
 const redis = redisClient(6379, 'localhost');
+const util = require('util');
 
 exports.post = (req, res) => {
   let place = 'place', 
       coordinate = req.body.coordinate;
-      console.log('coordinate: ', coordinate);
+      // console.log('coordinate: ', coordinate);
       // console.log(coordinate);
   // Create key based on request body to use for caching
   let key = JSON.stringify(req.body).toLowerCase();
 
   // redis.del(key);
 
+  req.check('coordinate.lat', 'Latitude is required.').notEmpty();
+  req.check('coordinate.long', 'Longitude is required.').notEmpty();
+
+  let errors = req.validationErrors();
+  if (errors) {
+    res.send('errors: ' + util.inspect(errors), 400);
+    return;
+  }
+  
   /*
    * Check if redis has a sesson stored
    * return data if session exist.
