@@ -9,7 +9,7 @@ exports.post = (req, res) => {
       coordinate = req.body.coordinate;
 
   // Create key based on request body to use for caching
-  let key = JSON.stringify(req.body);
+  let key = JSON.stringify(req.body).toLowerCase();
 
   // redis.del(key);
 
@@ -37,6 +37,10 @@ exports.post = (req, res) => {
           redis.expire(key, 3600);
           return data.respond;
           res.end();
+        })
+        .catch(function(error) {
+          res.setHeader('Content-Type', 'application/text');
+          res.status(500).send('Something broke!');
         });
     }
   });
