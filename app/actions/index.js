@@ -16,7 +16,7 @@ const getCookie = (name) => {
     return decodeURIComponent(parts.pop().split(';').shift());
   }
   return '';
-}
+};
 
 export const fetchJobs = (jobSearch, city) => {
   const request = axios.post('/api/v1/jobs', {
@@ -30,7 +30,6 @@ export const fetchJobs = (jobSearch, city) => {
     payload: request
   };
 };
-
 
 export const fetchYelp = (city, lat, long) => {
   const request = axios.post('/api/v1/food', {
@@ -90,7 +89,6 @@ export const fetchBus = (lat, long) => {
   };
 };
 
-
 export const fetchParks = (lat, long) => {
   const request = axios.post('/api/v1/places', {
     coordinate: {
@@ -114,14 +112,13 @@ export const fetchGyms = (lat, long) => {
       long: long
     },
     _csrf: getCookie('_csrf'),
-    type: 'gym' 
+    type: 'subway_station|train_station' 
   });
   return {
-    type: FETCH_GYMS,
+    type: FETCH_TRAINS,
     payload: request
   };
 };
-
 
 export const selectJob = (job) => {
   return {
@@ -130,7 +127,6 @@ export const selectJob = (job) => {
   };
 };
 
-
 export const toggleModal = () => {
   // console.log(`Google Maps Modal view toggled ON!`);
   return {
@@ -138,7 +134,6 @@ export const toggleModal = () => {
     payload: true
   };
 };
-
 
 export const toggleModalOff = () => {
   // console.log(`Google Maps Modal view toggled OFF!`);

@@ -8,6 +8,7 @@ exports.post = (req, res) => {
   let place = 'place', 
       coordinate = req.body.coordinate,
       type = req.body.type;
+
       // console.log(coordinate);
   // Create key based on request body to use for caching
   let key = JSON.stringify(req.body).toLowerCase();
