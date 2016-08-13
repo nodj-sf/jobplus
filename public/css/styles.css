@@ -623,6 +623,14 @@ i.XButton:hover {
   float: left;
 }
 
+#restaurantContainer > div:first-child a {
+  position: relative;
+  display: inline-block;
+  height: 100%;
+  width: 15%;
+  float: left;
+}
+
 #restaurantContainer > div a img {
   position: absolute;
   height: 85%;
@@ -662,6 +670,12 @@ ul.restaurantList {
   box-sizing: border-box;
   overflow-y: overlay;
   overflow-x: hidden;
+}
+
+#restaurantContainer div.overlay {
+  height: 90%;
+  overflow-x: hidden;
+  overflow-y: overlay;
 }
 
 #restaurantContainer div.overlay {

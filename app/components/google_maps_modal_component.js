@@ -65,7 +65,7 @@ export default class GMap_Modal extends Component {
                       refLabel = ALPHABET[index++ % ALPHABET.length],
                       markerShading = marker.jobKey === this.props.activeJob ? 0.99 : 0.50;
 
-                return (
+                return window.setTimeout(() => 
                   <Marker
                     key={index}
                     ref={refID}
@@ -75,7 +75,11 @@ export default class GMap_Modal extends Component {
                     opacity={markerShading}
                     label={{ "text": refLabel, "fontFamily": "Open Sans", "fontWeight": "600" }} >
                   </Marker>
+<<<<<<< 6df2229b8ec0e5f6f6ae0d40a5a80b379a5542ac
                 );
+=======
+                , 3000)
+>>>>>>> Implemented flex-box layout in Yelp container as well as selectively applied responsive text sizing
               })
             }
 
