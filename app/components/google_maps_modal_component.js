@@ -77,6 +77,7 @@ export default class GMap_Modal extends Component {
                     label={{ "text": refLabel, "fontFamily": "Open Sans", "fontWeight": "600" }} >
                   </Marker>
                 );
+
               })
             }
 
