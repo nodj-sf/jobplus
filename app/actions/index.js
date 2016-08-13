@@ -81,6 +81,7 @@ export const fetchBus = (lat, long) => {
       lat: lat,
       long: long
     },
+    _csrf: getCookie('_csrf'),
     type: 'bus_station' 
   });
   return {
@@ -96,6 +97,7 @@ export const fetchParks = (lat, long) => {
       lat: lat,
       long: long
     },
+    _csrf: getCookie('_csrf'),
     type: 'park' 
 
   });
@@ -111,6 +113,7 @@ export const fetchGyms = (lat, long) => {
       lat: lat,
       long: long
     },
+    _csrf: getCookie('_csrf'),
     type: 'gym' 
   });
   return {
