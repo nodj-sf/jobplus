@@ -875,11 +875,39 @@ li.restaurantLI > div.nameRating > img {
     overflow: scroll;
   }
 
+  #jobInfoBody div.jobInfoBottomBlock {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 500px;
+    bottom: 0;
+  }
+
+  #restaurantContainer {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 60vh;
+    /* float: left; */
+    box-sizing: border-box;
+    overflow: scroll;
+  }
+
   .container-3 input.formSearchInpt{
     font-size: 1rem;
     letter-spacing: 0.35rem;
     text-indent: 0;
   }
+  
+  .container-3 + button {
+    background: #14A4B5;
+    font-size: 1rem;
+  }
+    .container-3 + button:hover {
+      background: #FFF;
+      color: #14A4B5;
+    } 
 
 }
 
