@@ -14,7 +14,7 @@ let getPlaces = (coordinate) => {
   return (res) => {
     return new Promise((resolve, reject) => {
       return places.placeSearch(parameters, (status, data) => {
-        console.log('data: ', data);
+        // console.log('data: ', data);
         if (!data) {
           reject(data);
         } else {
