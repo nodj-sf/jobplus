@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { selectJob, fetchYelp, fetchGPlaces } from '../actions/index';
+import { selectJob, fetchYelp, /*fetchGPlaces*/ fetchTrains, fetchBus, fetchGyms, fetchParks } from '../actions/index';
 import { bindActionCreators } from 'redux';
 
 import Banner from './banner_component';
@@ -30,7 +30,12 @@ export default class Results extends Component {
   initJob(job) {
     this.props.selectJob(job);
     this.props.fetchYelp(job.city, job.latitude, job.longitude);
-    this.props.fetchGPlaces(job.latitude, job.longitude);
+    //this.props.fetchGPlaces(job.latitude, job.longitude);
+    this.props.fetchTrains(job.latitude, job.longitude);
+    this.props.fetchBus(job.latitude, job.longitude);
+    this.props.fetchParks(job.latitude, job.longitude);
+    this.props.fetchGyms(job.latitude, job.longitude);
+
   }
 
   render() {
@@ -66,7 +71,7 @@ export default class Results extends Component {
 let mapStateToProps = (state) => ({ jobs: state.jobs });
 
 let mapDispatchToProps = (dispatch) =>  { 
-  return bindActionCreators({ selectJob: selectJob , fetchYelp: fetchYelp, fetchGPlaces: fetchGPlaces}, dispatch);
+  return bindActionCreators({ selectJob: selectJob , fetchYelp: fetchYelp, /*fetchGPlaces: fetchGPlaces*/ fetchBus, fetchTrains, fetchParks, fetchGyms}, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);

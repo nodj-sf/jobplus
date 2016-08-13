@@ -6,8 +6,8 @@ const util = require('util');
 
 exports.post = (req, res) => {
   let place = 'place', 
-      coordinate = req.body.coordinate;
-      // console.log('coordinate: ', coordinate);
+      coordinate = req.body.coordinate,
+      type = req.body.type;
       // console.log(coordinate);
   // Create key based on request body to use for caching
   let key = JSON.stringify(req.body).toLowerCase();
@@ -37,7 +37,7 @@ exports.post = (req, res) => {
       res.end();
     } else {
       // console.log('api');
-      getPlace(coordinate)(res)
+      getPlace(coordinate, type)(res)
         .then((data) => {
           // console.log('data: ', data);
           // Cache data using request body as key
