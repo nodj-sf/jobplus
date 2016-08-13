@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "95edaa20187f229e85ce"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "6fdaa5c8fd35d67a1d60"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -38370,14 +38370,14 @@
 	var FETCH_YELP = 'FETCH_YELP';
 	var FETCH_GPLACES = 'FETCH_GPLACES';
 	
-	function getCookie(name) {
+	var getCookie = function getCookie(name) {
 	  var value = "; " + document.cookie;
 	  var parts = value.split("; " + name + "=");
 	  if (parts.length === 2) {
 	    return decodeURIComponent(parts.pop().split(";").shift());
 	  }
 	  return '';
-	}
+	};
 	
 	var fetchJobs = exports.fetchJobs = function fetchJobs(jobSearch, city) {
 	  var request = _axios2.default.post('/api/v1/jobs', {

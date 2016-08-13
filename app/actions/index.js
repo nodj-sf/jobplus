@@ -5,11 +5,11 @@ const JOB_SELECTED = 'JOB_SELECTED';
 const FETCH_YELP = 'FETCH_YELP';
 const FETCH_GPLACES = 'FETCH_GPLACES';
 
-function getCookie(name) {
-  const value = "; " + document.cookie;
-  const parts = value.split("; " + name + "=");
+const getCookie = (name) => {
+  const value = '; ' + document.cookie;
+  const parts = value.split('; ' + name + '=');
   if (parts.length === 2) {
-    return decodeURIComponent(parts.pop().split(";").shift());
+    return decodeURIComponent(parts.pop().split(';').shift());
   }
   return '';
 }
