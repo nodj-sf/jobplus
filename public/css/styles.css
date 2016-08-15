@@ -613,6 +613,19 @@ i.XButton:hover {
   height: 100%;
   width: 15%;
   float: left;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> c267331223949e8d816ca2003590bcc246b76998
+}
+
+#restaurantContainer > div:first-child a {
+  position: relative;
+  display: inline-block;
+  height: 100%;
+  width: 15%;
+  float: left;
+<<<<<<< HEAD
 }
 
 #restaurantContainer > div:first-child a {
@@ -623,14 +636,12 @@ i.XButton:hover {
   float: left;
 }
 
-#restaurantContainer > div:first-child a {
-  position: relative;
-  display: inline-block;
-  height: 100%;
-  width: 15%;
-  float: left;
+=======
+=======
+>>>>>>> 94bde0556eb8c82e4e4d2dcba7a651932b700a17
 }
 
+>>>>>>> c267331223949e8d816ca2003590bcc246b76998
 #restaurantContainer > div a img {
   position: absolute;
   height: 85%;
@@ -669,7 +680,6 @@ ul.restaurantList {
   background: #ECECEC;
   box-sizing: border-box;
   overflow-y: overlay;
-  overflow-x: hidden;
 }
 
 #restaurantContainer div.overlay {
@@ -856,6 +866,7 @@ li.restaurantLI > div.nameRating > img {
     overflow: scroll;
   }
 
+<<<<<<< HEAD
   #jobInfoBody div.jobInfoBottomBlock {
     position: relative;
     display: flex;
@@ -894,6 +905,8 @@ li.restaurantLI > div.nameRating > img {
     overflow: scroll;
   }
 
+=======
+>>>>>>> c267331223949e8d816ca2003590bcc246b76998
   .container-3 input.formSearchInpt{
     font-size: 1rem;
     letter-spacing: 0.35rem;
