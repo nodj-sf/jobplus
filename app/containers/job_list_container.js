@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { selectJob, fetchYelp, /* fetchGPlaces */ fetchBus, fetchTrains, fetchParks, fetchGyms } from '../actions/index';
+import { selectJob, fetchYelp, fetchBus, fetchTrains, fetchParks, fetchGyms } from '../actions/index';
 import JobItem from '../components/job_item_component';
 
 class JobList extends Component {
@@ -15,7 +15,6 @@ class JobList extends Component {
   jobFunc(job) {
     this.props.selectJob(job);
     this.props.fetchYelp(job.city, job.latitude, job.longitude);
-    // this.props.fetchGPlaces(job.latitude, job.longitude);
     this.props.fetchTrains(job.latitude, job.longitude);
     this.props.fetchBus(job.latitude, job.longitude);
     this.props.fetchParks(job.latitude, job.longitude);
@@ -56,7 +55,7 @@ let mapStateToProps = (state) => ({ jobs: state.jobs });
 // notify all containers of the action that can be triggered
 let mapDispatchToProps = (dispatch) =>  {
   // Whenever loadJobs is called, the result should be passed to all reducers:
-  return bindActionCreators({ selectJob , fetchYelp, /* fetchGPlaces */ fetchBus, fetchTrains, fetchParks, fetchGyms }, dispatch);
+  return bindActionCreators({ selectJob , fetchYelp, fetchBus, fetchTrains, fetchParks, fetchGyms }, dispatch);
 };
 
 // Promote JobList to a container:
