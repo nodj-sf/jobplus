@@ -54,13 +54,13 @@ exports.post = (req, res) => {
           // Cache data using request body as key
           // redis.set(key, response.data);
           // Set cache to expire in an hour
-          redis.expire(key, 3600);
-          response.respond;
-          res.end();
+          // redis.expire(key, 3600);
+          // response.respond;
+          // res.end();
         })
         .catch(function(error) {
-          res.setHeader('Content-Type', 'application/text');
-          res.status(500).send('Something broke!');
+          // res.setHeader('Content-Type', 'application/text');
+          // res.status(500).send('Something broke!');
         });
     // }
   // });
