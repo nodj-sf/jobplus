@@ -5,12 +5,21 @@ const redis = redisClient(6379, 'localhost');
 const util = require('util');
 
 exports.post = (req, res) => {
-  let place = 'place', 
-      coordinate = req.body.coordinate;
-      // console.log('coordinate: ', coordinate);
-      // console.log(coordinate);
-  // Create key based on request body to use for caching
-  let key = JSON.stringify(req.body).toLowerCase();
+  let place = 'place',
+      reqBody = req.body,
+      coordinate = reqBody.coordinate,
+      key = JSON.stringify(reqBody).toLowerCase();
+
+  // remove _csrf from req.body to presist caching
+  if (reqBody._csrf) {
+    try {
+      delete reqBody._csrf;
+    } catch (e) {
+      console.error('csrf does not exists.');
+    }
+    // Create key based on request body to use for caching
+    key = JSON.stringify(reqBody).toLowerCase();
+  }
 
   // redis.del(key);
 
