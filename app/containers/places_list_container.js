@@ -3,49 +3,48 @@ import { connect } from 'react-redux';
 
 class PlacesList extends Component {
   customList(trains, bus, parks, gyms) {
-    console.log('trains', trains);
-    console.log('bus', bus);
-    console.log('parks', parks);
-    console.log('gyms', gyms);
-    // var train = [], bus = [], park = [], gym = [];
-    // for (var i = 0; i < places.length; i++) {
-    //   var current = places[i]; 
-    //   if (current.types.includes('subway_station' || 'train_station')) {
-    //     train.push(current);
-    //   }
-    //   if (current.types.includes('bus_station' || 'transit_station')) {
-    //     bus.push(current);
-    //   }
-    //   if (current.types.includes('park')) {
-    //     park.push(current);
-    //   }
-    //   if (current.types.includes('gym')) {
-    //     gym.push(current);
-    //   }
-    // }
-    // console.log('train: ', train[0], 'bus: ', bus[0], 'park: ', park[0],'gym :', gym[0] );
-    return trains;
+    var topResults = [trains[0], bus[0], parks[0], gyms[0]];
+    return topResults;
   }
 
   renderList() {
-    const newList = this.customList(/* this.props.activePlaces */ this.props.activeTrains, this.props.activeBus, this.props.activeParks, this.props.activeGyms);
-    return newList.map((place) => {
-      return (
+    var newList = this.customList(this.props.activeTrains, this.props.activeBus, 
+                  this.props.activeParks, this.props.activeGyms);
+
+    return (
+      <div>
         <li className="placesLI" 
             style={{"listStyleType": "none"}}
-            key={place.place_id} >
-          <h4>{ place.name } <small>{ place.vicinity }</small></h4>
-          <p>{ place.rating }</p>
+            key={newList[0].place_id} >
+          <h4>Train Stop</h4>  
+          <h4>{ newList[0].name }</h4>
         </li>
-      );
-    });
+        <li className="placesLI" 
+            style={{"listStyleType": "none"}}
+            key={newList[1].place_id} >
+          <h4>Bus Stop</h4>  
+          <h4>{ newList[1].name }</h4>
+        </li>
+        <li className="placesLI" 
+            style={{"listStyleType": "none"}}
+            key={newList[2].place_id} >
+          <h4>Park</h4>  
+          <h4>{ newList[2].name }</h4>
+        </li>
+        <li className="placesLI" 
+            style={{"listStyleType": "none"}}
+            key={newList[3].place_id} >
+          <h4>Gyms & Fitness</h4>  
+          <h4>{ newList[3].name }</h4>
+        </li>
+      </div>
+    );
   }
 
   render() {
-    // console.log('ActivePlaces', this.props.activePlaces);
     return (
       <div id="placesContainer">
-        <h1>Places List Container</h1>
+        <h1>Nearby Amenities</h1>
         <ul className="placesList">
           { this.props.activeGyms.length && this.renderList() }
         </ul>
@@ -56,7 +55,6 @@ class PlacesList extends Component {
 
 function mapStateToProps(state) {
   return {
-    //activePlaces: state.activePlaces,
     activeTrains: state.activeTrains,
     activeBus: state.activeBus,
     activeParks: state.activeParks,
@@ -65,3 +63,4 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(PlacesList);
+
