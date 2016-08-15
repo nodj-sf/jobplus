@@ -83,11 +83,3 @@ let mapDispatchToProps = (dispatch) =>  {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);
-
-
-
-// <div className="jobInfoBottomBlock">  
-          
-//   <RetaurantList />
-//   <PlacesList />
-// </div>
