@@ -57,7 +57,7 @@ class GMap extends BaseComponent {
     this.setState({ zoomLevel: 5 });
   }
 
-  // Toggle to 'true' to show InfoWindow and re-renders component
+  // Toggle to 'true' to show InfoWindow and re-render component
   handleMarkerClick(targetMarker) {
     this.closeAllMarkers();
     this.setState({ 
@@ -113,31 +113,35 @@ class GMap extends BaseComponent {
 
   addTimeDelayedMarker(marker, index) {
     const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-          MAX_ZINDEX = 1000;
+          MAX_ZINDEX = 1000,
+          onClick = () => this.handleMarkerClick(marker);
 
-       return window.setTimeout(() => {
-        // console.log(`Marker Coordinates: ${marker.coords["lat"]}, ${marker.coords["lng"]} | ${typeof marker.coords["lat"]}`);
+    return (
+      <Marker
+        key={index}
+        ref={`marker_${index}`}
+        data-jobTitle={marker.jobTitle}
+        data-formattedLocation={marker.formattedLocation}
+        position={ new google.maps.LatLng(marker.coords) }
+        animation={google.maps.Animation.DROP}
+        title={marker.company}
+        // defaultIcon={"https://goo.gl/photos/yuzDW3zzwEt7VdFM6"}
+        opacity={0.90}
+        zIndex={MAX_ZINDEX}
+        label={{ "text": `${ALPHABET[index++]}`, "fontWeight": "bold" }}
+        showInfo={false}
+        onClick={onClick} >
 
-        return (
-          <Marker
-            key={index}
-            ref={`marker_${index}`}
-            data-jobTitle={marker.jobTitle}
-            data-formattedLocation={marker.formattedLocation}
-            position={ new google.maps.LatLng(marker.coords) }
-            // position={ marker.coords }
-            animation={google.maps.Animation.DROP}
-            title={marker.company}
-            opacity={0.90}
-            zIndex={MAX_ZINDEX}
-            label={{ "text": `${ALPHABET[index++]}`, "fontFamily": "Raleway", "fontWeight": "bold" }} />
-        );
-      }, index * 1000);
+        { marker.showInfo ? this.renderInfoWindow(index, marker) : null }
+      </Marker>
+    );
      
   }
 
   markerCallbackHandler() {
-    return this.props.markers.map((marker, index) => this.addTimeDelayedMarker(marker, index) );
+    return this.props.markers.map((marker, index) => {
+      return this.addTimeDelayedMarker(marker, index);
+    });
   }
 
   render() {

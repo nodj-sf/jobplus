@@ -41,7 +41,7 @@ class JobList extends Component {
           {["Results for ",
            <i key="jobTermTitle">{this.props.jobTerm}</i>,
            " in ",
-           <i key="locationTermTile">{this.props.locationTerm}</i>
+           <i key="locationTermTitle">{this.props.locationTerm}</i>
           ]}
         </b>
         <div>

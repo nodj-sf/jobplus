@@ -1,26 +1,27 @@
 'use strict';
 const getIndeed = require('../models/jobs');
-const redisClient = require('redis').createClient;
-const redis = redisClient(6379, 'localhost');
+// const redisClient = require('redis').createClient;
+// const redis = redisClient(6379, 'localhost');
 const util = require('util');
 
 
 exports.post = (req, res) => {
+  console.log("Request:", req.body);
   let reqBody = req.body,
       jobTitle = reqBody.jobTitle,
       city = reqBody.city,
       key = JSON.stringify(reqBody).toLowerCase();
 
   // remove _csrf from req.body to presist caching
-  if (reqBody._csrf) {
-    try {
-      delete reqBody._csrf;
-    } catch (e) {
-      console.error('csrf does not exists.');
-    }
+  // if (reqBody._csrf) {
+  //   try {
+  //     delete reqBody._csrf;
+  //   } catch (e) {
+  //     console.error('csrf does not exists.');
+  //   }
 
-    key = JSON.stringify(reqBody).toLowerCase();
-  }
+  //   key = JSON.stringify(reqBody).toLowerCase();
+  // }
 
   // redis.del(key);
 
@@ -36,15 +37,15 @@ exports.post = (req, res) => {
   /*
    * Return data from cache if exists
   */
-  redis.get(key, (err, result) => {
+  // redis.get(key, (err, result) => {
 
     res.setHeader('Content-Type', 'application/json');
 
-    if (result) {
-      // console.log('return from redis');
-      res.send(JSON.parse(result));
-      res.end();
-    } else {
+    // if (result) {
+    //   // console.log('return from redis');
+    //   res.send(JSON.parse(result));
+    //   res.end();
+    // } else {
       let ip = req.headers['x-forwarded-for']
             || req.connection.remoteAddress
             || req.socket.remoteAddress
@@ -63,16 +64,16 @@ exports.post = (req, res) => {
         // Return data when a promise is return.
         .then((response) => {
           // Cache data using request body as key
-          redis.set(key, response.data);
+          // redis.set(key, response.data);
           // Set cache to expire in an hour
-          redis.expire(key, 3600);
-          response.respond;
-          res.end();
+          // redis.expire(key, 3600);
+          // response.respond;
+          // res.end();
         })
         .catch(function(error) {
-          res.setHeader('Content-Type', 'application/text');
-          res.status(500).send('Something broke!');
+          // res.setHeader('Content-Type', 'application/text');
+          // res.status(500).send('Something broke!');
         });
-    }
-  });
+  //   }
+  // });
 }
