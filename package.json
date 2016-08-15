@@ -34,6 +34,7 @@
     "eslint": "^3.3.0",
     "eslint-plugin-react": "^6.0.0",
     "json-loader": "^0.5.4",
+    "lodash": "^4.15.0",
     "mocha": "^3.0.0",
     "nodemon": "^1.10.0",
     "rd3": "^0.7.0",
@@ -47,14 +48,17 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.6.1",
     "react-router-redux": "^4.0.5",
+    "react-tabs": "^0.7.0",
     "redux": "^3.5.2",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
+    "connect-redis": "^3.1.0",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
+    "express-session": "^1.14.0",
     "express-validator": "^2.20.8",
     "googleplaces": "^0.6.0",
     "lusca": "^1.4.1",
@@ -62,6 +66,7 @@
     "redis": "^2.6.2",
     "request": "^2.74.0",
     "skeleton-css": "^2.0.4",
+    "util": "^0.10.3",
     "yelp": "^1.0.1"
   }
 }

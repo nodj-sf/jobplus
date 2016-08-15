@@ -33,7 +33,7 @@ hr {
   top: 6vh;
   margin: 0;
   background: #FFF;
-  overflow: hidden;
+  /*overflow: hidden;*/
   /* box-sizing: border-box; */     /* Potential candidate for inclusion at later point */
 }
 
@@ -41,11 +41,16 @@ hr {
 
 #jobMain {
   position: relative;
-  height: 100%;
-  /* min-height: 700px; */
-  /* top: 50%; */
+  display: block;
+  width: 100%;
+  height: 94vh;
+  min-height: 700px;
+  top: 6vh;
+  margin: 0;
   padding: 0;
-  /*transform: stranslateY(-50%);*/
+  background: #FFF;
+  overflow: hidden;
+  /*transform: translateY(-50%);*/
 }
 
 #jobResultsPane {
@@ -96,6 +101,18 @@ hr {
 
   }
 
+#jobsContainer b > i {
+  margin: auto 6px;
+  padding: 0 6px;
+  outline: 1px solid #FFF;
+  font-style: normal;
+  font-stretch: semi-expanded;
+  text-indent: 5px;
+  text-transform: capitalize;
+  /* color: rgb(0, 0, 0); */
+  /* text-decoration: underline overline; */
+}
+
 #chartContainer {
   position: relative;
   display: inline-block;
@@ -112,14 +129,14 @@ hr {
   display: block;
   width: 100%;
   height: 34%;
-  /* pointer-events: none; */
-  box-shadow: 0 0 14px 2px rgba(0, 0, 0, 0.2), 0 0 14px 2px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
+  /* box-shadow: 0 0 14px 2px rgba(0, 0, 0, 0.2), 0 0 14px 2px rgba(0, 0, 0, 0.2); */
+  /* pointer-events: none; */
 }
 
 #mapsContainer {
   position: relative;
-  height: 90%;
+  height: 100%;
   width: 100%;
   margin: 0;
 }
@@ -129,6 +146,17 @@ hr {
   display: block;
   width: 100%;
   height: 4%;
+}
+
+h4.infoWindow_Header {
+  font: 600 14px/16px Raleway, "Helvetica Neue", Arial, sans-serif;
+  color: #14A4B5;
+  margin-bottom: 0;
+}
+
+h5.infoWindow_Header {
+  font: 600 12px/14px Raleway, "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 5px;
 }
 
 div#overlay {
@@ -171,6 +199,7 @@ div.box {
   position: absolute;
   left: 50px;
   font: 40px/55px "Raleway", "Open Sans", Helvetica, Arial, sans-serif;
+  color: #000;
 }
 
 .bannerCont {
@@ -203,20 +232,27 @@ svg.rd3-chart {
   z-index: 100;
 }
 
-#mapsContainer + b {
+#jobsContainer > b {
   position: relative;
   display: block;
   width: 100%;
-  height: 10%;
+  height: 36px;
   padding: 4px 0;
-  text-align: center;
-  font-size: 24px;
-  line-height: 28px;
+  /* font-variant: unicase; */
+  text-align: left;
+  text-indent: 15px;
+  font-size: 20px;
+  font-weight: lighter;
+  line-height: 36px;
   color: #FFF;
-  background: -webkit-linear-gradient(231deg, rgba(20,164,181,1) 15%, rgba(20,164,181,0.75) 44%, rgba(20,164,181,0.45) 100%);
-  background:      -o-linear-gradient(231deg, rgba(20,164,181,1) 15%, rgba(20,164,181,0.75) 44%, rgba(20,164,181,0.45) 100%);
-  background:         linear-gradient(321deg, rgba(20,164,181,1) 15%, rgba(20,164,181,0.75) 44%, rgba(20,164,181,0.45) 100%);
-  /* background: #A973E7; */
+  background: -webkit-linear-gradient(231deg, rgba(20,164,181,1) 15%, rgb(93, 188, 200) 44%, rgb(134, 202, 210) 100%);
+  background:      -o-linear-gradient(231deg, rgba(20,164,181,1) 15%, rgb(93, 188, 200) 44%, rgb(134, 202, 210) 100%);
+  background:         linear-gradient(321deg, rgba(20,164,181,1) 15%, rgb(93, 188, 200) 44%, rgb(134, 202, 210) 100%);
+}
+
+#jobsContainer > div {
+  height: 90%;
+  overflow-y: overlay;
 }
 
 ul.jobsList {
@@ -245,7 +281,7 @@ ul.jobsList li {
   max-height: 60px;
   margin-bottom: 6px;
   padding: 4px 10px 0 10px;
-  list-style-type: decimal;
+  list-style-type: upper-latin;
   box-sizing: border-box;
   background-color: #ECECEC;
   transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1.0);       /* box-shadow, border-left */
@@ -525,23 +561,16 @@ i.XButton {
   height: 30px;
   background: white;
   font-size: 50px;
-  color: #771DE5;
+  color: #14A4B5;
   line-height: 30px;
   box-sizing: border-box;
   border-radius: 50%;
-  /* border: 2px solid #771de5; */
+  /* border: 2px solid #14A4B5; */
 }
 
 i.XButton:hover {
   cursor: pointer;
 }
-
-
-
-
-
-
-
 
 
 /*  *********************************************
@@ -555,35 +584,57 @@ i.XButton:hover {
   width: 50%;
   height: 100%;
   float: left;
+  box-sizing: border-box;
   overflow: hidden;
 }
 
 #restaurantContainer > div {
   position: relative;
+  display: inline-flex;
   width: 100%;
-  background-blend-mode: color-dodge;
-  height: 15%;
+  height: 50px;
+  left: 0;
+  top: 0;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: border-box;
   background: hsl(0, 53%, 52%) url("../img/bckg_hero.png") no-repeat;
+  background-blend-mode: color-dodge;
   backface-visibility: initial;
-  /* background-size: 100%; */
-  background-position: 90% 50%;
+  background-position: 10% 30%;
   background-attachment: scroll;
   background-origin: border-box;
+  z-index: 1;
 }
 
-#restaurantContainer > div img {
+#restaurantContainer > div:first-child a {
+  position: relative;
+  display: inline-block;
+  height: 100%;
+  width: 15%;
+  float: left;
+}
+
+#restaurantContainer > div a img {
   position: absolute;
-  height: 90%;
-  top: 5%;
-  left: 15px;
+  height: 85%;
+  left: 50%;
+  top: 7.5%;
+  margin: 0;
+  padding: 0;
+  transform: translateX(-50%);
+  box-sizing: border-box;
 }
 
 #restaurantContainer > div h1 {
   position: relative;
-  text-align: right;
-  right: 1.5rem;
-  top: 1rem;
-  font-weight: bolder;
+  display: inline-block;
+  height: 100%;
+  width: 75%;
+  margin: 0 1.5rem 0 0;
+  float: right;
+  font: normal 3.75rem/5rem "Raleway", Arial, sans-serif;
+  text-align: center;
 }
 
 p {
@@ -596,21 +647,52 @@ ul.restaurantList {
   position: relative;
   display: block;
   width: 100%;
-  height: 90%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
   background: #ECECEC;
-  overflow-y: scroll;
+  box-sizing: border-box;
+  overflow-y: overlay;
+}
+
+#restaurantContainer div.overlay {
+  height: 90%;
   overflow-x: hidden;
+  overflow-y: overlay;
 }
 
 ul.restaurantList li.restaurantLI {
   position: relative;
   display: block;
-  width: 100%;
-  /* height: 100%; */
+  width: auto;
+  height: 17.5%;
+  max-height: 100px;
   padding-left: 10px;
+  padding-right: 15px;
   clear: both;
   list-style-type: none;
   border-bottom: 0.25px ridge #C7C7C7;
+  overflow: hidden;
+}
+
+ul.restaurantList li.restaurantLI div.verticallyCenter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+li.restaurantLI > div.nameRating > a,
+li.restaurantLI > div.nameRating > p.numRestaurantReviews {
+  display: block;
+  width: 100%;
+  line-height: 16px;
+}
+
+li.restaurantLI > div.nameRating > img {
+  display: block;
 }
 
 #jobInfoBody > div:first-child {
@@ -622,6 +704,7 @@ ul.restaurantList li.restaurantLI {
   position: relative;
   display: inline-block;
   width: 55%;
+  height: 100%;
   float: right;
 }
 
@@ -669,6 +752,7 @@ ul.restaurantList li.restaurantLI {
 
   #jobMain {
     display: flex;
+    height: auto;
     flex-direction: column;
     transform: none;
   }
@@ -685,33 +769,116 @@ ul.restaurantList li.restaurantLI {
   }
 
   div#jobResultsPane {
-    height: auto;
-    min-height: auto;
+    height: 60vh;
   }
 
   #mapsContainer {
     height: 30vh;
   }
+    #mapsContainer:hover {
+      cursor: pointer;
+    }
 
   #searchForm {
     position: relative;
     display: block;
-    width: 100%;
-    top: 6vh;
+    /* width: 100%; */
+    /* top: 6vh; */
   }
 
   #jobsContainer::after {
-
   }
 
-  .container-3 + button {
-    background: rgb(95, 20, 181);
+  #jobInfoBody div.jobInfoBottomBlock {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 500px;
+    bottom: 0;
+  }
+
+  #restaurantContainer {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 60vh;
+    /* float: left; */
+    box-sizing: border-box;
+    overflow: scroll;
+  }
+
+  #jobInfoBody div.jobInfoBottomBlock {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 500px;
+    bottom: 0;
+  }
+
+  #restaurantContainer {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 60vh;
+    /* float: left; */
+    box-sizing: border-box;
+    overflow: scroll;
+  }
+
+  #jobInfoBody div.jobInfoBottomBlock {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 500px;
+    bottom: 0;
+  }
+
+  #restaurantContainer {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 60vh;
+    /* float: left; */
+    box-sizing: border-box;
+    overflow: scroll;
+  }
+
+  #jobInfoBody div.jobInfoBottomBlock {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 500px;
+    bottom: 0;
+  }
+
+  #restaurantContainer {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 60vh;
+    /* float: left; */
+    box-sizing: border-box;
+    overflow: scroll;
+  }
+
+  .container-3 input.formSearchInpt{
+    font-size: 1rem;
+    letter-spacing: 0.35rem;
+    text-indent: 0;
   }
   
+  .container-3 + button {
+    background: #14A4B5;
+    font-size: 1rem;
+  }
     .container-3 + button:hover {
       background: #FFF;
-      color: rgb(95, 20, 181);
-    }
+      color: #14A4B5;
+    } 
 
 }
 

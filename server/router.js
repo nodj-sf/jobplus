@@ -8,6 +8,7 @@ const RedisStore = require('connect-redis')(session);
 const lusca = require('lusca');
 const expressValidator = require('express-validator');
 
+
 /*
 ** Load local environment variables from .env 
 ** file where secrets and keys are configured.
