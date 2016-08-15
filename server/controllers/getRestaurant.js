@@ -40,8 +40,8 @@ exports.post = (req, res) => {
           res.end();
         })
         .catch(function(error) {
-          res.setHeader('Content-Type', 'application/text');
-          res.status(500).send('Something broke!');
+          // res.setHeader('Content-Type', 'application/text');
+          // res.status(500).send('Something broke!');
         });
     }
   });
