@@ -5,9 +5,21 @@ const redis = redisClient(6379, 'localhost');
 const util = require('util');
 
 exports.post = (req, res) => {
-  let jobTitle = req.body.jobTitle,
-      city = req.body.city,
-      key = JSON.stringify(req.body).toLowerCase();
+  let reqBody = req.body,
+      jobTitle = reqBody.jobTitle,
+      city = reqBody.city,
+      key = JSON.stringify(reqBody).toLowerCase();
+
+  // remove _csrf from req.body to presist caching
+  if (reqBody._csrf) {
+    try {
+      delete reqBody._csrf;
+    } catch (e) {
+      console.error('csrf does not exists.');
+    }
+
+    key = JSON.stringify(reqBody).toLowerCase();
+  }
 
   // redis.del(key);
 
