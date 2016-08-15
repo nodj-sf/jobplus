@@ -39,9 +39,16 @@ class JobList extends Component {
   render() {
     return (
       <div id="jobsContainer" className="jobsPaneLeft appCols">
-        <ul className="jobsList">
-          { this.renderList() }
-        </ul>
+        <b>
+          {["Results for ",
+           <i key="jobTermTitle">{this.props.jobTerm}</i>,
+           " in ",
+           <i key="locationTermTitle">{this.props.locationTerm}</i>
+          ]}
+        </b>
+        <div>
+          <ul className="jobsList">{ this.renderList() }</ul>
+        </div>
       </div>
     );
   }
