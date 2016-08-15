@@ -1,14 +1,36 @@
-const request = require('request');
+'use strict';
 const getIndeed = require('../models/jobs');
 const redisClient = require('redis').createClient;
 const redis = redisClient(6379, 'localhost');
+const util = require('util');
 
 exports.post = (req, res) => {
-  let jobTitle = req.body.jobTitle,
-      city = req.body.city,
-      key = JSON.stringify(req.body).toLowerCase();
+  let reqBody = req.body,
+      jobTitle = reqBody.jobTitle,
+      city = reqBody.city,
+      key = JSON.stringify(reqBody).toLowerCase();
 
-  //redis.del(key);
+  // remove _csrf from req.body to presist caching
+  if (reqBody._csrf) {
+    try {
+      delete reqBody._csrf;
+    } catch (e) {
+      console.error('csrf does not exists.');
+    }
+
+    key = JSON.stringify(reqBody).toLowerCase();
+  }
+
+  req.check('city', 'City is required.').notEmpty();
+  req.check('jobTitle', 'Job title is required.').notEmpty();
+
+  let errors = req.validationErrors();
+  if (errors) {
+    res.status(400).send('errors: ' + util.inspect(errors));
+    return;
+  }
+  
+  // redis.del(key);
   
   /*
    * Return data from cache if exists
@@ -45,6 +67,10 @@ exports.post = (req, res) => {
           redis.expire(key, 3600);
           response.respond;
           res.end();
+        })
+        .catch(function(error) {
+          res.setHeader('Content-Type', 'application/text');
+          res.status(500).send('Something broke!');
         });
     }
   });
