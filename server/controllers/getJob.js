@@ -4,13 +4,11 @@ const redisClient = require('redis').createClient;
 const redis = redisClient(6379, 'localhost');
 const util = require('util');
 
-
 exports.post = (req, res) => {
   let reqBody = req.body,
       jobTitle = reqBody.jobTitle,
       city = reqBody.city,
       key = JSON.stringify(reqBody).toLowerCase();
-
   // remove _csrf from req.body to presist caching
   if (reqBody._csrf) {
     try {
@@ -22,8 +20,6 @@ exports.post = (req, res) => {
     key = JSON.stringify(reqBody).toLowerCase();
   }
 
-  // redis.del(key);
-
   req.check('city', 'City is required.').notEmpty();
   req.check('jobTitle', 'Job title is required.').notEmpty();
 
@@ -32,6 +28,8 @@ exports.post = (req, res) => {
     res.status(400).send('errors: ' + util.inspect(errors));
     return;
   }
+  
+  // redis.del(key);
   
   /*
    * Return data from cache if exists
