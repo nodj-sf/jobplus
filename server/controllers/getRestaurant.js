@@ -30,7 +30,7 @@ exports.post = (req, res) => {
 
   let errors = req.validationErrors();
   if (errors) {
-    res.send('errors: ' + util.inspect(errors), 400);
+    res.status(400).send('errors: ' + util.inspect(errors));
     return;
   }
 
