@@ -8,6 +8,7 @@ exports.post = (req, res) => {
   let place = 'place',
       reqBody = req.body,
       coordinate = reqBody.coordinate,
+      type = reqBody.type,
       key = JSON.stringify(reqBody).toLowerCase();
 
   // remove _csrf from req.body to presist caching

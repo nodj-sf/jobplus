@@ -67,7 +67,6 @@ export const fetchBus = (lat, long) => {
     },
     _csrf: getCookie('_csrf'),
     type: 'bus_station',
-    payload: request
   });
   return {
     type: FETCH_BUS,
@@ -98,10 +97,10 @@ export const fetchGyms = (lat, long) => {
       long: long
     },
     _csrf: getCookie('_csrf'),
-    type: 'subway_station|train_station' 
+    type: 'gym' 
   });
   return {
-    type: FETCH_TRAINS,
+    type: FETCH_GYMS,
     payload: request
   };
 };
