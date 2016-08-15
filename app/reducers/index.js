@@ -4,7 +4,6 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import JobsReducer from './reducer_jobs';
 import ActiveJob from './reducer_active_job';
 import ActiveYelp from './reducer_active_yelp';
-// import ActivePlaces from './reducer_active_places';
 import ActiveTrains from './reducer_active_trains';
 import ActiveBus from './reducer_active_bus';
 import ActiveParks from './reducer_active_parks';
@@ -19,7 +18,6 @@ const rootReducer = combineReducers({
   jobs: JobsReducer,
   activeJob: ActiveJob,
   activeYelp: ActiveYelp,
-  // activePlaces: ActivePlaces,
   activeBus: ActiveBus,
   activeTrains: ActiveTrains,
   activeParks: ActiveParks,
