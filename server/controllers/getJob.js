@@ -9,7 +9,6 @@ exports.post = (req, res) => {
       jobTitle = reqBody.jobTitle,
       city = reqBody.city,
       key = JSON.stringify(reqBody).toLowerCase();
-
   // remove _csrf from req.body to presist caching
   if (reqBody._csrf) {
     try {

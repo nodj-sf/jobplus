@@ -112,6 +112,20 @@ export const selectJob = (job) => {
   };
 };
 
+export const jobInputTerm = (jobTerm) => {
+ return {
+   type: 'JOB_INPUT_TERM',
+   payload: { jobTerm }
+ };
+};
+
+export const locationInputTerm = (locationTerm) => {
+ return {
+   type: 'LOCATION_INPUT_TERM',
+   payload: { locationTerm }
+ };
+};
+
 export const toggleModal = () => {
   // console.log(`Google Maps Modal view toggled ON!`);
   return {
