@@ -613,6 +613,7 @@ i.XButton:hover {
   height: 100%;
   width: 15%;
   float: left;
+<<<<<<< HEAD
 }
 
 #restaurantContainer > div:first-child a {
@@ -621,6 +622,8 @@ i.XButton:hover {
   height: 100%;
   width: 15%;
   float: left;
+=======
+>>>>>>> 94bde0556eb8c82e4e4d2dcba7a651932b700a17
 }
 
 #restaurantContainer > div a img {
