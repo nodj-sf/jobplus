@@ -8,6 +8,7 @@ const RedisStore = require('connect-redis')(session);
 const lusca = require('lusca');
 const expressValidator = require('express-validator');
 
+
 /*
 ** Load local environment variables from .env 
 ** file where secrets and keys are configured.
@@ -53,13 +54,6 @@ app.use((req, res, next) => {
   }
 });
 
-const redisClient = require('redis').createClient;
-const redis = redisClient(6379, 'localhost');
-
-redis.on('connect', () => {
-  console.log('connected');
-});
-
 /*
 ** Route Controllers
 */
@@ -78,7 +72,7 @@ app.post('/api/v1/jobs', getJob.post);
 app.post('/api/v1/food', getRestaurant.post);
 app.post('/api/v1/places', getPlace.post);
 
-app.get('/results', function(req, res) {
+app.get('/results', function(req, res){
   res.redirect('/');
   res.end();
 });
