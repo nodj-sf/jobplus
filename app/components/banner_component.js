@@ -11,7 +11,9 @@ export default class Banner extends Component {
   render() {
     return (
       <div className='bannerCont'>
-        <h1 className='navLogoText'>NODJ</h1>
+        <a href='/'>
+          <h1 className='navLogoText'>NODJ</h1>
+        </a>
         <SearchBar className="twelve columns" /> 
       </div>
     );

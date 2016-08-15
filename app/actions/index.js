@@ -5,6 +5,7 @@ const JOB_SELECTED = 'JOB_SELECTED';
 const FETCH_YELP = 'FETCH_YELP';
 const FETCH_GPLACES = 'FETCH_GPLACES';
 
+
 const getCookie = (name) => {
   const value = '; ' + document.cookie;
   const parts = value.split('; ' + name + '=');
@@ -26,7 +27,6 @@ export const fetchJobs = (jobSearch, city) => {
     payload: request
   };
 };
-
 
 export const fetchYelp = (city, lat, long) => {
   const request = axios.post('/api/v1/food', {
@@ -57,7 +57,6 @@ export const fetchGPlaces = (lat, long) => {
   };
 };
 
-
 export const selectJob = (job) => {
   return {
     type: JOB_SELECTED,
@@ -65,6 +64,19 @@ export const selectJob = (job) => {
   };
 };
 
+export const jobInputTerm = (jobTerm) => {
+  return {
+    type: 'JOB_INPUT_TERM',
+    payload: { jobTerm }
+  };
+};
+
+export const locationInputTerm = (locationTerm) => {
+  return {
+    type: 'LOCATION_INPUT_TERM',
+    payload: { locationTerm }
+  };
+};
 
 export const toggleModal = () => {
   // console.log(`Google Maps Modal view toggled ON!`);
@@ -73,7 +85,6 @@ export const toggleModal = () => {
     payload: true
   };
 };
-
 
 export const toggleModalOff = () => {
   // console.log(`Google Maps Modal view toggled OFF!`);

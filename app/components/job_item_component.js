@@ -1,23 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+import BaseComponent from './base_component';
 
-export default class JobItem extends Component {
 
-  parseAndFormatJobTitle(job) {
-    return job
-      .split(' ')
-      .reduce((memo, index) => memo += `${index.charAt(0).toUpperCase()}${index.slice(1).toLowerCase()} `, '')
-      .trim();
-  }
-
-  parseAndFormatDaysSincePosted(days) {
-    return days
-      .match(/(\w+){1,}/gmi)
-      .map(str => `${str[0].toUpperCase()}${str.slice(1)}`)
-      .join(' ');
-  }
-
+export default class JobItem extends BaseComponent {
   render() {
     return (
       <div>
@@ -33,5 +20,3 @@ export default class JobItem extends Component {
     );
   }
 }
-
-// console.log(`Active Job: ${this.props.jobFunc(this.props.job)}`)
