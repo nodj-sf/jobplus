@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const FETCH_JOBS = 'FETCH_JOBS';
 const JOB_SELECTED = 'JOB_SELECTED';
-// const FETCH_GPLACES = 'FETCH_GPLACES'
 const FETCH_YELP = 'FETCH_YELP';
 const FETCH_TRAINS = 'FETCH_TRAINS';
 const FETCH_BUS = 'FETCH_BUS';
@@ -24,7 +23,6 @@ export const fetchJobs = (jobSearch, city) => {
     city: city,
     _csrf: getCookie('_csrf')
   });
-
   return {
     type: FETCH_JOBS,
     payload: request
@@ -46,19 +44,6 @@ export const fetchYelp = (city, lat, long) => {
     payload: request
   };
 };
-
-// export const fetchGPlaces = (lat, long) => {
-//   const request = axios.post('/api/v1/places', {
-//     coordinate: {
-//       lat: lat,
-//       long: long
-//     }
-//   });
-//   return {
-//     type: FETCH_GPLACES,
-//     payload: request
-//   };
-// };
 
 export const fetchTrains = (lat, long) => {
   const request = axios.post('/api/v1/places', {

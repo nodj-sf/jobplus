@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { selectJob, fetchYelp, /*fetchGPlaces*/ fetchTrains, fetchBus, fetchGyms, fetchParks } from '../actions/index';
+import { selectJob, fetchYelp, fetchTrains, fetchBus, fetchGyms, fetchParks } from '../actions/index';
 import { bindActionCreators } from 'redux';
 
 import Banner from './banner_component';
@@ -83,11 +83,3 @@ let mapDispatchToProps = (dispatch) =>  {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);
-
-
-
-// <div className="jobInfoBottomBlock">  
-          
-//   <RetaurantList />
-//   <PlacesList />
-// </div>
