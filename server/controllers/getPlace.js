@@ -44,7 +44,7 @@ exports.post = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
     if (result) {
-      console.log('return from redis');
+      // console.log('return from redis');
       res.send(JSON.parse(result));
       res.end();
     } else {
