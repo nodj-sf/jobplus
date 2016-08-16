@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import BaseComponent from '../components/base_component';
 
-class JobDetail extends Component {
+
+class JobDetail extends BaseComponent {
 
   render() {
     if (!this.props.job) {

@@ -9,7 +9,6 @@ exports.post = (req, res) => {
   let place = 'place',
       reqBody = req.body,
       coordinate = reqBody.coordinate,
-      type = reqBody.type,
       key = JSON.stringify(reqBody).toLowerCase();
 
   // remove _csrf from req.body to presist caching
@@ -38,13 +37,13 @@ exports.post = (req, res) => {
    * Check if redis has a sesson stored
    * return data if session exist.
   */
-  
+
   redis.get(key, (err, result) => {
 
     res.setHeader('Content-Type', 'application/json');
 
     if (result) {
-      // console.log('return from redis');
+      console.log('return from redis');
       res.send(JSON.parse(result));
       res.end();
     } else {
