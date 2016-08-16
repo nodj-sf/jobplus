@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, combineReducers, applyMiddleware } from 'redux'; 
 import { Provider } from 'react-redux';
-import { Router, Route, hashHistory, browserHistory } from 'react-router'
+import { Router, Route, hashHistory, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
 import promiseMiddleware from 'redux-promise';
 
@@ -13,7 +13,7 @@ import reducers from './reducers/index';
 
 const routerMid = routerMiddleware(browserHistory);
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, routerMid)(createStore);
-const store = createStoreWithMiddleware(reducers)
+const store = createStoreWithMiddleware(reducers);
 const history = syncHistoryWithStore(browserHistory, store);
 
 class App extends Component {

@@ -2,6 +2,7 @@
 const request = require('request');
 const Promise = require('promise');
 
+// limit=10&sort=&psf=advsrch
 /*
  * Seach Indeed API
  * @param {string} jobTitle 
