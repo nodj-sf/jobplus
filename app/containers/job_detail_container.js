@@ -16,13 +16,11 @@ class JobDetail extends BaseComponent {
     }
     
     return (
-      <div>
-        <h1>{ this.props.job.jobtitle }</h1>
-        <h2>{ this.props.job.company }</h2> 
+      <div className="job-detail">
+        <h3><a href={this.props.job.url} target="_new">{ this.props.job.jobtitle }</a></h3>
+        <h4>{ this.props.job.company + ', ' + this.props.job.formattedLocation}</h4> 
         <p>{ this.props.job.formattedRelativeTime }</p>
-        <p>{ this.props.job.formattedLocation }</p>
-        <blockquote>{ this.tagFreeSnippet(this.props.job.snippet) }</blockquote>
-        <a href={this.props.job.url}>link</a>
+        <blockquote><a href={this.props.job.url} target="_new">{ this.tagFreeSnippet(this.props.job.snippet) }</a><small>[<a href={this.props.job.url} target="_new">more</a>]</small></blockquote>
       </div>
     );
   }

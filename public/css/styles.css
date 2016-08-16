@@ -738,6 +738,14 @@ li.restaurantLI > div.nameRating > img {
   /*background: red;*/                  /* To be removed in a future commit */
 }
 
+.job-detail h3 a {
+  text-decoration: none;
+}
+
+.job-detail blockquote a {
+  text-decoration: none;
+  color: #222;
+}
 
 /*  *********************************************
     *********************************************
