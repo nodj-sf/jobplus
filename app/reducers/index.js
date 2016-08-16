@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 import JobsReducer from './reducer_jobs';
 import ActiveJob from './reducer_active_job';
@@ -12,7 +13,6 @@ import JobInputTerm from './reducer_job_search_term';
 import LocationInputTerm from './reducer_location_search_term';
 import SearchInputs from './reducer_search_inputs';
 
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 const rootReducer = combineReducers({
   jobs: JobsReducer,

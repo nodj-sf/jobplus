@@ -4,12 +4,6 @@ import { connect } from 'react-redux';
 
 class JobDetail extends Component {
 
-  tagFreeSnippet(descrip) {
-    return descrip ? 
-      descrip.replace(/<[^>]+>|\.(?=\.{3,})/gmi, '') : 
-      descrip;
-  }
-
   render() {
     if (!this.props.job) {
       return <h1>Job</h1>;
@@ -28,6 +22,8 @@ class JobDetail extends Component {
   }
 }
 
-let mapStateToProps = (state) => ({ job: state.activeJob });
+let mapStateToProps = (state) => ({ 
+  job: state.activeJob 
+});
 
 export default connect(mapStateToProps)(JobDetail);

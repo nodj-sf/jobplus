@@ -8,6 +8,7 @@ const FETCH_BUS = 'FETCH_BUS';
 const FETCH_PARKS = 'FETCH_PARKS';
 const FETCH_GYMS = 'FETCH_GYMS';
 
+
 const getCookie = (name) => {
   const value = '; ' + document.cookie;
   const parts = value.split('; ' + name + '=');

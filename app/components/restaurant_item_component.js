@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 
-class RestaurantListItem extends Component {
-
-  parsePhoneNumber(num) {
-    if (num) {
-      return num.replace(/^(\d{3})(\d{4})(\d{3})/, "+1 ($1) $2-$3");
-    }
-  }
+class RestaurantListItem extends BaseComponent {
 
   render() {
     var starRatingImage = this.props.restaurant.rating_img_url;

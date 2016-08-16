@@ -35,6 +35,8 @@ class RetaurantList extends Component {
   }
 }
 
-let mapStateToProps = (state) => ({ activeYelp: state.activeYelp });
+let mapStateToProps = (state) => ({ 
+  activeYelp: state.activeYelp 
+});
 
 export default connect(mapStateToProps)(RetaurantList);

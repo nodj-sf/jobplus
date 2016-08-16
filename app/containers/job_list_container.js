@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { selectJob, fetchYelp, fetchBus, fetchTrains, fetchParks, fetchGyms } from '../actions/index';
 import JobItem from '../components/job_item_component';
 
+
 class JobList extends Component {
   constructor(props) {
     super(props);
@@ -39,23 +40,37 @@ class JobList extends Component {
   render() {
     return (
       <div id="jobsContainer" className="jobsPaneLeft appCols">
-        <ul className="jobsList">
-          { this.renderList() }
-        </ul>
+        <b>
+          {["Results for ",
+           <i key="jobTermTitle">{this.props.jobTerm}</i>,
+           " in ",
+           <i key="locationTermTitle">{this.props.locationTerm}</i>
+          ]}
+        </b>
+        <div>
+          <ul className="jobsList">{ this.renderList() }</ul>
+        </div>
       </div>
     );
   }
 }
 
 
-let mapStateToProps = (state) => ({ jobs: state.jobs });
+let mapStateToProps = (state) => ({ 
+  jobs: state.jobs, 
+  jobTerm: state.jobInputTerm, 
+  locationTerm: state.locationInputTerm 
+});
 
-// Anything returned from this function will end up as props on Joblist container
-// We now have an action thats going to change the state of our DOM. We need to 
-// notify all containers of the action that can be triggered
 let mapDispatchToProps = (dispatch) =>  {
-  // Whenever loadJobs is called, the result should be passed to all reducers:
-  return bindActionCreators({ selectJob , fetchYelp, fetchBus, fetchTrains, fetchParks, fetchGyms }, dispatch);
+  return bindActionCreators({ 
+    selectJob, 
+    fetchYelp, 
+    fetchBus, 
+    fetchTrains, 
+    fetchParks, 
+    fetchGyms
+  }, dispatch);
 };
 
 // Promote JobList to a container:
