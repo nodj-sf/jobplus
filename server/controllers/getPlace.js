@@ -38,7 +38,7 @@ exports.post = (req, res) => {
    * Check if redis has a sesson stored
    * return data if session exist.
   */
-  
+
   redis.get(key, (err, result) => {
 
     res.setHeader('Content-Type', 'application/json');
