@@ -155,6 +155,12 @@ h4.infoWindow_Header {
   color: #14A4B5;
 }
 
+h5.infoWindow_Header {
+  margin-bottom: 0;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
 div#overlay {
   position: relative; 
   width: 100%;

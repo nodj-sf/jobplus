@@ -90,7 +90,7 @@ class GMap extends BaseComponent {
 
     return (
       <InfoWindow
-        key={`${ref}_info_window`}
+        key={`${marker.jobKey}_info_window`}
         onCloseclick={onCloseclick} >
 
           <div>
@@ -131,7 +131,7 @@ class GMap extends BaseComponent {
 
     return (
       <Marker
-        key={index}
+        key={`Marker_${marker.jobKey}`}
         ref={`marker_${index}`}
         data-jobTitle={marker.jobTitle}
         data-formattedLocation={marker.formattedLocation}
@@ -141,7 +141,7 @@ class GMap extends BaseComponent {
         icon={{
           path: MAP_PIN,
           scale: 1/5,
-          fillColor: PIN_FILL_COLOR,       // '#14A4B5',   // 'rgb(14, 119, 233)',         // #0E77E9',
+          fillColor: PIN_FILL_COLOR,
           fillOpacity: 1,
           strokeColor: '#000',
           strokeWeight: 1
@@ -156,7 +156,6 @@ class GMap extends BaseComponent {
         { marker.showInfo ? this.renderInfoWindow(marker, index, company) : null }
       </Marker>
     );
-     
   }
 
   markerCallbackHandler() {
@@ -168,29 +167,16 @@ class GMap extends BaseComponent {
 
     let markersByUniqueCompanyName = {};
     uniqueCompanyNames.forEach(companyName => {
-      // if (!markersByUniqueCompanyName.has(marker.company)) {
-      //   markersByUniqueCompanyName.set(marker.company, [marker]);
-      // } else if (markersByUniqueCompanyName.has(marker.company)) {
-      //   markersByUniqueCompanyName[marker.company].push(marker);
-      // }
       markersByUniqueCompanyName[companyName] = getMarkersForCompany(companyName);
     });
-      // console.log("Unique Markers By Company:", Object.keys(markersByUniqueCompanyName), Object.values(markersByUniqueCompanyName));
 
     return Object.values(markersByUniqueCompanyName).map((company, index) => {
       return this.addTimeDelayedMarker(company[0], index, company);
     });
-
-    // return this.props.markers.map((marker, index) => {
-    //   return this.addTimeDelayedMarker(marker, index);
-    // });
-
-
-
   }
 
   render() {
-      console.log("Active Job:", this.props.activeJob);
+      // console.log("Active Job:", this.props.activeJob);
     return (
       <GoogleMapLoader
         containerElement={ 
@@ -239,22 +225,3 @@ let mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(GMap);
-
-
-// {
-//   // Show InfoWindow only if `showInfo` key of the marker is `true`. That is, when the 
-//   // Marker pin has been clicked and 'handleMarkerClick' has been successfully fired.
-//   marker.showInfo ? this.renderInfoWindow(index, marker) : null 
-// }
-
-
-// function pinDropper() {
-//                 let markers = [];
-
-
-// const pinDropDelay = 1000,
-//                     delayPinDrop = (fn) => setTImeOut(fn, pinDropDelay); 
-// delayPinDrop(() => newMarker, pinDropDelay);
-
-// const dropPins = () => setTimeout(function() { return newMarker; }, 1000);
-// dropPins();
