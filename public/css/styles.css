@@ -149,14 +149,16 @@ hr {
 }
 
 h4.infoWindow_Header {
-  font: 600 14px/16px Raleway, "Helvetica Neue", Arial, sans-serif;
-  color: #14A4B5;
+  display: inline;
   margin-bottom: 0;
+  font: 600 14px/16px "Raleway", "Helvetica Neue", Arial, sans-serif;
+  color: #14A4B5;
 }
 
 h5.infoWindow_Header {
-  font: 600 12px/14px Raleway, "Helvetica Neue", Arial, sans-serif;
-  margin-bottom: 5px;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+  font-weight: 400;
 }
 
 div#overlay {
@@ -736,6 +738,14 @@ li.restaurantLI > div.nameRating > img {
   /*background: red;*/                  /* To be removed in a future commit */
 }
 
+.job-detail h3 a {
+  text-decoration: none;
+}
+
+.job-detail blockquote a {
+  text-decoration: none;
+  color: #222;
+}
 
 /*  *********************************************
     *********************************************
