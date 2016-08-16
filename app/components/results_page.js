@@ -57,7 +57,7 @@ export default class Results extends Component {
               <JobDetail /> 
               <Tabs onSelect={this.handleSelect} >  
                 <TabList>
-                  <Tab>Amenaties</Tab>
+                  <Tab>Ameneties</Tab>
                   <Tab>Yelp</Tab>
                 </TabList>
                 <TabPanel>

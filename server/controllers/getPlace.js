@@ -9,18 +9,19 @@ exports.post = (req, res) => {
   let place = 'place',
       reqBody = req.body,
       coordinate = reqBody.coordinate,
+      type = reqBody.type,
       key = JSON.stringify(reqBody).toLowerCase();
 
   // remove _csrf from req.body to presist caching
-  if (reqBody._csrf) {
-    try {
-      delete reqBody._csrf;
-    } catch (e) {
-      console.error('csrf does not exists.');
-    }
-    // Create key based on request body to use for caching
-    key = JSON.stringify(reqBody).toLowerCase();
-  }
+  // if (reqBody._csrf) {
+  //   try {
+  //     delete reqBody._csrf;
+  //   } catch (e) {
+  //     console.error('csrf does not exists.');
+  //   }
+  //   // Create key based on request body to use for caching
+  //   key = JSON.stringify(reqBody).toLowerCase();
+  // }
 
   // redis.del(key);
 
@@ -48,7 +49,7 @@ exports.post = (req, res) => {
     //   res.end();
     // } else {
       // console.log('api');
-      getPlace(coordinate)(res)
+      getPlace(coordinate, type)(res)
         .then((data) => {
           // console.log('data: ', data);
           // Cache data using request body as key

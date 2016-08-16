@@ -55,14 +55,21 @@ class JobList extends Component {
 }
 
 
-let mapStateToProps = (state) => ({ jobs: state.jobs });
+let mapStateToProps = (state) => ({ 
+  jobs: state.jobs, 
+  jobTerm: state.jobInputTerm, 
+  locationTerm: state.locationInputTerm 
+});
 
-// Anything returned from this function will end up as props on Joblist container
-// We now have an action thats going to change the state of our DOM. We need to 
-// notify all containers of the action that can be triggered
 let mapDispatchToProps = (dispatch) =>  {
-  // Whenever loadJobs is called, the result should be passed to all reducers:
-  return bindActionCreators({ selectJob , fetchYelp, fetchBus, fetchTrains, fetchParks, fetchGyms }, dispatch);
+  return bindActionCreators({ 
+    selectJob, 
+    fetchYelp, 
+    fetchBus, 
+    fetchTrains, 
+    fetchParks, 
+    fetchGyms
+  }, dispatch);
 };
 
 // Promote JobList to a container:
