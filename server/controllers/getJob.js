@@ -36,7 +36,7 @@ exports.post = (req, res) => {
    * Return data from cache if exists
   */
   
-  // redis.get(key, (err, result) => {
+  redis.get(key, (err, result) => {
 
     res.setHeader('Content-Type', 'application/json');
 
