@@ -4,6 +4,7 @@ const redisClient = require('redis').createClient;
 const redis = redisClient(6379, 'localhost');
 const util = require('util');
 
+
 exports.post = (req, res) => {
   let place = 'place',
       reqBody = req.body,
@@ -37,6 +38,7 @@ exports.post = (req, res) => {
    * Check if redis has a sesson stored
    * return data if session exist.
   */
+  
   redis.get(key, (err, result) => {
 
     res.setHeader('Content-Type', 'application/json');

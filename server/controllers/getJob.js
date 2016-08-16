@@ -5,6 +5,7 @@ const redis = redisClient(6379, 'localhost');
 const util = require('util');
 
 exports.post = (req, res) => {
+  // console.log("Request:", req.body);
   let reqBody = req.body,
       jobTitle = reqBody.jobTitle,
       city = reqBody.city,
