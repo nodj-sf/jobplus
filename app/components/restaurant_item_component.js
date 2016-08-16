@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 
-class RestaurantListItem extends BaseComponent {
+import BaseComponent from './base_component';
 
+
+class RestaurantListItem extends BaseComponent {
+  
   render() {
     var starRatingImage = this.props.restaurant.rating_img_url;
     return (
