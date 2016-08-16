@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 
 import { selectJob, fetchYelp, fetchBus, fetchTrains, fetchParks, fetchGyms } from '../actions/index';
 import JobItem from '../components/job_item_component';
+import BaseComponent from '../components/base_component';
 
 
-class JobList extends Component {
+class JobList extends BaseComponent {
   constructor(props) {
     super(props);
 

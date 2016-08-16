@@ -5,6 +5,11 @@ import BaseComponent from './base_component';
 
 
 export default class JobItem extends BaseComponent {
+
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div>
