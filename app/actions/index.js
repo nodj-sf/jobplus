@@ -107,6 +107,7 @@ export const fetchGyms = (lat, long) => {
 };
 
 export const selectJob = (job) => {
+  console.log("Active:", job);
   return {
     type: JOB_SELECTED,
     payload: job
