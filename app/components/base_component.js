@@ -5,10 +5,37 @@ import React, { Component } from 'react';
 // a variety of static helper class methods that may be shared by all sub-classes.
 export default class BaseComponent extends Component {
 
+  constructor(props) {
+    super(props);
+  }
+
   parseAndFormatJobTitle(job) {
+    const specialFormatTerms = {
+      '(nyc)': '(NYC)',
+      '.net': '.NET',
+      'and': '&',
+      'dba': 'DBA',
+      'dev/ops': 'Dev/Ops',
+      'ios': 'iOS',
+      'javascript': 'JavaScript',
+      'js': 'JS',
+      'nosql': 'NoSQL',
+      'nyc': 'NYC',
+      'of': 'of',
+      'php': 'PHP',
+      'with': 'w/'
+    };
+
     return job
+      // .split(/[\s|\/]/gmi)
       .split(' ')
-      .reduce((memo, index) => memo += `${index.charAt(0).toUpperCase()}${index.slice(1).toLowerCase()} `, '')
+      .reduce((memo, index) => {
+        return index.toLowerCase() in specialFormatTerms ?
+          memo += ` ${specialFormatTerms[index.toLowerCase()]} ` :
+          memo += ` ${index.charAt(0).toUpperCase()}${index.slice(1).toLowerCase()} `;
+      })
+      .replace(/\s(\/)\s/gmi, "$1")
+      // .replace(/\band\b/gmi, "&")
       .trim();
   }
 

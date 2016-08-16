@@ -6,6 +6,10 @@ import BaseComponent from '../components/base_component';
 
 class JobDetail extends BaseComponent {
 
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     if (!this.props.job) {
       return <h1>Job</h1>;

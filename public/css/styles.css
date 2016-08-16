@@ -149,14 +149,10 @@ hr {
 }
 
 h4.infoWindow_Header {
-  font: 600 14px/16px Raleway, "Helvetica Neue", Arial, sans-serif;
-  color: #14A4B5;
+  display: inline;
   margin-bottom: 0;
-}
-
-h5.infoWindow_Header {
-  font: 600 12px/14px Raleway, "Helvetica Neue", Arial, sans-serif;
-  margin-bottom: 5px;
+  font: 600 14px/16px "Raleway", "Helvetica Neue", Arial, sans-serif;
+  color: #14A4B5;
 }
 
 div#overlay {
