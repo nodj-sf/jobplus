@@ -19,4 +19,16 @@ export default class BaseComponent extends Component {
       .join(' ');
   }
 
+  parsePhoneNumber(num) {
+    if (num) {
+      return num.replace(/^(\d{3})(\d{4})(\d{3})/, "+1 ($1) $2-$3");
+    }
+  }
+
+  tagFreeSnippet(descrip) {
+    return descrip ? 
+      descrip.replace(/<[^>]+>|\.(?=\.{3,})/gmi, '') : 
+      descrip;
+  }
+  
 }

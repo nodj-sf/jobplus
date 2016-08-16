@@ -43,32 +43,30 @@ export default class Results extends Component {
       <div>
         <Banner />        
 
-
-          <div id="jobMain">
-            <div id="jobResultsPane">
-              <div>
-                <GMap />
-
-              </div>
-              <JobList />
+        <div id="jobMain">
+          <div id="jobResultsPane">
+            <div>
+              <GMap />
             </div>
-            
-            <div id="jobInfoBody">           
-              <JobDetail /> 
-              <Tabs onSelect={this.handleSelect} >  
-                <TabList>
-                  <Tab>Ameneties</Tab>
-                  <Tab>Yelp</Tab>
-                </TabList>
-                <TabPanel>
-                  <PlacesList />
-                </TabPanel>
-                <TabPanel>
-                  <RetaurantList />
-                </TabPanel>
-              </Tabs>
-            </div>
+            <JobList />
           </div>
+            
+          <div id="jobInfoBody">           
+            <JobDetail /> 
+            <Tabs onSelect={this.handleSelect} >  
+              <TabList>
+                <Tab>Ameneties</Tab>
+                <Tab>Yelp</Tab>
+              </TabList>
+              <TabPanel>
+                <PlacesList />
+              </TabPanel>
+              <TabPanel>
+                <RetaurantList />
+              </TabPanel>
+            </Tabs>
+          </div>
+        </div>
 
       </div>
     );
@@ -76,10 +74,19 @@ export default class Results extends Component {
 };
 
 
-let mapStateToProps = (state) => ({ jobs: state.jobs });
+let mapStateToProps = (state) => ({ 
+  jobs: state.jobs 
+});
 
 let mapDispatchToProps = (dispatch) =>  { 
-  return bindActionCreators({ selectJob: selectJob , fetchYelp: fetchYelp, fetchBus, fetchTrains, fetchParks, fetchGyms}, dispatch);
+  return bindActionCreators({ 
+    selectJob, 
+    fetchYelp,
+    fetchBus, 
+    fetchTrains, 
+    fetchParks, 
+    fetchGyms
+  }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);

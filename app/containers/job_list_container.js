@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { selectJob, fetchYelp, fetchBus, fetchTrains, fetchParks, fetchGyms } from '../actions/index';
 import JobItem from '../components/job_item_component';
 
+
 class JobList extends Component {
   constructor(props) {
     super(props);

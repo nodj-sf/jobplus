@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+
 class PlacesList extends Component {
+
   customList(trains, bus, parks, gyms) {
     var topResults = [trains[0], bus[0], parks[0], gyms[0]];
     return topResults;
@@ -53,13 +55,12 @@ class PlacesList extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    activeTrains: state.activeTrains,
-    activeBus: state.activeBus,
-    activeParks: state.activeParks,
-    activeGyms: state.activeGyms
-  };
-}
+
+let mapStateToProps = (state) => ({
+  activeTrains: state.activeTrains,
+  activeBus: state.activeBus,
+  activeParks: state.activeParks,
+  activeGyms: state.activeGyms
+});
 
 export default connect(mapStateToProps)(PlacesList);
