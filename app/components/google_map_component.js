@@ -170,8 +170,8 @@ class GMap extends BaseComponent {
       markersByUniqueCompanyName[companyName] = getMarkersForCompany(companyName);
     });
 
-    return Object.values(markersByUniqueCompanyName).map((company, index) => {
-      return this.addTimeDelayedMarker(company[0], index, company);
+    return this.props.markers.map((marker, index) => {
+      return this.addTimeDelayedMarker(marker, index);
     });
   }
 
