@@ -11,7 +11,8 @@ import JobDetail from '../containers/job_detail_container';
 import SearchBar from '../containers/search_bar_container';
 import Footer from './footer_component';
 import RetaurantList from '../containers/restaurant_list_container';
-import PlacesList from '../containers/places_list_container';
+import TransportationList from '../containers/transportation_list_container';
+import AmenetiesList from '../containers/ameneties_list_container';
 import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 
 
@@ -55,11 +56,15 @@ export default class Results extends Component {
             <JobDetail /> 
             <Tabs onSelect={this.handleSelect} >  
               <TabList>
+                <Tab>Transportation</Tab>
                 <Tab>Ameneties</Tab>
                 <Tab>Yelp</Tab>
               </TabList>
               <TabPanel>
-                <PlacesList />
+                <TransportationList />
+              </TabPanel>
+              <TabPanel>
+                <AmenetiesList />
               </TabPanel>
               <TabPanel>
                 <RetaurantList />
