@@ -59,7 +59,7 @@ class SearchBar extends Component {
             </div>
           </div>
 
-          <button id="jobSearchSubmitBtn" type="submit">Submit</button>
+          <button id="jobSearchSubmitBtn" type="submit">Search</button>
         </div>
       </form>
     );
