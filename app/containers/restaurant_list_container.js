@@ -6,11 +6,14 @@ import RestaurantItem from '../components/restaurant_item_component';
 
 class RetaurantList extends Component {
   renderList() {
+    let selectedJob = this.props.activeJob;
+
     return this.props.activeYelp.map((restaurant) => {
       return (
         <RestaurantItem
           key = { restaurant.id }
           restaurant = { restaurant }
+          selectedJob = { selectedJob }
         />
         );
     });
@@ -35,7 +38,8 @@ class RetaurantList extends Component {
   }
 }
 
-let mapStateToProps = (state) => ({ 
+let mapStateToProps = (state) => ({
+  activeJob: state.activeJob, 
   activeYelp: state.activeYelp 
 });
 
