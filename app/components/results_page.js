@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { selectJob, fetchYelp, fetchTrains, fetchBus, fetchGyms, fetchParks } from '../actions/index';
+import { selectJob, fetchYelp, fetchTrains, fetchBus, fetchGyms, fetchParks, scrapDetail } from '../actions/index';
 import { bindActionCreators } from 'redux';
 
 import Banner from './banner_component';
@@ -35,7 +35,7 @@ export default class Results extends Component {
     this.props.fetchBus(job.latitude, job.longitude);
     this.props.fetchParks(job.latitude, job.longitude);
     this.props.fetchGyms(job.latitude, job.longitude);
-
+    this.props.scrapDetail(job.url);
   }
 
   render() {
@@ -85,7 +85,8 @@ let mapDispatchToProps = (dispatch) =>  {
     fetchBus, 
     fetchTrains, 
     fetchParks, 
-    fetchGyms
+    fetchGyms,
+    scrapDetail
   }, dispatch);
 };
 
