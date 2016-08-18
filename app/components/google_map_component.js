@@ -92,15 +92,8 @@ class GMap extends BaseComponent {
       <InfoWindow
         key={`${marker.jobKey}_info_window`}
         onCloseclick={onCloseclick} >
-
           <div>
-            {
-              company.map((companyMarker, index) => {
-                return (
-                  <h4 className="infoWindow_Header">{this.parseAndFormatJobTitle(companyMarker.jobTitle)}</h4>
-                );
-              })
-            }
+            <h4 className="infoWindow_Header">{this.parseAndFormatJobTitle(marker.jobTitle)}</h4>
             <h5 className="infoWindow_Header">{marker.company}</h5>
             <hr />
             <p>{marker.formattedLocation}</p>
