@@ -114,7 +114,7 @@ class GMap extends BaseComponent {
           MAX_ZINDEX = 1000,
           onClick = () => this.handleMarkerClick(marker),
           MAP_PIN1 = 'M 168.13014858503527 114.76652327113317 C 189.29733269688495 66.37538239750444 169.10629117101143 -0.743769309370748 88.35629117101149 0.006230690629195124 C 7.606291171011549 0.7562306906291383 -13.333356542955187 65.32715433879548 7.575247535632002 114.10675303790794 C 24.570783547217786 153.75719661632445 32.21524550334891 164.64004753237344 47.9861005922736 196.98393269349776 Q 63.75695568119835 229.32781785462203 88.39695364891526 279.86111234908753 L 128.26355111697524 197.31381781011032 Q 152.60629117101155 150.2562306906292 168.13014858503527 114.76652327113317 Z',
-          PIN_FILL_COLOR = marker.jobKey === this.props.activeJob.jobkey ? '#14A4B5' : '#7A7A7A',
+          PIN_FILL_COLOR = marker.restaurantKey ? "red" : marker.jobKey === this.props.activeJob.jobkey ? '#14A4B5' : '#7A7A7A',
           PIN_Z_INDEX = marker.jobKey === this.props.activeJob.jobkey ? MAX_ZINDEX + 10 : MAX_ZINDEX;
 
     return (
@@ -190,6 +190,12 @@ let mapStateToProps = (state) => ({
     formattedLocation: job.formattedLocation,
     showInfo: false
   })),
+  restaurantMarkers: state.activeYelp.map(restaurant => ({
+    coords: { "lat":restaurant.coordinate.latitude, "lng": restaurant.coordinate.longitude },
+    restaurantKey: restaurant.id,
+    restaurantTitle: restaurant.name,
+    address: restaurant.display_address
+  })),
   toggleModal: state.toggleModal,
   activeJob: state.activeJob,
   activeBus: state.activeBus
@@ -203,3 +209,7 @@ let mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(GMap);
+
+
+//not sure if we need this line(originally on line 194): coords: new google.maps.LatLng(job.latitude, job.longitude)
+//we need to get the photo from yelp and add it to the state collection
