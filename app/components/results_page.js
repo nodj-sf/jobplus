@@ -21,6 +21,10 @@ export default class Results extends Component {
     super(props);
 
     this.initJob = this.initJob.bind(this);
+    // this.loading = true;
+    this.setState({
+      loading: true
+    });
   }
 
   componentDidUpdate(nextProps) {
@@ -30,13 +34,14 @@ export default class Results extends Component {
   }
 
   initJob(job) {
-    this.props.selectJob(job);
-    this.props.fetchYelp(job.city, job.latitude, job.longitude);
-    this.props.fetchTrains(job.latitude, job.longitude);
-    this.props.fetchBus(job.latitude, job.longitude);
-    this.props.fetchParks(job.latitude, job.longitude);
-    this.props.fetchGyms(job.latitude, job.longitude);
-    this.props.scrapDetail(job.url);
+    let props = this.props;
+
+    props.selectJob(job);
+    props.fetchYelp(job.city, job.latitude, job.longitude);
+    props.fetchTrains(job.latitude, job.longitude);
+    props.fetchBus(job.latitude, job.longitude);
+    props.fetchParks(job.latitude, job.longitude);
+    props.fetchGyms(job.latitude, job.longitude);
   }
 
   render() {
@@ -56,9 +61,9 @@ export default class Results extends Component {
             <JobDetail /> 
             <Tabs onSelect={this.handleSelect} >  
               <TabList>
-                <Tab>Transportation</Tab>
-                <Tab>Ameneties</Tab>
-                <Tab>Yelp</Tab>
+                <Tab><i className="fa fa-bus" aria-hidden="true"></i> Transportation</Tab>
+                <Tab><i className="fa fa-futbol-o" aria-hidden="true"></i> Ameneties</Tab>
+                <Tab><i className="fa fa-yelp" aria-hidden="true"></i> Yelp</Tab>
               </TabList>
               <TabPanel>
                 <TransportationList />
