@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import { selectJob, fetchYelp, fetchBus, fetchTrains, fetchParks, fetchGyms } from '../actions/index';
 import JobItem from '../components/job_item_component';
@@ -12,15 +13,25 @@ class JobList extends BaseComponent {
     super(props);
 
     this.jobFunc = this.jobFunc.bind(this);
+    this.getData = this.getData.bind(this);
   }
 
   jobFunc(job) {
-    this.props.selectJob(job);
-    this.props.fetchYelp(job.city, job.latitude, job.longitude);
-    this.props.fetchTrains(job.latitude, job.longitude);
-    this.props.fetchBus(job.latitude, job.longitude);
-    this.props.fetchParks(job.latitude, job.longitude);
-    this.props.fetchGyms(job.latitude, job.longitude);
+    _.debounce(this.getData, 200)(job);
+  }
+
+  getData(job) {
+    let props = this.props;
+    let lat = job.latitude;
+    let lng = job.longitude;
+    let latLng = job.latitude + ', ' + job.longitude;
+    
+    props.selectJob(job);
+    props.fetchYelp(job.city, lat, lng);
+    props.fetchTrains(lat, lng);
+    props.fetchBus(lat, lng);
+    props.fetchParks(lat, lng);
+    props.fetchGyms(lat, lng);
   }
 
   renderList() {

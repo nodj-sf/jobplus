@@ -13,7 +13,7 @@ export default class JobItem extends BaseComponent {
   render() {
     return (
       <div>
-      <li className="jobLI" onClick={() => this.props.jobFunc(this.props.job) }>
+        <li className="jobLI" onClick={() => this.props.jobFunc(this.props.job) }>
           <h2>{ this.parseAndFormatJobTitle(this.props.job.jobtitle) }</h2>
           <div className="jobLI_MetaInfo">
             <h6><b>{this.props.job.company || 'Unlisted'}</b></h6>
