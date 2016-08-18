@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import BaseComponent from './base_component';
 import GMap_Modal from './google_maps_modal_component';
 import mapStylesObject from '../constants/google_map_styles.json';
-// import FrownyFaceImg from '../../public/img/favicon.png';
 import { fetchJobs, selectJob, toggleModal, toggleModalOff } from '../actions/index';
 
 
@@ -25,11 +24,8 @@ const geolocation = (() => {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      // console.log(`Location found: ${pos.lat} ${pos.lng}`);
-      // console.log(`Google Maps LatLng: ${new google.maps.LatLng(pos.lat, pos.lng)}`);
       return new google.maps.LatLng(pos.lat, pos.lng);
     });
-    // console.log(`Your browser doesn't support geolocation.`);
     return new google.maps.LatLng(37.745951, -122.439421);
   }
 })();
@@ -85,8 +81,8 @@ class GMap extends BaseComponent {
   renderInfoWindow(marker, ref, company) {
     const onCloseclick = this.handleMarkerClose.bind(this, marker);
     const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      console.log(`Marker Keys: ${Object.getOwnPropertyNames(marker)}`);
-      console.log(`Job Name: ${marker.jobTitle}`);
+      // console.log(`Marker Keys: ${Object.getOwnPropertyNames(marker)}`);
+      // console.log(`Job Name: ${marker.jobTitle}`);
 
     return (
       <InfoWindow
@@ -151,10 +147,8 @@ class GMap extends BaseComponent {
 
   markerCallbackHandler() {
     let getMarkersForCompany = (company) => this.props.markers.filter(marker => marker.company === company);
-      console.log("Horizon, Inc.:", getMarkersForCompany("Horizon Technology Partners, Inc"));
-
     let uniqueCompanyNames = [...new Set(this.props.markers.map(marker => marker.company))];
-      console.log(`Unique Company Names: ${uniqueCompanyNames}`);
+      // console.log(`Unique Company Names: ${uniqueCompanyNames}`);
 
     let markersByUniqueCompanyName = {};
     uniqueCompanyNames.forEach(companyName => {

@@ -1,6 +1,5 @@
 
 html {
-  /* height: 2000px; */
   background-color: #F5F5F5;
 }
 
@@ -35,8 +34,6 @@ hr {
   position: relative;
   width: 100vw;
   top: 0;
-  /* bottom: 65px;  */              /* Used to prevent occlusion of body from overlap with Footer */
-  /* padding-bottom: 100px; */      /* Used to prevent occlusion of body from overlap with Footer */
 }
 
 #appContainer {
@@ -48,8 +45,6 @@ hr {
   top: 6vh;
   margin: 0;
   background: #FFF;
-  /*overflow: hidden;*/
-  /* box-sizing: border-box; */     /* Potential candidate for inclusion at later point */
 }
 
 .appCols {  }
@@ -65,7 +60,6 @@ hr {
   padding: 0;
   background: #FFF;
   overflow: hidden;
-  /*transform: translateY(-50%);*/
 }
 
 #jobResultsPane {
@@ -88,10 +82,9 @@ hr {
   width: 65%;
   height: 100%;
   min-height: 700px;
-  /* padding-left: 25px; */
   float: right;
-  /* border: 4px solid blue; */           /* To be removed in future commit */
   box-sizing: border-box;
+  overflow-y: scroll;
 }
 
 #jobsContainer {
@@ -112,8 +105,6 @@ hr {
     background: -webkit-linear-gradient(bottom, rgba(236, 236, 236, 1.0) 20%, rgba(236, 236, 236, 0.75) 35%, rgba(236, 236, 236, 0) 75%);
     background:      -o-linear-gradient(bottom, rgba(236, 236, 236, 1.0) 20%, rgba(236, 236, 236, 0.75) 35%, rgba(236, 236, 236, 0) 75%);
     background:         linear-gradient(to top, rgba(236, 236, 236, 1.0) 20%, rgba(236, 236, 236, 0.75) 35%, rgba(236, 236, 236, 0) 75%);
-    /* background: linear-gradient(to top, rgba(144, 143, 143, 0.9) 5%, rgba(65, 64, 64, 0.3) 15%, rgba(22, 20, 20, 0.01) 80%) */
-
   }
 
 #jobsContainer b > i {
