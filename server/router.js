@@ -61,6 +61,7 @@ app.use((req, res, next) => {
 const getRestaurant = require('./controllers/getRestaurant');
 const getJob = require('./controllers/getJob');
 const getPlace = require('./controllers/getPlace');
+const scrapDetail = require('./controllers/scrapDetail');
 
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -71,6 +72,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.post('/api/v1/jobs', getJob.post);
 app.post('/api/v1/food', getRestaurant.post);
 app.post('/api/v1/places', getPlace.post);
+app.post('/api/v1/scrap', scrapDetail.post);
 
 app.get('/results', function(req, res) {
   res.redirect('/');

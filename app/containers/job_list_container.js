@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { selectJob, fetchYelp, fetchBus, fetchTrains, fetchParks, fetchGyms } from '../actions/index';
+import { selectJob, fetchYelp, fetchBus, fetchTrains, fetchParks, fetchGyms, scrapDetail } from '../actions/index';
 import JobItem from '../components/job_item_component';
 import BaseComponent from '../components/base_component';
 
@@ -21,6 +21,7 @@ class JobList extends BaseComponent {
     this.props.fetchBus(job.latitude, job.longitude);
     this.props.fetchParks(job.latitude, job.longitude);
     this.props.fetchGyms(job.latitude, job.longitude);
+    this.props.scrapDetail(job.url);
   }
 
   renderList() {
@@ -70,7 +71,8 @@ let mapDispatchToProps = (dispatch) =>  {
     fetchBus, 
     fetchTrains, 
     fetchParks, 
-    fetchGyms
+    fetchGyms,
+    scrapDetail
   }, dispatch);
 };
 
