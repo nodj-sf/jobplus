@@ -1,6 +1,5 @@
 
 html {
-  /* height: 2000px; */
   background-color: #F5F5F5;
 }
 
@@ -16,12 +15,25 @@ hr {
   border-top: 1px solid #E1E1E1;
 }
 
+#bckgHero {
+  position: relative;
+  width: 100%;
+  height: 65vh;
+  top: 10vh;
+  background: #E6E6E6 url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/footer_lodyas.png");
+  animation: 100s scroll infinite linear;
+}
+
+@keyframes scroll{
+  100%{
+    background-position:0px -3000px;
+  }
+}
+
 #app {
   position: relative;
   width: 100vw;
   top: 0;
-  /* bottom: 65px;  */              /* Used to prevent occlusion of body from overlap with Footer */
-  /* padding-bottom: 100px; */      /* Used to prevent occlusion of body from overlap with Footer */
 }
 
 #appContainer {
@@ -33,8 +45,6 @@ hr {
   top: 6vh;
   margin: 0;
   background: #FFF;
-  /*overflow: hidden;*/
-  /* box-sizing: border-box; */     /* Potential candidate for inclusion at later point */
 }
 
 .appCols {  }
@@ -50,7 +60,6 @@ hr {
   padding: 0;
   background: #FFF;
   overflow: hidden;
-  /*transform: translateY(-50%);*/
 }
 
 #jobResultsPane {
@@ -73,10 +82,9 @@ hr {
   width: 65%;
   height: 100%;
   min-height: 700px;
-  /* padding-left: 25px; */
   float: right;
-  /* border: 4px solid blue; */           /* To be removed in future commit */
   box-sizing: border-box;
+  overflow-y: scroll;
 }
 
 #jobsContainer {
@@ -97,8 +105,6 @@ hr {
     background: -webkit-linear-gradient(bottom, rgba(236, 236, 236, 1.0) 20%, rgba(236, 236, 236, 0.75) 35%, rgba(236, 236, 236, 0) 75%);
     background:      -o-linear-gradient(bottom, rgba(236, 236, 236, 1.0) 20%, rgba(236, 236, 236, 0.75) 35%, rgba(236, 236, 236, 0) 75%);
     background:         linear-gradient(to top, rgba(236, 236, 236, 1.0) 20%, rgba(236, 236, 236, 0.75) 35%, rgba(236, 236, 236, 0) 75%);
-    /* background: linear-gradient(to top, rgba(144, 143, 143, 0.9) 5%, rgba(65, 64, 64, 0.3) 15%, rgba(22, 20, 20, 0.01) 80%) */
-
   }
 
 #jobsContainer b > i {
@@ -272,7 +278,7 @@ ul.jobsList > div:last-child {
 }
 
 ul.jobsList > div.noResultsShown {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 li.jobLI,
@@ -283,14 +289,15 @@ ul.jobsList li {
   max-height: 60px;
   margin-bottom: 6px;
   padding: 4px 10px 0 10px;
-  list-style-type: upper-latin;
+  list-style-type: none;
   box-sizing: border-box;
   background-color: #ECECEC;
   transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1.0);       /* box-shadow, border-left */
   overflow: hidden;
 }
 
-ul.jobsList li:hover {
+ul.jobsList li:hover,
+ul.jobsList.activeJobLI {
   background-color: #F1F1F1;
   cursor: pointer;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.3);
@@ -408,6 +415,7 @@ button.button-primary:hover {
 .container-3 input.formSearchInpt {
   width: 40%;
   height: 100%;
+  max-height: 55px;
   margin: 0;
   background: #7A7A7A;
   color: #FFF;
@@ -422,7 +430,7 @@ button.button-primary:hover {
 }
 
 .container-3 input.formSearchInpt:last-child {
-  border-left: 2.5px solid #FFF;
+  border-left: 1.5px solid #FFF;
   -webkit-border-radius: 0 5px 5px 0;
      -moz-border-radius: 0 5px 5px 0;
           border-radius: 0 5px 5px 0;
