@@ -139,25 +139,3 @@ let mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(GMap_Modal);
-
-//   { this.props.markers.map((marker, index) => {
-//     // console.log(`Marker Key ID: ${marker.jobKey}\nActive Job Key ID: ${this.props.activeJob}`);
-//     const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-//           MAX_ZINDEX = 1000,
-//           refID = `marker_${index}`,
-//           refLabel = ALPHABET[index++ % ALPHABET.length],
-//           markerShading = marker.jobKey === this.props.activeJob ? 0.99 : 0.50;
-
-//     return (
-//       <Marker
-//         key={index}
-//         ref={refID}
-//         position={marker.coords}
-//         animation={google.maps.Animation.DROP}
-//         title={marker.company}
-//         opacity={markerShading}
-//         label={{ "text": refLabel, "fontFamily": "Open Sans", "fontWeight": "600" }} >
-//       </Marker>
-//     );
-//   })
-// }
