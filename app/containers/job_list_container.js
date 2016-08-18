@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
-import { selectJob, fetchYelp, fetchBus, fetchTrains, fetchParks, fetchGyms, scrapDetail } from '../actions/index';
+import { selectJob, fetchYelp, fetchBus, fetchTrains, fetchParks, fetchGyms, scrapDetail, loading } from '../actions/index';
 import JobItem from '../components/job_item_component';
 import BaseComponent from '../components/base_component';
 
@@ -17,6 +17,9 @@ class JobList extends BaseComponent {
   }
 
   jobFunc(job) {
+    // console.log('this.props.loading b4: ', this.props.loading);
+    this.props.loading(true);
+    // console.log('this.props.loading after: ', this.props.loading);
     _.debounce(this.getData, 200)(job);
   }
 
@@ -31,6 +34,8 @@ class JobList extends BaseComponent {
     props.fetchBus(lat, lng);
     props.fetchParks(lat, lng);
     props.fetchGyms(lat, lng);
+
+    this.props.loading(false);
   }
 
   renderList() {
@@ -81,7 +86,8 @@ let mapDispatchToProps = (dispatch) =>  {
     fetchTrains, 
     fetchParks, 
     fetchGyms,
-    scrapDetail
+    scrapDetail,
+    loading
   }, dispatch);
 };
 

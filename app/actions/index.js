@@ -155,3 +155,10 @@ export const scrapDetail = (url) => {
     payload: request
   }
 }
+
+export const loading = (val) => {
+  return {
+    type: 'LOADING',
+    payload: val
+  };
+};
