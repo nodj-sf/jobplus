@@ -32,8 +32,9 @@ class JobList extends BaseComponent {
     props.fetchBus(lat, lng);
     props.fetchParks(lat, lng);
     props.fetchGyms(lat, lng);
-
-    this.props.loading(false);
+    props.scrapDetail(job.url);
+    
+    props.loading(false);
   }
 
   renderList() {
