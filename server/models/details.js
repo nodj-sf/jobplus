@@ -3,7 +3,6 @@ const Promise = require('promise');
 const cheerio = require('cheerio');
 
 let details = (url) => {
-  console.log('url: ', url);
   return function(res) {
     return new Promise(function(resolve, reject) {
       request(url, function(error, response, html) {
