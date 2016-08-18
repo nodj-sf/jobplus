@@ -38,6 +38,27 @@ export default class GMap_Modal extends Component {
     this.closeIt();
   }
 
+  renderInfoWindow(marker, ref, company) {
+    const onCloseclick = this.handleMarkerClose.bind(this, marker);
+    const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      // console.log(`Marker Keys: ${Object.getOwnPropertyNames(marker)}`);
+      // console.log(`Job Name: ${marker.jobTitle}`);
+
+    return (
+      <InfoWindow
+        key={`${marker.jobKey}_info_window`}
+        onCloseclick={onCloseclick} >
+          <div>
+            <h4 className="infoWindow_Header">{this.parseAndFormatJobTitle(marker.jobTitle)}</h4>
+            <h5 className="infoWindow_Header">{marker.company}</h5>
+            <hr />
+            <p>{marker.formattedLocation}</p>
+          </div>
+         
+      </InfoWindow>
+    );
+  }
+  
   addTimeDelayedMarker(marker, index, company) {
     const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
           MAX_ZINDEX = 1000,
