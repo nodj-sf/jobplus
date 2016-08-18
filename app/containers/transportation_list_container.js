@@ -7,9 +7,9 @@ class TransportationList extends BaseComponent {
   renderList(list, job) {
     let newList = list.slice(0, 3);
     
-    return newList.map((place) => {
+    return newList.map((place, i) => {
       return (
-        <div>
+        <div key={i}>
           <li className="placesLI" 
               key={place.place_id} >
             <p>{ place.name } <i>{ this.getDistanceFromLatLonInKm(job.latitude,job.longitude,place.geometry.location.lat, place.geometry.location.lng ) }</i></p>
