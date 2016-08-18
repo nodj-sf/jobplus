@@ -17,9 +17,7 @@ class JobList extends BaseComponent {
   }
 
   jobFunc(job) {
-    // console.log('this.props.loading b4: ', this.props.loading);
     this.props.loading(true);
-    // console.log('this.props.loading after: ', this.props.loading);
     _.debounce(this.getData, 200)(job);
   }
 
