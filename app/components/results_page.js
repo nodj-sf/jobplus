@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { selectJob, fetchYelp, fetchTrains, fetchBus, fetchGyms, fetchParks, scrapDetail } from '../actions/index';
+import { selectJob, fetchYelp, fetchTrains, fetchBus, fetchGyms, fetchParks, scrapDetail, loading } from '../actions/index';
 import { bindActionCreators } from 'redux';
 
 import Banner from './banner_component';
@@ -21,10 +21,6 @@ export default class Results extends Component {
     super(props);
 
     this.initJob = this.initJob.bind(this);
-    // this.loading = true;
-    this.setState({
-      loading: true
-    });
   }
 
   componentDidUpdate(nextProps) {
@@ -36,15 +32,18 @@ export default class Results extends Component {
   initJob(job) {
     let props = this.props;
 
+    props.loading(false);
     props.selectJob(job);
     props.fetchYelp(job.city, job.latitude, job.longitude);
     props.fetchTrains(job.latitude, job.longitude);
     props.fetchBus(job.latitude, job.longitude);
     props.fetchParks(job.latitude, job.longitude);
     props.fetchGyms(job.latitude, job.longitude);
+    props.scrapDetail(job.url);
   }
 
   render() {
+
     return (
       <div>
         <Banner />        
@@ -96,7 +95,8 @@ let mapDispatchToProps = (dispatch) =>  {
     fetchTrains, 
     fetchParks, 
     fetchGyms,
-    scrapDetail
+    scrapDetail,
+    loading
   }, dispatch);
 };
 
