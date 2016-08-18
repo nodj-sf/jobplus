@@ -1,7 +1,7 @@
 'use strict';
 const getIndeed = require('../models/jobs');
-// const redisClient = require('redis').createClient;
-// const redis = redisClient(6379, 'localhost');
+const redisClient = require('redis').createClient;
+const redis = redisClient(6379, 'localhost');
 const util = require('util');
 
 exports.post = (req, res) => {
@@ -75,4 +75,4 @@ exports.post = (req, res) => {
         });
     }
   });
-}
+};
