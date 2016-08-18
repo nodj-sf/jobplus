@@ -20,7 +20,7 @@ let details = (url) => {
               return obj.data;
             }
           });
-          json.details = summary.join(' ');
+          json.details = summary.join(' ').slice(0, 700);
           json = JSON.stringify(json);
           resolve({
             respond: res.send(JSON.parse(json)),
