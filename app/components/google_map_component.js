@@ -190,6 +190,12 @@ let mapStateToProps = (state) => ({
     formattedLocation: job.formattedLocation,
     showInfo: false
   })),
+  restaurantMarkers: state.activeYelp.map(restaurant => ({
+    coords: { "lat":restaurant.coordinate.latitude, "lng": restaurant.coordinate.longitude },
+    restaurantKey: restaurant.id,
+    restaurantTitle: restaurant.name,
+    address: restaurant.display_address
+  })),
   toggleModal: state.toggleModal,
   activeJob: state.activeJob,
   activeBus: state.activeBus
@@ -203,3 +209,7 @@ let mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(GMap);
+
+
+//not sure if we need this line(originally on line 194): coords: new google.maps.LatLng(job.latitude, job.longitude)
+//we need to get the photo from yelp and add it to the state collection
