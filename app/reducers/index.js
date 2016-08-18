@@ -12,6 +12,7 @@ import ToggleModal from './reducer_toggle_modal_on';
 import JobInputTerm from './reducer_job_search_term';
 import LocationInputTerm from './reducer_location_search_term';
 import SearchInputs from './reducer_search_inputs';
+import scrapDetails from './reducer_scrap_details';
 
 
 const rootReducer = combineReducers({
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
   routing: routerReducer,
   jobInputTerm: JobInputTerm,
   locationInputTerm: LocationInputTerm,
-  searchInputs: SearchInputs
+  searchInputs: SearchInputs,
+  scrapDetails: scrapDetails
 });
 
 export default rootReducer;
