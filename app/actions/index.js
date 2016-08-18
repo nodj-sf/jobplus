@@ -7,6 +7,7 @@ const FETCH_TRAINS = 'FETCH_TRAINS';
 const FETCH_BUS = 'FETCH_BUS';
 const FETCH_PARKS = 'FETCH_PARKS';
 const FETCH_GYMS = 'FETCH_GYMS';
+const SCRAP_DATA = 'SCRAP_DATA';
 
 
 const getCookie = (name) => {
@@ -142,3 +143,15 @@ export const toggleModalOff = () => {
     payload: false
   };
 };
+
+export const scrapDetail = (url) => {
+  const request = axios.post('/api/v1/scrap', {
+    url: url,
+    _csrf: getCookie('_csrf')
+  });
+
+  return {
+    type: SCRAP_DATA,
+    payload: request
+  }
+}
