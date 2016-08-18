@@ -20,27 +20,31 @@ class RetaurantList extends Component {
   }
 
   render() {
-    return (
-      <div id="restaurantContainer">
-        <div>
-          <a href="https://www.yelp.com" target="_blank">
-            <img src="../img/Yelp_logo-black.svg" alt="Yelp corporate logo (black glyph icon)" />
-          </a>
-          <h1>Nearby Eats</h1>
+    return ((this.props.loading)
+      ? <div id="placesContainer">
+          <i className="fa fa-cog fa-spin fa-5x fa-fw"></i> Loading...
         </div>
-        <div className="overlay">
-          <ul className="restaurantList">
-            { this.renderList() }
-          </ul>
+      : <div id="restaurantContainer">
+          <div>
+            <a href="https://www.yelp.com" target="_blank">
+              <img src="../img/Yelp_logo-black.svg" alt="Yelp corporate logo (black glyph icon)" />
+            </a>
+            <h1>Nearby Eats</h1>
+          </div>
+          <div className="overlay">
+            <ul className="restaurantList">
+              { this.renderList() }
+            </ul>
+          </div>
         </div>
-      </div>
     ); 
   }
 }
 
 let mapStateToProps = (state) => ({
   activeJob: state.activeJob, 
-  activeYelp: state.activeYelp 
+  activeYelp: state.activeYelp,
+  loading: state.loading
 });
 
 export default connect(mapStateToProps)(RetaurantList);

@@ -115,17 +115,17 @@ export const selectJob = (job) => {
 };
 
 export const jobInputTerm = (jobTerm) => {
- return {
-   type: 'JOB_INPUT_TERM',
-   payload: { jobTerm }
- };
+  return {
+    type: 'JOB_INPUT_TERM',
+    payload: { jobTerm }
+  };
 };
 
 export const locationInputTerm = (locationTerm) => {
- return {
-   type: 'LOCATION_INPUT_TERM',
-   payload: { locationTerm }
- };
+  return {
+    type: 'LOCATION_INPUT_TERM',
+    payload: { locationTerm }
+  };
 };
 
 export const toggleModal = () => {
@@ -155,3 +155,10 @@ export const scrapDetail = (url) => {
     payload: request
   }
 }
+
+export const loading = (val) => {
+  return {
+    type: 'LOADING',
+    payload: val
+  };
+};
