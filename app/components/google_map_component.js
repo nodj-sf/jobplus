@@ -109,7 +109,7 @@ class GMap extends BaseComponent {
     return this.props.toggleModalOff();
   }
 
-  addTimeDelayedMarker(marker, index, company) {
+  addTimeDelayedMarker(marker, index) {
     const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
           MAX_ZINDEX = 1000,
           onClick = () => this.handleMarkerClick(marker),
@@ -117,6 +117,7 @@ class GMap extends BaseComponent {
           PIN_FILL_COLOR = marker.jobKey === this.props.activeJob.jobkey ? '#14A4B5' : '#7A7A7A',
           PIN_Z_INDEX = marker.jobKey === this.props.activeJob.jobkey ? MAX_ZINDEX + 10 : MAX_ZINDEX;
 
+        console.log("Markers:", this.props.markers);
     return (
       <Marker
         key={`Marker_${marker.jobKey}`}
@@ -146,8 +147,8 @@ class GMap extends BaseComponent {
   }
 
   markerCallbackHandler() {
-    return this.props.markers.map((marker, index, company) => {
-      return this.addTimeDelayedMarker(marker, index, company);
+    return this.props.markers.map((marker, index) => {
+      return this.addTimeDelayedMarker(marker, index);
     });
   }
 
