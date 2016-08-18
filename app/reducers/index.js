@@ -13,6 +13,7 @@ import JobInputTerm from './reducer_job_search_term';
 import LocationInputTerm from './reducer_location_search_term';
 import SearchInputs from './reducer_search_inputs';
 import scrapDetails from './reducer_scrap_details';
+import loading from './reducer_toggle_loading';
 
 
 const rootReducer = combineReducers({
@@ -28,7 +29,8 @@ const rootReducer = combineReducers({
   jobInputTerm: JobInputTerm,
   locationInputTerm: LocationInputTerm,
   searchInputs: SearchInputs,
-  scrapDetails: scrapDetails
+  scrapDetails: scrapDetails,
+  loading: loading
 });
 
 export default rootReducer;
