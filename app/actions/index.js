@@ -7,6 +7,7 @@ const FETCH_TRAINS = 'FETCH_TRAINS';
 const FETCH_BUS = 'FETCH_BUS';
 const FETCH_PARKS = 'FETCH_PARKS';
 const FETCH_GYMS = 'FETCH_GYMS';
+const SCRAP_DATA = 'SCRAP_DATA';
 
 
 const getCookie = (name) => {
@@ -114,17 +115,17 @@ export const selectJob = (job) => {
 };
 
 export const jobInputTerm = (jobTerm) => {
- return {
-   type: 'JOB_INPUT_TERM',
-   payload: { jobTerm }
- };
+  return {
+    type: 'JOB_INPUT_TERM',
+    payload: { jobTerm }
+  };
 };
 
 export const locationInputTerm = (locationTerm) => {
- return {
-   type: 'LOCATION_INPUT_TERM',
-   payload: { locationTerm }
- };
+  return {
+    type: 'LOCATION_INPUT_TERM',
+    payload: { locationTerm }
+  };
 };
 
 export const toggleModal = () => {
@@ -140,5 +141,24 @@ export const toggleModalOff = () => {
   return {
     type: 'TOGGLE_MODAL_OFF',
     payload: false
+  };
+};
+
+export const scrapDetail = (url) => {
+  const request = axios.post('/api/v1/scrap', {
+    url: url,
+    _csrf: getCookie('_csrf')
+  });
+
+  return {
+    type: SCRAP_DATA,
+    payload: request
+  }
+}
+
+export const loading = (val) => {
+  return {
+    type: 'LOADING',
+    payload: val
   };
 };

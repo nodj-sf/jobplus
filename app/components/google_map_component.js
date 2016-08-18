@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import BaseComponent from './base_component';
 import GMap_Modal from './google_maps_modal_component';
 import mapStylesObject from '../constants/google_map_styles.json';
-// import FrownyFaceImg from '../../public/img/favicon.png';
 import { fetchJobs, selectJob, toggleModal, toggleModalOff } from '../actions/index';
 
 
@@ -25,11 +24,8 @@ const geolocation = (() => {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      // console.log(`Location found: ${pos.lat} ${pos.lng}`);
-      // console.log(`Google Maps LatLng: ${new google.maps.LatLng(pos.lat, pos.lng)}`);
       return new google.maps.LatLng(pos.lat, pos.lng);
     });
-    // console.log(`Your browser doesn't support geolocation.`);
     return new google.maps.LatLng(37.745951, -122.439421);
   }
 })();
@@ -85,25 +81,15 @@ class GMap extends BaseComponent {
   renderInfoWindow(marker, ref, company) {
     const onCloseclick = this.handleMarkerClose.bind(this, marker);
     const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      console.log(`Marker Keys: ${Object.getOwnPropertyNames(marker)}`);
-      console.log(`Job Name: ${marker.jobTitle}`);
+      // console.log(`Marker Keys: ${Object.getOwnPropertyNames(marker)}`);
+      // console.log(`Job Name: ${marker.jobTitle}`);
 
     return (
       <InfoWindow
         key={`${marker.jobKey}_info_window`}
         onCloseclick={onCloseclick} >
-
           <div>
-            {
-              company.map((companyMarker, index) => {
-                return (
-                  <div>
-                    <h4 className="infoWindow_Header">{`${ALPHABET[this.props.markers.indexOf(companyMarker)]}.\t`}</h4>
-                    <h4 className="infoWindow_Header">{this.parseAndFormatJobTitle(companyMarker.jobTitle)}</h4>
-                  </div>
-                );
-              })
-            }
+            <h4 className="infoWindow_Header">{this.parseAndFormatJobTitle(marker.jobTitle)}</h4>
             <h5 className="infoWindow_Header">{marker.company}</h5>
             <hr />
             <p>{marker.formattedLocation}</p>
@@ -127,7 +113,9 @@ class GMap extends BaseComponent {
           MAX_ZINDEX = 1000,
           onClick = () => this.handleMarkerClick(marker),
           MAP_PIN = 'M0-165c-27.618 0-50 21.966-50 49.054C-50-88.849 0 0 0 0s50-88.849 50-115.946C50-143.034 27.605-165 0-165z',
-          PIN_FILL_COLOR = marker.jobKey === this.props.activeJob.jobkey ? '#14A4B5' : '#7A7A7A';
+          MAP_PIN1 = 'M 168.13014858503527 114.76652327113317 C 189.29733269688495 66.37538239750444 169.10629117101143 -0.743769309370748 88.35629117101149 0.006230690629195124 C 7.606291171011549 0.7562306906291383 -13.333356542955187 65.32715433879548 7.575247535632002 114.10675303790794 C 24.570783547217786 153.75719661632445 32.21524550334891 164.64004753237344 47.9861005922736 196.98393269349776 Q 63.75695568119835 229.32781785462203 88.39695364891526 279.86111234908753 L 128.26355111697524 197.31381781011032 Q 152.60629117101155 150.2562306906292 168.13014858503527 114.76652327113317 Z',
+          PIN_FILL_COLOR = marker.jobKey === this.props.activeJob.jobkey ? '#14A4B5' : '#7A7A7A',
+          PIN_Z_INDEX = marker.jobKey === this.props.activeJob.jobkey ? MAX_ZINDEX + 10 : MAX_ZINDEX;
 
     return (
       <Marker
@@ -139,17 +127,16 @@ class GMap extends BaseComponent {
         // animation={google.maps.Animation.DROP}
         title={marker.company}
         icon={{
-          path: MAP_PIN,
-          scale: 1/5,
+          path: MAP_PIN1,
+          scale: 1/6,
+          offset: '-75%',
           fillColor: PIN_FILL_COLOR,
           fillOpacity: 1,
           strokeColor: '#000',
-          strokeWeight: 1
+          strokeWeight: 0.50
         }}
-        // icon={`data:image/svg+xml,<svg%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%20width%3D"38"%20height%3D"38"%20viewBox%3D"0%200%2038%2038"><path%20fill%3D"%23808080"%20stroke%3D"%23ccc"%20stroke-width%3D".5"%20d%3D"M34.305%2016.234c0%208.83-15.148%2019.158-15.148%2019.158S3.507%2025.065%203.507%2016.1c0-8.505%206.894-14.304%2015.4-14.304%208.504%200%2015.398%205.933%2015.398%2014.438z"%2F><text%20transform%3D"translate%2819%2018.5%29"%20fill%3D"%23fff"%20style%3D"font-family%3A%20Arial%2C%20sans-serif%3Bfont-weight%3Abold%3Btext-align%3Acenter%3B"%20font-size%3D"12"%20text-anchor%3D"middle"`}
         opacity={0.90}
-        zIndex={MAX_ZINDEX}
-        label={{ "text": ALPHABET[index++ % index]}}
+        zIndex={PIN_Z_INDEX}
         showInfo={false}
         onClick={onClick} >
 
@@ -160,8 +147,6 @@ class GMap extends BaseComponent {
 
   markerCallbackHandler() {
     let getMarkersForCompany = (company) => this.props.markers.filter(marker => marker.company === company);
-      // console.log("Horizon, Inc.:", getMarkersForCompany("Horizon Technology Partners, Inc"));
-
     let uniqueCompanyNames = [...new Set(this.props.markers.map(marker => marker.company))];
       // console.log(`Unique Company Names: ${uniqueCompanyNames}`);
 
@@ -170,8 +155,8 @@ class GMap extends BaseComponent {
       markersByUniqueCompanyName[companyName] = getMarkersForCompany(companyName);
     });
 
-    return this.props.markers.map((marker, index) => {
-      return this.addTimeDelayedMarker(marker, index);
+    return this.props.markers.map((marker, index, company) => {
+      return this.addTimeDelayedMarker(marker, index, company);
     });
   }
 

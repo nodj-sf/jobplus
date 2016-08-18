@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { selectJob, fetchYelp, fetchTrains, fetchBus, fetchGyms, fetchParks } from '../actions/index';
+import { selectJob, fetchYelp, fetchTrains, fetchBus, fetchGyms, fetchParks, scrapDetail, loading } from '../actions/index';
 import { bindActionCreators } from 'redux';
 
 import Banner from './banner_component';
@@ -30,16 +30,20 @@ export default class Results extends Component {
   }
 
   initJob(job) {
-    this.props.selectJob(job);
-    this.props.fetchYelp(job.city, job.latitude, job.longitude);
-    this.props.fetchTrains(job.latitude, job.longitude);
-    this.props.fetchBus(job.latitude, job.longitude);
-    this.props.fetchParks(job.latitude, job.longitude);
-    this.props.fetchGyms(job.latitude, job.longitude);
+    let props = this.props;
 
+    props.loading(false);
+    props.selectJob(job);
+    props.fetchYelp(job.city, job.latitude, job.longitude);
+    props.fetchTrains(job.latitude, job.longitude);
+    props.fetchBus(job.latitude, job.longitude);
+    props.fetchParks(job.latitude, job.longitude);
+    props.fetchGyms(job.latitude, job.longitude);
+    props.scrapDetail(job.url);
   }
 
   render() {
+
     return (
       <div>
         <Banner />        
@@ -56,9 +60,9 @@ export default class Results extends Component {
             <JobDetail /> 
             <Tabs onSelect={this.handleSelect} >  
               <TabList>
-                <Tab>Transportation</Tab>
-                <Tab>Ameneties</Tab>
-                <Tab>Yelp</Tab>
+                <Tab><i className="fa fa-bus" aria-hidden="true"></i> Transportation</Tab>
+                <Tab><i className="fa fa-futbol-o" aria-hidden="true"></i> Ameneties</Tab>
+                <Tab><i className="fa fa-yelp" aria-hidden="true"></i> Yelp</Tab>
               </TabList>
               <TabPanel>
                 <TransportationList />
@@ -90,7 +94,9 @@ let mapDispatchToProps = (dispatch) =>  {
     fetchBus, 
     fetchTrains, 
     fetchParks, 
-    fetchGyms
+    fetchGyms,
+    scrapDetail,
+    loading
   }, dispatch);
 };
 
