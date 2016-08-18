@@ -128,7 +128,7 @@ class GMap extends BaseComponent {
         title={marker.company}
         icon={{
           path: MAP_PIN1,
-          scale: 1/6,
+          scale: 1/8,
           offset: '-75%',
           fillColor: PIN_FILL_COLOR,
           fillOpacity: 1,
