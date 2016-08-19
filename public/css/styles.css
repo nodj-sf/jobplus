@@ -297,6 +297,7 @@ ul.jobsList li {
 }
 
 ul.jobsList li:hover,
+li.active.jobLI,
 ul.jobsList.activeJobLI {
   background-color: #F1F1F1;
   cursor: pointer;
