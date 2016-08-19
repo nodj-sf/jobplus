@@ -1,29 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-// import { selectJob } from '../actions/index';
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-
 
 import BaseComponent from './base_component';
 
-
 export default class JobItem extends BaseComponent {
-
   constructor(props) {
     super(props);
-    //this.setActive = this.setActive.bind(this);
   }
-
-  // setActive(job) {
-  //   console.log('job: ', job);
-  //   console.log('this.props.selectJob: ', this.props.selectJob);
-  //   if (job === this.props.selectJob) {
-  //     return 'active jobLI';
-  //   } else {
-  //     return 'jobLI';
-  //   }
-  // } 
 
   jobListItemClickHandler() {
     this.props.jobFunc(this.props.job);
@@ -46,12 +29,3 @@ export default class JobItem extends BaseComponent {
     );
   }
 }
-
-// let mapDispatchToProps = (dispatch) =>  {
-//   return bindActionCreators({ 
-//     selectJob
-//   }, dispatch);
-// };
-
-// Promote JobList to a container:
-// export default connect(mapDispatchToProps)(JobItem);

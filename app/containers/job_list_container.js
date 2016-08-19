@@ -18,8 +18,6 @@ class JobList extends BaseComponent {
   }
 
   setActive(job) {
-    // console.log('job: ', job);
-    console.log('this.props.activeJob: ', this.props.activeJob);
     if (job === this.props.activeJob) {
       return 'active jobLI';
     } else {
