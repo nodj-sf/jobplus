@@ -54,13 +54,3 @@ let mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(TransportationList);
-
-// photo
-// https://maps.googleapis.com/maps/api/place/photo?maxwidth=50&photoreference=CoQBcwAAAOsUa8IdbCrpnECXNLhtQY-dbWiWTtLqjYOoLO6elxocU5sUFwVqJcA4DrWLPPBcPMTS3ULRJQdpowbvahypxY14kXOJW12NgjNi5qJcxOHg-y9piGv-WrOYDCKrlJMlBfKemXho-TLGsZU1go_Q_cLnfvdxhPAhagvn3HIEhAd6EhAOJNdCdSkGWi9-rnykLxQyGhSD0o2chO_CTvIz5cJ78aRRIkPMIg&key=AIzaSyCbO9G9Z4TzOZlXfPFiV7ZAThWm6RQClqo
-// place link
-// https://maps.googleapis.com/maps/api/place/details?reference=CmRYAAAAciqGsTRX1mXRvuXSH2ErwW-jCINE1aLiwP64MCWDN5vkXvXoQGPKldMfmdGyqWSpm7BEYCgDm-iv7Kc2PF7QA7brMAwBbAcqMr5i1f4PwTpaovIZjysCEZTry8Ez30wpEhCNCXpynextCld2EBsDkRKsGhSLayuRyFsex6JA6NPh9dyupoTH3g&sensor=true&key=AIzaSyCbO9G9Z4TzOZlXfPFiV7ZAThWm6RQClqo
-
-// http://maps.google.com/?q=37.7850153,-122.4023464
-// https://maps.googleapis.com/maps/api/staticmap?center=37.7850153,-122.4023464&size=400x400&zoom=14&key=AIzaSyCbO9G9Z4TzOZlXfPFiV7ZAThWm6RQClqo
-// https://maps.googleapis.com/maps/api/staticmap?center=Berkeley,CA&zoom=14&size=400x400&key=AIzaSyCbO9G9Z4TzOZlXfPFiV7ZAThWm6RQClqo
-
