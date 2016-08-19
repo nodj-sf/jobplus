@@ -12,7 +12,7 @@ export default class Banner extends Component {
     return (
       <div className='bannerCont'>
         <a href='/'>
-          <h1 className='navLogoText'>NODJ</h1>
+          <h1 className='navLogoText'>Job+</h1>
         </a>
         <SearchBar className="twelve columns" /> 
       </div>

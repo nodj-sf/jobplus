@@ -48,9 +48,10 @@ class JobList extends BaseComponent {
   }
 
   renderList() {
+    let jobList = '';
 
     if (this.props.jobs.length > 0) {
-      return this.props.jobs.map((job) => {
+      jobList = this.props.jobs.map((job) => {
         return (
           <JobItem
             key={job.jobkey}
@@ -60,20 +61,19 @@ class JobList extends BaseComponent {
         );
       });
     } else {
-
       if (this.init > 0) {
-        return <div className="noResultsShown">
+        jobList = <div className="noResultsShown">
           <h4 className="noResultsShown">No results now</h4>
-        </div>
+        </div>;
       } else {
         this.init++;
-        return <div id="placesContainer">
+        jobList = <div id="placesContainer">
           <i className="fa fa-cog fa-spin fa-5x fa-fw"></i> Loading...
         </div>;
       }
-        
     }
 
+    return jobList;
   }
 
   render() {
