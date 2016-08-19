@@ -30,10 +30,12 @@ class TransportationList extends BaseComponent {
           <i className="fa fa-cog fa-spin fa-5x fa-fw"></i> Loading...
         </div>
       : <div id="placesContainer">
-         <h5>Train Stop</h5> 
-         <ul className='trainList'>{trainsList.length && this.renderList(trainsList,job)}</ul> 
-         <h5>Bus Stop</h5> 
-         <ul className='busList'>{busList.length && this.renderList(busList,job)}</ul>
+         <h5>Train Stops</h5> 
+         <ul className='trainList'>{(trainsList.length && this.renderList(trainsList,job)) 
+          || 'There are no results for this area...'}</ul> 
+         <h5>Bus Stops</h5> 
+         <ul className='busList'>{(busList.length && this.renderList(busList,job)) 
+          || 'There are no results for this area...'}</ul>
         </div>);
   }
 }

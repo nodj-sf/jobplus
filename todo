@@ -1,8 +1,9 @@
 To Do:
   - Logo.
   - Choose colors for app.
-  - Scrolling for tabs.
-  - On modal view show current job
+  x - Scrolling for tabs.
+  - On modal view show current job.
+  - On initial load show wheel for transporation.
 
 
 Oliver:
@@ -10,14 +11,14 @@ Oliver:
  - Vendor prefixes.
 
 Damon:
- - Cards for yelp.
+ x - Cards for yelp.
 
 Justin: 
- - Flash on initial search.
+ x - Flash on initial search.
  - Blocks for distance.
 
 Nick:
- - Clean up speach bullets.
- - Clean up slides.
  - Refine google places search.
- - Condition for no value.
+ x - Condition for no value.
+
+
