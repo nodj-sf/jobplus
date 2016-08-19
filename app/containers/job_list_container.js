@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
-import { selectJob, fetchYelp, fetchBus, fetchTrains, fetchParks, fetchGyms, scrapDetail, loading } from '../actions/index';
+import { selectJob, fetchYelp, fetchBus, fetchTrains, fetchParks, fetchGyms, scrapDetail, loading, activeJob } from '../actions/index';
 import JobItem from '../components/job_item_component';
 import BaseComponent from '../components/base_component';
 
@@ -14,7 +14,16 @@ class JobList extends BaseComponent {
 
     this.jobFunc = this.jobFunc.bind(this);
     this.getData = this.getData.bind(this);
+    this.setActive = this.setActive.bind(this);
   }
+
+  setActive(job) {
+    if (job === this.props.activeJob) {
+      return 'active jobLI';
+    } else {
+      return 'jobLI';
+    }
+  } 
 
   jobFunc(job) {
     this.props.loading(true);
@@ -46,6 +55,7 @@ class JobList extends BaseComponent {
         return (
           <JobItem
             key={job.jobkey}
+            setActive={this.setActive}
             jobFunc={this.jobFunc}
             job={job} />
         );
@@ -70,11 +80,11 @@ class JobList extends BaseComponent {
   }
 }
 
-
 let mapStateToProps = (state) => ({ 
   jobs: state.jobs, 
   jobTerm: state.jobInputTerm, 
-  locationTerm: state.locationInputTerm 
+  locationTerm: state.locationInputTerm,
+  activeJob: state.activeJob
 });
 
 let mapDispatchToProps = (dispatch) =>  {
