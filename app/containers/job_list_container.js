@@ -27,7 +27,6 @@ class JobList extends BaseComponent {
 
   jobFunc(job) {
     this.props.loading(true);
-    console.log('this', this);
     _.debounce(this.getData, 200)(job);
   }
 
