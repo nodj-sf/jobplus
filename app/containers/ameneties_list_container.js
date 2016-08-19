@@ -36,9 +36,11 @@ class AmenetiesList extends BaseComponent {
         </div>
       : <div id="placesContainer">
          <h5>Parks</h5> 
-         <ul className='trainList'>{parksList.length && this.renderList(parksList, job)}</ul> 
+         <ul className='trainList'>{(parksList.length && this.renderList(parksList, job)) 
+          || 'There are no results for this area'}</ul> 
          <h5>Gyms & Fitness</h5> 
-         <ul className='busList'>{gymsList.length && this.renderList(gymsList, job)}</ul>
+         <ul className='busList'>{gymsList.length && this.renderList(gymsList, job) 
+          || 'There are no results for this area' }</ul>
         </div>
     ); 
   }
