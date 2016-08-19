@@ -1,8 +1,22 @@
-For Google Places / Yelp
-1. Narrow Search Result for Google Places:
-    - Subway subway_station
-    - Train train_station
-    - Bus bus_station
-    - Parking parking
+To Do:
+  - Logo.
+  - Choose colors for app.
+  - Scrolling for tabs.
 
-    - transit_station
+
+Oliver:
+ - Gliph icons for map.
+ - Vendor prefixes.
+
+Damon:
+ - Cards for yelp.
+
+Justin: 
+ - Flash on initial search.
+ - Blocks for distance.
+
+Nick:
+ - Clean up speach bullets.
+ - Clean up slides.
+ - Refine google places search.
+ - Condition for no value.
