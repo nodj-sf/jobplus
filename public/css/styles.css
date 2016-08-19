@@ -675,10 +675,7 @@ p {
   height: 265px;
   width: 265px;
   display: inline-block;  
-  margin-right: 5px;
-  margin-top: 5px;
-  margin-left: 5px;
-  margin-bottom: 5px;
+  margin: 5px;
 }
 
 li.restaurantLI > a {
