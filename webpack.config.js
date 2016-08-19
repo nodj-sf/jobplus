@@ -20,6 +20,9 @@ module.exports = {
     }, { 
       test: /\.json$/, 
       loader: 'json'
+    }, {
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      loader: 'file'
     }]
   },
   devServer: {
