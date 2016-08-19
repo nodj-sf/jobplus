@@ -141,7 +141,7 @@ class GMap extends BaseComponent {
         showInfo={false}
         onClick={onClick} >
 
-        { marker.showInfo ? this.renderInfoWindow(marker, index, company) : null }
+        { marker.showInfo ? this.renderInfoWindow(marker, index) : null }
       </Marker>
     );
   }
