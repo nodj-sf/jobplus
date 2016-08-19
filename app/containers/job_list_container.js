@@ -15,6 +15,7 @@ class JobList extends BaseComponent {
     this.jobFunc = this.jobFunc.bind(this);
     this.getData = this.getData.bind(this);
     this.setActive = this.setActive.bind(this);
+    this.init = 0;
   }
 
   setActive(job) {
@@ -47,11 +48,10 @@ class JobList extends BaseComponent {
   }
 
   renderList() {
-    return !this.props.jobs || !this.props.jobs.length
-      ? <div className="noResultsShown">
-          <h4 className="noResultsShown">No results now</h4>
-        </div>
-      : this.props.jobs.map((job) => {
+    let jobList = '';
+
+    if (this.props.jobs.length > 0) {
+      jobList = this.props.jobs.map((job) => {
         return (
           <JobItem
             key={job.jobkey}
@@ -59,7 +59,21 @@ class JobList extends BaseComponent {
             jobFunc={this.jobFunc}
             job={job} />
         );
-    });
+      });
+    } else {
+      if (this.init > 0) {
+        jobList = <div className="noResultsShown">
+          <h4 className="noResultsShown">No results now</h4>
+        </div>;
+      } else {
+        this.init++;
+        jobList = <div id="placesContainer">
+          <i className="fa fa-cog fa-spin fa-5x fa-fw"></i> Loading...
+        </div>;
+      }
+    }
+
+    return jobList;
   }
 
   render() {
