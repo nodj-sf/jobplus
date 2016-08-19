@@ -109,7 +109,7 @@ class GMap extends BaseComponent {
     return this.props.toggleModalOff();
   }
 
-  addTimeDelayedMarker(marker, index, company) {
+  addTimeDelayedMarker(marker, index) {
     const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
           MAX_ZINDEX = 1000,
           onClick = () => this.handleMarkerClick(marker),
@@ -140,14 +140,55 @@ class GMap extends BaseComponent {
         showInfo={false}
         onClick={onClick} >
 
-        { marker.showInfo ? this.renderInfoWindow(marker, index, company) : null }
+        { marker.showInfo ? this.renderInfoWindow(marker, index) : null }
+      </Marker>
+    );
+  }
+
+  addTimeDelayedMarker2(marker, index) {
+    const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+          MAX_ZINDEX = 1000,
+          onClick = () => this.handleMarkerClick(marker),
+          MAP_PIN1 = 'M 168.13014858503527 114.76652327113317 C 189.29733269688495 66.37538239750444 169.10629117101143 -0.743769309370748 88.35629117101149 0.006230690629195124 C 7.606291171011549 0.7562306906291383 -13.333356542955187 65.32715433879548 7.575247535632002 114.10675303790794 C 24.570783547217786 153.75719661632445 32.21524550334891 164.64004753237344 47.9861005922736 196.98393269349776 Q 63.75695568119835 229.32781785462203 88.39695364891526 279.86111234908753 L 128.26355111697524 197.31381781011032 Q 152.60629117101155 150.2562306906292 168.13014858503527 114.76652327113317 Z',
+          PIN_FILL_COLOR = '#F00',
+          PIN_Z_INDEX = MAX_ZINDEX;
+
+    return (
+      <Marker
+        key={`Marker_${marker.restaurantKey}`}
+        ref={`marker_${index}`}
+        data-jobTitle={marker.restaurantTitle}
+        // data-formattedLocation={marker.formattedLocation}
+        position={ new google.maps.LatLng(marker.coords) }
+        // animation={google.maps.Animation.DROP}
+        title={marker.company}
+        icon={{
+          path: MAP_PIN1,
+          scale: 1/12,
+          fillColor: PIN_FILL_COLOR,
+          fillOpacity: 1,
+          strokeColor: '#000',
+          strokeWeight: 0.50
+        }}
+        opacity={0.90}
+        zIndex={PIN_Z_INDEX}
+        showInfo={false}
+        onClick={onClick} >
+
+        { marker.showInfo ? this.renderInfoWindow(marker, index) : null }
       </Marker>
     );
   }
 
   markerCallbackHandler() {
-    return this.props.markers.map((marker, index, company) => {
-      return this.addTimeDelayedMarker(marker, index, company);
+    return this.props.markers.map((marker, index) => {
+      return this.addTimeDelayedMarker(marker, index);
+    });
+  }
+
+  restaurantMarkerCallbackHandler() {
+    return this.props.restaurantMarkers.map((marker, index) => {
+      return this.addTimeDelayedMarker2(marker, index);
     });
   }
 
@@ -171,6 +212,7 @@ class GMap extends BaseComponent {
             ref="map" >
 
             { this.markerCallbackHandler() }
+            { this.restaurantMarkerCallbackHandler() }
 
             <GMap_Modal center={this.centerMap()} modalEnable={this.modalYes} modalDisable={this.modalNo} />
           </GoogleMap>
@@ -182,13 +224,18 @@ class GMap extends BaseComponent {
 
 let mapStateToProps = (state) => ({
   markers: state.jobs.map(job => ({ 
-    // coords: new google.maps.LatLng(job.latitude, job.longitude),
     coords: { "lat": job.latitude, "lng": job.longitude },
     jobKey: job.jobkey,
     jobTitle: job.jobtitle,
     company: job.company, 
     formattedLocation: job.formattedLocation,
     showInfo: false
+  })),
+  restaurantMarkers: state.activeYelp.map(restaurant => ({
+    coords: { "lat":restaurant.coordinate.latitude, "lng": restaurant.coordinate.longitude },
+    restaurantKey: restaurant.id,
+    restaurantTitle: restaurant.name,
+    address: restaurant.display_address
   })),
   toggleModal: state.toggleModal,
   activeJob: state.activeJob,
@@ -203,3 +250,7 @@ let mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(GMap);
+
+
+//not sure if we need this line(originally on line 194): coords: new google.maps.LatLng(job.latitude, job.longitude)
+//we need to get the photo from yelp and add it to the state collection
