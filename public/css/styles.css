@@ -15,6 +15,10 @@ hr {
   border-top: 1px solid #E1E1E1;
 }
 
+a:hover {
+  color: #000;
+}
+
 #bckgHero {
   position: relative;
   width: 100%;
@@ -636,7 +640,7 @@ a {
   text-decoration: none;
 }
 
-#restaurantContainer > div a img {
+/*#restaurantContainer > div a img {
   position: absolute;
   display: none;
   height: 85%;
@@ -646,7 +650,7 @@ a {
   padding: 0;
   transform: translateX(-50%);
   box-sizing: border-box;
-}
+}*/
 
 #restaurantContainer > div h1 {
   position: relative;
@@ -665,7 +669,14 @@ p {
   margin-top: 33.784;
 }
 
-
+img.yelpPhoto {
+  position: absolute;
+  width: 95%;
+  max-height: 175px;
+  left: 50%;
+  top: 2.5%;
+  transform: translateX(-50%);
+}
 
 #restaurantContainer div.overlay {
   height: 90%;
