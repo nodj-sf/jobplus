@@ -117,7 +117,6 @@ class GMap extends BaseComponent {
           PIN_FILL_COLOR = marker.jobKey === this.props.activeJob.jobkey ? '#14A4B5' : '#7A7A7A',
           PIN_Z_INDEX = marker.jobKey === this.props.activeJob.jobkey ? MAX_ZINDEX + 10 : MAX_ZINDEX;
 
-        console.log("Restaurant Markers:", this.props.restaurantMarkers);
     return (
       <Marker
         key={`Marker_${marker.jobKey}`}
@@ -154,7 +153,6 @@ class GMap extends BaseComponent {
           PIN_FILL_COLOR = '#F00',
           PIN_Z_INDEX = MAX_ZINDEX;
 
-        console.log("Restaurant Markers:", this.props.restaurantMarkers);
     return (
       <Marker
         key={`Marker_${marker.restaurantKey}`}
