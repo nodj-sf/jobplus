@@ -105,7 +105,7 @@ export default class GMap_Modal extends Component {
           PIN_FILL_COLOR = '#F00';
           // PIN_Z_INDEX = MAX_ZINDEX;
 
-        console.log("Restaurant Markers:", this.props.restaurantMarkers);
+
     return (
       <Marker
         key={`Marker_${marker.restaurantKey}`}
@@ -138,7 +138,6 @@ export default class GMap_Modal extends Component {
           PIN_FILL_COLOR = '#00F';
           // PIN_Z_INDEX = MAX_ZINDEX;
 
-        console.log("Restaurant Markers:", this.props.restaurantMarkers);
     return (
       <Marker
         key={`Marker_${marker.busKey}`}
@@ -192,7 +191,6 @@ export default class GMap_Modal extends Component {
   }
 
   render() {
-    console.log("BUS:", this.props.busMarkers);
     return (
       <Modal
         isOpen={this.props.toggleModal}
