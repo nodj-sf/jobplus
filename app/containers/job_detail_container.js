@@ -19,10 +19,10 @@ class JobDetail extends BaseComponent {
     }
     return (
       <div className="job-detail">
-        <h3><a href={this.props.job.url} target="_new">{ this.props.job.jobtitle }</a></h3>
+        <h3><a href={this.props.job.url} target="_blank">{ this.props.job.jobtitle }</a></h3>
         <h4>{ this.props.job.company + ', ' + this.props.job.formattedLocation}</h4> 
         <p>{ this.props.job.formattedRelativeTime }</p>
-        <blockquote><a href={this.props.job.url} target="_new">{ details }</a><small>[<a href={this.props.job.url} target="_new">more</a>]</small></blockquote>
+        <blockquote><a href={this.props.job.url} target="_blank">{ details }</a><small>[<a href={this.props.job.url} target="_new">more</a>]</small></blockquote>
       </div>
     );
   }
