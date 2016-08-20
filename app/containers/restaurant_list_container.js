@@ -31,7 +31,7 @@ class RetaurantList extends Component {
       : <div id="restaurantContainer">
           <div>
             <a href="https://www.yelp.com" target="_blank">
-              <img src="../img/Yelp_logo-black.svg" alt="Yelp corporate logo (black glyph icon)" />
+              <i className="fa fa-yelp fa-3x" aria-hidden="true" alt="Yelp corporate logo (black glyph icon)"></i>
             </a>
             <h1>Nearby Eats</h1>
           </div>
