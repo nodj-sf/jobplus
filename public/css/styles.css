@@ -752,6 +752,34 @@ li.restaurantLI > a {
   margin-top: 1em;
 }
 
+/* Fix chrome yellow autofill */
+input:-webkit-autofill {
+  -webkit-text-fill-color: #FFF !important;
+  -webkit-box-shadow: 0 0 0px 1000px #7A7A7A inset;
+}
+
+/* Mimic hover state for non obvious links */
+.link-state:hover {
+  border-bottom: 1px solid #1ba6b7;
+}
+
+.job-detail h3 a {
+  text-decoration: none;
+}
+
+.job-detail blockquote a {
+  text-decoration: none;
+  color: #222;
+}
+
+.fa-yelp {
+  color: #af0606;
+}
+
+.fa-bus {
+  color: #00f;
+}
+
 /*  *********************************************
     *********************************************
     ********************************************* */  
