@@ -409,7 +409,7 @@ button.button-primary:hover {
   color: #14A4B5;
   /* box-shadow: inset 0 -5px 8px 1px rgba(255, 255, 255, 0.55); */
 }
-  
+
 #searchInputsBoundary {
   position: relative;
   display: flex;
@@ -437,17 +437,6 @@ button.button-primary:hover {
      -moz-border-radius: 5px 0 0 5px;
           border-radius: 5px 0 0 5px;
   transition: all 0.25s ease-in;
-}
-
-/* Fix chrome yellow autofill */
-input:-webkit-autofill {
-  -webkit-text-fill-color: #FFF !important;
-  -webkit-box-shadow: 0 0 0px 1000px #7A7A7A inset;
-}
-
-/* Mimic hover state for non obvious links */
-.link-state:hover {
-  border-bottom: 1px solid #1ba6b7;
 }
 
 .container-3 input.formSearchInpt:last-child {
@@ -755,12 +744,12 @@ li.restaurantLI > a {
   color: #222;
 }
 
-.fa-yelp {
-  color: #af0606;
+.yelp-rating, .card-body {
+  margin-left: 14px;
 }
 
-.fa-bus {
-  color: #00f;
+.nameRating h5 {
+  margin-top: 1em;
 }
 
 /*  *********************************************
