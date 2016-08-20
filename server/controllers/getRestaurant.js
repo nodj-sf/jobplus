@@ -12,7 +12,10 @@ exports.post = (req, res) => {
       coordinate = reqBody.coordinate,
       key = JSON.stringify(reqBody).toLowerCase();
       
-  // remove _csrf from req.body to presist caching
+  // remove _csrf from req.body to presist caching.
+  // Because we are using reqBody as a key name we must remove the _csrf because everytime 
+  // a client sends a request to the backend a new _csrf is append to the request therefore the accessing of the redis 
+  // data base would be invalid
   if (reqBody._csrf) {
     try {
       delete reqBody._csrf;

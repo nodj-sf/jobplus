@@ -15,6 +15,10 @@ hr {
   border-top: 1px solid #E1E1E1;
 }
 
+a:hover {
+  color: #000;
+}
+
 #bckgHero {
   position: relative;
   width: 100%;
@@ -24,8 +28,14 @@ hr {
   animation: 100s scroll infinite linear;
 }
 
-@keyframes scroll{
-  100%{
+@-webkit-keyframes MyAnimation {
+  100% {
+    background-position:0px -3000px;
+  }
+}
+
+@keyframes scroll {
+  100% {
     background-position:0px -3000px;
   }
 }
@@ -422,7 +432,6 @@ button.button-primary:hover {
   color: #FFF;
   font-size: 18px;
   letter-spacing: 0.35rem;
-  text-indent: 50px;
   border: none;
   -webkit-border-radius: 5px 0 0 5px;
      -moz-border-radius: 5px 0 0 5px;
@@ -431,7 +440,7 @@ button.button-primary:hover {
 }
 
 .container-3 input.formSearchInpt:last-child {
-  border-left: 1.5px solid #FFF;
+  border-left: 0.5px solid #FFF;
   -webkit-border-radius: 0 5px 5px 0;
      -moz-border-radius: 0 5px 5px 0;
           border-radius: 0 5px 5px 0;
@@ -631,7 +640,7 @@ a {
   text-decoration: none;
 }
 
-#restaurantContainer > div a img {
+/*#restaurantContainer > div a img {
   position: absolute;
   display: none;
   height: 85%;
@@ -641,7 +650,7 @@ a {
   padding: 0;
   transform: translateX(-50%);
   box-sizing: border-box;
-}
+}*/
 
 #restaurantContainer > div h1 {
   position: relative;
@@ -660,7 +669,14 @@ p {
   margin-top: 33.784;
 }
 
-
+img.yelpPhoto {
+  position: relative;
+  width: 90%;
+  max-height: 175px;
+  left: 50%;
+  top: 2.5%;
+  transform: translateX(-50%);
+}
 
 #restaurantContainer div.overlay {
   height: 90%;
@@ -669,19 +685,20 @@ p {
   background-color: #E9EBEE;
 }
 
-
 .restaurantLI {
-  background-color: white;
+  position: relative;
+  display: inline-block;  
   height: 265px;
   width: 265px;
-  display: inline-block;  
   margin: 5px;
+  background-color: white;
 }
 
 li.restaurantLI > a {
+  display: block;
   height: 100%;
   width: 100%;
-  display: block;
+  overflow-y: hidden;
 }
 
 
@@ -689,7 +706,11 @@ li.restaurantLI > a {
   padding-left: 20px;
 }
 
-
+/* h5, */
+.nameRating > h5 {
+  text-align: center;
+  font-weight: 500;
+}
 
 .nameRating > a {
   word-break: break-word;

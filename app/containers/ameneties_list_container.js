@@ -7,11 +7,22 @@ class AmenetiesList extends BaseComponent {
   renderList(list, job) {
     let newList = list.slice(0, 3);
     return newList.map((place, i) => {
+      let img = '';
+
+      if (place.photos) {
+        img = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=50&photoreference=' + place.photos[0].photo_reference + '&key=AIzaSyCbO9G9Z4TzOZlXfPFiV7ZAThWm6RQClqo';
+      }
+      
       return (
         <div key = {i}>
-          <li className="placesLI" 
-              key={place.place_id} >
-            <p>{place.name } <i>{ this.getDistanceFromLatLonInKm(job.latitude,job.longitude,place.geometry.location.lat, place.geometry.location.lng ) }</i></p>
+          <li className="placesLI" key={place.place_id} >
+            <p>
+              <a href={`http://maps.google.com/?q=${place.geometry.location.lat},${place.geometry.location.lng}`} title={ place.name } target="_blank">
+                { (place.photos) ? <img src={ img } alt={ place.name } /> : 'no image' } <br /> 
+                { place.rating } <br />
+                <i>{ this.getDistanceFromLatLonInKm(job.latitude,job.longitude,place.geometry.location.lat, place.geometry.location.lng ) }</i>
+              </a>
+            </p>
           </li>
         </div>
       );    
@@ -23,15 +34,18 @@ class AmenetiesList extends BaseComponent {
     let parksList = props.activeParks;
     let gymsList = props.activeGyms;
     let job = props.activeJob;
+    
     return ((this.props.loading)
       ? <div id="placesContainer">
           <i className="fa fa-cog fa-spin fa-5x fa-fw"></i> Loading...
         </div>
       : <div id="placesContainer">
          <h5>Parks</h5> 
-         <ul className='trainList'>{parksList.length && this.renderList(parksList, job)}</ul> 
+         <ul className='trainList'>{(parksList.length && this.renderList(parksList, job)) 
+          || 'There are no results for this area'}</ul> 
          <h5>Gyms & Fitness</h5> 
-         <ul className='busList'>{gymsList.length && this.renderList(gymsList, job)}</ul>
+         <ul className='busList'>{gymsList.length && this.renderList(gymsList, job) 
+          || 'There are no results for this area' }</ul>
         </div>
     ); 
   }
