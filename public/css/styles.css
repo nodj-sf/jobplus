@@ -696,7 +696,7 @@ img.yelpPhoto {
   background-color: #E9EBEE;
 }
 
-.restaurantLI {
+.restaurantLI, .transportationCard, .amenetiesCard {
   position: relative;
   display: inline-block;  
   /*height: 265px;*/
@@ -712,6 +712,15 @@ li.restaurantLI > a {
   width: 100%;
   overflow-y: hidden;
 }
+
+.trainList, .busList {
+  background-color: #E9EBEE;
+}
+
+.transportationContent, .amenetiesContent {
+  padding-left: 20px;
+}
+
 
 
 #jobInfoBody > div:first-child {

@@ -2,6 +2,7 @@ const scrapDetail = require('../models/details');
 const redisClient = require('redis').createClient;
 const redis = redisClient(6379, 'localhost');
 
+
 exports.post = (req, res) => {
   var reqBody = req.body,
       url = reqBody.url,
@@ -38,4 +39,4 @@ exports.post = (req, res) => {
         });
     }
   });
-}
+};
