@@ -15,6 +15,17 @@ hr {
   border-top: 1px solid #E1E1E1;
 }
 
+.intro-logo {
+  color: #fff;
+  font-family: 'Oswald', sans-serif;
+  position: relative;
+  top: 34%;
+  left: 50%;
+}
+.intro-logo span {
+  color: #7a7a7a;
+}
+
 a:hover {
   color: #000;
 }
@@ -216,7 +227,7 @@ div.box {
 .navLogoText {
   position: absolute;
   left: 50px;
-  font: 40px/55px "Raleway", "Open Sans", Helvetica, Arial, sans-serif;
+  font: 40px/6vh "Raleway", "Open Sans", Helvetica, Arial, sans-serif;
   color: #000;
 }
 
