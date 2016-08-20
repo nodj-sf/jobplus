@@ -6,8 +6,8 @@ class LandingPage extends Component {
  render() {
    return (
     <div>
-      <h1>Job+</h1>
       <div id="bckgHero">
+        <h1 className="intro-logo">Job<span>+</span></h1>
         <SearchBar />
       </div>
     </div>
