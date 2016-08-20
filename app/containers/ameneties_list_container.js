@@ -43,7 +43,7 @@ class AmenetiesList extends BaseComponent {
           <i className="fa fa-cog fa-spin fa-5x fa-fw"></i> Loading...
         </div>
       : <div id="placesContainer">
-         <h5>Parks</h5> 
+         <h5><i className="fa fa-futbol-o" aria-hidden="true"></i> Parks</h5> 
          <ul className='trainList'>{(parksList.length && this.renderList(parksList, job)) 
           || 'There are no results for this area'}</ul> 
          <h5>Gyms & Fitness</h5> 
