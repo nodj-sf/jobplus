@@ -30,10 +30,11 @@ class RetaurantList extends Component {
         </div>
       : <div id="restaurantContainer">
           <div>
-            <a href="https://www.yelp.com" target="_blank">
-              <i className="fa fa-yelp fa-3x" aria-hidden="true" alt="Yelp corporate logo (black glyph icon)"></i>
-            </a>
-            <h1>Nearby Eats</h1>
+            <h5>
+              <a href="https://www.yelp.com" target="_blank">
+                <i className="fa fa-yelp" aria-hidden="true" alt="Yelp corporate logo (black glyph icon)"></i>
+              </a> Nearby Eats
+            </h5>
           </div>
           <div className="overlay">
             <ul className="restaurantList container">

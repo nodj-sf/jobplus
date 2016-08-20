@@ -182,6 +182,11 @@ h4.infoWindow_Header {
   color: #14A4B5;
 }
 
+#placesContainer h5, #restaurantContainer h5 {
+  text-align: center;
+  width: 100%
+}
+
 h5.infoWindow_Header {
   margin-bottom: 0;
   font-size: 1.5rem;
@@ -638,13 +643,13 @@ i.XButton:hover {
   z-index: 1;
 }
 
-#restaurantContainer > div:first-child a {
+/*#restaurantContainer > div:first-child a {
   position: relative;
   display: inline-block;
   height: 100%;
   width: 5%;
   float: left;
-}
+}*/
 
 a {
   color: black;

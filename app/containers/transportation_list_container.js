@@ -44,7 +44,7 @@ class TransportationList extends BaseComponent {
           <i className="fa fa-cog fa-spin fa-5x fa-fw"></i> Loading...
         </div>
       : <div id="placesContainer">
-         <h5>Train Stops</h5> 
+         <h5><i className="fa fa-bus" aria-hidden="true"></i> Train Stops</h5> 
          <ul className='trainList'>{(trainsList.length && this.renderList(trainsList,job)) 
           || 'There are no results for this area...'}</ul> 
          <h5>Bus Stops</h5> 
