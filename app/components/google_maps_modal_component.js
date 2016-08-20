@@ -6,24 +6,33 @@ import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import BaseComponent from './base_component';
 import customStyles from '../constants/google_map_modal_styles';
 import mapStylesObject from '../constants/google_map_styles.json';
 import { fetchJobs, selectJob, toggleModalOn } from '../actions/index';
 import fontawesome from 'fontawesome-markers';
 
 
-export default class GMap_Modal extends Component {
+export default class GMap_Modal extends BaseComponent {
   constructor(props) {
     super(props);
   }
 
+
+  centerMap() {
+    // console.log(`First map marker coordinates: ${this.props.markers[0].coords}`);
+    return this.props.markers.length ? this.props.markers[0].coords : this.state.defaultCenter;
+  }
+
   // Toggle to 'true' to show InfoWindow and re-renders component
   handleMarkerClick(targetMarker) {
-    this.setState({
+    this.closeAllMarkers();
+    this.setState({ 
       markers: this.props.markers.map(marker => {
-        return marker === targetMarker ? { marker, showInfo: true } : marker;
-      })
+        return marker === targetMarker ? Object.assign(marker, {showInfo: true}) : marker;
+      }) 
     });
+    this.centerMap();
   }
 
   handleMarkerClose(targetMarker) {
@@ -34,14 +43,22 @@ export default class GMap_Modal extends Component {
     });
   }
 
+  closeAllMarkers() {
+    this.setState({
+      markers: this.props.markers.map(marker => Object.assign( marker, {showInfo: false}))
+    });
+  }
+
   // Modal controls:
   handleClickOutside(evt) {
     this.closeIt();
   }
 
   renderInfoWindow(marker, ref, company) {
-    const onCloseclick = this.handleMarkerClose.bind(this, marker),
-          ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const onCloseclick = this.handleMarkerClose.bind(this, marker);
+    const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      console.log(`Marker Keys: ${Object.getOwnPropertyNames(marker)}`);
+      console.log(`Job Name: ${marker.jobTitle}`);
 
     return (
       <InfoWindow
@@ -58,7 +75,7 @@ export default class GMap_Modal extends Component {
     );
   }
   
-  addTimeDelayedMarker(marker, index, company) {
+  addTimeDelayedMarker(marker, index) {
     const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
           MAX_ZINDEX = 1000,
           onClick = () => this.handleMarkerClick(marker),
@@ -90,7 +107,7 @@ export default class GMap_Modal extends Component {
         showInfo={false}
         onClick={onClick} >
 
-        { marker.showInfo ? this.renderInfoWindow(marker, index, company) : null }
+        { marker.showInfo ? this.renderInfoWindow(marker, index) : null }
       </Marker>
     );
   }
@@ -123,7 +140,6 @@ export default class GMap_Modal extends Component {
         showInfo={false}
         onClick={onClick} >
 
-        { marker.showInfo ? this.renderInfoWindow(marker, index) : null }
       </Marker>
     );
   }
@@ -155,23 +171,22 @@ export default class GMap_Modal extends Component {
         showInfo={false}
         onClick={onClick} >
 
-        { marker.showInfo ? this.renderInfoWindow(marker, index) : null }
       </Marker>
     );
   }
 
   markerCallbackHandler() {
-    let getMarkersForCompany = (company) => this.props.markers.filter(marker => marker.company === company);
-    let uniqueCompanyNames = [...new Set(this.props.markers.map(marker => marker.company))];
-      // console.log(`Unique Company Names: ${uniqueCompanyNames}`);
+    // let getMarkersForCompany = (company) => this.props.markers.filter(marker => marker.company === company);
+    // let uniqueCompanyNames = [...new Set(this.props.markers.map(marker => marker.company))];
+    //   // console.log(`Unique Company Names: ${uniqueCompanyNames}`);
 
-    let markersByUniqueCompanyName = {};
-    uniqueCompanyNames.forEach(companyName => {
-      markersByUniqueCompanyName[companyName] = getMarkersForCompany(companyName);
-    });
+    // let markersByUniqueCompanyName = {};
+    // uniqueCompanyNames.forEach(companyName => {
+    //   markersByUniqueCompanyName[companyName] = getMarkersForCompany(companyName);
+    // });
 
-    return this.props.markers.map((marker, index, company) => {
-      return this.addTimeDelayedMarker(marker, index, company);
+    return this.props.markers.map((marker, index) => {
+      return this.addTimeDelayedMarker(marker, index);
     });
   }
 
