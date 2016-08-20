@@ -6,16 +6,20 @@ import RestaurantItem from '../components/restaurant_item_component';
 
 class RetaurantList extends Component {
   renderList() {
-    let selectedJob = this.props.activeJob;
+    let selectedJob = this.props.activeJob,
+        chunkedArr = [];
+
+    // for (let i = 0; i < this.props.activeYelp.length; i += 3) {
+    //   chunkedArr.push([activeYelp[i], activeYelp[i + 1], activeYelp[i + 2]]);
+    // }    
 
     return this.props.activeYelp.map((restaurant) => {
       return (
         <RestaurantItem
           key = { restaurant.id }
           restaurant = { restaurant }
-          selectedJob = { selectedJob }
-        />
-        );
+          selectedJob = { selectedJob } />
+      );
     });
   }
 
@@ -32,7 +36,7 @@ class RetaurantList extends Component {
             <h1>Nearby Eats</h1>
           </div>
           <div className="overlay">
-            <ul className="restaurantList">
+            <ul className="restaurantList container">
               { this.renderList() }
             </ul>
           </div>
@@ -48,3 +52,5 @@ let mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(RetaurantList);
+
+// <ul className="restaurantList"> </ul>
