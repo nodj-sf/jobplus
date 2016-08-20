@@ -631,7 +631,7 @@ i.XButton:hover {
   position: relative;
   display: inline-block;
   height: 100%;
-  width: 15%;
+  width: 5%;
   float: left;
 }
 
@@ -656,7 +656,7 @@ a {
   position: relative;
   display: inline-block;
   height: 100%;
-  width: 75%;
+  width: 100%;
   margin: 0 1.5rem 0 0;
   float: right;
   font: normal 3.75rem/5rem "Raleway", Arial, sans-serif;
@@ -688,9 +688,10 @@ img.yelpPhoto {
 .restaurantLI {
   position: relative;
   display: inline-block;  
-  height: 265px;
+  /*height: 265px;*/
   width: 265px;
   margin: 5px;
+  padding-bottom: 1em;
   background-color: white;
 }
 
@@ -741,6 +742,42 @@ li.restaurantLI > a {
 .job-detail blockquote a {
   text-decoration: none;
   color: #222;
+}
+
+.yelp-rating, .card-body {
+  margin-left: 14px;
+}
+
+.nameRating h5 {
+  margin-top: 1em;
+}
+
+/* Fix chrome yellow autofill */
+input:-webkit-autofill {
+  -webkit-text-fill-color: #FFF !important;
+  -webkit-box-shadow: 0 0 0px 1000px #7A7A7A inset;
+}
+
+/* Mimic hover state for non obvious links */
+.link-state:hover {
+  border-bottom: 1px solid #1ba6b7;
+}
+
+.job-detail h3 a {
+  text-decoration: none;
+}
+
+.job-detail blockquote a {
+  text-decoration: none;
+  color: #222;
+}
+
+.fa-yelp {
+  color: #af0606;
+}
+
+.fa-bus {
+  color: #00f;
 }
 
 /*  *********************************************
