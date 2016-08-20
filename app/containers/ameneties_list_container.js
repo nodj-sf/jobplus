@@ -14,20 +14,20 @@ class AmenetiesList extends BaseComponent {
       }
       
       return (
-        <div className="amenetiesCard" key = {i}>
-          <div className="amenetiesContent">
-            <li className="placesLI" key={place.place_id} >
-              <p>
-                <p>{ place.name }</p>
-                <a href={`http://maps.google.com/?q=${place.geometry.location.lat},${place.geometry.location.lng}`} title={ place.name } target="_blank">
-                  { (place.photos) ? <img src={ img } alt={ place.name } /> : 'no image' } <br /> 
-                  { place.rating } <br />
-                  <i>{ this.getDistanceFromLatLonInKm(job.latitude,job.longitude,place.geometry.location.lat, place.geometry.location.lng ) }</i>
-                </a>
-              </p>
-            </li>
-          </div> 
-        </div>
+        <li className="restaurantLI" key = {i} >
+          <a target="_blank" href={ `http://maps.google.com/?q=${place.geometry.location.lat},${place.geometry.location.lng}` } >
+            <div className="verticallyCenter">
+              <div className="nameRating">
+                <h5>{ place.name }</h5>
+                { (place.photos) ? <img className="yelpPhoto" src={ img } alt={ place.name } /> : 'no image' }
+              </div>
+              <div className="yelpDescription card-body">
+                <p className="numRestaurantReviews">{ place.rating }</p>
+                <i>{ this.getDistanceFromLatLonInKm(job.latitude,job.longitude,place.geometry.location.lat, place.geometry.location.lng ) }</i>
+              </div>
+            </div>
+          </a>
+        </li>
       );    
     });
   }
