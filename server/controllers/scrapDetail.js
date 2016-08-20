@@ -16,7 +16,7 @@ exports.post = (req, res) => {
     key = JSON.stringify(reqBody).toLowerCase();
   }
 
-  redis.del(key);
+  // redis.del(key);
   redis.get(key, function(err, result) {
 
     res.setHeader('Content-Type', 'application/json');
