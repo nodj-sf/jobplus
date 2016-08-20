@@ -15,7 +15,7 @@ class RestaurantListItem extends BaseComponent {
         <a target="_blank" href={ restaurant.url }>
           <div className="verticallyCenter">
             <div className="nameRating">
-              <p>{ restaurant.name }</p>
+              <h5>{ restaurant.name }</h5>
               <img className="yelpPhoto" src={restaurant.photo.replace(/ms(\.jpg)$/i, "l$1")} />
               <img src={ restaurant.rating_img_url } /> 
               <p className="numRestaurantReviews">{`${this.props.restaurant.review_count} Reviews`}</p>

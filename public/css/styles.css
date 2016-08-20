@@ -695,14 +695,21 @@ img.yelpPhoto {
 }
 
 li.restaurantLI > a {
+  display: block;
   height: 100%;
   width: 100%;
-  display: block;
+  overflow-y: hidden;
 }
 
 
 #jobInfoBody > div:first-child {
   padding-left: 20px;
+}
+
+/* h5, */
+.nameRating > h5 {
+  text-align: center;
+  font-weight: 500;
 }
 
 .nameRating > a {
