@@ -651,18 +651,6 @@ a {
   text-decoration: none;
 }
 
-/*#restaurantContainer > div a img {
-  position: absolute;
-  display: none;
-  height: 85%;
-  left: 50%;
-  top: 7.5%;
-  margin: 0;
-  padding: 0;
-  transform: translateX(-50%);
-  box-sizing: border-box;
-}*/
-
 #restaurantContainer > div h1 {
   position: relative;
   display: inline-block;
@@ -713,6 +701,9 @@ li.restaurantLI > a {
   overflow-y: hidden;
 }
 
+.trainList, .busList {
+  background-color: #E9EBEE;
+}
 
 #jobInfoBody > div:first-child {
   padding-left: 20px;

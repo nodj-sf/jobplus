@@ -11,22 +11,24 @@ class TransportationList extends BaseComponent {
       let img = '';
 
       if (place.photos) {
-        img = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=50&photoreference=' + place.photos[0].photo_reference + '&key=AIzaSyCbO9G9Z4TzOZlXfPFiV7ZAThWm6RQClqo';
+        img = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=250&photoreference=' + place.photos[0].photo_reference + '&key=AIzaSyCbO9G9Z4TzOZlXfPFiV7ZAThWm6RQClqo';
       }
       
       return (
-        <div key={i}>
-          <li className="placesLI" key={place.place_id} >
-            <p>
-              <a href={`http://maps.google.com/?q=${place.geometry.location.lat},${place.geometry.location.lng}`} title={ place.name } target="_blank">
-                { (place.photos) ? <img src={ img } alt={ place.name } /> : 'no image' } <br /> 
-                { place.name } <br />
-                { place.rating } <br />
+        <li className="restaurantLI" key={place.place_id} >
+          <a target="_blank" href={ `http://maps.google.com/?q=${place.geometry.location.lat},${place.geometry.location.lng}` } >
+            <div className="verticallyCenter">
+              <div className="nameRating">
+                <h5>{ place.name }</h5>
+                { (place.photos) ? <img className="yelpPhoto" src={ img } alt={ place.name } /> : 'no image' }
+              </div>
+              <div className="yelpDescription card-body">
+                <p className="numRestaurantReviews">{ place.rating }</p>
                 <i>{ this.getDistanceFromLatLonInKm(job.latitude,job.longitude,place.geometry.location.lat, place.geometry.location.lng ) }</i>
-              </a>
-            </p>
-          </li>
-        </div>
+              </div>
+            </div>
+          </a>
+        </li>
       );    
     });
   }
