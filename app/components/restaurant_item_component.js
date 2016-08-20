@@ -11,7 +11,7 @@ class RestaurantListItem extends BaseComponent {
     let job = this.props.selectedJob;
     
     return (
-      <li className="restaurantLI" >
+      <li className="restaurantLI one-third" >
         <a target="_blank" href={ restaurant.url }>
           <div className="verticallyCenter">
             <div className="nameRating">

@@ -670,8 +670,8 @@ p {
 }
 
 img.yelpPhoto {
-  position: absolute;
-  width: 95%;
+  position: relative;
+  width: 90%;
   max-height: 175px;
   left: 50%;
   top: 2.5%;
@@ -685,13 +685,13 @@ img.yelpPhoto {
   background-color: #E9EBEE;
 }
 
-
 .restaurantLI {
-  background-color: white;
+  position: relative;
+  display: inline-block;  
   height: 265px;
   width: 265px;
-  display: inline-block;  
   margin: 5px;
+  background-color: white;
 }
 
 li.restaurantLI > a {
@@ -704,8 +704,6 @@ li.restaurantLI > a {
 #jobInfoBody > div:first-child {
   padding-left: 20px;
 }
-
-
 
 .nameRating > a {
   word-break: break-word;
