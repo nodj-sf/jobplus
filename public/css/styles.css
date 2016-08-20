@@ -216,7 +216,7 @@ div.box {
 .navLogoText {
   position: absolute;
   left: 50px;
-  font: 40px/55px "Raleway", "Open Sans", Helvetica, Arial, sans-serif;
+  font: 40px/6vh "Raleway", "Open Sans", Helvetica, Arial, sans-serif;
   color: #000;
 }
 
