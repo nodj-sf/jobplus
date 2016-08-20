@@ -699,9 +699,10 @@ img.yelpPhoto {
 .restaurantLI {
   position: relative;
   display: inline-block;  
-  height: 265px;
+  /*height: 265px;*/
   width: 265px;
   margin: 5px;
+  padding-bottom: 1em;
   background-color: white;
 }
 
