@@ -182,6 +182,14 @@ h4.infoWindow_Header {
   color: #14A4B5;
 }
 
+#placesContainer h5, 
+#restaurantContainer h5 {
+  text-align: center;
+  width: 100%
+}
+
+/*#placesContainer > ul*/
+
 h5.infoWindow_Header {
   margin-bottom: 0;
   font-size: 1.5rem;
@@ -395,6 +403,26 @@ button.button-primary:focus {
 button.button-primary:hover {
   color: #771DE5;
   background-color: #A7A5A5;
+}
+
+.container {
+  margin: 0;
+  width: 100%;
+  left: 50%;
+  position: relative;
+  display: block;
+  max-width: 2000px;
+  transform: translateX(-50%);
+}
+
+/* .restaurantList.container */
+.trainList.container,
+.busList.container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .container-3 {
@@ -638,13 +666,13 @@ i.XButton:hover {
   z-index: 1;
 }
 
-#restaurantContainer > div:first-child a {
+/*#restaurantContainer > div:first-child a {
   position: relative;
   display: inline-block;
   height: 100%;
   width: 5%;
   float: left;
-}
+}*/
 
 a {
   color: black;
@@ -698,9 +726,11 @@ img.yelpPhoto {
 
 .restaurantLI, .transportationCard, .amenetiesCard {
   position: relative;
-  display: inline-block;  
-  /*height: 265px;*/
+  display: inline-block;
+  /* height: 265px; */
   width: 265px;
+  min-height: 250px;
+  vertical-align: top;
   margin: 5px;
   padding-bottom: 1em;
   background-color: white;
