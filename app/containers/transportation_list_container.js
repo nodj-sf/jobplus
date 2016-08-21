@@ -15,7 +15,7 @@ class TransportationList extends BaseComponent {
       }
       
       return (
-        <li className="restaurantLI" key={place.place_id} >
+        <li className="restaurantLI one-third" key={place.place_id} >
           <a target="_blank" href={ `http://maps.google.com/?q=${place.geometry.location.lat},${place.geometry.location.lng}` } >
             <div className="verticallyCenter">
               <div className="nameRating">
@@ -45,10 +45,10 @@ class TransportationList extends BaseComponent {
         </div>
       : <div id="placesContainer">
          <h5><i className="fa fa-bus" aria-hidden="true"></i> Train Stops</h5> 
-         <ul className='trainList'>{(trainsList.length && this.renderList(trainsList,job)) 
+         <ul className='trainList container'>{(trainsList.length && this.renderList(trainsList,job)) 
           || 'There are no results for this area...'}</ul> 
          <h5>Bus Stops</h5> 
-         <ul className='busList'>{(busList.length && this.renderList(busList,job)) 
+         <ul className='busList container'>{(busList.length && this.renderList(busList,job)) 
           || 'There are no results for this area...'}</ul>
         </div>);
   }
