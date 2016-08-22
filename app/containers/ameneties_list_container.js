@@ -84,6 +84,3 @@ let mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(AmenetiesList);
-
-
-// <div id="placesContainer">
