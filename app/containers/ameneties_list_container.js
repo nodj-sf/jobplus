@@ -47,7 +47,7 @@ class AmenetiesList extends BaseComponent {
     return (
       (this.props.loading) ?
       <div className="restaurantContainer">
-        <i className="fa fa-refresh fa-spin fa-5x fa-fw"></i> Loading...
+        <i className="fa fa-cog fa-spin fa-5x fa-fw"></i> Loading...
       </div> :
       <div>
         <div className="restaurantContainer">
