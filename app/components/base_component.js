@@ -8,13 +8,23 @@ export default class BaseComponent extends Component {
     super(props);
   }
 
-  // Returns Hex color value based on input distance:
+  // Returns Hex color value based on the magnitude of the input distance:
   distanceColor(dist) {
     return dist <= 1.0 ?
       "#25DC25" : dist <= 2.0 ?
-      "#E0E108" : dist <= 3.0 ?
+      "#C7C846" : dist <= 3.0 ?
       "#E17E08" :
       "#FD0505";
+  }
+
+  // Returns Hex color value coded to the magnitude of an entity's user review-averaged rating:
+  ratingColor(rating) {
+    return rating === 5 ?
+      "#CA060A" : rating >= 4.0 ?
+      "#F2752D" : rating  >= 3.0 ?
+      "#EF8B12" : rating >= 2.0 ?
+      "#E0B62A" : 
+      "#D18F20";
   }
 
   // Returns formatted string specifying the posting's job title:
@@ -77,6 +87,42 @@ export default class BaseComponent extends Component {
       descrip;
   }
 
+  // Generates a concatenated set of FontAwesome star glyph icons representative of an entity's user reviews average rating:
+  getStarRating(rating) {
+    let starsContainer = [],
+        radix = rating - Math.floor(rating),
+        i = 0, j = 0,
+        [filledStars, emptyStars] = [Math.floor(rating), 5 - Math.ceil(rating)];
+
+    if (radix) {
+      starsContainer.push(<i className="fa fa-star-half-full" style={{ "color": this.ratingColor(rating) }} key={`RatingHalfStar_${i}`}></i>);
+    }
+
+    while (i < filledStars) {
+      starsContainer.unshift(<i className="fa fa-star" style={{ "color": this.ratingColor(rating) }} key={`RatingFilledStar_${i}`}></i>);
+      i++;
+    }
+
+    while (j < emptyStars) {
+      starsContainer.push(<i className="fa fa-star-o" style={{ "color": this.ratingColor(rating) }} key={`RatingEmptyStar_${j}`}></i>);
+      j++;
+    }
+
+    return (
+      <div className="starsRating">
+        {[`Rating:\t`,
+          starsContainer,
+          `\t${rating}`
+        ]}
+      </div>
+    );
+  }
+
+  getItemTags(item) {
+    return [...Object.keys(item).reduce((memo, index) => memo = memo.add(item[index]), new Set())]
+      .join(', ');
+  }
+
   // Returns the radian-valued float equivalent of the given input in degrees:
   deg2rad(deg) {
     return deg * (Math.PI / 180);
@@ -97,3 +143,17 @@ export default class BaseComponent extends Component {
   }
 
 }
+
+
+
+// rating >= 0 ?
+
+// if (starsContainer.length < 5) {
+
+// }
+
+// radix && radix >= 0.5 ?
+//   starsContainer.push(<i className="fa fa-star" key={`RatingStar_${i}`}></i>) :
+//   radix && radix < 0.5 ? starsContainer.push(<i className="fa fa-star-half-full" key={`RatingHalfStar_${i}`}></i>) :
+//   starsContainer.push(<i className="fa fa-star-o" key={`RatingEmptyStar_${i}`}></i>);
+//   

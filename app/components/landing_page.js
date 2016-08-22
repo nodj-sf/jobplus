@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import SearchBar from '../containers/search_bar_container';
 
 
-class LandingPage extends Component {
+export default class LandingPage extends Component {
  render() {
    return (
     <div>
@@ -18,6 +18,4 @@ class LandingPage extends Component {
     </div>
    );
  }
-}
-
-export default LandingPage;
+};

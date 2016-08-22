@@ -11,7 +11,7 @@ export default class RestaurantListItem extends BaseComponent {
           restaurant = this.props.restaurant,
           [restLat, restLng] = [restaurant.coordinate.latitude, restaurant.coordinate.longitude],
           [starRatingImage, phoneNo, yelpURL] = [restaurant.rating_img_url, restaurant.phone, restaurant.url],
-          restaurantDistance = this.getDistanceFromLatLonInKm(restLat, restLng, jobLat, jobLng),
+          restaurantDistance = this.getDistanceFromLatLonInKm(jobLat, jobLng, restLat, restLng),
           GMapsDirectionsURL = `https://www.google.com/maps/dir/${jobLat},${jobLng}/${restaurant.display_address[0].concat(restaurant.display_address[2]).split(' ').join('+')}/`;
 
     return (

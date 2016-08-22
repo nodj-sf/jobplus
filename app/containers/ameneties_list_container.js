@@ -8,31 +8,55 @@ class AmenitiesList extends BaseComponent {
   renderList(list, job) {
     let newList = list.slice(0, 3);
 
-    return newList.map((place, i) => {
+    return newList.map((place, index) => {
+      const [placeLat, placeLng] = [place.geometry.location.lat, place.geometry.location.lng],
+            [jobLat, jobLng] = [job.latitude, job.longitude],
+            amenityDistance = this.getDistanceFromLatLonInKm(jobLat, jobLng, placeLat, placeLng),
+            GMapsDirectionsURL = `https://www.google.com/maps/dir/${jobLat},${jobLng}/${placeLat},${placeLng}/`;
+
       let img = '';
 
       if (place.photos) {
-        img = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&photoreference=${place.photos[0].photo_reference}&key=AIzaSyC56PLIo323RpHzaKe-ZunaS_0Tn5DgyGY`;
+        img = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&photoreference=${place.photos[0].photo_reference}&key=AIzaSyAuIaxXvn-7r4Ye-h8cSSRCUqKc4hRM7v8`;
       }
       
       return (
-        <li className="restaurantLI one-third" key = {i} >
-          <a target="_blank" href={ `http://maps.google.com/?q=${place.geometry.location.lat},${place.geometry.location.lng}` } >
-            <div className="verticallyCenter">
-              <div className="nameRating">
+        <li className="restaurantLI one-third" key={index} >
+          <div className="verticallyCenter">
+            <div className="nameRating">
+              <a href={ `http://maps.google.com/?q=${place.geometry.location.lat},${place.geometry.location.lng}/` } target="_blank" >
                 <h5 className="textEllipsis expandFromCenter">{ place.name }</h5>
                 { 
                   (place.photos) ? 
-                  <img className="yelpPhoto" src={ img } alt={ place.name } /> : 
-                  'No Image' 
+                    <img className="yelpPhoto" src={ img } alt={ place.name } /> : 
+                    'No Image' 
+                }
+              </a>
+            </div>
+            <div className="yelpDescription card-body">
+              <div className="YelpRating_Div">
+                { place.rating ? 
+                    this.getStarRating(+place.rating) :
+                    'No Reviews'
                 }
               </div>
-              <div className="yelpDescription card-body">
-                <p className="numRestaurantReviews">{ place.rating }</p>
-                <i>{ `${this.getDistanceFromLatLonInKm(job.latitude,job.longitude,place.geometry.location.lat, place.geometry.location.lng)} mi` }</i>
-              </div>
+              
+              <p>
+                {[<i className="fa fa-map" style={{ "color": "#14A4B5" }} key={`Distance:${amenityDistance}`}></i>,
+                  `\t`,
+                  <a href={GMapsDirectionsURL} className="YelpPhoneNo expandFromCenter" target="_blank" key={`GMapURL:${GMapsDirectionsURL}`}>
+                    <em key={`Amenity_Dist:${place.id}`} style={{ "color": this.distanceColor(amenityDistance) }}>{`${amenityDistance} mi`}</em>
+                  </a>
+                ]}
+              </p>
+
+              <p style={{ "fontSize": "1.25rem" }}>
+                {[<i className="fa fa-tags" style={{ "color": "#14A4B5", "fontSize": "1.6rem" }} key={`AmenityTags_${index}`}></i>,
+                  `\t${this.getItemTags(place.types)}`
+                ]}
+              </p>
             </div>
-          </a>
+          </div>
         </li>
       );    
     });
@@ -84,3 +108,10 @@ let mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(AmenitiesList);
+
+
+
+              // <div className="yelpDescription card-body">
+              //   <p className="numRestaurantReviews">{ place.rating }</p>
+              //   <i>{ `${this.getDistanceFromLatLonInKm(job.latitude,job.longitude,place.geometry.location.lat, place.geometry.location.lng)} mi` }</i>
+              // </div>
