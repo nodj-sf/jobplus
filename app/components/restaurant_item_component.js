@@ -14,12 +14,6 @@ export default class RestaurantListItem extends BaseComponent {
           restaurantDistance = this.getDistanceFromLatLonInKm(restLat, restLng, jobLat, jobLng),
           GMapsDirectionsURL = `https://www.google.com/maps/dir/${jobLat},${jobLng}/${restaurant.display_address[0].concat(restaurant.display_address[2]).split(' ').join('+')}/`;
 
-    let distanceColor = restaurantDistance <= 1.0 ?
-      "#25DC25" : restaurantDistance <= 2.0 ?
-      "#E0E108" : restaurantDistance <= 3.0 ?
-      "#E17E08" :
-      "#FD0505";
-
     return (
       <li className="restaurantLI one-third" >
         <div className="verticallyCenter">
@@ -42,7 +36,7 @@ export default class RestaurantListItem extends BaseComponent {
               {[<i className="fa fa-map" style={{ "color": "#14A4B5" }} key={`Distance:${restaurantDistance}`}></i>,
                 `\t`,
                 <a href={GMapsDirectionsURL} className="YelpPhoneNo expandFromCenter" target="_blank" key={`GMapURL:${GMapsDirectionsURL}`}>
-                  <em key={"Restaurant_Dist"} style={{ "color": distanceColor }}>{`${restaurantDistance} mi`}</em>
+                  <em key={"Restaurant_Dist"} style={{ "color": this.distanceColor(restaurantDistance) }}>{`${restaurantDistance} mi`}</em>
                 </a>
               ]}
             </p>

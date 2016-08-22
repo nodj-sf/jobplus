@@ -52,26 +52,26 @@ class TransportationList extends BaseComponent {
         <div className="restaurantContainer">
           <h5>
             {[
-              <i className="fa fa-subway" aria-hidden="true" key={"FontAwesome train glyph icon"}></i>,
+              <i className="fa fa-subway" aria-hidden="true" key="FontAwesome train glyph icon"></i>,
               " Train Stops"
             ]}
           </h5> 
           <div className="overlay">
             <ul className="trainList container">{(trainsList.length && this.renderList(trainsList,job))
-              || 'There are no results for this area'}
+              || 'No results for this area'}
             </ul> 
           </div>
         </div>
         <div className="restaurantContainer">
           <h5>
             {[
-              <i className="fa fa-bus" aria-hidden="true" key={"FontAwesome bus glyph icon"}></i>,
+              <i className="fa fa-bus" aria-hidden="true" key="FontAwesome bus glyph icon"></i>,
               " Bus Stops"
             ]}
           </h5> 
           <div className="overlay">
             <ul className="busList container">{(busList.length && this.renderList(busList,job)) 
-              || 'There are no results for this area' }
+              || 'No results for this area' }
             </ul>
           </div>
         </div>

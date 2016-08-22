@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import BaseComponent from '../components/base_component';
 
 
-class AmenetiesList extends BaseComponent {
+class AmenitiesList extends BaseComponent {
   renderList(list, job) {
     let newList = list.slice(0, 3);
 
@@ -29,7 +29,7 @@ class AmenetiesList extends BaseComponent {
               </div>
               <div className="yelpDescription card-body">
                 <p className="numRestaurantReviews">{ place.rating }</p>
-                <i>{ this.getDistanceFromLatLonInKm(job.latitude,job.longitude,place.geometry.location.lat, place.geometry.location.lng ) }</i>
+                <i>{ `${this.getDistanceFromLatLonInKm(job.latitude,job.longitude,place.geometry.location.lat, place.geometry.location.lng)} mi` }</i>
               </div>
             </div>
           </a>
@@ -52,7 +52,7 @@ class AmenetiesList extends BaseComponent {
       <div>
         <div className="restaurantContainer">
           <h5>
-            {[<i className="fa fa-futbol-o" aria-hidden="true"></i>,
+            {[<i className="fa fa-futbol-o" aria-hidden="true" key="FontAwesome soccer ball glyph icon"></i>,
               `\tParks`
             ]}
           </h5> 
@@ -83,4 +83,4 @@ let mapStateToProps = (state) => ({
   loading: state.loading
 });
 
-export default connect(mapStateToProps)(AmenetiesList);
+export default connect(mapStateToProps)(AmenitiesList);

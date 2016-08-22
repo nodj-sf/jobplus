@@ -12,7 +12,7 @@ import SearchBar from '../containers/search_bar_container';
 import Footer from './footer_component';
 import RetaurantList from '../containers/restaurant_list_container';
 import TransportationList from '../containers/transportation_list_container';
-import AmenetiesList from '../containers/ameneties_list_container';
+import AmenitiesList from '../containers/ameneties_list_container';
 import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 
 
@@ -80,7 +80,7 @@ class Results extends Component {
                 <TransportationList />
               </TabPanel>
               <TabPanel>
-                <AmenetiesList />
+                <AmenitiesList />
               </TabPanel>
               <TabPanel>
                 <RetaurantList />

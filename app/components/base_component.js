@@ -8,6 +8,15 @@ export default class BaseComponent extends Component {
     super(props);
   }
 
+  // Returns Hex color value based on input distance:
+  distanceColor(dist) {
+    return dist <= 1.0 ?
+      "#25DC25" : dist <= 2.0 ?
+      "#E0E108" : dist <= 3.0 ?
+      "#E17E08" :
+      "#FD0505";
+  }
+
   // Returns formatted string specifying the posting's job title:
   parseAndFormatJobTitle(job) {
     const specialFormatTerms = {
