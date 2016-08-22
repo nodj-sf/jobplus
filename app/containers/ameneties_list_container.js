@@ -20,7 +20,7 @@ class AmenetiesList extends BaseComponent {
           <a target="_blank" href={ `http://maps.google.com/?q=${place.geometry.location.lat},${place.geometry.location.lng}` } >
             <div className="verticallyCenter">
               <div className="nameRating">
-                <h5 className='textEllipsis'>{ place.name }</h5>
+                <h5 className="textEllipsis">{ place.name }</h5>
                 { 
                   (place.photos) ? 
                   <img className="yelpPhoto" src={ img } alt={ place.name } /> : 
@@ -47,7 +47,7 @@ class AmenetiesList extends BaseComponent {
     return (
       (this.props.loading) ?
       <div className="restaurantContainer">
-        <i className="fa fa-cog fa-spin fa-5x fa-fw"></i> Loading...
+        <i className="fa fa-refresh fa-spin fa-5x fa-fw"></i> Loading...
       </div> :
       <div>
         <div className="restaurantContainer">

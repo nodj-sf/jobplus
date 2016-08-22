@@ -1,5 +1,6 @@
 
 html {
+  font-size: 10px;
   background-color: #F5F5F5;
 }
 
@@ -144,8 +145,6 @@ a:hover {
   font-stretch: semi-expanded;
   text-indent: 5px;
   text-transform: capitalize;
-  /* color: rgb(0, 0, 0); */
-  /* text-decoration: underline overline; */
 }
 
 #chartContainer {
@@ -165,7 +164,6 @@ a:hover {
   width: 100%;
   height: 34%;
   box-sizing: border-box;
-  /* box-shadow: 0 0 14px 2px rgba(0, 0, 0, 0.2), 0 0 14px 2px rgba(0, 0, 0, 0.2); */
   /* pointer-events: none; */
 }
 
@@ -190,14 +188,20 @@ h4.infoWindow_Header {
   color: #14A4B5;
 }
 
+
 #placesContainer h5, 
 .restaurantContainer h5 {
   width: 96%;
   text-align: center;
-  margin: 1em auto;
+  margin: 0.5em auto;
 }
 
-/*#placesContainer > ul*/
+.restaurantContainer > h5 {
+  background: #E9EBEE;
+  padding: 1em 0;
+  margin: 0;
+  width: 100%;
+}
 
 h5.infoWindow_Header {
   margin-bottom: 0;
@@ -349,12 +353,8 @@ h2.jobListingTitle {
   max-height: 60px;
   overflow: hidden;
   color: #14A4B5;
-  font: 24px/28px "Raleway", "Open Sans", Helvetica, Arial, sans-serif;
+  font: 2.4rem/2.6rem "Raleway", "Open Sans", Helvetica, Arial, sans-serif;
   letter-spacing: 0.05rem;
-  word-break: break-word;
-  word-wrap: break-word;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 li.jobLi h6 {
@@ -778,13 +778,30 @@ img.yelpPhoto {
 .amenetiesCard {
   position: relative;
   display: inline-block;
-  /* width: 265px; */
-  /* height: 265px; */
-  min-height: 250px;
+  min-height: 200px;
+  max-height: 400px;
   vertical-align: top;
-  /* margin: 5px; */
   padding-bottom: 1em;
-  background-color: white;
+  background-color: #FFF;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+
+.restaurantLI:hover,
+.transportationCard:hover,
+.amenetiesCard:hover {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 
+              0 6px 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+.restaurantLI .nameRating:hover,
+.transportationCard .nameRating:hover,
+.amenetiesCard .nameRating:hover {
+  cursor: pointer;
+}
+
+.nameRating:hover h5 {
+  border-bottom: 1px solid #1BA6B7;
+  box-sizing: border-box;
 }
 
 li.restaurantLI > a {
@@ -792,6 +809,10 @@ li.restaurantLI > a {
   height: 100%;
   width: 100%;
   overflow-y: hidden;
+}
+
+.restaurantLI .YelpPhoneNo:hover {
+  border-bottom: 1px solid #1BA6B7;
 }
 
 .trainList, .busList {
@@ -806,7 +827,6 @@ li.restaurantLI > a {
   padding-left: 20px;
 }
 
-/* h5, */
 .nameRating > h5 {
   text-align: center;
   font-weight: 500;
@@ -831,7 +851,6 @@ li.restaurantLI > a {
   height: 50%;
   min-height: 500px;
   bottom: 0;
-  /*background: red;*/                  /* To be removed in a future commit */
 }
 
 .job-detail h3 {
@@ -852,19 +871,52 @@ li.restaurantLI > a {
   margin-left: 14px;
 }
 
-.nameRating h5 {
-  margin-top: 1em;
+p.YelpRestaurantAddress {
+  font-size: 1.25rem;
+  line-height: 1.35rem;
+}
+
+div.YelpRating_Div {
+  position: relative;
+  display: block;
+  width: 98%;
+  overflow: hidden;
+}
+  div.YelpRating_Div > img.YelpRatingStars {
+    position: relative;
+    display: inline-block;
+    height: 1.25rem;
+    top: 0.375rem;
+    float: left;
+  }
+
+  div.YelpRating_Div > p.numRestaurantReviews {
+    position: relative;
+    display: inline-block;
+    float: right;
+    font-size: 1.25rem;
+    line-height: 2rem;
+  }
+
+
+a.YelpPhoneNo {
+  color: #222;
+  font-family: Courier, monospace, serif;
+  word-spacing: -5px;
+  font-weight: lighter;
+  font-size: 1.35rem;
+  /* letter-spacing: 0.1px;
 }
 
 /* Fix Chrome browser's default AutoFill yellow background */
 input:-webkit-autofill {
   -webkit-text-fill-color: #FFF !important;
-  -webkit-box-shadow: 0 0 0px 1000px #7A7A7A inset;
+  -webkit-box-shadow: inset 0 0 0px 1000px #7A7A7A;
 }
 
 /* Mimic :hover state for non-obvious links */
 .link-state:hover {
-  border-bottom: 1px solid #1ba6b7;
+  border-bottom: 1px solid #1BA6B7;
 }
 
 .job-detail h3 a {
@@ -877,11 +929,11 @@ input:-webkit-autofill {
 }
 
 .fa-yelp {
-  color: #af0606;
+  color: #AF0606;
 }
 
 .fa-bus {
-  color: #00f;
+  color: #00F;
 }
 
 

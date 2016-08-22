@@ -7,11 +7,7 @@ import RestaurantItem from '../components/restaurant_item_component';
 class RetaurantList extends Component {
   renderList() {
     let selectedJob = this.props.activeJob,
-        chunkedArr = [];
-
-    // for (let i = 0; i < this.props.activeYelp.length; i += 3) {
-    //   chunkedArr.push([activeYelp[i], activeYelp[i + 1], activeYelp[i + 2]]);
-    // }    
+        chunkedArr = [];   
 
     return this.props.activeYelp.map((restaurant) => {
       return (
@@ -24,9 +20,10 @@ class RetaurantList extends Component {
   }
 
   render() {
-    return ((this.props.loading) ?
+    return (
+      (this.props.loading) ?
       <div className="restaurantContainer">
-        <i className="fa fa-cog fa-spin fa-5x fa-fw"></i> Loading...
+        <i className="fa fa-refresh fa-spin fa-5x fa-fw"></i> Loading...
       </div> :
       <div className="restaurantContainer">
         <div>
@@ -53,5 +50,3 @@ let mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(RetaurantList);
-
-// <ul className="restaurantList"> </ul>

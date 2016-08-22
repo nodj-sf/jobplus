@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import BaseComponent from './base_component';
-import MapComponent from './map_component';
 import GMap_Modal from './google_maps_modal_component';
 import mapStylesObject from '../constants/google_map_styles.json';
 import { fetchJobs, selectJob, activeBus, toggleModal, toggleModalOff } from '../actions/index';
@@ -110,6 +109,7 @@ class GMap extends BaseComponent {
         onCloseclick={onCloseclick} >
           <div>
             <h4 className="infoWindow_Header">{this.parseAndFormatJobTitle(marker.markerTitle)}</h4>
+            <h5 className="infoWindow_Header">{marker.company}</h5>
             <hr />
             <p>{marker.formattedLocation}</p>
           </div>

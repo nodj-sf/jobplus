@@ -46,21 +46,31 @@ class TransportationList extends BaseComponent {
     return (
       (this.props.loading) ?
       <div className="restaurantContainer">
-        <i className="fa fa-cog fa-spin fa-5x fa-fw"></i> Loading...
+        <i className="fa fa-refresh fa-spin fa-5x fa-fw"></i> Loading...
       </div> :
       <div>
         <div className="restaurantContainer">
-          <h5><i className="fa fa-bus" aria-hidden="true"></i>Train Stops</h5> 
+          <h5>
+            {[
+              <i className="fa fa-subway" aria-hidden="true" key={"FontAwesome train glyph icon"}></i>,
+              " Train Stops"
+            ]}
+          </h5> 
           <div className="overlay">
-            <ul className='trainList container'>{(trainsList.length && this.renderList(trainsList,job))
+            <ul className="trainList container">{(trainsList.length && this.renderList(trainsList,job))
               || 'There are no results for this area'}
             </ul> 
           </div>
         </div>
         <div className="restaurantContainer">
-          <h5>Bus Stops</h5> 
+          <h5>
+            {[
+              <i className="fa fa-bus" aria-hidden="true" key={"FontAwesome bus glyph icon"}></i>,
+              " Bus Stops"
+            ]}
+          </h5> 
           <div className="overlay">
-            <ul className='busList container'>{(busList.length && this.renderList(busList,job)) 
+            <ul className="busList container">{(busList.length && this.renderList(busList,job)) 
               || 'There are no results for this area' }
             </ul>
           </div>
