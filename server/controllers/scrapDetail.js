@@ -1,6 +1,6 @@
 const scrapDetail = require('../models/details');
-const redisClient = require('redis').createClient;
-const redis = redisClient(6379, 'localhost');
+// const redisClient = require('redis').createClient;
+// const redis = redisClient(6379, 'localhost');
 
 
 exports.post = (req, res) => {
@@ -18,7 +18,7 @@ exports.post = (req, res) => {
   }
 
   // redis.del(key);
-  redis.get(key, function(err, result) {
+  // redis.get(key, function(err, result) {
 
     res.setHeader('Content-Type', 'application/json');
 
@@ -28,15 +28,15 @@ exports.post = (req, res) => {
     } else {
       scrapDetail(url)(res)
         .then(function(data) {
-          redis.set(key, JSON.stringify(data.data));
-          redis.expire(key, 3600);
-          return data.respond;
-          res.end();
+          // redis.set(key, JSON.stringify(data.data));
+          // redis.expire(key, 3600);
+          // return data.respond;
+          // res.end();
         })
         .catch(function(error) {
-          res.setHeader('Content-Type', 'application/text');
-          res.status(500).send('Something broke!');
+          // res.setHeader('Content-Type', 'application/text');
+          // res.status(500).send('Something broke!');
         });
     }
-  });
+  // });
 };
