@@ -384,8 +384,8 @@ div.jobLI_MetaInfo {
   float: right;
   color: #696969;
   text-align: right;
-  font-size: 11px;
-  line-height: 20px
+  font-size: 1.1rem;
+  line-height: 2rem;
 }
 
 button.button-primary {
@@ -799,10 +799,10 @@ img.yelpPhoto {
   cursor: pointer;
 }
 
-.nameRating:hover h5 {
+/*.nameRating:hover h5 {
   border-bottom: 1px solid #1BA6B7;
   box-sizing: border-box;
-}
+}*/
 
 li.restaurantLI > a {
   display: block;
@@ -811,9 +811,28 @@ li.restaurantLI > a {
   overflow-y: hidden;
 }
 
-.restaurantLI .YelpPhoneNo:hover {
+/*.restaurantLI .YelpPhoneNo:hover {
   border-bottom: 1px solid #1BA6B7;
+}*/
+
+.nameRating h5:after,
+.restaurantLI .YelpPhoneNo:after {
+  display: block;
+  width: 0;
+  height: 1px;
+  position: relative;
+  content: "";
+  margin: auto;
+  background: transparent;
+  transition: width .5s ease, 
+              background-color .5s ease;
 }
+  .nameRating:hover h5:after,
+  .restaurantLI .YelpPhoneNo:hover:after {
+    width: 90%;
+    background: #1BA6B7;
+  }
+
 
 .trainList, .busList {
   background-color: #E9EBEE;
