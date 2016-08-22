@@ -16,14 +16,14 @@ hr {
 }
 
 .intro-logo {
-  color: #fff;
-  font-family: 'Oswald', sans-serif;
-  position: relative;
-  top: 34%;
-  left: 50%;
+  position: absolute;
+  left: 50px;
+  color: #FFF;
+  font: 4.5vh/6vh 'Oswald', 'Raleway', sans-serif;
 }
+
 .intro-logo span {
-  color: #7a7a7a;
+  color: #7A7A7A;
 }
 
 a:hover {
@@ -235,7 +235,7 @@ div.box {
 .navLogoText {
   position: absolute;
   left: 50px;
-  font: 40px/6vh "Raleway", "Open Sans", Helvetica, Arial, sans-serif;
+  font: 4.5vh/6vh "Raleway", "Open Sans", Helvetica, Arial, sans-serif;
   color: #000;
 }
 
@@ -245,9 +245,9 @@ div.box {
   height: 6vh;
   top: 0;
   left: 0;
-  background: -webkit-linear-gradient(231deg, rgba(20,164,181,1) 15%, rgba(20,164,181,0.75) 84%, rgba(20,164,181,0.45) 160%);
-  background:      -o-linear-gradient(231deg, rgba(20,164,181,1) 15%, rgba(20,164,181,0.75) 84%, rgba(20,164,181,0.45) 160%);
-  background:         linear-gradient(321deg, rgba(20,164,181,1) 15%, rgba(20,164,181,0.75) 84%, rgba(20,164,181,0.45) 160%);
+  background: -webkit-linear-gradient(231deg, rgba(20, 164, 181, 1) 15%, rgb(70, 183, 197) 84%, rgb(92, 192, 204) 160%);
+  background:      -o-linear-gradient(231deg, rgba(20, 164, 181, 1) 15%, rgb(70, 183, 197) 84%, rgb(92, 192, 204) 160%);
+  background:         linear-gradient(321deg, rgba(20, 164, 181, 1) 15%, rgb(70, 183, 197) 84%, rgb(92, 192, 204) 160%);
   box-shadow: 0 5px 4px 0.5px #ADADAD;
   z-index: 150;
 }
@@ -273,14 +273,14 @@ svg.rd3-chart {
   position: relative;
   display: block;
   width: 100%;
-  height: 36px;
+  height: 3.5rem;
   padding: 4px 0;
   /* font-variant: unicase; */
   text-align: left;
   text-indent: 15px;
-  font-size: 20px;
+  font-size: 1.75rem;
   font-weight: lighter;
-  line-height: 36px;
+  line-height: 3.5rem;
   color: #FFF;
   background: -webkit-linear-gradient(231deg, rgba(20,164,181,1) 15%, rgb(93, 188, 200) 44%, rgb(134, 202, 210) 100%);
   background:      -o-linear-gradient(231deg, rgba(20,164,181,1) 15%, rgb(93, 188, 200) 44%, rgb(134, 202, 210) 100%);
@@ -785,6 +785,11 @@ li.restaurantLI > a {
   /*background: red;*/                  /* To be removed in a future commit */
 }
 
+.job-detail h3 {
+  width: 100%;
+  text-align: center;
+}
+
 .job-detail h3 a {
   text-decoration: none;
 }
@@ -802,13 +807,13 @@ li.restaurantLI > a {
   margin-top: 1em;
 }
 
-/* Fix chrome yellow autofill */
+/* Fix Chrome browser's default AutoFill yellow background */
 input:-webkit-autofill {
   -webkit-text-fill-color: #FFF !important;
   -webkit-box-shadow: 0 0 0px 1000px #7A7A7A inset;
 }
 
-/* Mimic hover state for non obvious links */
+/* Mimic :hover state for non-obvious links */
 .link-state:hover {
   border-bottom: 1px solid #1ba6b7;
 }
@@ -828,151 +833,6 @@ input:-webkit-autofill {
 
 .fa-bus {
   color: #00f;
-}
-
-/*  *********************************************
-    *********************************************
-    ********************************************* */  
-
-
-@media only screen
-  and (max-width: 700px) {
-
-  #appContainer { 
-    height: auto;
-    background: transparent;
-  }
-
-  #jobMain {
-    display: flex;
-    height: auto;
-    flex-direction: column;
-    transform: none;
-  }
-
-  #jobResultsPane,
-  #jobInfoBody {
-    position: relative;
-    display: block;
-    width: 88vw;
-    top: 4vh;
-    margin: 25px auto;
-    background: #FFF;
-    box-shadow: 0 4px 8px 1.5px rgba(0, 0, 0, 0.37);
-  }
-
-  div#jobResultsPane {
-    height: 60vh;
-  }
-
-  #mapsContainer {
-    height: 30vh;
-  }
-    #mapsContainer:hover {
-      cursor: pointer;
-    }
-
-  #searchForm {
-    position: relative;
-    display: block;
-    /* width: 100%; */
-    /* top: 6vh; */
-  }
-
-  #jobsContainer::after {
-  }
-
-  #jobInfoBody div.jobInfoBottomBlock {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    min-height: 500px;
-    bottom: 0;
-  }
-
-  #restaurantContainer {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 60vh;
-    /* float: left; */
-    box-sizing: border-box;
-    overflow: scroll;
-  }
-
-  #jobInfoBody div.jobInfoBottomBlock {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    min-height: 500px;
-    bottom: 0;
-  }
-
-  #restaurantContainer {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 60vh;
-    /* float: left; */
-    box-sizing: border-box;
-    overflow: scroll;
-  }
-
-  #jobInfoBody div.jobInfoBottomBlock {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    min-height: 500px;
-    bottom: 0;
-  }
-
-  #restaurantContainer {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 60vh;
-    /* float: left; */
-    box-sizing: border-box;
-    overflow: scroll;
-  }
-
-  #jobInfoBody div.jobInfoBottomBlock {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    min-height: 500px;
-    bottom: 0;
-  }
-
-  #restaurantContainer {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 60vh;
-    /* float: left; */
-    box-sizing: border-box;
-    overflow: scroll;
-  }
-
-  .container-3 input.formSearchInpt{
-    font-size: 1rem;
-    letter-spacing: 0.35rem;
-    text-indent: 0;
-  }
-  
-  .container-3 + button {
-    background: #14A4B5;
-    font-size: 1rem;
-  }
-    .container-3 + button:hover {
-      background: #FFF;
-      color: #14A4B5;
-    } 
-
 }
 
 
