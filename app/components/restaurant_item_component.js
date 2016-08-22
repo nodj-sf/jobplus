@@ -25,7 +25,7 @@ export default class RestaurantListItem extends BaseComponent {
         <div className="verticallyCenter">
           <div className="nameRating">
             <a href={ restaurant.url } target="_blank">
-              <h5 className="textEllipsis">{ restaurant.name }</h5>
+              <h5 className="textEllipsis expandFromCenter">{ restaurant.name }</h5>
               <img className="yelpPhoto" src={this.parseYelpRestaurantPhoto(restaurant.photo)} alt="Yelp restaurant star rating." />
             </a>
           </div>
@@ -41,7 +41,7 @@ export default class RestaurantListItem extends BaseComponent {
             <p>
               {[<i className="fa fa-map" style={{ "color": "#14A4B5" }} key={`Distance:${restaurantDistance}`}></i>,
                 `\t`,
-                <a href={GMapsDirectionsURL} className="YelpPhoneNo" target="_blank" key={`GMapURL:${GMapsDirectionsURL}`}>
+                <a href={GMapsDirectionsURL} className="YelpPhoneNo expandFromCenter" target="_blank" key={`GMapURL:${GMapsDirectionsURL}`}>
                   <em key={"Restaurant_Dist"} style={{ "color": distanceColor }}>{`${restaurantDistance} mi`}</em>
                 </a>
               ]}
@@ -49,7 +49,7 @@ export default class RestaurantListItem extends BaseComponent {
             <p>
               {[<i className="fa fa-phone-square" style={{ "color": "#14A4B5" }} key={`TelNo:${phoneNo}`}></i>,
                 `\t`,
-                <a href={`tel:+1${phoneNo}`} className="YelpPhoneNo" target="_blank" key={`PhoneNo:${phoneNo}`}>{this.parsePhoneNumber(phoneNo)}</a>
+                <a href={`tel:+1${phoneNo}`} className="YelpPhoneNo expandFromCenter" target="_blank" key={`PhoneNo:${phoneNo}`}>{this.parsePhoneNumber(phoneNo)}</a>
               ]}
             </p>
           </div>

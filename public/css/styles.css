@@ -48,18 +48,6 @@ a:hover {
   animation: 100s scroll infinite linear;
 }
 
-@-webkit-keyframes MyAnimation {
-  100% {
-    background-position:0px -3000px;
-  }
-}
-
-@keyframes scroll {
-  100% {
-    background-position:0px -3000px;
-  }
-}
-
 #app {
   position: relative;
   width: 100vw;
@@ -77,7 +65,7 @@ a:hover {
   background: #FFF;
 }
 
-.appCols {  }
+/* .appCols {  } */
 
 #jobMain {
   position: relative;
@@ -184,8 +172,8 @@ a:hover {
 h4.infoWindow_Header {
   display: inline;
   margin-bottom: 0;
-  font: 600 14px/16px "Raleway", "Helvetica Neue", Arial, sans-serif;
   color: #14A4B5;
+  font: 600 14px/16px "Raleway", "Helvetica Neue", Arial, sans-serif;
 }
 
 
@@ -248,8 +236,8 @@ div.box {
 .navLogoText {
   position: absolute;
   left: 50px;
-  font: 4.5vh/6vh "Raleway", "Open Sans", Helvetica, Arial, sans-serif;
   color: #000;
+  font: 4.5vh/6vh "Raleway", "Open Sans", Helvetica, Arial, sans-serif;
 }
 
 .bannerCont {
@@ -341,10 +329,11 @@ ul.jobsList li {
 ul.jobsList li:hover,
 li.active.jobLI,
 ul.jobsList.activeJobLI {
+  border-left: 12.5px solid #14A4B5;
   background-color: #F1F1F1;
   cursor: pointer;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.3);
-  border-left: 12.5px solid #14A4B5;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 
+              0 6px 10px 0 rgba(0, 0, 0, 0.3);
 }
 
 li.jobLI h2,
@@ -402,7 +391,8 @@ button.button-primary {
   border-radius: 4px;
   box-shadow: none;
   box-sizing: content-box;
-  transition: background 0.25s ease-out, color 0.25s ease-out;
+  transition: background 0.25s ease-out, 
+              color 0.25s ease-out;
 }
 
 button.button-primary:focus {
@@ -415,14 +405,14 @@ button.button-primary:hover {
 }
 
 /*
-.container {
-  position: relative;
-  display: block;
-  width: 100%;
-  max-width: 2000px;
-  margin: 0;
-  // transform: translateX(12.5%); 
-}
+  .container {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 2000px;
+    margin: 0;
+    // transform: translateX(12.5%); 
+  }
 */
 
 .container { 
@@ -431,6 +421,7 @@ button.button-primary:hover {
   width: 100%;
   max-width: 2000px;
   margin: 0;
+  padding-top: 10px;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -439,15 +430,15 @@ button.button-primary:hover {
 }
 
 /* 
-.restaurantList.container,
-.trainList.container,
-.busList.container {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-}
+  .restaurantList.container,
+  .trainList.container,
+  .busList.container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+  }
 */
 
 .container-3 {
@@ -799,11 +790,6 @@ img.yelpPhoto {
   cursor: pointer;
 }
 
-/*.nameRating:hover h5 {
-  border-bottom: 1px solid #1BA6B7;
-  box-sizing: border-box;
-}*/
-
 li.restaurantLI > a {
   display: block;
   height: 100%;
@@ -811,12 +797,10 @@ li.restaurantLI > a {
   overflow-y: hidden;
 }
 
-/*.restaurantLI .YelpPhoneNo:hover {
-  border-bottom: 1px solid #1BA6B7;
-}*/
+/*.nameRating h5:after,
+.restaurantLI .YelpPhoneNo:after */ 
 
-.nameRating h5:after,
-.restaurantLI .YelpPhoneNo:after {
+.expandFromCenter:after {
   display: block;
   width: 0;
   height: 1px;
@@ -827,8 +811,7 @@ li.restaurantLI > a {
   transition: width .5s ease, 
               background-color .5s ease;
 }
-  .nameRating:hover h5:after,
-  .restaurantLI .YelpPhoneNo:hover:after {
+  .expandFromCenter:hover:after {
     width: 90%;
     background: #1BA6B7;
   }
@@ -838,7 +821,8 @@ li.restaurantLI > a {
   background-color: #E9EBEE;
 }
 
-.transportationContent, .amenetiesContent {
+.transportationContent, 
+.amenetiesContent {
   padding-left: 20px;
 }
 
@@ -943,8 +927,8 @@ input:-webkit-autofill {
 }
 
 .job-detail blockquote a {
-  text-decoration: none;
   color: #222;
+  text-decoration: none;
 }
 
 .fa-yelp {
