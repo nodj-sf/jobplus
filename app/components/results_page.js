@@ -16,7 +16,7 @@ import AmenetiesList from '../containers/ameneties_list_container';
 import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 
 
-export default class Results extends Component {
+class Results extends Component {
   constructor(props) {
     super(props);
 
@@ -43,7 +43,6 @@ export default class Results extends Component {
   }
 
   render() {
-
     return (
       <div>
         <Banner />        
@@ -60,10 +59,23 @@ export default class Results extends Component {
             <JobDetail /> 
             <Tabs onSelect={this.handleSelect} >  
               <TabList>
-                <Tab><i className="fa fa-bus" aria-hidden="true"></i> Transportation</Tab>
-                <Tab><i className="fa fa-futbol-o" aria-hidden="true"></i> Ameneties</Tab>
-                <Tab><i className="fa fa-yelp" aria-hidden="true"></i> Yelp</Tab>
+                <Tab>
+                  {[<i className="fa fa-bus" aria-hidden="true" key={"bus_Icon"}></i>,
+                    " Transportation"
+                  ]}
+                </Tab>
+                <Tab>
+                  {[<i className="fa fa-futbol-o" aria-hidden="true" key={"soccer-ball_Icon"}></i>,
+                    " Amenities"
+                  ]}
+                </Tab>
+                <Tab>
+                  {[<i className="fa fa-yelp" aria-hidden="true" key={"Yelp_Icon"}></i>,
+                    " Yelp"
+                  ]}
+                </Tab>
               </TabList>
+
               <TabPanel>
                 <TransportationList />
               </TabPanel>

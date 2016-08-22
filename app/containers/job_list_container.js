@@ -19,11 +19,7 @@ class JobList extends BaseComponent {
   }
 
   setActive(job) {
-    if (job === this.props.activeJob) {
-      return 'active jobLI';
-    } else {
-      return 'jobLI';
-    }
+    return job === this.props.activeJob ? 'active jobLI' : 'jobLI';
   } 
 
   jobFunc(job) {
@@ -32,9 +28,8 @@ class JobList extends BaseComponent {
   }
 
   getData(job) {
-    let props = this.props;
-    let lat = job.latitude;
-    let lng = job.longitude;
+    let props = this.props,
+        [lat, lng] = [job.latitude, job.longitude];
     
     props.selectJob(job);
     props.fetchYelp(job.city, lat, lng);
@@ -63,7 +58,7 @@ class JobList extends BaseComponent {
     } else {
       if (this.init > 0) {
         jobList = <div className="noResultsShown">
-          <h4 className="noResultsShown">No results now</h4>
+          <h4 className="noResultsShown">No Results Now</h4>
         </div>;
       } else {
         this.init++;
