@@ -9,7 +9,7 @@ class LandingPage extends Component {
       <div id="bckgHero">
         <h1 className="intro-logo" style={{ "top": "25%", "left": "50%", "transform": "translateX(-50%)", "fontSize": "10vh" }}>
           {["Job",
-            <span>+</span>
+            <span key={1}>+</span>
           ]}
         </h1>
         <SearchBar />

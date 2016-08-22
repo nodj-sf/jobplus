@@ -24,24 +24,24 @@ class RetaurantList extends Component {
   }
 
   render() {
-    return ((this.props.loading)
-      ? <div id="placesContainer">
-          <i className="fa fa-cog fa-spin fa-5x fa-fw"></i> Loading...
+    return ((this.props.loading) ?
+      <div className="restaurantContainer">
+        <i className="fa fa-cog fa-spin fa-5x fa-fw"></i> Loading...
+      </div> :
+      <div className="restaurantContainer">
+        <div>
+          <h5>
+            <a href="https://www.yelp.com" target="_blank">
+              <i className="fa fa-yelp" aria-hidden="true" alt="Yelp corporate logo (black glyph icon)"></i>
+            </a> Nearby Eats
+          </h5>
         </div>
-      : <div id="restaurantContainer">
-          <div>
-            <h5>
-              <a href="https://www.yelp.com" target="_blank">
-                <i className="fa fa-yelp" aria-hidden="true" alt="Yelp corporate logo (black glyph icon)"></i>
-              </a> Nearby Eats
-            </h5>
-          </div>
-          <div className="overlay">
-            <ul className="restaurantList container">
-              { this.renderList() }
-            </ul>
-          </div>
+        <div className="overlay">
+          <ul className="restaurantList container">
+            { this.renderList() }
+          </ul>
         </div>
+      </div>
     ); 
   }
 }

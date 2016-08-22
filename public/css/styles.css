@@ -15,6 +15,14 @@ hr {
   border-top: 1px solid #E1E1E1;
 }
 
+.textEllipsis {
+  word-break: break-word;
+  word-wrap: break-word;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .intro-logo {
   position: absolute;
   left: 50px;
@@ -183,9 +191,10 @@ h4.infoWindow_Header {
 }
 
 #placesContainer h5, 
-#restaurantContainer h5 {
+.restaurantContainer h5 {
+  width: 96%;
   text-align: center;
-  width: 100%
+  margin: 1em auto;
 }
 
 /*#placesContainer > ul*/
@@ -405,17 +414,32 @@ button.button-primary:hover {
   background-color: #A7A5A5;
 }
 
+/*
 .container {
-  margin: 0;
-  width: 100%;
-  left: 50%;
   position: relative;
   display: block;
+  width: 100%;
   max-width: 2000px;
-  transform: translateX(-50%);
+  margin: 0;
+  // transform: translateX(12.5%); 
+}
+*/
+
+.container { 
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 2000px;
+  margin: 0;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+  align-content: space-around;
 }
 
-/* .restaurantList.container */
+/* 
+.restaurantList.container,
 .trainList.container,
 .busList.container {
   position: relative;
@@ -424,6 +448,7 @@ button.button-primary:hover {
   align-items: flex-start;
   justify-content: center;
 }
+*/
 
 .container-3 {
   position: relative;
@@ -443,11 +468,30 @@ button.button-primary:hover {
   transition: all 0.25s ease-in;              /* color, background */
 }
 
+.one-third {
+  width: 30%;
+}
+
 .container-3 + button:hover {
   background: rgba(255, 255, 255, 0.89);
   color: #14A4B5;
   /* box-shadow: inset 0 -5px 8px 1px rgba(255, 255, 255, 0.55); */
 }
+
+/*
+  .container > .one-third:nth-of-type(3n + 1) {
+    margin-left: 2.5%;
+  }
+
+  .container > .one-third:nth-of-type(3n + 2) {
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+  }
+
+  .container > .one-third:nth-of-type(3n + 3) {
+    margin-right: 2.5%;
+  }
+*/
 
 #searchInputsBoundary {
   position: relative;
@@ -537,7 +581,7 @@ div.noResultsShown {
     position: absolute;
     width: 125%;
     height: 100%;
-    background-image: url("../img/frowny_face-white.png");
+    background-image: url("../img/frowny-face.svg");
     background-size: 75% auto;
     right: -35%;
     top: 85%;
@@ -637,7 +681,7 @@ i.XButton:hover {
     ********************************************* */  
 
 
-#restaurantContainer {
+.restaurantContainer {
   position: relative;
   display: inline-block;
   width: 100%;
@@ -647,7 +691,7 @@ i.XButton:hover {
   overflow: hidden;
 }
 
-#restaurantContainer > div {
+.restaurantContainer > div {
   position: relative;
   display: inline-flex;
   width: 100%;
@@ -666,20 +710,23 @@ i.XButton:hover {
   z-index: 1;
 }
 
-/*#restaurantContainer > div:first-child a {
+/* 
+.restaurantContainer > div:first-child a {
   position: relative;
   display: inline-block;
   height: 100%;
   width: 5%;
   float: left;
-}*/
+}
+*/
 
 a {
   color: black;
   text-decoration: none;
 }
 
-/*#restaurantContainer > div a img {
+/*
+.restaurantContainer > div a img {
   position: absolute;
   display: none;
   height: 85%;
@@ -689,9 +736,10 @@ a {
   padding: 0;
   transform: translateX(-50%);
   box-sizing: border-box;
-}*/
+}
+*/
 
-#restaurantContainer > div h1 {
+.restaurantContainer > div h1 {
   position: relative;
   display: inline-block;
   height: 100%;
@@ -717,21 +765,24 @@ img.yelpPhoto {
   transform: translateX(-50%);
 }
 
-#restaurantContainer div.overlay {
+.restaurantContainer div.overlay,
+.react-tabs div.overlay {
   height: 90%;
   overflow-x: hidden;
   overflow-y: overlay;
   background-color: #E9EBEE;
 }
 
-.restaurantLI, .transportationCard, .amenetiesCard {
+.restaurantLI, 
+.transportationCard, 
+.amenetiesCard {
   position: relative;
   display: inline-block;
+  /* width: 265px; */
   /* height: 265px; */
-  width: 265px;
   min-height: 250px;
   vertical-align: top;
-  margin: 5px;
+  /* margin: 5px; */
   padding-bottom: 1em;
   background-color: white;
 }
@@ -750,8 +801,6 @@ li.restaurantLI > a {
 .transportationContent, .amenetiesContent {
   padding-left: 20px;
 }
-
-
 
 #jobInfoBody > div:first-child {
   padding-left: 20px;

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import BaseComponent from './base_component';
 
 
-class RestaurantListItem extends BaseComponent {
+export default class RestaurantListItem extends BaseComponent {
   
   render() {
     let restaurant = this.props.restaurant;
@@ -14,7 +14,7 @@ class RestaurantListItem extends BaseComponent {
       <li className="restaurantLI one-third" >
         <a target="_blank" href={ restaurant.url }>
           <div className="verticallyCenter">
-            <div className="nameRating">
+            <div className="nameRating textEllipsis">
               <h5>{ restaurant.name }</h5>
               <img className="yelpPhoto" src={restaurant.photo.replace(/ms(\.jpg)$/i, "l$1")} />
               <img className="yelp-rating" src={ restaurant.rating_img_url } /> 
@@ -30,7 +30,4 @@ class RestaurantListItem extends BaseComponent {
       </li>
     );
   }
-}
-
-export default RestaurantListItem;
-
+};
