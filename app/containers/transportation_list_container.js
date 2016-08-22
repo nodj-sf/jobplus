@@ -11,7 +11,7 @@ class TransportationList extends BaseComponent {
       let img = '';
 
       if (place.photos) {
-        img = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=250&photoreference=${place.photos[0].photo_reference}&key=AIzaSyCbO9G9Z4TzOZlXfPFiV7ZAThWm6RQClqo`;
+        img = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=250&photoreference=${place.photos[0].photo_reference}&key=AIzaSyC56PLIo323RpHzaKe-ZunaS_0Tn5DgyGY`;
       }
       
       return (
@@ -19,7 +19,7 @@ class TransportationList extends BaseComponent {
           <a target="_blank" href={ `http://maps.google.com/?q=${place.geometry.location.lat},${place.geometry.location.lng}` } >
             <div className="verticallyCenter">
               <div className="nameRating">
-                <h5 className="textEllipsis">{ place.name }</h5>
+                <h5 className="textEllipsis expandFromCenter">{ place.name }</h5>
                 { 
                   (place.photos) ? 
                   <img className="yelpPhoto" src={ img } alt={ place.name } /> : 

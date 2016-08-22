@@ -219,7 +219,6 @@ export default class GMap_Modal extends BaseComponent {
   }
 
   render() {
-    console.log("ACTIVE:", this.props.activeJob);
     return (
       <Modal
         isOpen={this.props.toggleModal}

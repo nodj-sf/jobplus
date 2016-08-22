@@ -12,7 +12,7 @@ class AmenetiesList extends BaseComponent {
       let img = '';
 
       if (place.photos) {
-        img = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&photoreference=${place.photos[0].photo_reference}&key=AIzaSyCbO9G9Z4TzOZlXfPFiV7ZAThWm6RQClqo`;
+        img = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&photoreference=${place.photos[0].photo_reference}&key=AIzaSyC56PLIo323RpHzaKe-ZunaS_0Tn5DgyGY`;
       }
       
       return (
@@ -20,7 +20,7 @@ class AmenetiesList extends BaseComponent {
           <a target="_blank" href={ `http://maps.google.com/?q=${place.geometry.location.lat},${place.geometry.location.lng}` } >
             <div className="verticallyCenter">
               <div className="nameRating">
-                <h5 className="textEllipsis">{ place.name }</h5>
+                <h5 className="textEllipsis expandFromCenter">{ place.name }</h5>
                 { 
                   (place.photos) ? 
                   <img className="yelpPhoto" src={ img } alt={ place.name } /> : 
@@ -51,7 +51,11 @@ class AmenetiesList extends BaseComponent {
       </div> :
       <div>
         <div className="restaurantContainer">
-          <h5><i className="fa fa-futbol-o" aria-hidden="true"></i> Parks</h5> 
+          <h5>
+            {[<i className="fa fa-futbol-o" aria-hidden="true"></i>,
+              `\tParks`
+            ]}
+          </h5> 
           <div className="overlay">
             <ul className='trainList container'>{(parksList.length && this.renderList(parksList, job)) 
               || 'There are no results for this area'}
