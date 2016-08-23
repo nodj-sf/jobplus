@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import BaseComponent from '../components/base_component';
+import dumbellIcon from '../../public/img/dumbell_glyph.svg';
 
 
 class AmenitiesList extends BaseComponent {
@@ -17,7 +18,7 @@ class AmenitiesList extends BaseComponent {
       let img = '';
 
       if (place.photos) {
-        img = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&photoreference=${place.photos[0].photo_reference}&key=AIzaSyAuIaxXvn-7r4Ye-h8cSSRCUqKc4hRM7v8`;
+        img = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&photoreference=${place.photos[0].photo_reference}&key=AIzaSyC1_oLFky0FuFjjQJfY7DWwAFFupPP4sSw`;
       }
       
       return (
@@ -40,7 +41,7 @@ class AmenitiesList extends BaseComponent {
                     'No Reviews'
                 }
               </div>
-              
+
               <p>
                 {[<i className="fa fa-map" style={{ "color": "#14A4B5" }} key={`Distance:${amenityDistance}`}></i>,
                   `\t`,
@@ -87,7 +88,11 @@ class AmenitiesList extends BaseComponent {
           </div>
         </div>
         <div className="restaurantContainer">
-          <h5>Gyms & Fitness</h5>
+          <h5>
+            {[<img src={require('../../public/img/dumbell_glyph.svg')} className="amenityHeaderGlyph" />,
+              "Gyms & Fitness"
+            ]}
+          </h5>
           <div className="overlay">
             <ul className='busList container'>{gymsList.length && this.renderList(gymsList, job) 
               || 'There are no results for this area' }
