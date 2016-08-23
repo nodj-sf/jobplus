@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import BaseComponent from '../components/base_component';
-import dumbellIcon from '../../public/img/dumbell_glyph.svg';
+import DBIc from '../../public/img/dumbell_glyph.svg';
 
 
 class AmenitiesList extends BaseComponent {
@@ -71,35 +71,38 @@ class AmenitiesList extends BaseComponent {
     
     return (
       (this.props.loading) ?
-      <div className="restaurantContainer">
-        <i className="fa fa-cog fa-spin fa-5x fa-fw"></i> Loading...
-      </div> :
-      <div>
+      (
         <div className="restaurantContainer">
-          <h5>
-            {[<i className="fa fa-futbol-o" aria-hidden="true" key="FontAwesome soccer ball glyph icon"></i>,
-              `\tParks`
-            ]}
-          </h5> 
-          <div className="overlay">
-            <ul className='trainList container'>{(parksList.length && this.renderList(parksList, job)) 
-              || 'There are no results for this area'}
-            </ul> 
+          <i className="fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner"></i> Loading...
+        </div>
+      ) :
+      (
+        <div>
+          <img src={DBIc} />
+          <div className="restaurantContainer">
+            <h5>
+              {[<i className="fa fa-futbol-o" aria-hidden="true" key="FontAwesome soccer ball glyph icon"></i>,
+                `\tParks`
+              ]}
+            </h5> 
+            <div className="overlay">
+              <ul className='trainList container'>{(parksList.length && this.renderList(parksList, job)) 
+                || 'There are no results for this area'}
+              </ul> 
+            </div>
+          </div>
+          <div className="restaurantContainer">
+            <h5>
+             GYMS
+            </h5>
+            <div className="overlay">
+              <ul className='busList container'>{gymsList.length && this.renderList(gymsList, job) 
+                || 'There are no results for this area' }
+              </ul>
+            </div>
           </div>
         </div>
-        <div className="restaurantContainer">
-          <h5>
-            {[<img src={require('../../public/img/dumbell_glyph.svg')} className="amenityHeaderGlyph" />,
-              "Gyms & Fitness"
-            ]}
-          </h5>
-          <div className="overlay">
-            <ul className='busList container'>{gymsList.length && this.renderList(gymsList, job) 
-              || 'There are no results for this area' }
-            </ul>
-          </div>
-        </div>
-      </div>
+      )
     ); 
   }
 }
@@ -115,8 +118,23 @@ let mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(AmenitiesList);
 
 
+// {[,
+//   <img src={DBIc} className="amenityHeaderGlyph" />,
+//   "Gyms & Fitness"
+// ]}
 
-              // <div className="yelpDescription card-body">
-              //   <p className="numRestaurantReviews">{ place.rating }</p>
-              //   <i>{ `${this.getDistanceFromLatLonInKm(job.latitude,job.longitude,place.geometry.location.lat, place.geometry.location.lng)} mi` }</i>
-              // </div>
+
+// <div className="yelpDescription card-body">
+//   <p className="numRestaurantReviews">{ place.rating }</p>
+//   <i>{ `${this.getDistanceFromLatLonInKm(job.latitude,job.longitude,place.geometry.location.lat, place.geometry.location.lng)} mi` }</i>
+// </div>
+
+
+// var React = require('react');
+// var Icon = require('babel!svg-react!../svg/my-icon.svg?name=Icon');
+
+// module.exports = React.createClass({
+//     render () {
+//         return <Icon className='normal' />;
+//     }
+// });

@@ -111,10 +111,9 @@ a:hover {
   width: 100%;
   height: 66%;
 }
-
-  #jobsContainer::after {
-    content: "";
+  #jobsContainer:after {
     position: absolute;
+    content: "";
     width: 100%;
     height: 15%;
     max-height: 50px;
@@ -124,6 +123,7 @@ a:hover {
     background:      -o-linear-gradient(bottom, rgba(236, 236, 236, 1.0) 20%, rgba(236, 236, 236, 0.75) 35%, rgba(236, 236, 236, 0) 75%);
     background:         linear-gradient(to top, rgba(236, 236, 236, 1.0) 20%, rgba(236, 236, 236, 0.75) 35%, rgba(236, 236, 236, 0) 75%);
   }
+
 
 #jobsContainer b > i {
   margin: auto 6px;
@@ -135,16 +135,18 @@ a:hover {
   text-transform: capitalize;
 }
 
-#chartContainer {
-  position: relative;
-  display: inline-block;
-  width: 40%;
-  min-height: 200px;
-  float: right;
-  background: -webkit-linear-gradient(209deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
-  background:      -o-linear-gradient(209deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
-  background:         linear-gradient(299deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
-}
+/*
+  #chartContainer {
+    position: relative;
+    display: inline-block;
+    width: 40%;
+    min-height: 200px;
+    float: right;
+    background: -webkit-linear-gradient(209deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
+    background:      -o-linear-gradient(209deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
+    background:         linear-gradient(299deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
+  }
+*/
 
 #jobResultsPane > div:first-child {
   position: relative;
@@ -180,6 +182,7 @@ h4.infoWindow_Header {
 #placesContainer h5, 
 .restaurantContainer h5 {
   width: 96%;
+  font-size: 2rem;
   text-align: center;
   margin: 0.5em auto;
 }
@@ -212,7 +215,7 @@ div#overlay {
   background: rgba(41, 37, 37, 0.59);
 }
 
-#headSection1 {  }
+/* #headSection1 {  } */
 
 #searchForm { 
   position: relative;
@@ -253,17 +256,19 @@ div.box {
   z-index: 150;
 }
 
-svg.rd3-chart {
-  position: relative;
-  display: block;
-  width: 80%;
-  margin: auto;
-}
+/*
+  svg.rd3-chart {
+    position: relative;
+    display: block;
+    width: 80%;
+    margin: auto;
+  }
+*/
 
 .footerCont {
   position: fixed;
   width: 100%;
-  height: 65px;
+  height: 3.75rem;    /* 65px */
   bottom: 0;
   left: 0;
   background: #7A7A7A;
@@ -278,7 +283,7 @@ svg.rd3-chart {
   padding: 4px 0;
   /* font-variant: unicase; */
   text-align: left;
-  text-indent: 15px;
+  text-indent: 1.5rem;
   font-size: 1.75rem;
   font-weight: lighter;
   line-height: 3.5rem;
@@ -677,6 +682,7 @@ i.XButton:hover {
   display: inline-block;
   width: 100%;
   height: 100%;
+  min-height: 200px;
   float: left;
   box-sizing: border-box;
   overflow: hidden;
@@ -855,6 +861,8 @@ li.restaurantLI > a {
 
 .job-detail h3 {
   width: 100%;
+  margin: 10px auto;
+  font-weight: bolder;
   text-align: center;
 }
 
@@ -936,4 +944,10 @@ input:-webkit-autofill {
   color: #00F;
 }
 
+.loadingSpinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 

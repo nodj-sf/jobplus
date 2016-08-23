@@ -41,7 +41,6 @@ class GMap extends BaseComponent {
     };
 
     this.modalNo = this.modalNo.bind(this);
-    // this.addTimeDelayedMarker = this.addTimeDelayedMarker.bind(this);
     this.jobMarkerCallbackHandler = this.jobMarkerCallbackHandler.bind(this);
   }
 

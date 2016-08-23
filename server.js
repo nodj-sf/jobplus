@@ -1,7 +1,8 @@
 const app = require('./server/router.js');
 
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-app.listen(port, () => {
-  console.log('Server up running on localhost:' + port);
+
+app.listen(PORT, () => {
+  console.log(`Server up running on LocalHost: ${PORT}`);
 });

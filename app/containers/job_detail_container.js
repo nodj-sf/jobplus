@@ -23,8 +23,18 @@ class JobDetail extends BaseComponent {
         </h3>
         <h4>{ this.props.job.company }</h4> 
         <hr />
-        <h6>{ this.props.job.formattedLocation }</h6>
-        <p>{ this.props.job.formattedRelativeTime }</p>
+        <h6>
+          {[<i className="fa fa-location-arrow" style={{ "color": "#14A4B5"}} key="FA-Directional-Arrow_Glyph"></i>,
+            `\t`,
+            this.props.job.formattedLocation
+          ]}
+        </h6>
+        <p>
+          {[<i className="fa fa-calendar" style={{ "color": "#14A4B5"}} key="FA-Calendar_Glyph"></i>,
+            `\t`,
+            this.props.job.formattedRelativeTime
+          ]}
+        </p>
         <blockquote>{ details }&hellip; [<a href={this.props.job.url} className="link-state" target="_new">more</a>]</blockquote>
       </div>
     );
