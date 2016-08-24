@@ -118,9 +118,17 @@ export default class BaseComponent extends Component {
     );
   }
 
+  // Produces a formatted string representation of an entity's tags:
   getItemTags(item) {
-    return [...Object.keys(item).reduce((memo, index) => memo = memo.add(item[index]), new Set())]
-      .join(', ');
+    let tags = [...Object.keys(item).reduce((memo, index) => memo = memo.add(item[index]), new Set())]
+      .map((word, index) => <span className='contentTag' key={`TagItem_${index}`}>{ `${word.charAt(0).toUpperCase()}${word.slice(1)}` }</span>);
+      // .map(tag => tag.split(/_/g));
+        // .map((word, index) => <span className='contentTag' key={`TagItem_${index}`}>{ `${word.charAt(0).toUpperCase()}${word.slice(1)}` }</span>));
+        // .join(' '));
+    
+    return (
+      {tags}
+    );
   }
 
   // Returns the radian-valued float equivalent of the given input in degrees:
@@ -145,6 +153,12 @@ export default class BaseComponent extends Component {
 }
 
 
+
+//<p className="tagsList">
+//  {[`Tags:\t`,
+//    ...tags
+//  ]}
+//</p>
 
 // rating >= 0 ?
 

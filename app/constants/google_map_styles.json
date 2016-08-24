@@ -23,6 +23,12 @@
       { "gamma": 0.6 }
     ]
   }, {
+    "featureType": "poi",
+    "elementType": "labels",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  }, {
     "featureType": "road.local",
     "stylers": [
       { "weight": 0.2 },

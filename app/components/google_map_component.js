@@ -12,7 +12,7 @@ import { fetchJobs, selectJob, activeBus, toggleModal, toggleModalOff } from '..
 
 
 // Code for potential inclusion at later date:
-const geolocation = (() => {
+const geolocation = () => {
   // canUseDOM && navigator.geolocation || {
   //   getCurrentPosition: (success, failure) => {
   //     failure(`Your browser doesn't support geolocation.`);
@@ -24,11 +24,12 @@ const geolocation = (() => {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
+      console.log(new google.maps.LatLng(pos.lat, pos.lng));
       return new google.maps.LatLng(pos.lat, pos.lng);
     });
-    return new google.maps.LatLng(37.745951, -122.439421);
+    // return new google.maps.LatLng(37.745951, -122.439421);
   }
-})();
+};
 
 
 class GMap extends BaseComponent {
@@ -193,6 +194,7 @@ class GMap extends BaseComponent {
   }
 
   render() {
+    console.log(`GeoLocation:\t${geolocation()}`);
     return (
       <GoogleMapLoader
         containerElement={ 
@@ -211,7 +213,6 @@ class GMap extends BaseComponent {
             ref="map" >
 
             { this.jobMarkerCallbackHandler() }
-            { this.restaurantMarkerCallbackHandler() }
 
             <GMap_Modal center={this.centerMap()} modalEnable={this.modalYes} modalDisable={this.modalNo} />
           </GoogleMap>
@@ -225,7 +226,6 @@ let mapStateToProps = (state) => ({
   jobMarkers: state.jobs.map(job => ({ 
     markerType: 'job',
     coords: { "lat": job.latitude, "lng": job.longitude },
-    // jobKey: job.jobkey,
     markerKey: job.jobkey,
     markerTitle: job.jobtitle,
     company: job.company, 
@@ -254,6 +254,9 @@ let mapDispatchToProps = (dispatch) => bindActionCreators({
 
 export default connect(mapStateToProps, mapDispatchToProps)(GMap);
 
+
+
+// { this.restaurantMarkerCallbackHandler() }
 
 // Not sure if we need this line(originally on line 194): coords: new google.maps.LatLng(job.latitude, job.longitude)
 // We need to get the photo from yelp and add it to the state collection

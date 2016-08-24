@@ -15,10 +15,10 @@ export default class RestaurantListItem extends BaseComponent {
           GMapsDirectionsURL = `https://www.google.com/maps/dir/${jobLat},${jobLng}/${restaurant.display_address[0].concat(restaurant.display_address[2]).split(' ').join('+')}/`;
 
     return (
-      <li className="restaurantLI one-third" >
+      <li className='restaurantLI one-third' >
         <div className="verticallyCenter">
           <div className="nameRating">
-            <a href={ restaurant.url } target="_blank">
+            <a href={ restaurant.url } className="textEllipsis" target="_blank">
               <h5 className="textEllipsis expandFromCenter">{ restaurant.name }</h5>
               <img className="yelpPhoto" src={this.parseYelpRestaurantPhoto(restaurant.photo)} alt="Yelp restaurant star rating." />
             </a>
@@ -29,8 +29,11 @@ export default class RestaurantListItem extends BaseComponent {
               <p className="numRestaurantReviews">{`${this.props.restaurant.review_count} Reviews`}</p>
             </div>
 
-            <p className="YelpRestaurantAddress">{ restaurant.display_address[1] }</p>
-            <p className="YelpRestaurantAddress">{ restaurant.display_address[0] }</p>
+            <div className="YelpRestaurantAddress">
+              {[<p key={`${restaurant.name}_AddressLine1`}>{restaurant.display_address[1]}</p>, 
+                <p key={`${restaurant.name}_AddressLine2`}>{restaurant.display_address[0]}</p>
+              ]}
+            </div>
 
             <p>
               {[<i className="fa fa-map" style={{ "color": "#14A4B5" }} key={`Distance:${restaurantDistance}`}></i>,

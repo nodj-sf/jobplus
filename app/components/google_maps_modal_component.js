@@ -1,16 +1,50 @@
 import React, { Component } from 'react';
 import { GoogleMapLoader, GoogleMap, Marker, InfoWindow, SearchBox } from 'react-google-maps';
 import { default as InfoBox } from 'react-google-maps/lib/addons/InfoBox';
+import { default as MarkerClusterer } from "react-google-maps/lib/addons/MarkerClusterer";
 import Modal from 'react-modal';
 import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import BaseComponent from './base_component';
-import customStyles from '../constants/google_map_modal_styles';
+// import customStyles from '../constants/google_map_modal_styles';
 import mapStylesObject from '../constants/google_map_styles.json';
 import { fetchJobs, selectJob, toggleModalOn } from '../actions/index';
 import fontawesome from 'fontawesome-markers';
+
+
+const customStyles = {
+  overlay : {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: `rgba(85, 84, 84, 1.0)
+                 url('http://assets.atlasobscura.com/assets/topography__2x-9a881e804210ac0c9942620dbf63e7737b108b12889ec7cef5f9b3720adb520d.png') 
+                 100% / 100% 
+                 no-repeat`,
+    backgroundBlendMode: 'soft-light'
+    // #E3E3E3
+    // rgba(48, 44, 44, 0.74902) 
+    // backgroundColor: 'rgba(48, 44, 44, 0.74902)'
+  },
+  content: {
+    minWidth: '90vw',
+    minHeight: '90vh',
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    padding: 0,
+    borderRadius: '8px',
+    transform: 'translate(-50%, -50%)',
+    overflow: 'hidden',
+    zIndex: '200'
+  }
+};
 
 
 export default class GMap_Modal extends BaseComponent {
@@ -222,7 +256,8 @@ export default class GMap_Modal extends BaseComponent {
     return (
       <Modal
         isOpen={this.props.toggleModal}
-        style={customStyles} >
+        style={customStyles}
+       >
 
         <GoogleMapLoader
           containerElement={
@@ -231,19 +266,25 @@ export default class GMap_Modal extends BaseComponent {
           googleMapElement={
             <GoogleMap 
               defaultCenter={this.props.center}
-              defaultZoom={13} 
+              defaultZoom={14} 
               maxZoom={14}
               defaultOptions={{styles: mapStylesObject}}
               scrollwheel={false}
               ref="map" >
 
-              { this.jobMarkerCallbackHandler() }
-              { this.restaurantMarkerCallbackHandler() }
-              { this.busMarkerCallbackHandler() }
-              { this.trainMarkerCallbackHandler() }
-              { this.parkMarkerCallbackHandler() }
-              { this.gymMarkerCallbackHandler() }
+              <MarkerClusterer
+                averageCenter
+                enableRetinaIcons
+                gridSize={ 50 } >
 
+                { this.jobMarkerCallbackHandler() }
+                { this.restaurantMarkerCallbackHandler() }
+                { this.busMarkerCallbackHandler() }
+                { this.trainMarkerCallbackHandler() }
+                { this.parkMarkerCallbackHandler() }
+                { this.gymMarkerCallbackHandler() }
+
+              </MarkerClusterer>
             </GoogleMap>
           } />
 

@@ -25,7 +25,7 @@ class TransportationList extends BaseComponent {
         <li className="restaurantLI one-third" key={transport.place_id} >
             <div className="verticallyCenter">
               <div className="nameRating">
-                <a href={ `http://maps.google.com/?q=${transportLat},${transportLng}` } target="_blank" >
+                <a href={ `http://maps.google.com/?q=${transportLat},${transportLng}` } className="textEllipsis" target="_blank" >
                   <h5 className="textEllipsis expandFromCenter">{ transport.name }</h5>
                   { 
                     (transport.photos) ? 

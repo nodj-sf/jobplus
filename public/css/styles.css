@@ -9,6 +9,18 @@ body {
   width: 100%;
 }
 
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
 hr {
   margin: 0;
   box-sizing: border-box;
@@ -129,10 +141,10 @@ a:hover {
   margin: auto 6px;
   padding: 0 6px;
   outline: 1px solid #FFF;
-  font-style: normal;
-  font-stretch: semi-expanded;
   text-indent: 5px;
   text-transform: capitalize;
+  font-style: normal;
+  font-stretch: semi-expanded;
 }
 
 /*
@@ -180,19 +192,29 @@ h4.infoWindow_Header {
 
 
 #placesContainer h5, 
-.restaurantContainer h5 {
-  width: 96%;
-  font-size: 2rem;
+.restaurantContainer > h5,
+.restaurantContainer > div:first-child > h5 {
+  width: 100%;
+  /* padding: 1rem 0; */
   text-align: center;
-  margin: 0.5em auto;
+  font-size: 4rem;
+  line-height: 5rem;
+  /* background: #E9EBEE; */
 }
 
-.restaurantContainer > h5 {
-  background: #E9EBEE;
-  padding: 1em 0;
-  margin: 0;
+.restaurantContainer .nameRating h5 {
   width: 100%;
+  margin: 0.35rem auto 0.65rem auto;
+  text-align: center;
+  font-size: 2rem;
+  font-variant: small-caps;                 /* Candidate for possible removal depending on others` stylistic opinions */
 }
+  h5.textEllipsis.expandFromCenter::first-letter {
+    color: #1BA6B7;
+    font-weight: 900;
+    font-size: 2.15rem;
+    letter-spacing: 0.1rem;
+  }
 
 h5.infoWindow_Header {
   margin-bottom: 0;
@@ -211,8 +233,9 @@ div#overlay {
 }
 
 .ReactModal__Overlay {
-  z-index: 150;
   background: rgba(41, 37, 37, 0.59);
+  background: rgba(48, 44, 44, 0.74902);
+  z-index: 150;
 }
 
 /* #headSection1 {  } */
@@ -240,7 +263,7 @@ div.box {
   position: absolute;
   left: 50px;
   color: #000;
-  font: 4.5vh/6vh "Raleway", "Open Sans", Helvetica, Arial, sans-serif;
+  font: 4.5vh/6vh "Raleway", "Open Sans", "Helvetica Neue", Arial, sans-serif;
 }
 
 .bannerCont {
@@ -252,7 +275,7 @@ div.box {
   background: -webkit-linear-gradient(231deg, rgba(20, 164, 181, 1) 15%, rgb(70, 183, 197) 84%, rgb(92, 192, 204) 160%);
   background:      -o-linear-gradient(231deg, rgba(20, 164, 181, 1) 15%, rgb(70, 183, 197) 84%, rgb(92, 192, 204) 160%);
   background:         linear-gradient(321deg, rgba(20, 164, 181, 1) 15%, rgb(70, 183, 197) 84%, rgb(92, 192, 204) 160%);
-  box-shadow: 0 5px 4px 0.5px #ADADAD;
+  box-shadow: 0 4px 13px 1px #ADADAD;
   z-index: 150;
 }
 
@@ -389,7 +412,7 @@ button.button-primary {
   margin: 20px auto;
   margin-left: 25px;
   margin-bottom: 1rem;
-  padding: 0px 4px;
+  padding: 0 4px;
   font: 900 20px/50px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
   background-color: #771DE5;
   color: #A7A5A5;
@@ -594,7 +617,7 @@ h4.noResultsShown {
   overflow: hidden;
   left: -5%;
   line-height: 100px;
-  font-size: 50px;
+  font-size: 4.5rem;
   font-weight: 900;
   text-align: center;
   transform: translateY(-50%) rotate(-32deg);
@@ -622,26 +645,33 @@ input[type='search']::-webkit-search-results-decoration {
   display: none;
 }
 
-input::-webkit-input-placeholder {                  /* Apple Safari / Google Chrome browsers */
+/* Apple Safari / Google Chrome browsers */
+input::-webkit-input-placeholder {
    font: 20px/50px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
    text-indent: 20px;
    color: #FFF;
    opacity: 0.80;
    transition: text-indent 0.25s ease-out;
 }
-input:-moz-placeholder {                            /* Firefox 18- */
+
+/* Firefox 18- */
+input:-moz-placeholder {
   font: 20px/50px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
   text-indent: 20px;
   color: #FFF;
   opacity: 0.80;
 }
-input::-moz-placeholder {                           /* Firefox 19+ */
+
+/* Firefox 19+ */
+input::-moz-placeholder {
   font: 20px/50px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
   text-indent: 20px;
   color: #FFF;
   opacity: 0.80;
 }
-input:-ms-input-placeholder {                       /* Microsoft (MS) Internet Explorer (IE) */
+
+/* Microsoft (MS) Internet Explorer (IE) */
+input:-ms-input-placeholder {
   font: 20px/50px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
   text-indent: 20px;
   color: #FFF;
@@ -654,21 +684,22 @@ h2.modalJobTitle {
 
 i.XButton {
   position: absolute;
-  right: 15px;
-  width: 40px;
-  top: 15px;
+  right: 1.5rem;
+  width: 4rem;
+  top: 1.5rem;
   height: 30px;
-  background: white;
-  font-size: 50px;
+  background: #FFF;
+  font-size: 5rem;
   color: #14A4B5;
-  line-height: 30px;
+  line-height: 3rem;
   box-sizing: border-box;
   border-radius: 50%;
-  /* border: 2px solid #14A4B5; */
 }
 
 i.XButton:hover {
   cursor: pointer;
+  color: #1196A5;
+  transition: all 0.10s ease-out;
 }
 
 
@@ -698,7 +729,7 @@ i.XButton:hover {
   flex-direction: row;
   justify-content: space-between;
   box-sizing: border-box;
-  /*background: hsl(0, 53%, 52%) url("../img/bckg_hero.png") no-repeat;*/
+  background: hsl(0, 53%, 52%) url("../img/bckg_hero.png") no-repeat;
   background-blend-mode: color-dodge;
   backface-visibility: initial;
   background-position: 10% 30%;
@@ -707,35 +738,6 @@ i.XButton:hover {
   z-index: 1;
 }
 
-/* 
-.restaurantContainer > div:first-child a {
-  position: relative;
-  display: inline-block;
-  height: 100%;
-  width: 5%;
-  float: left;
-}
-*/
-
-a {
-  color: black;
-  text-decoration: none;
-}
-
-/*
-.restaurantContainer > div a img {
-  position: absolute;
-  display: none;
-  height: 85%;
-  left: 50%;
-  top: 7.5%;
-  margin: 0;
-  padding: 0;
-  transform: translateX(-50%);
-  box-sizing: border-box;
-}
-*/
-
 .restaurantContainer > div h1 {
   position: relative;
   display: inline-block;
@@ -743,7 +745,7 @@ a {
   width: 100%;
   margin: 0 1.5rem 0 0;
   float: right;
-  font: normal 3.75rem/5rem "Raleway", Arial, sans-serif;
+  font: normal 3.75rem/5rem "Raleway", "Open Sans", Arial, sans-serif;
   text-align: center;
 }
 
@@ -755,10 +757,11 @@ p {
 
 img.yelpPhoto {
   position: relative;
-  width: 90%;
-  max-height: 175px;
+  width: 100%;
+  height: 100%;
+  /*max-height: 175px;*/
   left: 50%;
-  top: 2.5%;
+  /*top: 2.5%;*/
   transform: translateX(-50%);
 }
 
@@ -777,15 +780,17 @@ img.yelpPhoto {
   display: inline-block;
   min-height: 200px;
   max-height: 400px;
-  vertical-align: top;
-  padding-bottom: 1em;
+  margin: 1rem auto;
+  padding-bottom: 0.75rem;
   background-color: #FFF;
+  vertical-align: top;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
 }
 
 .restaurantLI:hover,
 .transportationCard:hover,
-.amenitiesCard:hover {
+.amenitiesCard:hover,
+.activeCard {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 
               0 6px 10px 0 rgba(0, 0, 0, 0.3);
 }
@@ -811,11 +816,11 @@ li.restaurantLI > a {
   content: "";
   margin: auto;
   background: transparent;
-  transition: width .5s ease, 
-              background-color .5s ease;
+  transition: width 0.5s ease, 
+              background-color 0.5s ease;
 }
   .expandFromCenter:hover:after {
-    width: 90%;
+    width: 100%;
     background: #1BA6B7;
   }
 
@@ -839,15 +844,9 @@ li.restaurantLI > a {
 }
 
 .nameRating > a {
-  word-break: break-word;
-  word-wrap: break-word;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-size: 20px;
   display: block;
   width: 100%;
-  overflow-x: hidden;
-  text-decoration: none;
+  max-height: 225px;
 }
 
 #jobInfoBody div.jobInfoBottomBlock {
@@ -875,11 +874,16 @@ li.restaurantLI > a {
   color: #222;
 }
 
-.yelp-rating, .card-body {
-  margin-left: 14px;
+div.verticallyCenter {
+  padding: 0 1.5rem;
 }
 
-p.YelpRestaurantAddress {
+.yelp-rating, 
+.card-body {
+  /* margin-left: 14px; */
+}
+
+.YelpRestaurantAddress {
   font-size: 1.25rem;
   line-height: 1.35rem;
 }
@@ -887,7 +891,7 @@ p.YelpRestaurantAddress {
 div.YelpRating_Div {
   position: relative;
   display: block;
-  width: 98%;
+  width: 100%;
   overflow: hidden;
 }
   div.YelpRating_Div > img.YelpRatingStars {
@@ -913,14 +917,33 @@ a.YelpPhoneNo {
   word-spacing: -5px;
   font-weight: lighter;
   font-size: 1.35rem;
-  /* letter-spacing: 0.1px;
+  /* letter-spacing: 0.1px; */
 }
 
+
 /* Fix Chrome browser's default AutoFill yellow background */
+/* Change Autocomplete styles in Chrome */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+input:-webkit-autofill, 
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid green;
+  -webkit-text-fill-color: green;
+  -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 input:-webkit-autofill {
   -webkit-text-fill-color: #FFF !important;
-  -webkit-box-shadow: inset 0 0 0px 1000px #7A7A7A;
+  -webkit-box-shadow: inset 0 0 0 1000px #7A7A7A;
 }
+
 
 /* Mimic :hover state for non-obvious links */
 .link-state:hover {
@@ -936,6 +959,11 @@ input:-webkit-autofill {
   text-decoration: none;
 }
 
+
+/* =============================================
+   ============================================= */
+
+/* FontAwesome (Class `.fa`) Style Declarations: */
 .fa-yelp {
   color: #AF0606;
 }
