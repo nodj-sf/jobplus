@@ -102,7 +102,8 @@ a:hover {
   box-sizing: border-box;
   background: #ECECEC;
   overflow: hidden;
-  box-shadow: 5px 0 12.5px 0.5px #ADADAD;
+  box-shadow: 1px 0 8px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 1px 0 8px rgba(0, 0, 0, 0.3);
   z-index: 100;
 }
 
@@ -157,6 +158,15 @@ a:hover {
     background: -webkit-linear-gradient(209deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
     background:      -o-linear-gradient(209deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
     background:         linear-gradient(299deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
+  }
+*/
+
+/*
+  svg.rd3-chart {
+    position: relative;
+    display: block;
+    width: 80%;
+    margin: auto;
   }
 */
 
@@ -275,18 +285,11 @@ div.box {
   background: -webkit-linear-gradient(231deg, rgba(20, 164, 181, 1) 15%, rgb(70, 183, 197) 84%, rgb(92, 192, 204) 160%);
   background:      -o-linear-gradient(231deg, rgba(20, 164, 181, 1) 15%, rgb(70, 183, 197) 84%, rgb(92, 192, 204) 160%);
   background:         linear-gradient(321deg, rgba(20, 164, 181, 1) 15%, rgb(70, 183, 197) 84%, rgb(92, 192, 204) 160%);
-  box-shadow: 0 4px 13px 1px #ADADAD;
+  /* box-shadow: 0 4px 13px 1px #ADADAD; */
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
   z-index: 150;
 }
-
-/*
-  svg.rd3-chart {
-    position: relative;
-    display: block;
-    width: 80%;
-    margin: auto;
-  }
-*/
 
 .footerCont {
   position: fixed;
@@ -362,6 +365,8 @@ ul.jobsList.activeJobLI {
   cursor: pointer;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 
               0 6px 10px 0 rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 
+                      0 6px 10px 0 rgba(0, 0, 0, 0.3);
 }
 
 li.jobLI h2,
@@ -418,6 +423,7 @@ button.button-primary {
   color: #A7A5A5;
   border-radius: 4px;
   box-shadow: none;
+  -webkit-box-shadow: none;
   box-sizing: content-box;
   transition: background 0.25s ease-out, 
               color 0.25s ease-out;
@@ -494,7 +500,8 @@ button.button-primary:hover {
 .container-3 + button:hover {
   background: rgba(255, 255, 255, 0.89);
   color: #14A4B5;
-  /* box-shadow: inset 0 -5px 8px 1px rgba(255, 255, 255, 0.55); */
+  /* box-shadow: inset 0 -5px 8px 1px rgba(255, 255, 255, 0.55);
+     -webkit-box-shadow: 0 -5px 8px 1px rgba(255, 255, 255, 0.55); */
 }
 
 /*
@@ -785,6 +792,7 @@ img.yelpPhoto {
   background-color: #FFF;
   vertical-align: top;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+  -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
 }
 
 .restaurantLI:hover,
@@ -793,6 +801,8 @@ img.yelpPhoto {
 .activeCard {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 
               0 6px 10px 0 rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 
+                      0 6px 10px 0 rgba(0, 0, 0, 0.3);
 }
 
 .restaurantLI .nameRating:hover,
@@ -965,7 +975,9 @@ input:-webkit-autofill {
 
 /* FontAwesome (Class `.fa`) Style Declarations: */
 .fa-yelp {
-  color: #AF0606;
+  color: #000;      /* #AF0606 */
+  font-weight: 900;
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.75);
 }
 
 .fa-bus {

@@ -51,6 +51,7 @@ html {
   #jobMain {
     display: flex;
     height: auto;
+    padding-bottom: 25px;
     flex-direction: column;
     transform: none;
   }
@@ -61,7 +62,7 @@ html {
     display: block;
     width: 88vw;
     top: 4vh;
-    margin: 25px auto;
+    margin: 0 auto;
     background: #FFF;
     box-shadow: 0 4px 8px 1.5px rgba(0, 0, 0, 0.37);
   }

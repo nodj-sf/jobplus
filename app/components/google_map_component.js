@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GoogleMapLoader, GoogleMap, Marker, InfoWindow, SearchBox } from 'react-google-maps';
+import { GoogleMapLoader, GoogleMap, Marker, InfoWindow, OverlayView, SearchBox } from 'react-google-maps';
 import { default as InfoBox } from 'react-google-maps/lib/addons/InfoBox';
 import Modal from 'react-modal';
 import { bindActionCreators } from 'redux';
@@ -31,6 +31,19 @@ const geolocation = () => {
   }
 };
 
+const STYLES = {
+  mapContainer: {
+    height: '100%'
+  },
+  overlayView: {
+    position: 'relative',
+    width: '100%',
+    height: '50px',
+    background: '#FFF',
+    border: '1px solid #CCC'
+  },
+};
+
 
 class GMap extends BaseComponent {
   constructor(props) {
@@ -53,6 +66,15 @@ class GMap extends BaseComponent {
   centerZoomOverUSA() {
     this.setState({ zoomLevel: 5 });
   }
+
+  // getPixelPositionOffset(width, height) {
+  //   return {
+  //     // x: -(width / 2), 
+  //     // y: -(height / 2) 
+  //     x: -width,
+  //     y: height
+  //   };
+  // }
 
   // Toggle to 'true' to show InfoWindow and re-render component
   handleMarkerClick(targetMarker) {
@@ -193,14 +215,24 @@ class GMap extends BaseComponent {
     });
   }
 
+
+  getPixelPositionOffset(width, height) {
+    return {
+      // x: -(width / 2), 
+      // y: -(height / 2) 
+      x: -(width / 2),
+      y: -height
+    };
+  }
+
   render() {
     console.log(`GeoLocation:\t${geolocation()}`);
     return (
       <GoogleMapLoader
         containerElement={ 
           <div 
-            id="mapsContainer" 
-            onDoubleClick={() => this.modalYes()} /> 
+            id="mapsContainer" />
+            // onDoubleClick={() => this.modalYes()} /> 
         }   
         googleMapElement={
           <GoogleMap 
@@ -211,6 +243,19 @@ class GMap extends BaseComponent {
             defaultOptions={{ styles: mapStylesObject }}
             scrollwheel={false}
             ref="map" >
+
+            <OverlayView
+              // position={this.centerMap()}
+              bounds={{ ne: { lat: -90, lng: -180 }, sw: { lat: -80, lng: 180 } } }
+              mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+              getPixelPositionOffset={this.getPixelPositionOffset} >
+
+              <div style={STYLES.overlayView}>
+                <p>OverlayView</p>
+                <button type="button" style={{ "display": "inline", "border": "none" }} onClick={() => this.modalYes()}>More Map</button>
+              </div>
+
+            </OverlayView>
 
             { this.jobMarkerCallbackHandler() }
 
@@ -255,6 +300,8 @@ let mapDispatchToProps = (dispatch) => bindActionCreators({
 export default connect(mapStateToProps, mapDispatchToProps)(GMap);
 
 
+
+// onDoubleClick={() => this.modalYes()}
 
 // { this.restaurantMarkerCallbackHandler() }
 
