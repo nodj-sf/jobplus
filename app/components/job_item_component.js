@@ -20,7 +20,7 @@ export default class JobItem extends BaseComponent {
           <h2 className="textEllipsis">{ this.parseAndFormatJobTitle(this.props.job.jobtitle) }</h2>
           <div className="jobLI_MetaInfo">
             <h6>
-              <b>{this.props.job.company || 'Unlisted'}</b>
+              <b>{ this.parseAndFormatJobTitle(this.props.job.company) || 'Unlisted' }</b>
             </h6>
             <i className="daysSincePosted">{ this.parseAndFormatDaysSincePosted(this.props.job.formattedRelativeTime) }</i>
           </div>

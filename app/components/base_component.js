@@ -33,14 +33,18 @@ export default class BaseComponent extends Component {
       '(nyc)': '(NYC)',
       '.net': '.NET',
       'and': '&',
+      'at': '@',
       'dba': 'DBA',
       'dev/ops': 'Dev/Ops',
+      'dev-ops': 'Dev/Ops',
+      'full-stack': 'Full-Stack',
       'ios': 'iOS',
       'javascript': 'JavaScript',
       'js': 'JS',
       'nosql': 'NoSQL',
       'nyc': 'NYC',
       'of': 'of',
+      'os': 'OS',
       'php': 'PHP',
       'with': 'w/'
     };
@@ -48,13 +52,16 @@ export default class BaseComponent extends Component {
     return job
       .trim()
       // .split(/[\s|\/]/gmi)
+      // .replace(/\s(\/)\s(?:\w+)/gmi, '$1')
+      .replace(/\s(\/)\s((?:\w+))/gmi, ((match1, match2) => match1 + match2[0].toUpperCase() + match2.slice(1).toLowerCase())('$1', '$2'))
+      .replace(/No\.(\d+)/gmi, '\u2116. $1')
+      .replace(/(\w+)(?:,)\sInc(?!\.)/gmi, '$1, Inc.')
       .split(' ')
       .reduce((memo, index) => {
         return index.toLowerCase() in specialFormatTerms ?
           memo += ` ${specialFormatTerms[index.toLowerCase()]} ` :
           memo += ` ${index.charAt(0).toUpperCase()}${index.slice(1).toLowerCase()} `;
       })
-      .replace(/\s(\/)\s/gmi, "$1")
       // .replace(/\band\b/gmi, "&")
       .trim();
   }

@@ -57,7 +57,7 @@ export default class GMap_Modal extends BaseComponent {
     return this.props.jobMarkers.length ? this.props.jobMarkers[0].coords : this.state.defaultCenter;
   }
 
-  // Toggle to 'true' to show InfoWindow and re-renders component
+  // Toggle to 'true' to show InfoWindow and re-render component:
   handleMarkerClick(targetMarker) {
     this.closeAllMarkers();
 

@@ -18,9 +18,11 @@ export default class RestaurantListItem extends BaseComponent {
       <li className='restaurantLI one-third' >
         <div className="verticallyCenter">
           <div className="nameRating">
-            <a href={ restaurant.url } className="textEllipsis" target="_blank">
-              <h5 className="textEllipsis expandFromCenter">{ restaurant.name }</h5>
-              <img className="yelpPhoto" src={this.parseYelpRestaurantPhoto(restaurant.photo)} alt="Yelp restaurant star rating." />
+            <a href={ restaurant.url } target="_blank">
+              <h5 className="textEllipsis expandFromCenter">{ this.parseAndFormatJobTitle(restaurant.name) }</h5>
+              <div className="yelpPhoto textEllipsis">
+                <img src={ this.parseYelpRestaurantPhoto(restaurant.photo) } alt="Yelp restaurant star rating." />
+              </div>
             </a>
           </div>
           <div className="yelpDescription card-body">

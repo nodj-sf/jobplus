@@ -39,14 +39,17 @@ html {
     font-size: 7px;
   }*/
 
+  div#bckgHero {
+    height: 100vh;
+    top: 0;
+  }
+
   #appContainer { 
     height: auto;
     background: transparent;
   }
 
-  form#searchForm {
-    
-  }
+  form#searchForm { }
 
   #jobMain {
     display: flex;
@@ -64,7 +67,8 @@ html {
     top: 4vh;
     margin: 0 auto;
     background: #FFF;
-    box-shadow: 0 4px 8px 1.5px rgba(0, 0, 0, 0.37);
+    -webkit-box-shadow: 0 4px 8px 1.5px rgba(0, 0, 0, 0.37);
+    box-shadow:         0 4px 8px 1.5px rgba(0, 0, 0, 0.37);
   }
 
   div#jobResultsPane {
@@ -91,10 +95,10 @@ html {
   #jobInfoBody div.jobInfoBottomBlock {
     position: relative;
     display: flex;
-    flex-direction: column;
     width: 100%;
     min-height: 500px;
     bottom: 0;
+    flex-direction: column;
   }
 
   #restaurantContainer {

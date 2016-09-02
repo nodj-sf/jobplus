@@ -244,19 +244,6 @@ class GMap extends BaseComponent {
             scrollwheel={false}
             ref="map" >
 
-            <OverlayView
-              // position={this.centerMap()}
-              bounds={{ ne: { lat: -90, lng: -180 }, sw: { lat: -80, lng: 180 } } }
-              mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-              getPixelPositionOffset={this.getPixelPositionOffset} >
-
-              <div style={STYLES.overlayView}>
-                <p>OverlayView</p>
-                <button type="button" style={{ "display": "inline", "border": "none" }} onClick={() => this.modalYes()}>More Map</button>
-              </div>
-
-            </OverlayView>
-
             { this.jobMarkerCallbackHandler() }
 
             <GMap_Modal center={this.centerMap()} modalEnable={this.modalYes} modalDisable={this.modalNo} />
@@ -307,3 +294,17 @@ export default connect(mapStateToProps, mapDispatchToProps)(GMap);
 
 // Not sure if we need this line(originally on line 194): coords: new google.maps.LatLng(job.latitude, job.longitude)
 // We need to get the photo from yelp and add it to the state collection
+
+
+// <OverlayView
+//   // position={this.centerMap()}
+//   bounds={{ ne: { lat: -90, lng: -180 }, sw: { lat: -80, lng: 180 } } }
+//   mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+//   getPixelPositionOffset={this.getPixelPositionOffset} >
+
+//   <div style={STYLES.overlayView}>
+//     <p>OverlayView</p>
+//     <button type="button" style={{ "display": "inline", "border": "none" }} onClick={() => this.modalYes()}>More Map</button>
+//   </div>
+
+// </OverlayView>

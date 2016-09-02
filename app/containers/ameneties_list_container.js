@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import BaseComponent from '../components/base_component';
-import DBIc from '../../public/img/dumbell_glyph.svg';
+// import DBIc from '../../public/img/dumbell_glyph.svg';
 
 
 class AmenitiesList extends BaseComponent {
@@ -15,18 +15,19 @@ class AmenitiesList extends BaseComponent {
             amenityDistance = this.getDistanceFromLatLonInKm(jobLat, jobLng, placeLat, placeLng),
             GMapsDirectionsURL = `https://www.google.com/maps/dir/${jobLat},${jobLng}/${placeLat},${placeLng}/`;
 
-      let img = '';
-
       if (place.photos) {
-        img = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&photoreference=${place.photos[0].photo_reference}&key=AIzaSyC1_oLFky0FuFjjQJfY7DWwAFFupPP4sSw`;
+        let img = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&photoreference=${place.photos[0].photo_reference}&key=AIzaSyC1_oLFky0FuFjjQJfY7DWwAFFupPP4sSw`;
       }
       
       return (
         <li className="restaurantLI one-third" key={index} >
           <div className="verticallyCenter">
             <div className="nameRating">
-              <a href={ `http://maps.google.com/?q=${place.geometry.location.lat},${place.geometry.location.lng}/` } target="_blank" >
-                <h5 className="textEllipsis expandFromCenter">{ place.name }</h5>
+              <a 
+                href={ `http://maps.google.com/?q=${place.geometry.location.lat},${place.geometry.location.lng}/` } 
+                className="textEllipsis" 
+                target="_blank" >
+                <h5 className="textEllipsis expandFromCenter">{ this.parseAndFormatJobTitle(place.name) }</h5>
                 { 
                   (place.photos) ? 
                     <img className="yelpPhoto" src={ img } alt={ place.name } /> : 
@@ -45,7 +46,7 @@ class AmenitiesList extends BaseComponent {
               <p>
                 {[<i className="fa fa-map" style={{ "color": "#14A4B5" }} key={`Distance:${amenityDistance}`}></i>,
                   `\t`,
-                  <a href={GMapsDirectionsURL} className="YelpPhoneNo expandFromCenter" target="_blank" key={`GMapURL:${GMapsDirectionsURL}`}>
+                  <a href={GMapsDirectionsURL} className="YelpPhoneNo expandFromCenter" target="_blank" key={`GMapURL_${GMapsDirectionsURL}`}>
                     <em key={`Amenity_Dist:${place.id}`} style={{ "color": this.distanceColor(amenityDistance) }}>{`${amenityDistance} mi`}</em>
                   </a>
                 ]}
@@ -78,7 +79,6 @@ class AmenitiesList extends BaseComponent {
       ) :
       (
         <div>
-          <img src={DBIc} />
           <div className="restaurantContainer">
             <h5>
               {[<i className="fa fa-futbol-o" aria-hidden="true" key="FontAwesome soccer ball glyph icon"></i>,
@@ -92,9 +92,10 @@ class AmenitiesList extends BaseComponent {
             </div>
           </div>
           <div className="restaurantContainer">
-            <h5>
-             GYMS
-            </h5>
+            <div>
+              <img src="http://goo.gl/XMYImW" className="AmenitiesHeader_Img" alt="Gym amenity dumbell glyph icon" />
+              <h5>Gyms</h5>
+            </div>
             <div className="overlay">
               <ul className='busList container'>{gymsList.length && this.renderList(gymsList, job) 
                 || 'There are no results for this area' }

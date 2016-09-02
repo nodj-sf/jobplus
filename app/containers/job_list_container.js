@@ -109,5 +109,5 @@ let mapDispatchToProps = (dispatch) =>  {
   }, dispatch);
 };
 
-// Promote JobList to a container:
+// Promote JobList to a Container:
 export default connect(mapStateToProps, mapDispatchToProps)(JobList);
