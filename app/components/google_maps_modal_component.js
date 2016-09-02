@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GoogleMapLoader, GoogleMap, Marker, InfoWindow, SearchBox } from 'react-google-maps';
+import { GoogleMapLoader, GoogleMap, Marker, InfoWindow, SearchBox, DirectionsRenderer} from 'react-google-maps';
 import { default as InfoBox } from 'react-google-maps/lib/addons/InfoBox';
 import { default as MarkerClusterer } from "react-google-maps/lib/addons/MarkerClusterer";
 import Modal from 'react-modal';
@@ -50,6 +50,12 @@ const customStyles = {
 export default class GMap_Modal extends BaseComponent {
   constructor(props) {
     super(props);
+  }
+
+  state = {
+    // origin: new google.maps.LatLng(this.props.activeJob.latitude, this.props.activeJob.longitude),
+    // destination: new google.maps.LatLng(41.8525800, -87.6514100),
+    directions: null
   }
 
   centerMap() {
@@ -114,7 +120,7 @@ export default class GMap_Modal extends BaseComponent {
 
     allMarkers.forEach(markerSet => {
       this.setState({
-        markers: markerSet.map(marker => Object.assign( marker, {showInfo: false}))
+        markers: markerSet.map(marker => Object.assign( marker, { showInfo: false }))
       });
     });
   }
@@ -125,19 +131,37 @@ export default class GMap_Modal extends BaseComponent {
   }
   
   renderInfoWindow(marker, ref) {
-    const onCloseclick = this.handleMarkerClose.bind(this, marker);
-      // console.log("PHOTO REF.", marker.markerPhoto);
+    const onCloseclick = this.handleMarkerClose.bind(this, marker),
+          companyTitle = () => {
+            if (marker.company) {
+              return (
+                <h5 className="infoWindow_Header">{ this.parseAndFormatJobTitle(marker.company) }</h5>
+              );
+            }     
+          },
+          itemImage = () => {
+            // console.log("PHOTO REF.", marker.markerPhoto);
+            if (marker.markerPhoto) {
+              return (
+                <img 
+                  src={ this.parseYelpRestaurantPhoto(marker.markerPhoto) } 
+                  className="modalInfoWindow_Pic" 
+                  style={{ "maxWidth": "300px", "height": "auto" }}
+                  alt="Reference photograph [Source: Yelp/Google Places API." />
+              );
+            }
+          };
 
     return (
       <InfoWindow
         key={`${marker.markerKey}_info_window`}
         onCloseclick={onCloseclick} >
           <div>
-            <h4 className="infoWindow_Header">{this.parseAndFormatJobTitle(marker.markerTitle)}</h4>
-            <h5 className="infoWindow_Header">{marker.company}</h5>
+            <h4 className="infoWindow_Header">{ this.parseAndFormatJobTitle(marker.markerTitle) }</h4>
+            { companyTitle() }
             <hr />
-            <p>{marker.formattedLocation}</p>
-            <img src={ marker.markerPhoto } className="modalInfoWindow_Pic" alt="Reference photograph [Source: Yelp/Google Places API." />
+            <p>{ marker.address }</p>
+            { itemImage() }
           </div>
          
       </InfoWindow>
@@ -196,8 +220,8 @@ export default class GMap_Modal extends BaseComponent {
       <Marker
         key={`Marker_${marker.markerKey}`}
         ref={`${marker.markerType}_Marker_${index}`}
-        data-jobTitle={marker.markerTitle}
-        data-formattedLocation={marker.formattedLocation}
+        data-jobTitle={ marker.markerTitle }
+        data-address={ marker.address }
         // data-jobTitle={marker.restaurantTitle}
         position={ new google.maps.LatLng(marker.coords) }
         // title={marker.restaurantTitle}
@@ -254,12 +278,38 @@ export default class GMap_Modal extends BaseComponent {
     });
   }
 
+  componentDidMount() {
+    const DirectionsService = new google.maps.DirectionsService();
+
+    DirectionsService.route({
+      origin: new google.maps.LatLng(this.props.activeJob.latitude, this.props.activeJob.longitude),
+      // destination: this.state.destination,
+      // destination: new google.maps.LatLng(this.props.restaurantMarkers[0].coords),
+      destination: new google.maps.LatLng(42.332976, -83.051936),
+      travelMode: google.maps.TravelMode.DRIVING
+    }, (result, status) => {
+      if (status === google.maps.DirectionsStatus.OK) {
+        this.setState({
+          directions: result
+        });
+      } else {
+        console.log(`Error fetching directions: ${result}`);
+        console.error(`Error fetching directions: ${result}`);
+      }
+    });
+  }
+
   render() {
+    const origin = new google.maps.LatLng(this.props.activeJob.latitude, this.props.activeJob.longitude),
+          directions = this.state.directions;
+    console.log(`Origin: ${new google.maps.LatLng(this.props.activeJob.latitude, this.props.activeJob.longitude)}`);
+    // const origin = new google.maps.LatLng(this.props.activeJob.coords),
+    //       { directions } = this.state;
+
     return (
       <Modal
         isOpen={this.props.toggleModal}
-        style={customStyles}
-       >
+        style={customStyles} >
 
         <GoogleMapLoader
           containerElement={
@@ -274,12 +324,13 @@ export default class GMap_Modal extends BaseComponent {
               maxZoom={14}
               defaultOptions={{styles: mapStylesObject}}
               scrollwheel={false}
-              ref="map" >
+              ref="map"
+              onClick={() => this.closeAllMarkers()} >
 
               <MarkerClusterer
                 averageCenter
                 enableRetinaIcons
-                gridSize={ 50 } >
+                gridSize={50} >
 
                 { this.jobMarkerCallbackHandler() }
                 { this.restaurantMarkerCallbackHandler() }
@@ -287,8 +338,15 @@ export default class GMap_Modal extends BaseComponent {
                 { this.trainMarkerCallbackHandler() }
                 { this.parkMarkerCallbackHandler() }
                 { this.gymMarkerCallbackHandler() }
-
               </MarkerClusterer>
+
+
+              { 
+                directions ? 
+                  <DirectionsRenderer directions={ directions } /> 
+                  : null
+              }
+
             </GoogleMap>
           } />
 
@@ -307,7 +365,7 @@ let mapStateToProps = (state) => {
       markerKey: job.jobkey,
       markerTitle: job.jobtitle,
       company: job.company, 
-      formattedLocation: job.formattedLocation,
+      address: job.formattedLocation,
       // markerPhoto: 'No Image',
       showInfo: false
     })),

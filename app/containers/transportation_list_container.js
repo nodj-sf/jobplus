@@ -38,16 +38,22 @@ class TransportationList extends BaseComponent {
               </div>
               <div className="yelpDescription card-body">
                 <div className="YelpRating_Div">
-                  { transport.rating ? 
+                  { 
+                    transport.rating ? 
                       this.getStarRating(+transport.rating) :
-                      'No Reviews'
+                      <div className="starsRating">
+                        {[
+                          <i className="fa fa-heart cardDescriptionGlyph" key={`UserLoveRating_${transport.rating}`}></i>,
+                          '\tNo Reviews'
+                        ]}
+                      </div>
                   }
                 </div>
 
                 <div>
                   <div style={{ "display": "inline-block", "width": "45%", "float": "left" }}>
                     {[
-                      <i className="fa fa-map" style={{ "color": "#14A4B5" }} key={`Distance_${stationDistance}`}></i>,
+                      <i className="fa fa-map cardDescriptionGlyph" key={`Distance_${stationDistance}`}></i>,
                       `\t`,
                       <a href={GMapsDirectionsURL} className="YelpPhoneNo expandFromCenter" target="_blank" key={`GMapURL_${GMapsDirectionsURL}`}>
                         <em key={`StationDist_${transport.id}`} style={{ "color": this.distanceColor(stationDistance) }}>{`${stationDistance} mi`}</em>
@@ -59,7 +65,7 @@ class TransportationList extends BaseComponent {
 
                 <p style={{ "fontSize": "1.25rem", "clear": "both" }}>
                   {[
-                    <i className="fa fa-tags" style={{ "color": "#14A4B5", "fontSize": "1.6rem" }} key={`AmenityTags_${index}`}></i>,
+                    <i className="fa fa-tags cardDescriptionGlyph" key={`AmenityTags_${index}`}></i>,
                     `\t${this.getItemTags(transport.types)}`
                   ]}
                 </p>

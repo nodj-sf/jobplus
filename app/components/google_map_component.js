@@ -117,23 +117,30 @@ class GMap extends BaseComponent {
 
     allMarkers.forEach(markerSet => {
       this.setState({
-        markers: markerSet.map(marker => Object.assign( marker, {showInfo: false}))
+        markers: markerSet.map(marker => Object.assign( marker, { showInfo: false }))
       });
     });
   }
 
   renderInfoWindow(marker, ref) {
-    const onCloseclick = this.handleMarkerClose.bind(this, marker);
+    const onCloseclick = this.handleMarkerClose.bind(this, marker),
+          companyTitle = () => {
+            if (marker.company) {
+              return (
+                <h5 className="infoWindow_Header">{ this.parseAndFormatJobTitle(marker.company) }</h5>
+              );
+            }     
+          };
 
     return (
       <InfoWindow
         key={`${marker.markerKey}_info_window`}
         onCloseclick={onCloseclick} >
           <div>
-            <h4 className="infoWindow_Header">{this.parseAndFormatJobTitle(marker.markerTitle)}</h4>
-            <h5 className="infoWindow_Header">{marker.company}</h5>
+            <h4 className="infoWindow_Header">{ this.parseAndFormatJobTitle(marker.markerTitle) }</h4>
+            { companyTitle() }
             <hr />
-            <p>{marker.formattedLocation}</p>
+            <p>{ marker.address }</p>
           </div>
          
       </InfoWindow>
@@ -181,11 +188,11 @@ class GMap extends BaseComponent {
       <Marker
         key={`Marker_${marker.markerKey}`}
         ref={`${marker.markerType}_Marker_${index}`}
-        data-jobTitle={marker.markerTitle}
-        data-formattedLocation={marker.formattedLocation}
-        // data-jobTitle={marker.restaurantTitle}
+        data-jobTitle={ marker.markerTitle }
+        data-address={ marker.address }
+        // data-jobTitle={ marker.restaurantTitle }
         position={ new google.maps.LatLng(marker.coords) }
-        // title={marker.restaurantTitle}
+        // title={ marker.restaurantTitle }
         icon={{
           path: MAP_PIN,
           scale: PIN_SCALE,
@@ -194,8 +201,8 @@ class GMap extends BaseComponent {
           strokeColor: '#FFF',
           strokeWeight: PIN_STROKE_WEIGHT
         }}
-        onClick={onClick}
-        zIndex={PIN_Z_INDEX} >
+        onClick={ onClick }
+        zIndex={ PIN_Z_INDEX } >
 
         { marker.showInfo ? this.renderInfoWindow(marker, index) : null }
 
@@ -238,20 +245,18 @@ class GMap extends BaseComponent {
         </div>
         <GoogleMapLoader
           containerElement={ 
-            <div 
-              id="mapsContainer"
-              // 
-            />
+            <div id="mapsContainer" />
           }   
           googleMapElement={
             <GoogleMap 
-              center={this.centerMap()}
-              defaultCenter={this.state.defaultCenter}
-              defaultZoom={this.state.zoomLevel} 
+              center={ this.centerMap() }
+              defaultCenter={ this.state.defaultCenter }
+              defaultZoom={ this.state.zoomLevel } 
               maxZoom={19}
               defaultOptions={{ styles: mapStylesObject }}
               scrollwheel={false}
-              ref="map" >
+              ref="map"
+              onClick={() => this.closeAllMarkers()} >
 
               { this.jobMarkerCallbackHandler() }
 
@@ -271,7 +276,7 @@ let mapStateToProps = (state) => ({
     markerKey: job.jobkey,
     markerTitle: job.jobtitle,
     company: job.company, 
-    formattedLocation: job.formattedLocation,
+    address: job.formattedLocation,
     showInfo: false
   })),
   restaurantMarkers: state.activeYelp.map(restaurant => ({

@@ -842,8 +842,8 @@ div.yelpPhoto {
 .yelpPhoto img {
   position: relative;
   min-width: 100%;
-  min-height: 100%;
-  max-height: 250px;
+  min-height: 150px;
+  max-height: 175px;
   left: 50%;
   /* top: 50%; */
   transform: translateX(-50%);
@@ -1011,15 +1011,16 @@ a.YelpPhoneNo > em {
 }
 
 .yelpDescription div.blockDistanceContainer {
+  display: inline-block;
   height: 1.5rem;
-  width: 200px;
+  float: right;
 }
 
 .yelpDescription div.distanceBlock {
   position: relative;
   display: inline-block;
-  height: 1.15rem; 
-  width: 1.15rem; 
+  height: 1rem; 
+  width: 1rem; 
   margin: 1.25px;
   background: #BEBEBE;
 }
@@ -1091,6 +1092,9 @@ input:-webkit-autofill {
   transform: translate(-50%, -50%);
 }
 
+.fa.cardDescriptionGlyph {
+  color: #14A4B5;
+}
 
 
 /* ==========================================================================
@@ -1107,9 +1111,15 @@ input:-webkit-autofill {
 .react-tabs div.overlay,
 .restaurantContainer div.overlay {
   height: 90%;
+  margin-bottom: 25px;
   background-color: #E9EBEE;
   overflow-x: hidden;
   overflow-y: overlay;
+}
+
+ul.ReactTabs__TabList > li {
+  margin-bottom: 1px;
+  border: 1px solid black;
 }
 
 .ReactModal__Overlay {

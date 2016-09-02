@@ -90,7 +90,7 @@ class AmenitiesList extends BaseComponent {
         <div>
           <div className="restaurantContainer">
             <div>
-              <i className="fa fa-futbol-o" aria-hidden="true" key="FontAwesome (.fa) soccer ball glyph icon (Black)."></i>
+              <img src="http://goo.gl/GLF2Rk" className="AmenitiesHeader_Img" alt="Park amenity landscape glyph icon (Green)." />
               <h5>Parks</h5>
             </div>
             <div className="overlay">
@@ -126,6 +126,9 @@ let mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps)(AmenitiesList);
 
+
+
+// <i className="fa fa-futbol-o" aria-hidden="true" key="FontAwesome (.fa) soccer ball glyph icon (Black)."></i>
 
 // {[,
 //   <img src={DBIc} className="amenityHeaderGlyph" />,

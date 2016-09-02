@@ -127,7 +127,10 @@ export default class BaseComponent extends Component {
 
     return (
       <div className="starsRating">
-        {[`Rating:\t`,
+        {[
+          // `Rating:\t`,
+          <i className="fa fa-heart cardDescriptionGlyph" key={`RatingLoveGlyphIcon_${rating}`}></i>,
+          `\t`,
           starsContainer,
           `\t${rating}`
         ]}
@@ -170,7 +173,7 @@ export default class BaseComponent extends Component {
     }
 
     return (
-      <div className="blockDistanceContainer" style={{ "display": "inline-block", "width": "50%", "float": "right" }} key={`DistanceInBlocks_${dist}`}>
+      <div className="blockDistanceContainer" key={`DistanceInBlocks_${dist}`}>
         {[ blocksContainer ]}
       </div>
     );
