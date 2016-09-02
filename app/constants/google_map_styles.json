@@ -82,5 +82,11 @@
       { "visibility": "simplified" },
       { "weight": 0.5 }
     ]
+  }, {
+    "featureType": "transit",
+    "elementType": "labels",
+    "stylers": [
+      { "visibility": "off" }
+    ]
   }
 ]

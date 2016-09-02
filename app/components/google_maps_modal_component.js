@@ -126,6 +126,7 @@ export default class GMap_Modal extends BaseComponent {
   
   renderInfoWindow(marker, ref) {
     const onCloseclick = this.handleMarkerClose.bind(this, marker);
+      // console.log("PHOTO REF.", marker.markerPhoto);
 
     return (
       <InfoWindow
@@ -136,6 +137,7 @@ export default class GMap_Modal extends BaseComponent {
             <h5 className="infoWindow_Header">{marker.company}</h5>
             <hr />
             <p>{marker.formattedLocation}</p>
+            <img src={ marker.markerPhoto } className="modalInfoWindow_Pic" alt="Reference photograph [Source: Yelp/Google Places API." />
           </div>
          
       </InfoWindow>
@@ -261,7 +263,9 @@ export default class GMap_Modal extends BaseComponent {
 
         <GoogleMapLoader
           containerElement={
-            <div className="GMap_Modal" style={{height: "90vh", width: "90vw"}} />
+            <div 
+              className="GMap_Modal" 
+              style={{ "height": "90vh", "width": "90vw" }} />
           }
           googleMapElement={
             <GoogleMap 
@@ -300,11 +304,11 @@ let mapStateToProps = (state) => {
     jobMarkers: state.jobs.map(job => ({ 
       markerType: 'job',
       coords: { "lat": job.latitude, "lng": job.longitude },
-      // jobKey: job.jobkey,
       markerKey: job.jobkey,
       markerTitle: job.jobtitle,
       company: job.company, 
       formattedLocation: job.formattedLocation,
+      // markerPhoto: 'No Image',
       showInfo: false
     })),
     restaurantMarkers: state.activeYelp.map(restaurant => ({
@@ -313,6 +317,7 @@ let mapStateToProps = (state) => {
       markerKey: restaurant.id,
       markerTitle: restaurant.name,
       address: restaurant.display_address,
+      markerPhoto: restaurant.photo,
       showInfo: false
     })),
     busMarkers: state.activeBus.slice(0, 3).map(busMarker => ({
@@ -320,6 +325,7 @@ let mapStateToProps = (state) => {
       coords: { "lat": busMarker.geometry.location.lat, "lng": busMarker.geometry.location.lng },
       markerKey: busMarker.id,
       markerTitle: busMarker.name,
+      // markerPhoto: busMarker.photos[0].photo_reference,
       showInfo: false
     })),
     trainMarkers: state.activeTrains.slice(0, 3).map(trainMarker => ({
@@ -327,6 +333,7 @@ let mapStateToProps = (state) => {
       coords: { "lat": trainMarker.geometry.location.lat, "lng": trainMarker.geometry.location.lng },
       markerKey: trainMarker.id,
       markerTitle: trainMarker.name,
+      // markerPhoto: trainMarker.photos[0].photo_reference,
       showInfo: false
     })),
     parkMarkers: state.activeParks.slice(0, 3).map(parkMarker => ({
@@ -334,6 +341,7 @@ let mapStateToProps = (state) => {
       coords: { "lat": parkMarker.geometry.location.lat, "lng": parkMarker.geometry.location.lng },
       markerKey: parkMarker.id,
       markerTitle: parkMarker.name,
+      // markerPhoto: parkMarker.photos[0].photo_reference,
       showInfo: false
     })),
     gymMarkers: state.activeGyms.slice(0, 3).map(gymMarker => ({
@@ -341,6 +349,7 @@ let mapStateToProps = (state) => {
       coords: { "lat": gymMarker.geometry.location.lat, "lng": gymMarker.geometry.location.lng },
       markerKey: gymMarker.id,
       markerTitle: gymMarker.name,
+      // markerPhoto: gymMarker.photos[0].photo_reference,
       showInfo: false
     })),
     toggleModal: state.toggleModal,

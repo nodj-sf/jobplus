@@ -60,17 +60,17 @@ class Results extends Component {
             <Tabs onSelect={this.handleSelect} >  
               <TabList>
                 <Tab>
-                  {[<i className="fa fa-bus" aria-hidden="true" key={"bus_Icon"}></i>,
+                  {[<i className="fa fa-bus" aria-hidden="true" key="bus_Icon"></i>,
                     " Transportation"
                   ]}
                 </Tab>
                 <Tab>
-                  {[<i className="fa fa-futbol-o" aria-hidden="true" key={"soccer-ball_Icon"}></i>,
+                  {[<i className="fa fa-futbol-o" aria-hidden="true" key="soccer-ball_Icon"></i>,
                     " Amenities"
                   ]}
                 </Tab>
                 <Tab>
-                  {[<i className="fa fa-yelp" aria-hidden="true" key={"Yelp_Icon"}></i>,
+                  {[<i className="fa fa-yelp" aria-hidden="true" key="Yelp_Icon"></i>,
                     " Yelp"
                   ]}
                 </Tab>

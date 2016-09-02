@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import BaseComponent from '../components/base_component';
 
 
@@ -13,12 +14,8 @@ class TransportationList extends BaseComponent {
             stationDistance = this.getDistanceFromLatLonInKm(jobLat, jobLng, transportLat, transportLng),
             GMapsDirectionsURL = `https://www.google.com/maps/dir/${jobLat},${jobLng}/${transportLat},${transportLng}/`;
 
-      let img = '';
-
-        console.log(`Google Place:\t${transport}\n${Object.keys(transport)}\n${transport.rating}\n${transport.types}\n${transport.formatted_address}`);
-
       if (transport.photos) {
-        img = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=250&photoreference=${transport.photos[0].photo_reference}&key=AIzaSyC1_oLFky0FuFjjQJfY7DWwAFFupPP4sSw`;
+        var img = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=250&photoreference=${transport.photos[0].photo_reference}&key=AIzaSyC1_oLFky0FuFjjQJfY7DWwAFFupPP4sSw`;
       }
       
       return (
@@ -32,7 +29,10 @@ class TransportationList extends BaseComponent {
                       <div className="yelpPhoto textEllipsis">
                         <img src={ img } alt={ transport.name } />
                       </div> : 
-                      'No Image' 
+                      <div className="yelpPhoto textEllipsis">
+                        <img src="http://goo.gl/Uu31GG" className="fallbackImage" alt="Fallback cityscape placeholder graphic (Gray)." />
+                      </div>
+                      // 'No Image' 
                   }
                 </a>
               </div>
@@ -44,17 +44,22 @@ class TransportationList extends BaseComponent {
                   }
                 </div>
 
-                <p>
-                  {[<i className="fa fa-map" style={{ "color": "#14A4B5" }} key={`Distance:${stationDistance}`}></i>,
-                    `\t`,
-                    <a href={GMapsDirectionsURL} className="YelpPhoneNo expandFromCenter" target="_blank" key={`GMapURL:${GMapsDirectionsURL}`}>
-                      <em key={`Amenity_Dist:${transport.id}`} style={{ "color": this.distanceColor(stationDistance) }}>{`${stationDistance} mi`}</em>
-                    </a>
-                  ]}
-                </p>
+                <div>
+                  <div style={{ "display": "inline-block", "width": "45%", "float": "left" }}>
+                    {[
+                      <i className="fa fa-map" style={{ "color": "#14A4B5" }} key={`Distance_${stationDistance}`}></i>,
+                      `\t`,
+                      <a href={GMapsDirectionsURL} className="YelpPhoneNo expandFromCenter" target="_blank" key={`GMapURL_${GMapsDirectionsURL}`}>
+                        <em key={`StationDist_${transport.id}`} style={{ "color": this.distanceColor(stationDistance) }}>{`${stationDistance} mi`}</em>
+                      </a>
+                    ]}
+                  </div>
+                  { this.getDistanceBlocks(stationDistance) }
+                </div>
 
-                <p style={{ "fontSize": "1.25rem" }}>
-                  {[<i className="fa fa-tags" style={{ "color": "#14A4B5", "fontSize": "1.6rem" }} key={`AmenityTags_${index}`}></i>,
+                <p style={{ "fontSize": "1.25rem", "clear": "both" }}>
+                  {[
+                    <i className="fa fa-tags" style={{ "color": "#14A4B5", "fontSize": "1.6rem" }} key={`AmenityTags_${index}`}></i>,
                     `\t${this.getItemTags(transport.types)}`
                   ]}
                 </p>
@@ -78,27 +83,23 @@ class TransportationList extends BaseComponent {
       </div> :
       <div>
         <div className="restaurantContainer">
-          <h5>
-            {[
-              <i className="fa fa-subway" aria-hidden="true" key="FontAwesome train glyph icon"></i>,
-              " Train Stops"
-            ]}
-          </h5> 
+         <div>
+           <img src="http://goo.gl/XzVRW7" className="AmenitiesHeader_Img" alt="Transportation subway/metro glyph icon (Blue)." />
+           <h5>Train Stations</h5>
+         </div>
           <div className="overlay">
-            <ul className="trainList container">{(trainsList.length && this.renderList(trainsList,job))
+            <ul className="trainList container">{(trainsList.length && this.renderList(trainsList, job))
               || 'No results for this area'}
             </ul> 
           </div>
         </div>
         <div className="restaurantContainer">
-          <h5>
-            {[
-              <i className="fa fa-bus" aria-hidden="true" key="FontAwesome bus glyph icon"></i>,
-              " Bus Stops"
-            ]}
-          </h5> 
-          <div className="overlay">
-            <ul className="busList container">{(busList.length && this.renderList(busList,job)) 
+          <div>
+            <img src="http://goo.gl/wa4ylN" className="AmenitiesHeader_Img" alt="Transportation bus glyph icon (Red)." />
+            <h5>Bus Stops</h5>
+          </div>
+          <div className="overlay overlayBottomMargin">
+            <ul className="busList container">{(busList.length && this.renderList(busList, job)) 
               || 'No results for this area' }
             </ul>
           </div>

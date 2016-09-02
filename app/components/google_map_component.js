@@ -218,38 +218,48 @@ class GMap extends BaseComponent {
 
   getPixelPositionOffset(width, height) {
     return {
-      // x: -(width / 2), 
-      // y: -(height / 2) 
       x: -(width / 2),
       y: -height
     };
   }
 
   render() {
-    console.log(`GeoLocation:\t${geolocation()}`);
+    // console.log(`GeoLocation:\t${geolocation()}`);
+
     return (
-      <GoogleMapLoader
-        containerElement={ 
-          <div 
-            id="mapsContainer" />
-            // onDoubleClick={() => this.modalYes()} /> 
-        }   
-        googleMapElement={
-          <GoogleMap 
-            center={this.centerMap()}
-            defaultCenter={this.state.defaultCenter}
-            defaultZoom={this.state.zoomLevel} 
-            maxZoom={19}
-            defaultOptions={{ styles: mapStylesObject }}
-            scrollwheel={false}
-            ref="map" >
+      <div id="GMap_Wrapper">
+        <div>
+          <button type="button" onClick={() => this.modalYes()} key="Modal window button">
+            {[
+              `See More Map`,
+              <img src="http://goo.gl/8Xhb6c" key="Mo Map_Icon" alt="Resize map in modal window glyph icon (Black)." />
+            ]}
+          </button>
+        </div>
+        <GoogleMapLoader
+          containerElement={ 
+            <div 
+              id="mapsContainer"
+              // 
+            />
+          }   
+          googleMapElement={
+            <GoogleMap 
+              center={this.centerMap()}
+              defaultCenter={this.state.defaultCenter}
+              defaultZoom={this.state.zoomLevel} 
+              maxZoom={19}
+              defaultOptions={{ styles: mapStylesObject }}
+              scrollwheel={false}
+              ref="map" >
 
-            { this.jobMarkerCallbackHandler() }
+              { this.jobMarkerCallbackHandler() }
 
-            <GMap_Modal center={this.centerMap()} modalEnable={this.modalYes} modalDisable={this.modalNo} />
-          </GoogleMap>
-        } 
-      />
+              <GMap_Modal center={this.centerMap()} modalEnable={this.modalYes} modalDisable={this.modalNo} />
+            </GoogleMap>
+          } 
+        />
+      </div>
     );
   }
 }

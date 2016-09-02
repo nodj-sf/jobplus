@@ -24,7 +24,7 @@ class JobDetail extends BaseComponent {
         <h3>
           <a 
             href={this.props.job.url} 
-            className="link-state expandFromCenter" 
+            className="expandFromCenter" 
             target="_blank">{ this.props.job.jobtitle }</a>
         </h3>
         <h4>{ this.props.job.company }</h4> 

@@ -23,17 +23,14 @@ class RetaurantList extends Component {
     return (
       (this.props.loading) ?
       <div className="restaurantContainer">
-        <i className="fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner"></i> Loading...
+        <i className="fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner"></i>Loading...
       </div> :
       <div className="restaurantContainer">
         <div>
-          <h5>
-            <a href="https://www.yelp.com" target="_blank">
-              <i className="fa fa-yelp" aria-hidden="true" alt="Yelp corporate logo (black glyph icon)"></i>
-            </a> Nearby Eats
-          </h5>
+          <img src="http://goo.gl/pExEEr" className="AmenitiesHeader_Img" alt="Yelp restaurant amenity fork & knife glyph icon (Yelp Red)." />
+          <h5>Nearby Eats</h5>
         </div>
-        <div className="overlay">
+        <div className="overlay overlayBottomMargin">
           <ul className="restaurantList container">
             { this.renderList() }
           </ul>
@@ -50,3 +47,10 @@ let mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(RetaurantList);
+
+
+// <h5>
+//   <a href="https://www.yelp.com" target="_blank">
+//     <i className="fa fa-yelp" aria-hidden="true" alt="Yelp corporate logo (black glyph icon)"></i>
+//   </a> Nearby Eats
+// </h5>

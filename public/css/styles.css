@@ -180,9 +180,51 @@ a:hover {
   /* pointer-events: none; */
 }
 
-#mapsContainer {
+#GMap_Wrapper {
   position: relative;
   height: 100%;
+}
+
+#GMap_Wrapper > div:first-child {
+  height: 10%;
+  background: #FFF;
+}
+
+#GMap_Wrapper > div > button {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  color: #14A4B5;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  transition: font-size 0.25s 0s ease-in-out;
+}
+  #GMap_Wrapper > div:first-child:hover button {
+    font-size: 1.75rem;
+    line-height: 1.5rem;
+  }
+
+
+#GMap_Wrapper > div > button > img {
+  height: 50%;
+  margin-left: 1rem;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.25s 0s ease-in,
+              opacity 0.25s 0.125s ease-in;
+}
+  #GMap_Wrapper > div:first-child:hover button img {
+    visibility: visible;
+    opacity: 100;
+  }
+
+
+#mapsContainer {
+  position: relative;
+  height: 90%;
   width: 100%;
   margin: 0;
 }
@@ -201,10 +243,6 @@ h4.infoWindow_Header {
   font: 600 14px/16px "Raleway", "Helvetica Neue", Arial, sans-serif;
 }
 
-
-/*#placesContainer h5, 
-.restaurantContainer > h5,
-.restaurantContainer > div:first-child > h5 {*/
 #placesContainer h5, 
 .restaurantContainer > h5, 
 .restaurantContainer > div:first-child {
@@ -251,6 +289,16 @@ h5.infoWindow_Header {
   font-weight: 400;
 }
 
+.modalInfoWindow_Pic {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  left: 50%;
+  margin: 5px auto;
+  transform: translateX(-50%);
+  overflow-x: hidden;
+}
+
 div#overlay {
   position: relative; 
   width: 100%;
@@ -259,12 +307,6 @@ div#overlay {
   margin-top: -500px;             /* <iframe> height */
   background: transparent; 
   z-index: 10;
-}
-
-.ReactModal__Overlay {
-  background: rgba(41, 37, 37, 0.59);
-  background: rgba(48, 44, 44, 0.74902);
-  z-index: 150;
 }
 
 /* #headSection1 {  } */
@@ -808,6 +850,11 @@ div.yelpPhoto {
   /* transform: translate(-50%, -50%); */
 }
 
+.yelpPhoto img.fallbackImage {
+  width: 100%;
+  height: 146px;
+}
+
 .restaurantLI, 
 .transportationCard, 
 .amenitiesCard {
@@ -922,6 +969,7 @@ div.verticallyCenter {
 }
 
 .YelpRestaurantAddress {
+  margin-bottom: 5px;
   font-size: 1.25rem;
   line-height: 1.35rem;
 }
@@ -962,6 +1010,20 @@ a.YelpPhoneNo > em {
   font-style: normal;
 }
 
+.yelpDescription div.blockDistanceContainer {
+  height: 1.5rem;
+  width: 200px;
+}
+
+.yelpDescription div.distanceBlock {
+  position: relative;
+  display: inline-block;
+  height: 1.15rem; 
+  width: 1.15rem; 
+  margin: 1.25px;
+  background: #BEBEBE;
+}
+
 
 /* Fix Chrome browser's default AutoFill yellow background */
 /* Change Autocomplete styles in Chrome */
@@ -979,7 +1041,7 @@ select:-webkit-autofill:focus {
   -webkit-text-fill-color: green;
   -webkit-box-shadow: inset 0 0 0 1000px #000 inset;
   box-shadow:         inset 0 0 0 1000px #000;
-  transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 5000s 0s ease-in-out;
 }
 
 input:-webkit-autofill {
@@ -989,18 +1051,18 @@ input:-webkit-autofill {
 }
 
 
-/* Mimic :hover state for non-obvious links */
-.link-state:hover {
-  border-bottom: 1px solid #1BA6B7;
-}
+/* Mimic :hover state for non-obvious links
+  .link-state:hover {
+    border-bottom: 1px solid #1BA6B7;
+  }
+*/
 
 .job-detail h3 a {
-  text-decoration: none;
+  color: #696969;
 }
 
 .job-detail blockquote a {
   color: #222;
-  text-decoration: none;
 }
 
 .restaurantContainer > div:first-child a:hover > i {
@@ -1045,8 +1107,17 @@ input:-webkit-autofill {
 .react-tabs div.overlay,
 .restaurantContainer div.overlay {
   height: 90%;
-  margin-bottom: 17.5px;
   background-color: #E9EBEE;
   overflow-x: hidden;
   overflow-y: overlay;
+}
+
+.ReactModal__Overlay {
+  background: rgba(41, 37, 37, 0.59);
+  background: rgba(48, 44, 44, 0.74902);
+  z-index: 150;
+}
+
+.overlayBottomMargin {
+  margin-bottom: 17.5px;
 }

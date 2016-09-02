@@ -16,7 +16,7 @@ class AmenitiesList extends BaseComponent {
             GMapsDirectionsURL = `https://www.google.com/maps/dir/${jobLat},${jobLng}/${placeLat},${placeLng}/`;
 
       if (place.photos) {
-        let img = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&photoreference=${place.photos[0].photo_reference}&key=AIzaSyC1_oLFky0FuFjjQJfY7DWwAFFupPP4sSw`;
+        var img = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&photoreference=${place.photos[0].photo_reference}&key=AIzaSyC1_oLFky0FuFjjQJfY7DWwAFFupPP4sSw`;
       }
       
       return (
@@ -24,14 +24,19 @@ class AmenitiesList extends BaseComponent {
           <div className="verticallyCenter">
             <div className="nameRating">
               <a 
-                href={ `http://maps.google.com/?q=${place.geometry.location.lat},${place.geometry.location.lng}/` } 
+                href={ `http://maps.google.com/?q=${place.geometry.location.lat},${place.geometry.location.lng}` } 
                 className="textEllipsis" 
                 target="_blank" >
                 <h5 className="textEllipsis expandFromCenter">{ this.parseAndFormatJobTitle(place.name) }</h5>
                 { 
                   (place.photos) ? 
-                    <img className="yelpPhoto" src={ img } alt={ place.name } /> : 
-                    'No Image' 
+                    <div className="yelpPhoto textEllipsis">
+                      <img src={ img } alt={ place.name } />
+                    </div> : 
+                    <div className="yelpPhoto textEllipsis">
+                      <img src="http://goo.gl/Uu31GG" className="fallbackImage" alt="Fallback cityscape placeholder graphic (Gray)." />
+                    </div>
+                    // 'No Image' 
                 }
               </a>
             </div>
@@ -43,16 +48,20 @@ class AmenitiesList extends BaseComponent {
                 }
               </div>
 
-              <p>
-                {[<i className="fa fa-map" style={{ "color": "#14A4B5" }} key={`Distance:${amenityDistance}`}></i>,
-                  `\t`,
-                  <a href={GMapsDirectionsURL} className="YelpPhoneNo expandFromCenter" target="_blank" key={`GMapURL_${GMapsDirectionsURL}`}>
-                    <em key={`Amenity_Dist:${place.id}`} style={{ "color": this.distanceColor(amenityDistance) }}>{`${amenityDistance} mi`}</em>
-                  </a>
-                ]}
-              </p>
+              <div>
+                <div style={{ "display": "inline-block", "width": "45%", "float": "left" }}>
+                  {[
+                    <i className="fa fa-map" style={{ "color": "#14A4B5" }} key={`Distance_${amenityDistance}`}></i>,
+                    `\t`,
+                    <a href={GMapsDirectionsURL} className="YelpPhoneNo expandFromCenter" target="_blank" key={`GMapURL_${GMapsDirectionsURL}`}>
+                      <em key={`AmenityDist_${place.id}`} style={{ "color": this.distanceColor(amenityDistance) }}>{`${amenityDistance} mi`}</em>
+                    </a>
+                  ]}
+                </div>
+                { this.getDistanceBlocks(amenityDistance) }
+              </div>
 
-              <p style={{ "fontSize": "1.25rem" }}>
+              <p style={{ "fontSize": "1.25rem", "clear": "both" }}>
                 {[<i className="fa fa-tags" style={{ "color": "#14A4B5", "fontSize": "1.6rem" }} key={`AmenityTags_${index}`}></i>,
                   `\t${this.getItemTags(place.types)}`
                 ]}
@@ -80,11 +89,10 @@ class AmenitiesList extends BaseComponent {
       (
         <div>
           <div className="restaurantContainer">
-            <h5>
-              {[<i className="fa fa-futbol-o" aria-hidden="true" key="FontAwesome soccer ball glyph icon"></i>,
-                `\tParks`
-              ]}
-            </h5> 
+            <div>
+              <i className="fa fa-futbol-o" aria-hidden="true" key="FontAwesome (.fa) soccer ball glyph icon (Black)."></i>
+              <h5>Parks</h5>
+            </div>
             <div className="overlay">
               <ul className='trainList container'>{(parksList.length && this.renderList(parksList, job)) 
                 || 'There are no results for this area'}
@@ -93,10 +101,10 @@ class AmenitiesList extends BaseComponent {
           </div>
           <div className="restaurantContainer">
             <div>
-              <img src="http://goo.gl/XMYImW" className="AmenitiesHeader_Img" alt="Gym amenity dumbell glyph icon" />
+              <img src="http://goo.gl/zeyx0P" className="AmenitiesHeader_Img" alt="Gym amenity dumbell glyph icon (Red)." />
               <h5>Gyms</h5>
             </div>
-            <div className="overlay">
+            <div className="overlay overlayBottomMargin">
               <ul className='busList container'>{gymsList.length && this.renderList(gymsList, job) 
                 || 'There are no results for this area' }
               </ul>

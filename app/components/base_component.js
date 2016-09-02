@@ -10,21 +10,19 @@ export default class BaseComponent extends Component {
 
   // Returns Hex color value based on the magnitude of the input distance:
   distanceColor(dist) {
-    return dist <= 1.0 ?
-      "#25DC25" : dist <= 2.0 ?
-      "#C7C846" : dist <= 3.0 ?
-      "#E17E08" :
-      "#FD0505";
+    return dist <= 1.0 ? '#25DC25' 
+      : dist <= 2.0 ? '#C7C846' 
+      : dist <= 3.0 ? '#E17E08' 
+      : '#FD0505';
   }
 
   // Returns Hex color value coded to the magnitude of an entity's user review-averaged rating:
   ratingColor(rating) {
-    return rating === 5 ?
-      "#CA060A" : rating >= 4.0 ?
-      "#F2752D" : rating  >= 3.0 ?
-      "#EF8B12" : rating >= 2.0 ?
-      "#E0B62A" : 
-      "#D18F20";
+    return rating === 5 ? '#CA060A' 
+      : rating >= 4.0 ? '#F2752D' 
+      : rating >= 3.0 ? '#EF8B12' 
+      : rating >= 2.0 ? '#E0B62A' 
+      : '#D18F20';
   }
 
   // Returns formatted string specifying the posting's job title:
@@ -53,8 +51,9 @@ export default class BaseComponent extends Component {
       .trim()
       // .split(/[\s|\/]/gmi)
       // .replace(/\s(\/)\s(?:\w+)/gmi, '$1')
+      // .replace(/\band\b/gmi, "&")
       .replace(/\s(\/)\s((?:\w+))/gmi, ((match1, match2) => match1 + match2[0].toUpperCase() + match2.slice(1).toLowerCase())('$1', '$2'))
-      .replace(/No\.(\d+)/gmi, '\u2116. $1')
+      .replace(/No\.?(\s+)?(\d+)/gmi, '\u2116. $2')
       .replace(/(\w+)(?:,)\sInc(?!\.)/gmi, '$1, Inc.')
       .split(' ')
       .reduce((memo, index) => {
@@ -62,7 +61,6 @@ export default class BaseComponent extends Component {
           memo += ` ${specialFormatTerms[index.toLowerCase()]} ` :
           memo += ` ${index.charAt(0).toUpperCase()}${index.slice(1).toLowerCase()} `;
       })
-      // .replace(/\band\b/gmi, "&")
       .trim();
   }
 
@@ -75,23 +73,35 @@ export default class BaseComponent extends Component {
   }
 
   // Modifies plain-text nine-digit phone number [Format: XXXXXXXXX] to 
-  // conform to the desired style [Format: +1 (XXX) XXX-XXX]:
+  //  conform to the desired style [Format: +1 (XXX) XXX-XXX]:
   parsePhoneNumber(num) {
     if (num) {
-      return num.replace(/^(\d{3})(\d{4})(\d{3})/, "+1 ($1) $2-$3");
+      return num.replace(/^(\d{3})(\d{4})(\d{3})/, '+1 ($1) $2-$3');
     }
   }
 
   // Modifes photo URL from default small-file size ('ms') to large-file size ('l'):
   parseYelpRestaurantPhoto(photo) {
-    return photo.replace(/ms(\.jpg)$/i, "l$1");
+    return photo.replace(/ms(\.jpg)$/i, 'l$1');
   }
 
-  // Removes all embedded HTML tags from the `job` object's `snippet` value:
-  tagFreeSnippet(descrip) {
-    return descrip ? 
-      descrip.replace(/<[^>]+>|\.(?=\.{3,})/gmi, '') : 
-      descrip;
+  // Returns item tag as a pre-processed, properly formatted string:
+  parseAndFormatTag(tag) {
+    return tag
+      .replace(/_/gmi, ' ')
+      .split(' ')
+      .reduce((memo, index) => memo += index === 'and' || index === 'an' || index === 'a' || index === 'of' ?
+          `${index} ` : 
+          `${index.charAt(0).toUpperCase()}${index.slice(1).toLowerCase()} `, '')
+      .trim();
+  }
+
+  // Produces a formatted string representation of an entity's tags:
+  getItemTags(item) {
+    return Object
+      .keys(item)
+      .map(key => this.parseAndFormatTag(item[key]))
+      .join(', ');
   }
 
   // Generates a concatenated set of FontAwesome star glyph icons representative of an entity's user reviews average rating:
@@ -125,17 +135,52 @@ export default class BaseComponent extends Component {
     );
   }
 
-  // Produces a formatted string representation of an entity's tags:
-  getItemTags(item) {
-    let tags = [...Object.keys(item).reduce((memo, index) => memo = memo.add(item[index]), new Set())]
-      .map((word, index) => <span className='contentTag' key={`TagItem_${index}`}>{ `${word.charAt(0).toUpperCase()}${word.slice(1)}` }</span>);
-      // .map(tag => tag.split(/_/g));
-        // .map((word, index) => <span className='contentTag' key={`TagItem_${index}`}>{ `${word.charAt(0).toUpperCase()}${word.slice(1)}` }</span>));
-        // .join(' '));
-    
+  // Returns a color-coded, easily-understood visual using blocks to represent the relative distance an 
+  //  item resides away from the currently active job:
+  getDistanceBlocks(dist) {
+    let blocksContainer = [];
+    const repeatBlockGenerator = (numBlocks, color = this.distanceColor(dist)) => {
+      let i = 0;
+      while (i < numBlocks) {
+        blocksContainer.push(<div className="distanceBlock" style={{ "background": color }}></div>);
+        i++;
+      }
+    };
+
+    switch (Math.floor(dist)) {
+      case 0.0:
+        repeatBlockGenerator(1);
+        repeatBlockGenerator(4, "#BEBEBE");
+        break;
+      case 1.0:
+        repeatBlockGenerator(2);
+        repeatBlockGenerator(3, "#BEBEBE");
+        break;
+      case 2.0:
+        repeatBlockGenerator(3);
+        repeatBlockGenerator(2, "#BEBEBE");
+        break;
+      case 3.0:
+        repeatBlockGenerator(4);
+        repeatBlockGenerator(1, "#BEBEBE");
+        break;
+      default:
+        repeatBlockGenerator(5);
+        break;
+    }
+
     return (
-      {tags}
+      <div className="blockDistanceContainer" style={{ "display": "inline-block", "width": "50%", "float": "right" }} key={`DistanceInBlocks_${dist}`}>
+        {[ blocksContainer ]}
+      </div>
     );
+  }
+  
+  // Removes all embedded HTML tags from the `job` object's `snippet` value:
+  tagFreeSnippet(descrip) {
+    return descrip ? 
+      descrip.replace(/<[^>]+>|\.(?=\.{3,})/gmi, '') : 
+      descrip;
   }
 
   // Returns the radian-valued float equivalent of the given input in degrees:
@@ -160,6 +205,11 @@ export default class BaseComponent extends Component {
 }
 
 
+// let tags = [...Object.keys(item).reduce((memo, index) => memo = memo.add(item[index]), new Set())]
+//   .map((word, index) => <span className='contentTag' key={`TagItem_${index}`}>{ `${word.charAt(0).toUpperCase()}${word.slice(1)}` }</span>);
+  // .map(tag => tag.split(/_/g));
+    // .map((word, index) => <span className='contentTag' key={`TagItem_${index}`}>{ `${word.charAt(0).toUpperCase()}${word.slice(1)}` }</span>));
+    // .join(' '));
 
 //<p className="tagsList">
 //  {[`Tags:\t`,
@@ -177,4 +227,3 @@ export default class BaseComponent extends Component {
 //   starsContainer.push(<i className="fa fa-star" key={`RatingStar_${i}`}></i>) :
 //   radix && radix < 0.5 ? starsContainer.push(<i className="fa fa-star-half-full" key={`RatingHalfStar_${i}`}></i>) :
 //   starsContainer.push(<i className="fa fa-star-o" key={`RatingEmptyStar_${i}`}></i>);
-//   

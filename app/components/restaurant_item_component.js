@@ -37,18 +37,23 @@ export default class RestaurantListItem extends BaseComponent {
               ]}
             </div>
 
-            <p>
-              {[<i className="fa fa-map" style={{ "color": "#14A4B5" }} key={`Distance:${restaurantDistance}`}></i>,
+            <div>
+              <div style={{ "display": "inline-block", "width": "45%", "float": "left" }}>
+                {[
+                  <i className="fa fa-map" style={{ "color": "#14A4B5" }} key={`Distance_${restaurantDistance}`}></i>,
+                  `\t`,
+                  <a href={GMapsDirectionsURL} className="YelpPhoneNo expandFromCenter" target="_blank" key={`GMapURL_${GMapsDirectionsURL}`}>
+                    <em key={`RestaurantDist_${restaurantDistance}`} style={{ "color": this.distanceColor(restaurantDistance) }}>{`${restaurantDistance} mi`}</em>
+                  </a>
+                ]}
+              </div>
+              { this.getDistanceBlocks(restaurantDistance) }
+            </div>
+
+            <p style={{ "clear": "both" }}>
+              {[<i className="fa fa-phone-square" style={{ "color": "#14A4B5" }} key={`TelNo_${phoneNo}`}></i>,
                 `\t`,
-                <a href={GMapsDirectionsURL} className="YelpPhoneNo expandFromCenter" target="_blank" key={`GMapURL:${GMapsDirectionsURL}`}>
-                  <em key={"Restaurant_Dist"} style={{ "color": this.distanceColor(restaurantDistance) }}>{`${restaurantDistance} mi`}</em>
-                </a>
-              ]}
-            </p>
-            <p>
-              {[<i className="fa fa-phone-square" style={{ "color": "#14A4B5" }} key={`TelNo:${phoneNo}`}></i>,
-                `\t`,
-                <a href={`tel:+1${phoneNo}`} className="YelpPhoneNo expandFromCenter" target="_blank" key={`PhoneNo:${phoneNo}`}>{this.parsePhoneNumber(phoneNo)}</a>
+                <a href={`tel:+1${phoneNo}`} className="YelpPhoneNo expandFromCenter" target="_blank" key={`PhoneNo_${phoneNo}`}>{this.parsePhoneNumber(phoneNo)}</a>
               ]}
             </p>
           </div>
