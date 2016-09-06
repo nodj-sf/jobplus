@@ -100,10 +100,11 @@ class JobList extends BaseComponent {
 
 let mapStateToProps = (state) => ({ 
   jobs: state.jobs, 
+  activeJob: state.activeJob,
   jobTerm: state.jobInputTerm, 
+  lastJob: state.lastJob,
   locationTerm: state.locationInputTerm,
-  lastLocation: state.lastLocation,
-  activeJob: state.activeJob
+  lastLocation: state.lastLocation
 });
 
 let mapDispatchToProps = (dispatch) =>  {

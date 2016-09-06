@@ -118,16 +118,16 @@ export default class BaseComponent extends Component {
         [filledStars, emptyStars] = [Math.floor(rating), 5 - Math.ceil(rating)];
 
     if (radix) {
-      starsContainer.push(<i className="fa fa-star-half-full" style={{ "color": this.ratingColor(rating) }} key={`RatingHalfStar_${i}`}></i>);
+      starsContainer.push(<i className="fa fa-star-half-full" style={{ color: this.ratingColor(rating) }} key={ `RatingHalfStar_${i}` }></i>);
     }
 
     while (i < filledStars) {
-      starsContainer.unshift(<i className="fa fa-star" style={{ "color": this.ratingColor(rating) }} key={`RatingFilledStar_${i}`}></i>);
+      starsContainer.unshift(<i className="fa fa-star" style={{ color: this.ratingColor(rating) }} key={ `RatingFilledStar_${i}` }></i>);
       i++;
     }
 
     while (j < emptyStars) {
-      starsContainer.push(<i className="fa fa-star-o" style={{ "color": this.ratingColor(rating) }} key={`RatingEmptyStar_${j}`}></i>);
+      starsContainer.push(<i className="fa fa-star-o" style={{ color: this.ratingColor(rating) }} key={ `RatingEmptyStar_${j}` }></i>);
       j++;
     }
 
@@ -135,7 +135,7 @@ export default class BaseComponent extends Component {
       <div className="starsRating">
         {[
           // `Rating:\t`,
-          <i className="fa fa-heart cardDescriptionGlyph" key={`RatingLoveGlyphIcon_${rating}`}></i>,
+          <i className="fa fa-heart cardDescriptionGlyph" key={ `RatingLoveGlyphIcon_${rating}` }></i>,
           `\t`,
           starsContainer,
           `\t${rating}`
@@ -151,7 +151,7 @@ export default class BaseComponent extends Component {
     const repeatBlockGenerator = (numBlocks, color = this.distanceColor(dist)) => {
       let i = 0;
       while (i < numBlocks) {
-        blocksContainer.push(<div className="distanceBlock" style={{ "background": color }}></div>);
+        blocksContainer.push(<div className="distanceBlock" style={{ background: color }}></div>);
         i++;
       }
     };
@@ -159,19 +159,19 @@ export default class BaseComponent extends Component {
     switch (Math.floor(dist)) {
       case 0.0:
         repeatBlockGenerator(1);
-        repeatBlockGenerator(4, "#BEBEBE");
+        repeatBlockGenerator(4, '#BEBEBE');
         break;
       case 1.0:
         repeatBlockGenerator(2);
-        repeatBlockGenerator(3, "#BEBEBE");
+        repeatBlockGenerator(3, '#BEBEBE');
         break;
       case 2.0:
         repeatBlockGenerator(3);
-        repeatBlockGenerator(2, "#BEBEBE");
+        repeatBlockGenerator(2, '#BEBEBE');
         break;
       case 3.0:
         repeatBlockGenerator(4);
-        repeatBlockGenerator(1, "#BEBEBE");
+        repeatBlockGenerator(1, '#BEBEBE');
         break;
       default:
         repeatBlockGenerator(5);
@@ -179,7 +179,7 @@ export default class BaseComponent extends Component {
     }
 
     return (
-      <div className="blockDistanceContainer" key={`DistanceInBlocks_${dist}`}>
+      <div className="blockDistanceContainer" key={ `DistanceInBlocks_${dist}` }>
         {[ blocksContainer ]}
       </div>
     );
@@ -208,31 +208,9 @@ export default class BaseComponent extends Component {
             Math.sin(dLon / 2) * Math.sin(dLon / 2); 
     let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)),
         d = R * c;        // Distance (d) in kilometers (km)
-    return +`${(d * kmToMilesConversionFactor).toFixed(2)}`; // Convert kilometers (km) to miles (mi)
+    
+    // Convert kilometers (km) to miles (mi)
+    return +`${(d * kmToMilesConversionFactor).toFixed(2)}`;
   }
 
 }
-
-
-// let tags = [...Object.keys(item).reduce((memo, index) => memo = memo.add(item[index]), new Set())]
-//   .map((word, index) => <span className='contentTag' key={`TagItem_${index}`}>{ `${word.charAt(0).toUpperCase()}${word.slice(1)}` }</span>);
-  // .map(tag => tag.split(/_/g));
-    // .map((word, index) => <span className='contentTag' key={`TagItem_${index}`}>{ `${word.charAt(0).toUpperCase()}${word.slice(1)}` }</span>));
-    // .join(' '));
-
-//<p className="tagsList">
-//  {[`Tags:\t`,
-//    ...tags
-//  ]}
-//</p>
-
-// rating >= 0 ?
-
-// if (starsContainer.length < 5) {
-
-// }
-
-// radix && radix >= 0.5 ?
-//   starsContainer.push(<i className="fa fa-star" key={`RatingStar_${i}`}></i>) :
-//   radix && radix < 0.5 ? starsContainer.push(<i className="fa fa-star-half-full" key={`RatingHalfStar_${i}`}></i>) :
-//   starsContainer.push(<i className="fa fa-star-o" key={`RatingEmptyStar_${i}`}></i>);

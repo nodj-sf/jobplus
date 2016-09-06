@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import Autocomplete from 'react-google-autocomplete';
 
-import { fetchJobs, userSearchInputs, jobInputTerm, locationInputTerm, lastLocationSearch } from '../actions/index';
+import { fetchJobs, userSearchInputs, jobInputTerm, lastJobSearch, locationInputTerm, lastLocationSearch } from '../actions/index';
 
 
 class SearchBar extends Component {
@@ -14,30 +14,34 @@ class SearchBar extends Component {
 
     this.onJobTitleInputChange = this.onJobTitleInputChange.bind(this);
     this.onLocationInputChange = this.onLocationInputChange.bind(this);
+    this.commitLastJobToStore = this.commitLastJobToStore.bind(this);
     this.commitLastLocationToStore = this.commitLastLocationToStore.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   // Binds user-provided job titles to the current `jobTerm` state value:
   onJobTitleInputChange(evt) {
-    evt.preventDefault();
     this.props.jobInputTerm(evt.target.value).payload;
   }
 
   // Binds the output of a Google Places Autocompletion dialogue to the `locationTerm` state value:
   onLocationInputChange(evt) {
-    // evt.preventDefault();
     let formattedSearchTerm = `${evt.address_components[0].long_name}` + 
-      (evt.address_components[1].types.includes("administrative_area_level_1") ? `, ${evt.address_components[1].short_name}`
-        : evt.address_components[2].types.includes("administrative_area_level_1") ? `, ${evt.address_components[2].short_name}` 
-        : "");
+      (evt.address_components[1].types.includes('administrative_area_level_1') ? `, ${evt.address_components[1].short_name}`
+        : evt.address_components[2].types.includes('administrative_area_level_1') ? `, ${evt.address_components[2].short_name}` 
+        : '');
       console.log(`Autocompletion Locale Formatted Search Term:\t${formattedSearchTerm}`);
 
     this.props.locationInputTerm(formattedSearchTerm).payload;
   }
 
+  // Serves to retain a memory of only the user's last job search input term:
+  commitLastJobToStore() {
+    this.props.lastJobSearch(this.props.jobTerm).payload;
+  }
+
+  // Serves to retain a memory of only the user's last location search input term:
   commitLastLocationToStore() {
-    // evt.preventDefault();
     this.props.lastLocationSearch(this.props.locationTerm).payload;
   }
 
@@ -46,6 +50,7 @@ class SearchBar extends Component {
     evt.preventDefault();
     this.props.fetchJobs(this.props.jobTerm, this.props.locationTerm);
     this.commitLastLocationToStore();
+    this.commitLastJobToStore();
     this.props.push('/results');
   }
  
@@ -92,7 +97,6 @@ class SearchBar extends Component {
                 type="search" 
                 results="4" 
                 placeholder="Job"
-                defaultValue={ this.props.jobTerm }
                 autoComplete="on"
                 onChange={ this.onJobTitleInputChange } />
               
@@ -102,7 +106,6 @@ class SearchBar extends Component {
                 type="search"
                 results="4"
                 placeholder="City"
-                defaultValue={ this.props.locationTerm }
                 autoCapitalize="words"
                 onPlaceSelected={ this.onLocationInputChange } />
             </div>
@@ -117,7 +120,8 @@ class SearchBar extends Component {
 
 
 let mapStateToProps = (state) => ({ 
-  jobTerm: state.jobInputTerm, 
+  jobTerm: state.jobInputTerm,
+  lastJob: state.lastJob,
   locationTerm: state.locationInputTerm,
   lastLocation: state.lastLocation,
 });
@@ -125,6 +129,7 @@ let mapStateToProps = (state) => ({
 let mapDispatchToProps = (dispatch) => bindActionCreators({
   fetchJobs,
   jobInputTerm,
+  lastJobSearch,
   locationInputTerm,
   lastLocationSearch,
   userSearchInputs,

@@ -1,18 +1,9 @@
 import axios from 'axios';
 
-const JOB_SELECTED = 'JOB_SELECTED';
-const FETCH_JOBS = 'FETCH_JOBS';
-const FETCH_YELP = 'FETCH_YELP';
-const FETCH_TRAINS = 'FETCH_TRAINS';
-const FETCH_BUS = 'FETCH_BUS';
-const FETCH_PARKS = 'FETCH_PARKS';
-const FETCH_GYMS = 'FETCH_GYMS';
-const SCRAP_DATA = 'SCRAP_DATA';
-
 
 const getCookie = (name) => {
-  const value = '; ' + document.cookie;
-  const parts = value.split('; ' + name + '=');
+  const value = `;${document.cookie}`,
+        parts = value.split('; ' + name + '=');
   return parts.length === 2 ? decodeURIComponent(parts.pop().split(';').shift()) : '';
 };
 
@@ -23,7 +14,7 @@ export const fetchJobs = (jobSearch, city) => {
     _csrf: getCookie('_csrf')
   });
   return {
-    type: FETCH_JOBS,
+    type: 'FETCH_JOBS',
     payload: request
   };
 };
@@ -38,7 +29,7 @@ export const fetchYelp = (city, lat, long) => {
     _csrf: getCookie('_csrf')
   });
   return {
-    type: FETCH_YELP,
+    type: 'FETCH_YELP',
     payload: request
   };
 };
@@ -53,7 +44,7 @@ export const fetchTrains = (lat, long) => {
     type: 'subway_station|train_station' 
   });
   return {
-    type: FETCH_TRAINS,
+    type: 'FETCH_TRAINS',
     payload: request
   };
 };
@@ -68,7 +59,7 @@ export const fetchBus = (lat, long) => {
     type: 'bus_station',
   });
   return {
-    type: FETCH_BUS,
+    type: 'FETCH_BUS',
     payload: request
   };
 };
@@ -84,7 +75,7 @@ export const fetchParks = (lat, long) => {
 
   });
   return {
-    type: FETCH_PARKS,
+    type: 'FETCH_PARKS',
     payload: request
   };
 };
@@ -99,19 +90,24 @@ export const fetchGyms = (lat, long) => {
     type: 'gym' 
   });
   return {
-    type: FETCH_GYMS,
+    type: 'FETCH_GYMS',
     payload: request
   };
 };
 
 export const selectJob = (job) => ({
-  type: JOB_SELECTED,
+  type: 'JOB_SELECTED',
   payload: job
 });
 
 export const jobInputTerm = (jobTerm) => ({
   type: 'JOB_INPUT_TERM',
   payload: { jobTerm }
+});
+
+export const lastJobSearch = (lastJob) => ({
+  type: 'LAST_JOB',
+  payload: lastJob
 });
 
 export const locationInputTerm = (locationTerm) => ({
@@ -124,13 +120,11 @@ export const lastLocationSearch = (lastLocation) => ({
   payload: lastLocation
 });
 
-export const toggleModal = () => {
-  // console.log(`Google Maps Modal view toggled ON!`);
-  return {
-    type: 'TOGGLE_MODAL_ON',
-    payload: true
-  };
-};
+// console.log(`Google Maps Modal view toggled ON!`);
+export const toggleModal = () => ({
+  type: 'TOGGLE_MODAL_ON',
+  payload: true
+});
 
 // console.log(`Google Maps Modal view toggled OFF!`);
 export const toggleModalOff = () => ({
@@ -145,7 +139,7 @@ export const scrapDetail = (url) => {
   });
 
   return {
-    type: SCRAP_DATA,
+    type: 'SCRAP_DATA',
     payload: request
   }
 }

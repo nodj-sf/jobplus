@@ -10,6 +10,7 @@ import ActiveParks from './reducer_active_parks';
 import ActiveGyms from './reducer_active_gyms';
 import ToggleModal from './reducer_toggle_modal_on';
 import JobInputTerm from './reducer_job_search_term';
+import LastJob from './reducer_last_job';
 import LocationInputTerm from './reducer_location_search_term';
 import LastLocation from './reducer_last_location';
 import SearchInputs from './reducer_search_inputs';
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   toggleModal: ToggleModal,
   routing: routerReducer,
   jobInputTerm: JobInputTerm,
+  lastJob: LastJob,
   locationInputTerm: LocationInputTerm,
   lastLocation: LastLocation,
   searchInputs: SearchInputs,
