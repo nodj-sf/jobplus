@@ -89,7 +89,7 @@ class TransportationList extends BaseComponent {
       </div> :
       <div>
         <div className="restaurantContainer">
-         <div>
+         <div style={{ "backgroundColor": "hsla(222, 100%, 63%, 0.79)" }}>
            <img src="http://goo.gl/XzVRW7" className="AmenitiesHeader_Img" alt="Transportation subway/metro glyph icon (Blue)." />
            <h5>Train Stations</h5>
          </div>
@@ -100,7 +100,7 @@ class TransportationList extends BaseComponent {
           </div>
         </div>
         <div className="restaurantContainer">
-          <div>
+          <div style={{ "backgroundColor": "hsla(138, 37%, 47%, 0.82)" }}>
             <img src="http://goo.gl/wa4ylN" className="AmenitiesHeader_Img" alt="Transportation bus glyph icon (Red)." />
             <h5>Bus Stops</h5>
           </div>

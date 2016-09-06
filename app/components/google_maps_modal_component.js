@@ -58,6 +58,7 @@ export default class GMap_Modal extends BaseComponent {
     directions: null
   }
 
+  // Callback function that dynamically recenters Google Map over the geometric center of a search query's job results:
   centerMap() {
     // console.log(`First map marker coordinates: ${this.props.markers[0].coords}`);
     return this.props.jobMarkers.length ? this.props.jobMarkers[0].coords : this.state.defaultCenter;
@@ -100,6 +101,7 @@ export default class GMap_Modal extends BaseComponent {
     this.centerMap();
   }
 
+  // Deactivates the display state of the clicked-upon map marker item's InfoWindow:
   handleMarkerClose(targetMarker) {
     this.setState({
       markers: this.props.jobMarkers.map(marker => {
@@ -108,6 +110,7 @@ export default class GMap_Modal extends BaseComponent {
     });
   }
 
+  // Callback function to disable the display state of all active InfoWindows:
   closeAllMarkers() {
     let allMarkers = [
       this.props.jobMarkers,
@@ -129,7 +132,8 @@ export default class GMap_Modal extends BaseComponent {
   handleClickOutside(evt) {
     this.closeIt();
   }
-  
+
+  // Controls the content of map marker items' InfoWindow dialogue boxes:
   renderInfoWindow(marker, ref) {
     const onCloseclick = this.handleMarkerClose.bind(this, marker),
           companyTitle = () => {
@@ -168,6 +172,7 @@ export default class GMap_Modal extends BaseComponent {
     );
   }
 
+  // Render the appropriate Google Map map marker for the given `marker` input:
   addMarker(marker, index) {
     const MAX_ZINDEX = 800,
           onClick = () => this.handleMarkerClick(marker);
@@ -242,36 +247,42 @@ export default class GMap_Modal extends BaseComponent {
     );
   }
   
+  // Generates Google Map map markers for all returned job results:
   jobMarkerCallbackHandler() {
     return this.props.jobMarkers.map((marker, index) => {
       return this.addMarker(marker, index);
     });
   }
 
+  // Generates Google Map map markers for all returned Yelp restaurant results:
   restaurantMarkerCallbackHandler() {
     return this.props.restaurantMarkers.map((marker, index) => {
       return this.addMarker(marker, index);
     });
   }
 
+  // Generates Google Map map markers for all returned job results:
   busMarkerCallbackHandler() {
     return this.props.busMarkers.map((marker, index) => {
       return this.addMarker(marker, index);
     });
   }
 
+  // Generates Google Map map markers for all returned Google Places train station results:
   trainMarkerCallbackHandler() {
     return this.props.trainMarkers.map((marker, index) => {
       return this.addMarker(marker, index);
     });
   }
 
+  // Generates Google Map map markers for all returned Google Places park results:
   parkMarkerCallbackHandler() {
     return this.props.parkMarkers.map((marker, index) => {
       return this.addMarker(marker, index);
     });
   }
 
+  // Generates Google Map map markers for all returned Google Places gym results:
   gymMarkerCallbackHandler() {
     return this.props.gymMarkers.map((marker, index) => {
       return this.addMarker(marker, index);

@@ -40,12 +40,13 @@ class SearchBar extends Component {
 
             <div id="searchInputsBoundary">
               <input 
-                id="search" 
+                id="searchJob" 
                 className="formSearchInpt"
                 type="search" 
                 results="4" 
                 placeholder="Job"
                 defaultValue={this.props.jobTerm}
+                autoCapitalize="word"
                 onChange={this.onJobTitleInputChange} />
               
               <input 
@@ -55,6 +56,7 @@ class SearchBar extends Component {
                 results="4"
                 placeholder="City"
                 defaultValue={this.props.locationTerm}
+                autoCapitalize="word"
                 onChange={this.onLocationInputChange} />
             </div>
           </div>

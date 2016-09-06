@@ -56,7 +56,7 @@ a:hover {
   width: 100%;
   height: 65vh;
   top: 17.5vh;
-  background: #E6E6E6 url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/footer_lodyas.png");
+  background: #E6E6E6 url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/footer_lodyas.png');
   animation: 100s scroll infinite linear;
 }
 
@@ -127,7 +127,7 @@ a:hover {
   #jobsContainer:after,
   .overlay:after {
     position: fixed;
-    content: "";
+    content: '';
     width: 100%;
     height: 15%;
     max-height: 50px;
@@ -138,6 +138,10 @@ a:hover {
     background:         linear-gradient(to top, rgba(236, 236, 236, 1.0) 20%, rgba(236, 236, 236, 0.75) 35%, rgba(236, 236, 236, 0) 75%);
   }
 
+
+div.restaurantContainer .overlayBottomMargin {
+  margin-bottom: 17.5px;
+}
 
 #jobsContainer b > i {
   margin: auto 6px;
@@ -200,7 +204,7 @@ a:hover {
   color: #14A4B5;
   font-size: 1.5rem;
   line-height: 1.5rem;
-  transition: font-size 0.25s 0s ease-in-out;
+  transition: font-size 0.25s 0.25s ease-in-out;
 }
   #GMap_Wrapper > div:first-child:hover button {
     font-size: 1.75rem;
@@ -213,8 +217,8 @@ a:hover {
   margin-left: 1rem;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0.25s 0s ease-in,
-              opacity 0.25s 0.125s ease-in;
+  transition: visibility 0.25s 0.25s ease-in,
+              opacity 0.25s 0.3s ease-in
 }
   #GMap_Wrapper > div:first-child:hover button img {
     visibility: visible;
@@ -240,7 +244,7 @@ h4.infoWindow_Header {
   display: inline;
   margin-bottom: 0;
   color: #14A4B5;
-  font: 600 14px/16px "Raleway", "Helvetica Neue", Arial, sans-serif;
+  font: 600 14px/16px 'Raleway', 'Helvetica Neue', Arial, sans-serif;
 }
 
 #placesContainer h5, 
@@ -334,7 +338,7 @@ div.box {
   position: absolute;
   left: 50px;
   color: #000;
-  font: 4.5vh/6vh "Raleway", "Open Sans", "Helvetica Neue", Arial, sans-serif;
+  font: 4.5vh/6vh 'Raleway', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .bannerCont {
@@ -436,7 +440,7 @@ h2.jobListingTitle {
   max-height: 60px;
   overflow: hidden;
   color: #14A4B5;
-  font: 2.4rem/2.6rem "Raleway", "Open Sans", Helvetica, Arial, sans-serif;
+  font: 2.4rem/2.6rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
   letter-spacing: 0.05rem;
 }
 
@@ -591,6 +595,11 @@ button.button-primary:hover {
   align-items: center;
   justify-content: center;
   align-content: center;
+  text-transform: capitalize;
+}
+
+#searchLocation {
+  text-transform: capitalize;
 }
 
 .container-3 input.formSearchInpt {
@@ -668,12 +677,12 @@ div.noResultsShown {
     position: absolute;
     width: 125%;
     height: 100%;
-    background-image: url("../img/frowny-face.svg");
+    background-image: url('../img/frowny-face.svg');
     background-size: 75% auto;
     right: -35%;
     top: 85%;
     background-repeat: no-repeat;
-    content: "";
+    content: '';
     transform: translateY(-50%);
   }
 
@@ -691,7 +700,7 @@ h4.noResultsShown {
   transform: translateY(-50%) rotate(-32deg);
 }
 
-#search {
+#searchJob {
   -webkit-appearance: textfield;
   transition: padding 0.25s ease-out;
 }
@@ -771,10 +780,9 @@ i.XButton:hover {
 }
 
 
-/*  *********************************************
-    *********************************************
-    ********************************************* */  
-
+/* ==========================================================================
+   =================== Yelp Restaurant Style Declarations ===================
+   ========================================================================== */ 
 
 .restaurantContainer {
   position: relative;
@@ -797,7 +805,7 @@ i.XButton:hover {
   flex-direction: row;
   justify-content: space-between;
   box-sizing: border-box;
-  background: hsl(0, 53%, 52%) url("../img/bckg_hero.png") no-repeat;
+  background: hsl(0, 53%, 52%) url('../img/bckg_hero.png') no-repeat;
   background-blend-mode: color-dodge;
   backface-visibility: initial;
   background-position: 10% 30%;
@@ -813,7 +821,7 @@ i.XButton:hover {
   width: 100%;
   margin: 0 1.5rem 0 0;
   float: right;
-  font: normal 3.75rem/5rem "Raleway", "Open Sans", Arial, sans-serif;
+  font: normal 3.75rem/5rem 'Raleway', 'Open Sans', Arial, sans-serif;
   text-align: center;
 }
 
@@ -898,7 +906,7 @@ li.restaurantLI > a {
   width: 0;
   height: 1px;
   position: relative;
-  content: "";
+  content: '';
   margin: auto;
   background: transparent;
   transition: width 0.5s ease, 
@@ -1100,12 +1108,36 @@ input:-webkit-autofill {
 /* ==========================================================================
    ================== React-Tabs Module Style Declarations ==================
    ========================================================================== */
-.react-tabs [role="tablist"] {
+.react-tabs [role='tablist'] {
   margin: 0;
 }
 
+.react-tabs [role='tab'] {
+  width: 33%;
+  padding: 4px 0;
+  font-size: 1.85rem;
+  line-height: 2.25rem;
+  text-align: left;
+  text-indent: 1rem;
+  background: rgba(220, 220, 220, 0.58);
+  border-color: #C8C8C8;                  /* Color: Gainsboro */
+  border-radius: 2rem 1rem 0 0;
+  /* border-radius: 10px 10px 0 0; */
+  box-sizing: border-box;
+}
+
+.react-tabs [role='tab'][aria-selected='true'] {
+  background-color: #AAA;
+  border-color: transparent;
+  border-radius: 2rem 1rem 0 0;
+}
+
+.ReactTabs__Tab:last-child {
+  width: 34%;
+}
+
 .react-tabs .fa-yelp {
-  color: #CD2122;                 /* Color Variants: #C01D1D; */
+  color: #CD2122;                         /* Color Variants: #C01D1D; */
 }
 
 .react-tabs div.overlay,
@@ -1118,16 +1150,12 @@ input:-webkit-autofill {
 }
 
 ul.ReactTabs__TabList > li {
-  margin-bottom: 1px;
-  border: 1px solid black;
+  margin-bottom: 0;
+  border: 1px solid #000;
 }
 
 .ReactModal__Overlay {
   background: rgba(41, 37, 37, 0.59);
   background: rgba(48, 44, 44, 0.74902);
   z-index: 150;
-}
-
-.overlayBottomMargin {
-  margin-bottom: 17.5px;
 }

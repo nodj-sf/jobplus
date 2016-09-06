@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { selectJob, fetchYelp, fetchTrains, fetchBus, fetchGyms, fetchParks, scrapDetail, loading } from '../actions/index';
 import { bindActionCreators } from 'redux';
+import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 
 import Banner from './banner_component';
 import DataDiagram from './diagram_component';
@@ -13,7 +14,6 @@ import Footer from './footer_component';
 import RetaurantList from '../containers/restaurant_list_container';
 import TransportationList from '../containers/transportation_list_container';
 import AmenitiesList from '../containers/ameneties_list_container';
-import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 
 
 class Results extends Component {
@@ -24,7 +24,7 @@ class Results extends Component {
   }
 
   componentDidUpdate(nextProps) {
-    if (this.props.jobs.length > 0) {
+    if (this.props.jobs.length) {
      this.initJob(this.props.jobs[0]);
     }
   }
@@ -57,21 +57,24 @@ class Results extends Component {
             
           <div id="jobInfoBody">           
             <JobDetail /> 
-            <Tabs onSelect={this.handleSelect} >  
+            <Tabs onSelect={ this.handleSelect }>  
               <TabList>
                 <Tab>
-                  {[<i className="fa fa-bus" aria-hidden="true" key="bus_Icon"></i>,
-                    " Transportation"
+                  {[
+                    <i className="fa fa-bus" aria-hidden="true" key="bus_Icon"></i>,
+                    `\tTransportation`
                   ]}
                 </Tab>
                 <Tab>
-                  {[<i className="fa fa-futbol-o" aria-hidden="true" key="soccer-ball_Icon"></i>,
-                    " Amenities"
+                  {[
+                    <i className="fa fa-futbol-o" aria-hidden="true" key="soccer-ball_Icon"></i>,
+                    `\tAmenities`
                   ]}
                 </Tab>
                 <Tab>
-                  {[<i className="fa fa-yelp" aria-hidden="true" key="Yelp_Icon"></i>,
-                    " Yelp"
+                  {[
+                    <i className="fa fa-yelp" aria-hidden="true" key="Yelp_Icon"></i>,
+                    `\tYelp`
                   ]}
                 </Tab>
               </TabList>

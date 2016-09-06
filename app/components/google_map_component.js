@@ -58,25 +58,18 @@ class GMap extends BaseComponent {
     this.jobMarkerCallbackHandler = this.jobMarkerCallbackHandler.bind(this);
   }
 
+  // Callback function that dynamically recenters Google Map over the geometric center of a search query's job results:
   centerMap() {
     // console.log(`First map marker coordinates: ${this.props.markers[0].coords}`);
     return this.props.jobMarkers.length ? this.props.jobMarkers[0].coords : this.state.defaultCenter;
   }
 
+  // Recenters Google Map over the geometric center of the continential United States:
   centerZoomOverUSA() {
     this.setState({ zoomLevel: 5 });
   }
 
-  // getPixelPositionOffset(width, height) {
-  //   return {
-  //     // x: -(width / 2), 
-  //     // y: -(height / 2) 
-  //     x: -width,
-  //     y: height
-  //   };
-  // }
-
-  // Toggle to 'true' to show InfoWindow and re-render component
+  // Toggle to 'true' to show InfoWindow and re-render component:
   handleMarkerClick(targetMarker) {
     this.closeAllMarkers();
 
@@ -101,6 +94,7 @@ class GMap extends BaseComponent {
     this.centerMap();
   }
 
+  // Deactivates the display state of the clicked-upon map marker item's InfoWindow:
   handleMarkerClose(targetMarker) {
     this.setState({
       markers: this.props.jobMarkers.map(marker => {
@@ -109,6 +103,7 @@ class GMap extends BaseComponent {
     });
   }
 
+  // Callback function to disable the display state of all active InfoWindows:
   closeAllMarkers() {
     let allMarkers = [
       this.props.jobMarkers,
@@ -122,6 +117,7 @@ class GMap extends BaseComponent {
     });
   }
 
+  // Controls the content of map marker items' InfoWindow dialogue boxes:
   renderInfoWindow(marker, ref) {
     const onCloseclick = this.handleMarkerClose.bind(this, marker),
           companyTitle = () => {
@@ -147,7 +143,7 @@ class GMap extends BaseComponent {
     );
   }
 
-  // // Class methods for control of the Google Maps Modal visibility:
+  // Class methods for control of the Google Maps Modal visibility:
   modalYes() {
     return this.props.toggleModal()
   }
@@ -156,6 +152,7 @@ class GMap extends BaseComponent {
     return this.props.toggleModalOff();
   }
 
+  // Render the appropriate Google Map map marker for the given `marker` input:
   addMarker(marker, index) {
     const MAX_ZINDEX = 800,
           onClick = () => this.handleMarkerClick(marker);
@@ -210,25 +207,39 @@ class GMap extends BaseComponent {
     );
   }
 
+  // Generates Google Map map markers for all returned job results:
   jobMarkerCallbackHandler() {
     return this.props.jobMarkers.map((marker, index) => {
       return this.addMarker(marker, index);
     });
   }
 
+  // Generates Google Map map markers for all returned Yelp restaurant results:
   restaurantMarkerCallbackHandler() {
     return this.props.restaurantMarkers.map((marker, index) => {
       return this.addMarker(marker, index);
     });
   }
 
-
+  // Returns an object with x-coordinate & y-coordinate pixel offsets for OverlayView dialogue boxes:
   getPixelPositionOffset(width, height) {
     return {
       x: -(width / 2),
       y: -height
     };
   }
+
+  // Function `getPixelPositionOffset()`:
+  /*
+  getPixelPositionOffset(width, height) {
+    return {
+      // x: -(width / 2), 
+      // y: -(height / 2) 
+      x: -width,
+      y: height
+    };
+  }
+  */
 
   render() {
     // console.log(`GeoLocation:\t${geolocation()}`);

@@ -89,7 +89,7 @@ class AmenitiesList extends BaseComponent {
       (
         <div>
           <div className="restaurantContainer">
-            <div>
+            <div style={{ "backgroundColor": "hsla(154, 48%, 51%, 0.91)" }}>
               <img src="http://goo.gl/GLF2Rk" className="AmenitiesHeader_Img" alt="Park amenity landscape glyph icon (Green)." />
               <h5>Parks</h5>
             </div>
@@ -100,7 +100,7 @@ class AmenitiesList extends BaseComponent {
             </div>
           </div>
           <div className="restaurantContainer">
-            <div>
+            <div style={{ "backgroundColor": "hsla(0, 0%, 20%, 0.57)" }}>
               <img src="http://goo.gl/zeyx0P" className="AmenitiesHeader_Img" alt="Gym amenity dumbell glyph icon (Red)." />
               <h5>Gyms</h5>
             </div>
