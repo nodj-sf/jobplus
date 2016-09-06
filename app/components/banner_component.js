@@ -13,7 +13,8 @@ export default class Banner extends Component {
       <div className='bannerCont'>
         <a href='/'>
           <h1 className='intro-logo'>
-            {["Job",
+            {[
+              "Job",
               <span key={"logo-Plus_Span"}>+</span>
             ]}
           </h1>

@@ -51,7 +51,7 @@ class TransportationList extends BaseComponent {
                 </div>
 
                 <div>
-                  <div style={{ "display": "inline-block", "width": "45%", "float": "left" }}>
+                  <div className="amenityDistanceInMiles">
                     {[
                       <i className="fa fa-map cardDescriptionGlyph" key={`Distance_${stationDistance}`}></i>,
                       `\t`,

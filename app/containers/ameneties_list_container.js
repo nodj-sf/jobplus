@@ -49,7 +49,7 @@ class AmenitiesList extends BaseComponent {
               </div>
 
               <div>
-                <div style={{ "display": "inline-block", "width": "45%", "float": "left" }}>
+                <div className="amenityDistanceInMiles">
                   {[
                     <i className="fa fa-map" style={{ "color": "#14A4B5" }} key={`Distance_${amenityDistance}`}></i>,
                     `\t`,

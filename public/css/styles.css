@@ -493,15 +493,14 @@ button.button-primary {
   transition: background 0.25s ease-out, 
               color 0.25s ease-out;
 }
-
-button.button-primary:focus {
-  background-color: #1EAEDB;
-}
-
-button.button-primary:hover {
-  color: #771DE5;
-  background-color: #A7A5A5;
-}
+  button.button-primary:focus {
+    background-color: #1EAEDB;
+  }
+  button.button-primary:hover {
+    border: none;
+    color: #771DE5;
+    background-color: #A7A5A5;
+  }
 
 /*
   .container {
@@ -555,6 +554,7 @@ button.button-primary:hover {
   padding: 0;
   font-size: 18px;
   color: #FFF;
+  box-sizing: content-box;
   transition: all 0.25s ease-in;              /* color, background */
 }
 
@@ -595,7 +595,6 @@ button.button-primary:hover {
   align-items: center;
   justify-content: center;
   align-content: center;
-  text-transform: capitalize;
 }
 
 #searchLocation {
@@ -656,15 +655,18 @@ button.button-primary:hover {
   transition: all 0.25s ease-in;                    /* left, font-size */
 }
 
-.container-3 input.formSearchInpt:focus + span.icon {
-  position: absolute;
-  left: 1.5%;
-  margin: 0 14px;
-  color: #FFF;
-  line-height: 60px;
-  font-size: 3rem;
-  z-index: 10;
-}
+/* Previously used to control the magnifying glass search glyph icon's formatting */
+/*
+  .container-3 input.formSearchInpt:focus + span.icon {
+    position: absolute;
+    left: 1.5%;
+    margin: 0 14px;
+    color: #FFF;
+    line-height: 60px;
+    font-size: 3rem;
+    z-index: 10;
+  }
+*/
 
 div.noResultsShown {
   position: relative;
@@ -672,31 +674,31 @@ div.noResultsShown {
   width: 100%;
   height: 100%;
 }
-
   div.noResultsShown::before {
     position: absolute;
+    content: '';
     width: 125%;
     height: 100%;
-    background-image: url('../img/frowny-face.svg');
-    background-size: 75% auto;
     right: -35%;
     top: 85%;
+    background-image: url('../img/frowny-face.svg');
+    background-size: 75% auto;
     background-repeat: no-repeat;
-    content: '';
     transform: translateY(-50%);
   }
+
 
 h4.noResultsShown {
   position: absolute;
   width: 100%;
   height: 100px;
   top: 25%;
-  overflow: hidden;
   left: -5%;
   line-height: 100px;
   font-size: 4.5rem;
   font-weight: 900;
   text-align: center;
+  overflow: hidden;
   transform: translateY(-50%) rotate(-32deg);
 }
 
@@ -772,12 +774,11 @@ i.XButton {
   box-sizing: border-box;
   border-radius: 50%;
 }
-
-i.XButton:hover {
-  cursor: pointer;
-  color: #1196A5;
-  transition: all 0.10s ease-out;
-}
+  i.XButton:hover {
+    cursor: pointer;
+    color: #1196A5;
+    transition: all 0.10s ease-out;
+  }
 
 
 /* ==========================================================================
@@ -838,7 +839,7 @@ div.yelpPhoto {
   max-height: 150px;
   left: 50%;
   border: 4px solid #14A4B5;
-  box-sizing: border-box;
+  box-sizing: content-box;
   transform: translateX(-50%);
   background: -webkit-radial-gradient(circle, #14a4b5 60%, #FFF 125%);
   background:    -moz-radial-gradient(circle, #14a4b5 60%, #FFF 125%);
@@ -892,6 +893,12 @@ div.yelpPhoto {
 .transportationCard .nameRating:hover,
 .amenitiesCard .nameRating:hover {
   cursor: pointer;
+}
+
+div.amenityDistanceInMiles {
+  display: inline-block;
+  width: 50%;
+  float: left;
 }
 
 li.restaurantLI > a {
