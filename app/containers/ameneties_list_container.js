@@ -33,16 +33,17 @@ class AmenitiesList extends BaseComponent {
                     <div className="yelpPhoto textEllipsis">
                       <img src={ img } alt={ place.name } />
                     </div> : 
+                    // No Image
                     <div className="yelpPhoto textEllipsis">
                       <img src="http://goo.gl/Uu31GG" className="fallbackImage" alt="Fallback cityscape placeholder graphic (Gray)." />
                     </div>
-                    // 'No Image' 
                 }
               </a>
             </div>
             <div className="yelpDescription card-body">
               <div className="YelpRating_Div">
-                { place.rating ? 
+                { 
+                  place.rating ? 
                     this.getStarRating(+place.rating) :
                     'No Reviews'
                 }
@@ -62,7 +63,8 @@ class AmenitiesList extends BaseComponent {
               </div>
 
               <p style={{ "fontSize": "1.25rem", "clear": "both" }}>
-                {[<i className="fa fa-tags" style={{ "color": "#14A4B5", "fontSize": "1.6rem" }} key={`AmenityTags_${index}`}></i>,
+                {[
+                  <i className="fa fa-tags" style={{ "color": "#14A4B5", "fontSize": "1.6rem" }} key={`AmenityTags_${index}`}></i>,
                   `\t${this.getItemTags(place.types)}`
                 ]}
               </p>

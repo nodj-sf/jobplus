@@ -5,10 +5,10 @@ import BaseComponent from '../components/base_component';
 
 
 class TransportationList extends BaseComponent {
-  renderList(list, job) {
-    let newList = list.slice(0, 3);
-    
-    return newList.map((transport, index) => {
+  renderList(list, job) {    
+    return list.slice(0, 3).map((transport, index) => {
+      { console.log(`Transport:\t`, Object.entries(transport)) }
+
       const [transportLat, transportLng] = [transport.geometry.location.lat, transport.geometry.location.lng],
             [jobLat, jobLng] = [job.latitude, job.longitude],
             stationDistance = this.getDistanceFromLatLonInKm(jobLat, jobLng, transportLat, transportLng),
@@ -29,10 +29,10 @@ class TransportationList extends BaseComponent {
                       <div className="yelpPhoto textEllipsis">
                         <img src={ img } alt={ transport.name } />
                       </div> : 
+                      // No Image 
                       <div className="yelpPhoto textEllipsis">
-                        <img src="http://goo.gl/Uu31GG" className="fallbackImage" alt="Fallback cityscape placeholder graphic (Gray)." />
+                        <img src="http://goo.gl/MvtTS3" className="fallbackImage" alt="Fallback metro placeholder graphic (Blue)." />
                       </div>
-                      // 'No Image' 
                   }
                 </a>
               </div>
@@ -77,10 +77,9 @@ class TransportationList extends BaseComponent {
   }
 
   render() {
-    let props = this.props;
-    let trainsList = props.activeTrains;
-    let busList = props.activeBus;
-    let job = props.activeJob;
+    let props = this.props,
+        job = props.activeJob,
+        [trainsList, busList] = [props.activeTrains, props.activeBus];
 
     return (
       (this.props.loading) ?
