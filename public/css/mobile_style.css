@@ -84,7 +84,7 @@ html {
     display: block;
     width: 88vw;
     min-height: 0;
-    top: 4vh;
+    top: 8vh;
     margin: 0 auto;
     background: #FFF;
     -webkit-box-shadow: 0 4px 8px 1.5px rgba(0, 0, 0, 0.37);
@@ -101,6 +101,7 @@ html {
     #mapsContainer:hover {
       cursor: pointer;
     }
+
 
   #searchForm {
     position: relative;

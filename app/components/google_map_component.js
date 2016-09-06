@@ -58,15 +58,23 @@ class GMap extends BaseComponent {
     this.jobMarkerCallbackHandler = this.jobMarkerCallbackHandler.bind(this);
   }
 
-  // Callback function that dynamically recenters Google Map over the geometric center of a search query's job results:
+  // Callback function that dynamically repositions the Google Map over the geometric center of a search query's job results:
   centerMap() {
-    // console.log(`First map marker coordinates: ${this.props.markers[0].coords}`);
-    return this.props.jobMarkers.length ? this.props.jobMarkers[0].coords : this.state.defaultCenter;
+    const getCenterCoordinate = (arr) => (Math.max.apply(null, arr) + Math.min.apply(null, arr)) / 2;
+
+    let [centerLat, centerLng] = [
+          getCenterCoordinate(this.props.jobMarkers.map(jobMarker => jobMarker.coords.lat)), 
+          getCenterCoordinate(this.props.jobMarkers.map(jobMarker => jobMarker.coords.lng))
+        ];
+    return this.props.jobMarkers.length ? new google.maps.LatLng({ lat: centerLat, lng: centerLng }) : this.state.defaultCenter;
   }
 
   // Recenters Google Map over the geometric center of the continential United States:
   centerZoomOverUSA() {
-    this.setState({ zoomLevel: 5 });
+    this.setState({ 
+      zoomLevel: 5,
+      defaultCenter: new google.maps.LatLng(39.828175, -98.5795)    // Geographic center of the contiguous US
+    });
   }
 
   // Toggle to 'true' to show InfoWindow and re-render component:
@@ -87,7 +95,7 @@ class GMap extends BaseComponent {
     }
 
     this.setState({ 
-      markers: typeRef.map(marker => marker === targetMarker ? Object.assign(marker, {showInfo: true}) : marker)
+      markers: typeRef.map(marker => marker === targetMarker ? Object.assign(marker, { showInfo: true }) : marker)
     });
     this.centerMap();
   }

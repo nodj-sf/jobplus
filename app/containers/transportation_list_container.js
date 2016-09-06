@@ -7,12 +7,14 @@ import BaseComponent from '../components/base_component';
 class TransportationList extends BaseComponent {
   renderList(list, job) {    
     return list.slice(0, 3).map((transport, index) => {
-      // { console.log(`Transport:\t`, Object.entries(transport)) }
+      { console.log(`Transport:\t`, Object.entries(transport)) }
 
       const [transportLat, transportLng] = [transport.geometry.location.lat, transport.geometry.location.lng],
             [jobLat, jobLng] = [job.latitude, job.longitude],
             stationDistance = this.getDistanceFromLatLonInKm(jobLat, jobLng, transportLat, transportLng),
-            GMapsDirectionsURL = `https://www.google.com/maps/dir/${jobLat},${jobLng}/${transportLat},${transportLng}/`;
+            GMapsDirectionsURL = `https://www.google.com/maps/dir/${jobLat},${jobLng}/${transportLat},${transportLng}/`,
+            fallbackImageURL = (transport.types.includes('bus_station') ? 'http://goo.gl/0ZTNZR' : 'http://goo.gl/MvtTS3'),
+            fallbackImageAlt = (transport.types.includes('bus_station') ? 'Fallback bus placeholder graphic (Green).' : 'Fallback metro placeholder graphic (Blue).');
 
       if (transport.photos) {
         var img = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=250&photoreference=${transport.photos[0].photo_reference}&key=AIzaSyC1_oLFky0FuFjjQJfY7DWwAFFupPP4sSw`;
@@ -31,7 +33,7 @@ class TransportationList extends BaseComponent {
                       </div> : 
                       // No Image 
                       <div className="yelpPhoto textEllipsis">
-                        <img src="http://goo.gl/MvtTS3" className="fallbackImage" alt="Fallback metro placeholder graphic (Blue)." />
+                        <img src={ fallbackImageURL } className="fallbackImage" alt={ fallbackImageAlt } />
                       </div>
                   }
                 </a>
@@ -43,7 +45,7 @@ class TransportationList extends BaseComponent {
                       this.getStarRating(+transport.rating) :
                       <div className="starsRating">
                         {[
-                          <i className="fa fa-heart cardDescriptionGlyph" key={`UserLoveRating_${transport.rating}`}></i>,
+                          <i className="fa fa-heart cardDescriptionGlyph" key={ `UserLoveRating_${transport.rating}` }></i>,
                           '\tNo Reviews'
                         ]}
                       </div>
@@ -53,19 +55,19 @@ class TransportationList extends BaseComponent {
                 <div>
                   <div className="amenityDistanceInMiles">
                     {[
-                      <i className="fa fa-map cardDescriptionGlyph" key={`Distance_${stationDistance}`}></i>,
+                      <i className="fa fa-map cardDescriptionGlyph" key={ `Distance_${stationDistance}` }></i>,
                       `\t`,
-                      <a href={GMapsDirectionsURL} className="YelpPhoneNo expandFromCenter" target="_blank" key={`GMapURL_${GMapsDirectionsURL}`}>
-                        <em key={`StationDist_${transport.id}`} style={{ "color": this.distanceColor(stationDistance) }}>{`${stationDistance} mi`}</em>
+                      <a href={ GMapsDirectionsURL } className="YelpPhoneNo expandFromCenter" target="_blank" key={ `GMapURL_${GMapsDirectionsURL}` }>
+                        <em key={ `StationDist_${transport.id}` } style={{ color: this.distanceColor(stationDistance) }}>{ `${stationDistance} mi` }</em>
                       </a>
                     ]}
                   </div>
                   { this.getDistanceBlocks(stationDistance) }
                 </div>
 
-                <p style={{ "fontSize": "1.25rem", "clear": "both" }}>
+                <p style={{ fontSize: "1.25rem", clear: "both" }}>
                   {[
-                    <i className="fa fa-tags cardDescriptionGlyph" key={`AmenityTags_${index}`}></i>,
+                    <i className="fa fa-tags cardDescriptionGlyph" key={ `AmenityTags_${index}` }></i>,
                     `\t${this.getItemTags(transport.types)}`
                   ]}
                 </p>
@@ -88,24 +90,24 @@ class TransportationList extends BaseComponent {
       </div> :
       <div>
         <div className="restaurantContainer">
-         <div style={{ "backgroundColor": "hsla(222, 100%, 63%, 0.79)" }}>
+         <div style={{ backgroundColor: "hsla(222, 100%, 63%, 0.79)" }}>
            <img src="http://goo.gl/XzVRW7" className="AmenitiesHeader_Img" alt="Transportation subway/metro glyph icon (Blue)." />
            <h5>Train Stations</h5>
          </div>
           <div className="overlay">
-            <ul className="trainList container">{(trainsList.length && this.renderList(trainsList, job))
-              || 'No results for this area'}
+            <ul className="trainList container">
+              { (trainsList.length && this.renderList(trainsList, job)) || 'No results to show for this area.' }
             </ul> 
           </div>
         </div>
         <div className="restaurantContainer">
-          <div style={{ "backgroundColor": "hsla(138, 37%, 47%, 0.82)" }}>
+          <div style={{ backgroundColor: "hsla(138, 37%, 47%, 0.82)" }}>
             <img src="http://goo.gl/wa4ylN" className="AmenitiesHeader_Img" alt="Transportation bus glyph icon (Red)." />
             <h5>Bus Stops</h5>
           </div>
           <div className="overlay overlayBottomMargin">
-            <ul className="busList container">{(busList.length && this.renderList(busList, job)) 
-              || 'No results for this area' }
+            <ul className="busList container">
+              { (busList.length && this.renderList(busList, job)) || 'No results to show for this area.' }
             </ul>
           </div>
         </div>

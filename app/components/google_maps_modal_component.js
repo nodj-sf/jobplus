@@ -81,10 +81,22 @@ export default class GMap_Modal extends BaseComponent {
     directions: null
   }
 
-  // Callback function that dynamically recenters Google Map over the geometric center of a search query's job results:
+  // Callback function that dynamically repositions the Google Map over the geometric center of a search query's job results:
   centerMap() {
-    // console.log(`First map marker coordinates:\t${this.props.markers[0].coords}`);
-    return this.props.jobMarkers.length ? this.props.jobMarkers[0].coords : this.state.defaultCenter;
+    const getCenterCoordinate = (arr) => (Math.max.apply(null, arr) + Math.min.apply(null, arr)) / 2,
+          allMarkers = this.props.jobMarkers.concat(
+            this.props.restaurantMarkers, 
+            this.props.busMarkers, 
+            this.props.trainMarkers,
+            this.props.gymMarkers,
+            this.props.parkMarkers
+          );
+
+    let [centerLat, centerLng] = [
+          getCenterCoordinate(allMarkers.map(marker => marker.coords.lat)), 
+          getCenterCoordinate(allMarkers.map(marker => marker.coords.lng))
+        ];
+    return this.props.jobMarkers.length ? new google.maps.LatLng({ lat: centerLat, lng: centerLng }) : this.state.defaultCenter;
   }
 
   // Toggle to 'true' to show InfoWindow and re-render component:
@@ -175,7 +187,7 @@ export default class GMap_Modal extends BaseComponent {
     return (
       <InfoWindow
         key={ `${marker.markerKey}_info_window` }
-        onCloseclick={onCloseclick} >
+        onCloseclick={ onCloseclick } >
           <div>
             <h4 className="infoWindow_Header">{ this.parseAndFormatJobTitle(marker.markerTitle) }</h4>
             { companyTitle() }
