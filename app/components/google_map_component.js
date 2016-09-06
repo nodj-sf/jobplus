@@ -87,9 +87,7 @@ class GMap extends BaseComponent {
     }
 
     this.setState({ 
-      markers: typeRef.map(marker => {
-        return marker === targetMarker ? Object.assign(marker, {showInfo: true}) : marker;
-      }) 
+      markers: typeRef.map(marker => marker === targetMarker ? Object.assign(marker, {showInfo: true}) : marker)
     });
     this.centerMap();
   }
@@ -97,9 +95,7 @@ class GMap extends BaseComponent {
   // Deactivates the display state of the clicked-upon map marker item's InfoWindow:
   handleMarkerClose(targetMarker) {
     this.setState({
-      markers: this.props.jobMarkers.map(marker => {
-        return marker === targetMarker ? { marker, showInfo: false } : marker;
-      })
+      markers: this.props.jobMarkers.map(marker => marker === targetMarker ? { marker, showInfo: false } : marker)
     });
   }
 
@@ -122,16 +118,14 @@ class GMap extends BaseComponent {
     const onCloseclick = this.handleMarkerClose.bind(this, marker),
           companyTitle = () => {
             if (marker.company) {
-              return (
-                <h5 className="infoWindow_Header">{ this.parseAndFormatJobTitle(marker.company) }</h5>
-              );
+              return (<h5 className="infoWindow_Header">{ this.parseAndFormatJobTitle(marker.company) }</h5>);
             }     
           };
 
     return (
       <InfoWindow
-        key={`${marker.markerKey}_info_window`}
-        onCloseclick={onCloseclick} >
+        key={ `${marker.markerKey}_info_window` }
+        onCloseclick={ onCloseclick } >
           <div>
             <h4 className="infoWindow_Header">{ this.parseAndFormatJobTitle(marker.markerTitle) }</h4>
             { companyTitle() }
@@ -183,13 +177,13 @@ class GMap extends BaseComponent {
 
     return (
       <Marker
-        key={`Marker_${marker.markerKey}`}
-        ref={`${marker.markerType}_Marker_${index}`}
+        key={ `Marker_${marker.markerKey}` }
+        ref={ `${marker.markerType}_Marker_${index}` }
+        position={ new google.maps.LatLng(marker.coords) }
+        // title={ marker.restaurantTitle }
         data-jobTitle={ marker.markerTitle }
         data-address={ marker.address }
         // data-jobTitle={ marker.restaurantTitle }
-        position={ new google.maps.LatLng(marker.coords) }
-        // title={ marker.restaurantTitle }
         icon={{
           path: MAP_PIN,
           scale: PIN_SCALE,
@@ -209,16 +203,12 @@ class GMap extends BaseComponent {
 
   // Generates Google Map map markers for all returned job results:
   jobMarkerCallbackHandler() {
-    return this.props.jobMarkers.map((marker, index) => {
-      return this.addMarker(marker, index);
-    });
+    return this.props.jobMarkers.map((marker, index) => this.addMarker(marker, index));
   }
 
   // Generates Google Map map markers for all returned Yelp restaurant results:
   restaurantMarkerCallbackHandler() {
-    return this.props.restaurantMarkers.map((marker, index) => {
-      return this.addMarker(marker, index);
-    });
+    return this.props.restaurantMarkers.map((marker, index) => this.addMarker(marker, index));
   }
 
   // Returns an object with x-coordinate & y-coordinate pixel offsets for OverlayView dialogue boxes:
@@ -247,7 +237,7 @@ class GMap extends BaseComponent {
     return (
       <div id="GMap_Wrapper">
         <div>
-          <button type="button" onClick={() => this.modalYes()} key="Modal window button">
+          <button type="button" onClick={ () => this.modalYes() } key="Modal window button">
             {[
               `See More Map`,
               <img src="http://goo.gl/8Xhb6c" key="Mo Map_Icon" alt="Resize map in modal window glyph icon (Black)." />
@@ -267,11 +257,11 @@ class GMap extends BaseComponent {
               defaultOptions={{ styles: mapStylesObject }}
               scrollwheel={false}
               ref="map"
-              onClick={() => this.closeAllMarkers()} >
+              onClick={ () => this.closeAllMarkers() } >
 
               { this.jobMarkerCallbackHandler() }
 
-              <GMap_Modal center={this.centerMap()} modalEnable={this.modalYes} modalDisable={this.modalNo} />
+              <GMap_Modal center={ this.centerMap() } modalEnable={ this.modalYes } modalDisable={ this.modalNo } />
             </GoogleMap>
           } 
         />
@@ -283,7 +273,7 @@ class GMap extends BaseComponent {
 let mapStateToProps = (state) => ({
   jobMarkers: state.jobs.map(job => ({ 
     markerType: 'job',
-    coords: { "lat": job.latitude, "lng": job.longitude },
+    coords: { 'lat': job.latitude, 'lng': job.longitude },
     markerKey: job.jobkey,
     markerTitle: job.jobtitle,
     company: job.company, 
@@ -292,7 +282,7 @@ let mapStateToProps = (state) => ({
   })),
   restaurantMarkers: state.activeYelp.map(restaurant => ({
     markerType: 'restaurant',
-    coords: { "lat": restaurant.coordinate.latitude, "lng": restaurant.coordinate.longitude },
+    coords: { 'lat': restaurant.coordinate.latitude, 'lng': restaurant.coordinate.longitude },
     markerKey: restaurant.id,
     markerTitle: restaurant.name,
     address: restaurant.display_address,

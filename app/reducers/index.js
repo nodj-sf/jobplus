@@ -11,6 +11,7 @@ import ActiveGyms from './reducer_active_gyms';
 import ToggleModal from './reducer_toggle_modal_on';
 import JobInputTerm from './reducer_job_search_term';
 import LocationInputTerm from './reducer_location_search_term';
+import LastLocation from './reducer_last_location';
 import SearchInputs from './reducer_search_inputs';
 import scrapDetails from './reducer_scrap_details';
 import loading from './reducer_toggle_loading';
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   routing: routerReducer,
   jobInputTerm: JobInputTerm,
   locationInputTerm: LocationInputTerm,
+  lastLocation: LastLocation,
   searchInputs: SearchInputs,
   scrapDetails: scrapDetails,
   loading: loading

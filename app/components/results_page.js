@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { selectJob, fetchYelp, fetchTrains, fetchBus, fetchGyms, fetchParks, scrapDetail, loading } from '../actions/index';
 import { bindActionCreators } from 'redux';
 import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 
@@ -14,6 +13,7 @@ import Footer from './footer_component';
 import RetaurantList from '../containers/restaurant_list_container';
 import TransportationList from '../containers/transportation_list_container';
 import AmenitiesList from '../containers/ameneties_list_container';
+import { selectJob, fetchYelp, fetchTrains, fetchBus, fetchGyms, fetchParks, scrapDetail, loading } from '../actions/index';
 
 
 class Results extends Component {
@@ -29,6 +29,7 @@ class Results extends Component {
     }
   }
 
+  // Primary callback used in aggregation of the `results_page` display view:
   initJob(job) {
     let props = this.props;
 

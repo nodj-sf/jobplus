@@ -8,8 +8,9 @@ export default class LandingPage extends Component {
    return (
     <div>
       <div id="bckgHero">
-        <h1 className="intro-logo" style={{ "top": "25%", "left": "50%", "transform": "translateX(-50%)", "fontSize": "10vh" }}>
-          {["Job",
+        <h1 className="intro-logo">
+          {[
+            'Job',
             <span key={1}>+</span>
           ]}
         </h1>

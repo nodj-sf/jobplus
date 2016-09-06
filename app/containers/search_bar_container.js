@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import Autocomplete from 'react-google-autocomplete';
 
-import { fetchJobs, userSearchInputs, jobInputTerm, locationInputTerm } from '../actions/index';
+import { fetchJobs, userSearchInputs, jobInputTerm, locationInputTerm, lastLocationSearch } from '../actions/index';
 
 
 class SearchBar extends Component {
@@ -14,52 +14,70 @@ class SearchBar extends Component {
 
     this.onJobTitleInputChange = this.onJobTitleInputChange.bind(this);
     this.onLocationInputChange = this.onLocationInputChange.bind(this);
+    this.commitLastLocationToStore = this.commitLastLocationToStore.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
+  // Binds user-provided job titles to the current `jobTerm` state value:
   onJobTitleInputChange(evt) {
     evt.preventDefault();
     this.props.jobInputTerm(evt.target.value).payload;
   }
 
+  // Binds the output of a Google Places Autocompletion dialogue to the `locationTerm` state value:
   onLocationInputChange(evt) {
-    evt.preventDefault();
-    this.props.locationInputTerm(evt.target.value).payload;
+    // evt.preventDefault();
+    let formattedSearchTerm = `${evt.address_components[0].long_name}` + 
+      (evt.address_components[1].types.includes("administrative_area_level_1") ? `, ${evt.address_components[1].short_name}`
+        : evt.address_components[2].types.includes("administrative_area_level_1") ? `, ${evt.address_components[2].short_name}` 
+        : "");
+      console.log(`Autocompletion Locale Formatted Search Term:\t${formattedSearchTerm}`);
+
+    this.props.locationInputTerm(formattedSearchTerm).payload;
   }
 
+  commitLastLocationToStore() {
+    // evt.preventDefault();
+    this.props.lastLocationSearch(this.props.locationTerm).payload;
+  }
+
+  // Initiates the retrieval of relevant job postings (from the Indeed API) upon form submission:
   onFormSubmit(evt) {
     evt.preventDefault();
     this.props.fetchJobs(this.props.jobTerm, this.props.locationTerm);
+    this.commitLastLocationToStore();
     this.props.push('/results');
   }
  
   // Bias the autocomplete object to the user's geographical location,
   // as supplied by the browser's 'navigator.geolocation' object.
-  geolocate() {
-    let autocomplete = new Google.maps.places.Autocomplete(
-      /** @type {!HTMLInputElement} */
-      (document.getElementById('searchLocation')),
-      {types: ['geocode']}
-      // {types: ['(cities)']}
-    );
+  /* 
+    geolocate() {
+      let autocomplete = new Google.maps.places.Autocomplete(
+        // @type {!HTMLInputElement} //
+        (document.getElementById('searchLocation')),
+        {types: ['geocode']}
+        // {types: ['(cities)']}
+      );
 
-    // When the user selects an address from the dropdown, populate the address fields in the form.
-    autocomplete.addListener('place_changed', fillInAddress);
+      // When the user selects an address from the dropdown, populate the address fields in the form.
+      autocomplete.addListener('place_changed', fillInAddress);
 
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        var geolocation = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        var circle = new google.maps.Circle({
-          center: geolocation,
-          radius: position.coords.accuracy
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var geolocation = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          var circle = new google.maps.Circle({
+            center: geolocation,
+            radius: position.coords.accuracy
+          });
+          autocomplete.setBounds(circle.getBounds());
         });
-        autocomplete.setBounds(circle.getBounds());
-      });
-    }
-  }
+      }
+    } 
+  */
 
   render() {
     return (
@@ -75,6 +93,7 @@ class SearchBar extends Component {
                 results="4" 
                 placeholder="Job"
                 defaultValue={ this.props.jobTerm }
+                autoComplete="on"
                 onChange={ this.onJobTitleInputChange } />
               
               <Autocomplete
@@ -85,7 +104,7 @@ class SearchBar extends Component {
                 placeholder="City"
                 defaultValue={ this.props.locationTerm }
                 autoCapitalize="words"
-                onInput={ this.onLocationInputChange } />
+                onPlaceSelected={ this.onLocationInputChange } />
             </div>
           </div>
 
@@ -99,38 +118,17 @@ class SearchBar extends Component {
 
 let mapStateToProps = (state) => ({ 
   jobTerm: state.jobInputTerm, 
-  locationTerm: state.locationInputTerm 
+  locationTerm: state.locationInputTerm,
+  lastLocation: state.lastLocation,
 });
 
 let mapDispatchToProps = (dispatch) => bindActionCreators({
   fetchJobs,
   jobInputTerm,
   locationInputTerm,
+  lastLocationSearch,
   userSearchInputs,
   push 
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
-
-
-// <input 
-//   id="searchLocation"
-//   className="formSearchInpt"
-//   type="search"
-//   results="4"
-//   placeholder="City"
-//   defaultValue={ this.props.locationTerm }
-//   autoCapitalize="word"
-//   // onChange={ this.onLocationInputChange } />
-//   onFocus={ this.autoFillLocation() } />
-
-// onPlaceSelected={(place) => {
-//   console.log(`Selected Locale Input:\t${place.name}`);
-//   this.onLocationInputChange();
-// }}
-
-// onPlaceSelected={ (place) => {
-//   console.log(`Selected Locale Input:\t${place.name}`, Object.entries(place));
-//   this.onLocationInputChange;
-//   // formatted_address
-// }}

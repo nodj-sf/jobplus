@@ -20,6 +20,10 @@ a {
   color: #000;
   text-decoration: none;
 }
+  a:hover {
+    color: #000;
+  }
+
 
 hr {
   margin: 0;
@@ -37,18 +41,13 @@ hr {
 }
 
 .intro-logo {
-  position: absolute;
-  left: 50px;
+  margin: 0;
   color: #FFF;
-  font: 4.5vh/6vh 'Oswald', 'Raleway', sans-serif;
+  font: 500 4.5vh/6vh 'Oswald', 'Open Sans', 'Raleway', sans-serif;
 }
 
 .intro-logo span {
   color: #7A7A7A;
-}
-
-a:hover {
-  color: #000;
 }
 
 #bckgHero {
@@ -56,8 +55,18 @@ a:hover {
   width: 100%;
   height: 65vh;
   top: 17.5vh;
-  background: #E6E6E6 url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/footer_lodyas.png');
+  background: #E6E6E6 url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/footer_lodyas.png') 100% / contain repeat;
   animation: 100s scroll infinite linear;
+}
+
+#bckgHero > h1.intro-logo {
+  position: relative;
+  width: 100vw;
+  top: 22.5%;
+  left: 50%;
+  font: 400 10vh/10vh 'Oswald', 'Open Sans', 'Raleway', sans-serif;
+  text-align: center;
+  transform: translateX(-50%);
 }
 
 #app {
@@ -114,6 +123,9 @@ a:hover {
   height: 100%;
   min-height: 700px;
   float: right;
+  background: -webkit-linear-gradient(#FFF 40%, #E9EBEE 50%);
+  background:      -o-linear-gradient(#FFF 40%, #E9EBEE 50%);
+  background:         linear-gradient(#FFF 40%, #E9EBEE 50%);
   box-sizing: border-box;
   overflow-y: scroll;
 }
@@ -318,7 +330,7 @@ div#overlay {
 #searchForm { 
   position: relative;
   display: inline-block;
-  width: 75%;
+  width: 85%;
   height: 100%;
   margin-bottom: 0;
   float: right;
@@ -354,6 +366,15 @@ div.box {
   box-shadow:         0 1px 8px rgba(0, 0, 0, 0.3);
   /* box-shadow: 0 4px 13px 1px #ADADAD; */
   z-index: 150;
+}
+
+.bannerCont > a {
+  position: relative;
+  display: inline-block;
+  width: 15%;
+  height: 6vh;
+  float: left;
+  text-align: center;
 }
 
 .footerCont {
@@ -467,7 +488,7 @@ div.jobLI_MetaInfo {
 }
 
 .jobLI_MetaInfo i {
-  right: 10px;
+  right: 1rem;
   float: right;
   color: #696969;
   text-align: right;
@@ -477,13 +498,13 @@ div.jobLI_MetaInfo {
 
 button.button-primary {
   width: 10%;
-  height: 50px;
+  height: 5rem;
   left: 3%;
-  margin: 20px auto;
-  margin-left: 25px;
-  margin-bottom: 1rem;
+  margin: 20px auto 1rem 25px;
+  /*margin-left: 25px;*/
+  /*margin-bottom: 1rem;*/
   padding: 0 4px;
-  font: 900 20px/50px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
+  font: 900 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
   background-color: #771DE5;
   color: #A7A5A5;
   border-radius: 4px;
@@ -502,42 +523,19 @@ button.button-primary {
     background-color: #A7A5A5;
   }
 
-/*
-  .container {
-    position: relative;
-    display: block;
-    width: 100%;
-    max-width: 2000px;
-    margin: 0;
-    // transform: translateX(12.5%); 
-  }
-*/
-
 .container { 
   position: relative;
   display: flex;
   width: 100%;
   max-width: 2000px;
   margin: 0;
-  padding-top: 10px;
+  padding-top: 1rem;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-around;
   align-content: space-around;
 }
-
-/* 
-  .restaurantList.container,
-  .trainList.container,
-  .busList.container {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-  }
-*/
 
 .container-3 {
   position: relative;
@@ -552,14 +550,10 @@ button.button-primary {
   width: 15%;
   margin: 0;
   padding: 0;
-  font-size: 18px;
+  font-size: 1.8rem;
   color: #FFF;
   box-sizing: content-box;
   transition: all 0.25s ease-in;              /* color, background */
-}
-
-.one-third {
-  width: 30%;
 }
 
 .container-3 + button:hover {
@@ -567,6 +561,10 @@ button.button-primary {
   color: #14A4B5;
   /* -webkit-box-shadow: inset 0 -5px 8px 1px rgba(255, 255, 255, 0.55);
      box-shadow:         inset 0 -5px 8px 1px rgba(255, 255, 255, 0.55); */
+}
+
+.one-third {
+  width: 30%;
 }
 
 /*
@@ -630,8 +628,8 @@ button.button-primary {
 #searchInputsBoundary *:focus, 
 #searchInputsBoundary * ~ *:focus, 
 #searchInputsBoundary *:focus + * {
-  /* padding: 30px 0; */
   width: 50%;
+  text-indent: 1rem;
   background: #2B303B;
 }
 
@@ -640,23 +638,11 @@ button.button-primary {
 }
 
 .container-3 input:focus::-webkit-input-placeholder {
-   font-size: 12px;
-   text-indent: 75%; 
+   font-size: 18px;
+   /* text-indent: 75%; */
 }
 
-.container-3 span {
-  position: absolute;
-  left: 26.5%;
-  margin: 0 10px;
-  line-height: 4.5vh;
-  /* font-size: 2.5rem; */
-  z-index: 10;
-  color: #FFF;
-  transition: all 0.25s ease-in;                    /* left, font-size */
-}
-
-/* Previously used to control the magnifying glass search glyph icon's formatting */
-/*
+/* Previously used to control the magnifying glass search glyph icon's formatting:
   .container-3 input.formSearchInpt:focus + span.icon {
     position: absolute;
     left: 1.5%;
@@ -665,6 +651,17 @@ button.button-primary {
     line-height: 60px;
     font-size: 3rem;
     z-index: 10;
+  }
+
+  .container-3 span {
+    position: absolute;
+    left: 26.5%;
+    margin: 0 10px;
+    line-height: 4.5vh;
+    // font-size: 2.5rem; //
+    z-index: 10;
+    color: #FFF;
+    transition: all 0.25s ease-in;                    // left, font-size //
   }
 */
 
@@ -713,8 +710,8 @@ input[type='search'] {
   width: 50%;
   /* left: 50%; */
   margin: auto;
-  /* transform: translateX(-50%); */
   box-sizing: border-box;
+  /* transform: translateX(-50%); */
 }
 
 input[type='search']::-webkit-search-decoration,
@@ -726,8 +723,8 @@ input[type='search']::-webkit-search-results-decoration {
 
 /* Apple Safari / Google Chrome browsers */
 input::-webkit-input-placeholder {
-   font: 20px/50px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
-   text-indent: 20px;
+   font: 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
+   text-indent: 1rem;
    color: #FFF;
    opacity: 0.80;
    transition: text-indent 0.25s ease-out;
@@ -735,24 +732,24 @@ input::-webkit-input-placeholder {
 
 /* Firefox 18- */
 input:-moz-placeholder {
-  font: 20px/50px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
-  text-indent: 20px;
+  font: 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
+  text-indent: 1rem;
   color: #FFF;
   opacity: 0.80;
 }
 
 /* Firefox 19+ */
 input::-moz-placeholder {
-  font: 20px/50px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
-  text-indent: 20px;
+  font: 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
+  text-indent: 1rem;
   color: #FFF;
   opacity: 0.80;
 }
 
 /* Microsoft (MS) Internet Explorer (IE) */
 input:-ms-input-placeholder {
-  font: 20px/50px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
-  text-indent: 20px;
+  font: 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
+  text-indent: 1rem;
   color: #FFF;
   opacity: 0.80; 
 }
@@ -828,7 +825,7 @@ i.XButton {
 
 p {
   margin-top: 33.784;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   margin-top: 33.784;
 }
 
@@ -854,13 +851,10 @@ div.yelpPhoto {
   min-height: 150px;
   max-height: 175px;
   left: 50%;
-  /* top: 50%; */
   transform: translateX(-50%);
-  /* transform: translate(-50%, -50%); */
 }
 
 .yelpPhoto img.fallbackImage {
-  width: 100%;
   height: 146px;
 }
 
@@ -909,11 +903,11 @@ li.restaurantLI > a {
 }
 
 .expandFromCenter:after {
+  position: relative;
   display: block;
+  content: '';
   width: 0;
   height: 1px;
-  position: relative;
-  content: '';
   margin: auto;
   background: transparent;
   transition: width 0.5s ease, 
@@ -929,13 +923,10 @@ li.restaurantLI > a {
   background-color: #E9EBEE;
 }
 
+#jobInfoBody > div:first-child,
 .transportationContent, 
 .amenitiesContent {
-  padding-left: 20px;
-}
-
-#jobInfoBody > div:first-child {
-  padding-left: 20px;
+  padding-left: 2rem;
 }
 
 .nameRating > h5 {
@@ -960,7 +951,7 @@ li.restaurantLI > a {
 
 .job-detail h3 {
   width: 100%;
-  margin: 10px auto;
+  margin: 2rem auto;
   font-weight: bolder;
   text-align: center;
 }
@@ -978,15 +969,9 @@ div.verticallyCenter {
   padding: 0 1.5rem;
 }
 
-.yelp-rating, 
-.card-body {
-  /* margin-left: 14px; */
-}
-
 .YelpRestaurantAddress {
   margin-bottom: 5px;
-  font-size: 1.25rem;
-  line-height: 1.35rem;
+  font-size: 1.25rem/1.35rem 'Raleway', sans-serif;
 }
 
 div.YelpRating_Div {
@@ -1014,11 +999,8 @@ div.YelpRating_Div {
 
 a.YelpPhoneNo {
   color: #222;
-  font-family: Courier, monospace, serif;
-  word-spacing: -5px;
-  font-weight: lighter;
-  font-size: 1.35rem;
-  /* letter-spacing: 0.1px; */
+  font: lighter 1.35rem Courier, monospace, serif;
+  word-spacing: -0.5rem;
 }
 
 a.YelpPhoneNo > em {
@@ -1121,15 +1103,14 @@ input:-webkit-autofill {
 
 .react-tabs [role='tab'] {
   width: 33%;
+  margin-bottom: 0;
   padding: 4px 0;
-  font-size: 1.85rem;
-  line-height: 2.25rem;
   text-align: left;
   text-indent: 1rem;
+  font-size: 1.85rem/2.25rem 'Raleway', 'Open Sans', Arial, sans-serif;
   background: rgba(220, 220, 220, 0.58);
-  border-color: #C8C8C8;                  /* Color: Gainsboro */
+  border: 1px solid #C8C8C8;                        /* Color: Gainsboro */
   border-radius: 2rem 1rem 0 0;
-  /* border-radius: 10px 10px 0 0; */
   box-sizing: border-box;
 }
 
@@ -1144,7 +1125,7 @@ input:-webkit-autofill {
 }
 
 .react-tabs .fa-yelp {
-  color: #CD2122;                         /* Color Variants: #C01D1D; */
+  color: #CD2122;                                   /* Color Variants: #C01D1D; */
 }
 
 .react-tabs div.overlay,
@@ -1154,11 +1135,6 @@ input:-webkit-autofill {
   background-color: #E9EBEE;
   overflow-x: hidden;
   overflow-y: overlay;
-}
-
-ul.ReactTabs__TabList > li {
-  margin-bottom: 0;
-  border: 1px solid #000;
 }
 
 .ReactModal__Overlay {

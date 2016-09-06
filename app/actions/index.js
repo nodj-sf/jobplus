@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const FETCH_JOBS = 'FETCH_JOBS';
 const JOB_SELECTED = 'JOB_SELECTED';
+const FETCH_JOBS = 'FETCH_JOBS';
 const FETCH_YELP = 'FETCH_YELP';
 const FETCH_TRAINS = 'FETCH_TRAINS';
 const FETCH_BUS = 'FETCH_BUS';
@@ -119,6 +119,11 @@ export const locationInputTerm = (locationTerm) => ({
   payload: { locationTerm }
 });
 
+export const lastLocationSearch = (lastLocation) => ({
+  type: 'LAST_LOCATION',
+  payload: lastLocation
+});
+
 export const toggleModal = () => {
   // console.log(`Google Maps Modal view toggled ON!`);
   return {
@@ -127,13 +132,11 @@ export const toggleModal = () => {
   };
 };
 
-export const toggleModalOff = () => {
-  // console.log(`Google Maps Modal view toggled OFF!`);
-  return {
-    type: 'TOGGLE_MODAL_OFF',
-    payload: false
-  };
-};
+// console.log(`Google Maps Modal view toggled OFF!`);
+export const toggleModalOff = () => ({
+  type: 'TOGGLE_MODAL_OFF',
+  payload: false
+});
 
 export const scrapDetail = (url) => {
   const request = axios.post('/api/v1/scrap', {

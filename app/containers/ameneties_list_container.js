@@ -91,7 +91,7 @@ class AmenitiesList extends BaseComponent {
       (
         <div>
           <div className="restaurantContainer">
-            <div style={{ "backgroundColor": "hsla(154, 48%, 51%, 0.91)" }}>
+            <div style={{ "backgroundColor": "rgba(90, 153, 126, 0.79)" }}>
               <img src="http://goo.gl/GLF2Rk" className="AmenitiesHeader_Img" alt="Park amenity landscape glyph icon (Green)." />
               <h5>Parks</h5>
             </div>
