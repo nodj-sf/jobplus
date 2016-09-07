@@ -14,8 +14,8 @@ export default class Banner extends Component {
         <a href='/'>
           <h1 className='intro-logo'>
             {[
-              "Job",
-              <span key={"logo-Plus_Span"}>+</span>
+              'Job',
+              <span key={ "logo-Plus_Span" }>+</span>
             ]}
           </h1>
         </a>

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import BaseComponent from '../components/base_component';
-// import DBIc from '../../public/img/dumbell_glyph.svg';
 
 
 class AmenitiesList extends BaseComponent {
@@ -13,7 +12,9 @@ class AmenitiesList extends BaseComponent {
       const [placeLat, placeLng] = [place.geometry.location.lat, place.geometry.location.lng],
             [jobLat, jobLng] = [job.latitude, job.longitude],
             amenityDistance = this.getDistanceFromLatLonInKm(jobLat, jobLng, placeLat, placeLng),
-            GMapsDirectionsURL = `https://www.google.com/maps/dir/${jobLat},${jobLng}/${placeLat},${placeLng}/`;
+            GMapsDirectionsURL = `https://www.google.com/maps/dir/${jobLat},${jobLng}/${placeLat},${placeLng}/`,
+            fallbackImageURL = (place.types.includes('gym') ? 'http://goo.gl/OYfm0X' : 'http://goo.gl/Uu31GG'),
+            fallbackImageAlt = (place.types.includes('gym') ? 'Fallback gym placeholder graphic (Black).' : 'Fallback park placeholder graphic (Gray).');
 
       if (place.photos) {
         var img = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&photoreference=${place.photos[0].photo_reference}&key=AIzaSyC1_oLFky0FuFjjQJfY7DWwAFFupPP4sSw`;
@@ -35,7 +36,7 @@ class AmenitiesList extends BaseComponent {
                     </div> : 
                     // No Image
                     <div className="yelpPhoto textEllipsis">
-                      <img src="http://goo.gl/Uu31GG" className="fallbackImage" alt="Fallback cityscape placeholder graphic (Gray)." />
+                      <img src={ fallbackImageURL } className="fallbackImage" alt={ fallbackImageAlt } />
                     </div>
                 }
               </a>
@@ -52,19 +53,19 @@ class AmenitiesList extends BaseComponent {
               <div>
                 <div className="amenityDistanceInMiles">
                   {[
-                    <i className="fa fa-map" style={{ "color": "#14A4B5" }} key={`Distance_${amenityDistance}`}></i>,
+                    <i className="fa fa-map" key={ `Distance_${amenityDistance}` }></i>,
                     `\t`,
-                    <a href={GMapsDirectionsURL} className="YelpPhoneNo expandFromCenter" target="_blank" key={`GMapURL_${GMapsDirectionsURL}`}>
-                      <em key={`AmenityDist_${place.id}`} style={{ "color": this.distanceColor(amenityDistance) }}>{`${amenityDistance} mi`}</em>
+                    <a href={ GMapsDirectionsURL } className="YelpPhoneNo expandFromCenter" target="_blank" key={ `GMapURL_${GMapsDirectionsURL}` }>
+                      <em key={ `AmenityDist_${place.id}` } style={{ color: this.distanceColor(amenityDistance) }}>{ `${amenityDistance} mi` }</em>
                     </a>
                   ]}
                 </div>
                 { this.getDistanceBlocks(amenityDistance) }
               </div>
 
-              <p style={{ "fontSize": "1.25rem", "clear": "both" }}>
+              <p style={{ fontSize: "1.25rem", clear: "both" }}>
                 {[
-                  <i className="fa fa-tags" style={{ "color": "#14A4B5", "fontSize": "1.6rem" }} key={`AmenityTags_${index}`}></i>,
+                  <i className="fa fa-tags" key={ `AmenityTags_${index}` }></i>,
                   `\t${this.getItemTags(place.types)}`
                 ]}
               </p>
@@ -91,7 +92,7 @@ class AmenitiesList extends BaseComponent {
       (
         <div>
           <div className="restaurantContainer">
-            <div style={{ "backgroundColor": "rgba(90, 153, 126, 0.79)" }}>
+            <div style={{ backgroundColor: "rgba(90, 153, 126, 0.79)" }}>
               <img src="http://goo.gl/GLF2Rk" className="AmenitiesHeader_Img" alt="Park amenity landscape glyph icon (Green)." />
               <h5>Parks</h5>
             </div>
@@ -102,7 +103,7 @@ class AmenitiesList extends BaseComponent {
             </div>
           </div>
           <div className="restaurantContainer">
-            <div style={{ "backgroundColor": "hsla(0, 0%, 20%, 0.57)" }}>
+            <div style={{ backgroundColor: "hsla(0, 0%, 20%, 0.57)" }}>
               <img src="http://goo.gl/zeyx0P" className="AmenitiesHeader_Img" alt="Gym amenity dumbell glyph icon (Red)." />
               <h5>Gyms</h5>
             </div>

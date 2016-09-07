@@ -66,15 +66,20 @@ const scrapDetail = require('./controllers/scrapDetail');
 app.use(express.static(path.join(__dirname, '../public')));
 
 /*
-** App routes.
-*/
+ * App routes.
+ */
 
 app.post('/api/v1/jobs', getJob.post);
 app.post('/api/v1/food', getRestaurant.post);
 app.post('/api/v1/places', getPlace.post);
 app.post('/api/v1/scrap', scrapDetail.post);
 
-app.get('/results', function(req, res) {
+app.get('/results', (req, res) => {
+  res.redirect('/');
+  res.end();
+});
+
+app.get('/about', (req, res) => {
   res.redirect('/');
   res.end();
 });

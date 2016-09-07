@@ -88,23 +88,100 @@ hr {
 
 /* .appCols {  } */
 
-img.teamProfPics {
+div.meetTheTeam_Container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 75vh;
+  max-height: 300px;
+  top: 57.5%;
+  flex-direction: row;
+  align-content: space-around;
+  align-items: center;
+  justify-content: space-around;
+  transform: translateY(-50%);
+}
+
+div.profileCard {
+  width: 18vw;
+  height: 100%;
+  /* max-height: 425px; */
+  border-radius: 1.5rem;
+  background: -webkit-linear-gradient(bottom, #8E9EAB, #F5F5F5);
+  background:      -o-linear-gradient(bottom, #8E9EAB, #F5F5F5);
+  background:         linear-gradient(to top, #8E9EAB, #F5F5F5);
+}
+
+div.socialShare_Container {
   position: absolute;
-  width: 250px;
-  height: 250px;
+  display: flex;
+  width: 18vw;
+  height: 40%;
+  bottom: 2.5%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-content: space-between;
+}
+
+div.socialShare_Container h4,
+div.socialShare_Container h6 {
+  font: bold 2.9rem/1 'Raleway', 'Open Sans', sans-serif;
+  text-align: center;
+  font-weight: bold;
+}
+
+div.socialShare_Container h6 {
+  font: inherit;
+}
+
+div.socialMediaIcons {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  align-content: space-around;
+}
+
+div.socialMediaIcons img {
+  position: relative;
+  height: 50px;
+}
+
+.teamProfPics {
+  position: relative;
+  width: 16vw;
+  height: 16vw;
+  top: -14vw;
+  margin: auto;
+  border: 2.5px ridge #14A4B5;
   border-radius: 50%;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: all 0.25s 0s ease-out;
+  transform: translateY(50%);
+}
+
+.teamProfPics > img {
+  position: relative;
+  width: 100%;
+  left: 50%;
+  transition: width 2s 0.1s linear;
+  transform: translateX(-50%);
   -webkit-filter: grayscale(100%);
      -moz-filter: grayscale(100%);
       -ms-filter: grayscale(100%);
        -o-filter: grayscale(100%);
-  transition: all 0.25s 0s ease-out;
 }
-  img.teamProfPics:hover {
-    -webkit-filter: grayscale(0);
-       -moz-filter: grayscale(0);
-        -ms-filter: grayscale(0);
-         -o-filter: grayscale(0);
-  }
+    .teamProfPics:hover > img {
+      width: 125%;
+      -webkit-filter: grayscale(0);
+         -moz-filter: grayscale(0);
+          -ms-filter: grayscale(0);
+           -o-filter: grayscale(0);
+    }
 
 
 #jobMain {
@@ -1112,6 +1189,11 @@ input:-webkit-autofill {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+div.card-body .fa {
+  color: #14A4B5;                       /* rgb(20, 164, 181); */
+  font-size: 1.6rem;
 }
 
 .fa.cardDescriptionGlyph {

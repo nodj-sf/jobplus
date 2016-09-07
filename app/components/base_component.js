@@ -33,6 +33,8 @@ export default class BaseComponent extends Component {
       'and': '&',
       'at': '@',
       'backend': 'Back-End',
+      'c#': 'C#',
+      'c++': 'C++',
       'db': 'DB',
       'dba': 'DBA',
       'dev/ops': 'Dev/Ops',
