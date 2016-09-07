@@ -23,6 +23,7 @@ class Results extends Component {
     this.initJob = this.initJob.bind(this);
   }
 
+  // Lifecycle method:
   componentDidUpdate(nextProps) {
     if (this.props.jobs.length) {
      this.initJob(this.props.jobs[0]);

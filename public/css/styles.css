@@ -88,6 +88,25 @@ hr {
 
 /* .appCols {  } */
 
+img.teamProfPics {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  -webkit-filter: grayscale(100%);
+     -moz-filter: grayscale(100%);
+      -ms-filter: grayscale(100%);
+       -o-filter: grayscale(100%);
+  transition: all 0.25s 0s ease-out;
+}
+  img.teamProfPics:hover {
+    -webkit-filter: grayscale(0);
+       -moz-filter: grayscale(0);
+        -ms-filter: grayscale(0);
+         -o-filter: grayscale(0);
+  }
+
+
 #jobMain {
   position: relative;
   display: block;
@@ -1035,9 +1054,10 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  border: 1px solid green;
-  -webkit-text-fill-color: green;
-  -webkit-box-shadow: inset 0 0 0 1000px #000 inset;
+  border: none;
+  -webkit-text-fill-color: #FFF !important;
+  -webkit-box-shadow: inset 0 0 0 1000px #000;
+  -moz-box-shadow:    inset 0 0 0 1000px #000;
   box-shadow:         inset 0 0 0 1000px #000;
   transition: background-color 5000s 0s ease-in-out;
 }
@@ -1045,7 +1065,12 @@ select:-webkit-autofill:focus {
 input:-webkit-autofill {
   -webkit-text-fill-color: #FFF !important;
   -webkit-box-shadow: inset 0 0 0 1000px #7A7A7A;
+  -moz-box-shadow:    inset 0 0 0 1000px #7A7A7A;
   box-shadow:         inset 0 0 0 1000px #7A7A7A;
+
+  /* Internet Explorer (IE) extraneous settings */
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
 }
 
 
@@ -1135,10 +1160,4 @@ input:-webkit-autofill {
   background-color: #E9EBEE;
   overflow-x: hidden;
   overflow-y: overlay;
-}
-
-.ReactModal__Overlay {
-  background: rgba(41, 37, 37, 0.59);
-  background: rgba(48, 44, 44, 0.74902);
-  z-index: 150;
 }

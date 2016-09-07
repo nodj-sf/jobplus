@@ -29,4 +29,4 @@ export default class JobItem extends BaseComponent {
       </div>
     );
   }
-}
+};

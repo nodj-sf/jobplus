@@ -30,7 +30,7 @@ app.use(expressValidator());
 //   store: new RedisStore()
 // }));
 
-// app.use(function (req, res, next) {
+// app.use(function(req, res, next) {
 //   if (!req.session) {
 //     return next(new Error('Session failed!'));
 //   }
@@ -78,5 +78,13 @@ app.get('/results', function(req, res) {
   res.redirect('/');
   res.end();
 });
+
+
+// app.get('/about', function(req, res) {
+//   res.send('Hello World!');
+// });
+
+// const about = require('../app/components/about_page');
+// app.use('/about', about);
 
 module.exports = app;
