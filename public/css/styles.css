@@ -22,6 +22,7 @@ a {
 }
   a:hover {
     color: #000;
+    cursor: pointer;
   }
 
 
@@ -55,7 +56,7 @@ hr {
   width: 100%;
   height: 65vh;
   top: 17.5vh;
-  background: #E6E6E6 url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/footer_lodyas.png') 100% / contain repeat;
+  background: #E6E6E6 url('http://goo.gl/4gsH3y') 100% / contain repeat;
   animation: 100s scroll infinite linear;
 }
 
@@ -475,12 +476,27 @@ div.box {
 
 .footerCont {
   position: fixed;
+  height: 4.5rem;
   width: 100%;
-  height: 3.75rem;    /* 65px */
   bottom: 0;
   left: 0;
   background: #7A7A7A;
   z-index: 100;
+}
+
+.footerCont a {
+  font: 400 2.25rem/4rem 'Raleway';
+}
+
+.footerCont nav {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.footerCont nav a {
+  margin: auto;
 }
 
 #jobsContainer > b {
@@ -489,12 +505,12 @@ div.box {
   width: 100%;
   height: 3.5rem;
   padding: 4px 0;
-  /* font-variant: unicase; */
+  line-height: 3.5rem;
   text-align: left;
   text-indent: 1.5rem;
   font-size: 1.75rem;
   font-weight: lighter;
-  line-height: 3.5rem;
+  /* font-variant: unicase; */
   color: #FFF;
   background: -webkit-linear-gradient(231deg, rgba(20,164,181,1) 15%, rgb(93, 188, 200) 44%, rgb(134, 202, 210) 100%);
   background:      -o-linear-gradient(231deg, rgba(20,164,181,1) 15%, rgb(93, 188, 200) 44%, rgb(134, 202, 210) 100%);
@@ -920,19 +936,20 @@ i.XButton {
 }
 
 p {
-  margin-top: 33.784;
-  margin-bottom: 0;
-  margin-top: 33.784;
+  margin: 0;
+  /* margin: 0 33.784; */
 }
 
 div.yelpPhoto {
   position: relative;
   width: 100%;
-  height: auto;
-  max-height: 150px;
+  /* height: inherit; */
+  min-height: 75px;
+  max-height: 200px;
   left: 50%;
   border: 4px solid #14A4B5;
-  box-sizing: content-box;
+  line-height: 0;
+  box-sizing: border-box;
   transform: translateX(-50%);
   background: -webkit-radial-gradient(circle, #14a4b5 60%, #FFF 125%);
   background:    -moz-radial-gradient(circle, #14a4b5 60%, #FFF 125%);
@@ -943,15 +960,16 @@ div.yelpPhoto {
 
 .yelpPhoto img {
   position: relative;
-  min-width: 100%;
-  min-height: 150px;
-  max-height: 175px;
+  width: 100%;
+  /* min-height: 150px; */
+  /* max-height: 175px; */
   left: 50%;
+  /* top: 50%; */
   transform: translateX(-50%);
 }
 
 .yelpPhoto img.fallbackImage {
-  height: 146px;
+  /* height: 146px; */
 }
 
 .restaurantLI, 
@@ -960,7 +978,7 @@ div.yelpPhoto {
   position: relative;
   display: inline-block;
   min-height: 200px;
-  max-height: 400px;
+  /* max-height: 400px; */                        /* Uncomment to disable large height-width aspect ratio images */
   margin: 1rem auto;
   padding-bottom: 0.75rem;
   background-color: #FFF;
@@ -1033,7 +1051,7 @@ li.restaurantLI > a {
 .nameRating > a {
   display: block;
   width: 100%;
-  max-height: 225px;
+  /* max-height: 225px; */
 }
 
 #jobInfoBody div.jobInfoBottomBlock {
@@ -1067,7 +1085,7 @@ div.verticallyCenter {
 
 .YelpRestaurantAddress {
   margin-bottom: 5px;
-  font-size: 1.25rem/1.35rem 'Raleway', sans-serif;
+  font: 1.25rem/1.50rem 'Raleway', sans-serif;
 }
 
 div.YelpRating_Div {
@@ -1191,7 +1209,8 @@ input:-webkit-autofill {
   transform: translate(-50%, -50%);
 }
 
-div.card-body .fa {
+div.card-body .fa,
+div.job-detail .fa {
   color: #14A4B5;                       /* rgb(20, 164, 181); */
   font-size: 1.6rem;
 }

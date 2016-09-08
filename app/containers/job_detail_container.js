@@ -11,18 +11,10 @@ import BaseComponent from '../components/base_component';
 class JobDetail extends BaseComponent {
   constructor(props) {
     super(props);
-
-    this.onBtnClick = this.onBtnClick.bind(this);
   }
-
-  onBtnClick(evt) {
-    this.props.push('/about');
-  }
-
 
   render() {
     let details = '';
-
     if (this.props.scrapDetails) {
       details = this.props.scrapDetails.data.details;
     }
@@ -38,23 +30,18 @@ class JobDetail extends BaseComponent {
         </h3>
         <h4>{ this.props.job.company }</h4> 
         <hr />
-
-        <button
-          style={{ width: "100px", height: "100px", position: "absolute", background: "Pink" }}
-          onClick={ this.onBtnClick }>CLICK ME</button>
-
         <h6>
           {[
             /hour/gmi.test(this.props.formattedRelativeTime) ?
-              <i className="fa fa-clock-o" style={{ "color": "#14A4B5" }} key="FA-Clock-Face_Glyph"></i> :
-              <i className="fa fa-location-arrow" style={{ "color": "#14A4B5" }} key="FA-Directional-Arrow_Glyph"></i>,
+              <i className="fa fa-clock-o" key="FA-Clock-Face_Glyph"></i> :
+              <i className="fa fa-location-arrow" key="FA-Directional-Arrow_Glyph"></i>,
             `\t`,
             this.props.job.formattedLocation
           ]}
         </h6>
         <p>
           {[
-            <i className="fa fa-calendar" style={{ "color": "#14A4B5" }} key="FA-Calendar_Glyph"></i>,
+            <i className="fa fa-calendar" key="FA-Calendar_Glyph"></i>,
             `\t`,
             this.props.job.formattedRelativeTime
           ]}
@@ -63,7 +50,7 @@ class JobDetail extends BaseComponent {
           {[
             details,
             `\u2026`,
-            <a href={ this.props.job.url } className="link-state" target="_blank" key={`JobURL_${this.props.job.key}`}>More</a>
+            <a href={ this.props.job.url } className="link-state" target="_blank" key={ `JobURL_${this.props.job.key}` }>More</a>
           ]}
         </blockquote>
       </div>

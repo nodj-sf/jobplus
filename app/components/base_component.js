@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 
 // New class `BaseComponent` extends React `Component`, but is modified to include 
-// a variety of static helper class methods that may be shared by all sub-classes.
+//  a variety of static helper class methods that may be shared by all sub-classes.
 export default class BaseComponent extends Component {
   constructor(props) {
     super(props);
@@ -26,14 +26,14 @@ export default class BaseComponent extends Component {
   }
 
   // Returns formatted string specifying the posting's job title:
-  parseAndFormatJobTitle(job) {
+  parseAndFormatJobTitle(job = job.toLowerCase()) {
     const specialFormatTerms = {
-      '(nyc)': '(NYC)',
       '.net': '.NET',
       'and': '&',
       'at': '@',
       'backend': 'Back-End',
       'c#': 'C#',
+      'c+': 'C+',
       'c++': 'C++',
       'db': 'DB',
       'dba': 'DBA',
@@ -61,11 +61,13 @@ export default class BaseComponent extends Component {
       'with': 'w/'
     };
 
+    /*
     return job
       .trim()
       // .split(/[\s|\/]/gmi)
       // .replace(/\s(\/)\s(?:\w+)/gmi, '$1')
       // .replace(/\band\b/gmi, "&")
+      .replace(/\b([a-z])/gmi, match => match.toUppercase())
       .replace(/\s(\/)\s((?:\w+))/gmi, ((match1, match2) => match1 + match2[0].toUpperCase() + match2.slice(1).toLowerCase())('$1', '$2'))
       .replace(/No\.?(\s+)?(\d+)/gmi, '\u2116. $2')
       .replace(/(\w+)(?:,)\sInc(?!\.)/gmi, '$1, Inc.')
@@ -75,7 +77,18 @@ export default class BaseComponent extends Component {
           memo += ` ${specialFormatTerms[index.toLowerCase()]} ` :
           memo += ` ${index.charAt(0).toUpperCase()}${index.slice(1).toLowerCase()} `;
       })
-      .trim();
+      .trim(); */
+
+      let formattedJob = Object.keys(specialFormatTerms)
+        .forEach(term => {
+          if (job.includes(term)) {
+            job = job.replace(term, specialFormatTerms[term]);
+          }
+        });
+
+      return job
+        .replace(/\b([a-z])/gmi, match => match.toUpperCase())
+        .replace(/(\s|\b)\/(\s|\b)/g, '/');
   }
 
   // Returns formatted string specifying the period of time since job listing's post date:

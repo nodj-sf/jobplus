@@ -42,13 +42,27 @@ class JobList extends BaseComponent {
     props.fetchParks(lat, lng);
     props.fetchGyms(lat, lng);
     props.scrapDetail(job.url);
-    
     props.loading(false);
   }
 
   renderList() {
-    let jobList = '';
 
+    // let jobList = this.props.jobs.length 
+    //   ? this.props.job.map(job =>
+    //     <JobItem
+    //       key={ job.jobkey }
+    //       setActive={ this.setActive }
+    //       jobFunc={ this.jobFunc }
+    //       job={ job } />
+    //   ) : this.init 
+    //   ? (
+    //       <div className="noResultsShown">
+    //         <h4 className="noResultsShown">No Results Now</h4>
+    //       </div>
+    //     ) :
+
+
+    let jobList;
     if (this.props.jobs.length) {
       jobList = this.props.jobs.map(job => {
         return (
@@ -60,22 +74,17 @@ class JobList extends BaseComponent {
         );
       });
     } else {
-      if (this.init > 0) {
-        jobList = (
-          <div className="noResultsShown">
-            <h4 className="noResultsShown">No Results Now</h4>
-          </div>
-        );
-      } else {
-        this.init++;
-        jobList = (
+      this.init ? jobList = (
+        <div className="noResultsShown">
+          <h4 className="noResultsShown">No Results Now</h4>
+        </div>
+      ) : (this.init++, jobList = (
           <div id="placesContainer">
             <i className="fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner"></i> Loading...
           </div>
-        );
-      }
+        )
+      )
     }
-
     return jobList;
   }
 

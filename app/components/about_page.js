@@ -6,9 +6,9 @@ import Footer from './footer_component';
 export default class AboutPage extends Component {
   
   renderTeamMemberProfiles(team) {
-    return team.map(member => {
+    return team.map((member, index) => {
       return (
-        <div className="profileCard">
+        <div className="profileCard" key={ `TeamMember${index}_${member.name}` }>
           <div className="teamProfPics">
             <img src={ member.profilePic.url } alt={ member.profilePic.descript } />
           </div>

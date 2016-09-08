@@ -8,28 +8,8 @@ import { connect } from 'react-redux';
 import BaseComponent from './base_component';
 import GMap_Modal from './google_maps_modal_component';
 import mapStylesObject from '../constants/google_map_styles.json';
-import { fetchJobs, selectJob, activeBus, toggleModal, toggleModalOff } from '../actions/index';
+import { fetchJobs, selectJob, activeBus, toggleModal } from '../actions/index';
 
-
-// Code for potential inclusion at later date:
-const geolocation = () => {
-  // canUseDOM && navigator.geolocation || {
-  //   getCurrentPosition: (success, failure) => {
-  //     failure(`Your browser doesn't support geolocation.`);
-  //   },
-  // }
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      console.log(new google.maps.LatLng(pos.lat, pos.lng));
-      return new google.maps.LatLng(pos.lat, pos.lng);
-    });
-    // return new google.maps.LatLng(37.745951, -122.439421);
-  }
-};
 
 const STYLES = {
   mapContainer: {
@@ -54,7 +34,7 @@ class GMap extends BaseComponent {
       zoomLevel: 12
     };
 
-    this.modalNo = this.modalNo.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
     this.jobMarkerCallbackHandler = this.jobMarkerCallbackHandler.bind(this);
   }
 
@@ -146,12 +126,8 @@ class GMap extends BaseComponent {
   }
 
   // Class methods for control of the Google Maps Modal visibility:
-  modalYes() {
+  toggleModal() {
     return this.props.toggleModal()
-  }
-
-  modalNo() {
-    return this.props.toggleModalOff();
   }
 
   // Render the appropriate Google Map map marker for the given `marker` input:
@@ -227,25 +203,13 @@ class GMap extends BaseComponent {
     };
   }
 
-  // Function `getPixelPositionOffset()`:
-  /*
-  getPixelPositionOffset(width, height) {
-    return {
-      // x: -(width / 2), 
-      // y: -(height / 2) 
-      x: -width,
-      y: height
-    };
-  }
-  */
-
   render() {
     // console.log(`GeoLocation:\t${geolocation()}`);
 
     return (
       <div id="GMap_Wrapper">
         <div>
-          <button type="button" onClick={ () => this.modalYes() } key="Modal window button">
+          <button type="button" onClick={ () => this.toggleModal() } key="Modal window button">
             {[
               `See More Map`,
               <img src="http://goo.gl/8Xhb6c" key="Mo Map_Icon" alt="Resize map in modal window glyph icon (Black)." />
@@ -253,9 +217,7 @@ class GMap extends BaseComponent {
           </button>
         </div>
         <GoogleMapLoader
-          containerElement={ 
-            <div id="mapsContainer" />
-          }   
+          containerElement={ <div id="mapsContainer" /> }   
           googleMapElement={
             <GoogleMap 
               center={ this.centerMap() }
@@ -269,10 +231,9 @@ class GMap extends BaseComponent {
 
               { this.jobMarkerCallbackHandler() }
 
-              <GMap_Modal center={ this.centerMap() } modalEnable={ this.modalYes } modalDisable={ this.modalNo } />
+              <GMap_Modal center={ this.centerMap() } deactivateModal={ this.toggleModal } />
             </GoogleMap>
-          } 
-        />
+          } />
       </div>
     );
   }
@@ -304,20 +265,10 @@ let mapStateToProps = (state) => ({
 let mapDispatchToProps = (dispatch) => bindActionCreators({ 
   selectJob,
   toggleModal,
-  toggleModalOff,
   activeBus
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(GMap);
-
-
-
-// onDoubleClick={() => this.modalYes()}
-
-// { this.restaurantMarkerCallbackHandler() }
-
-// Not sure if we need this line(originally on line 194): coords: new google.maps.LatLng(job.latitude, job.longitude)
-// We need to get the photo from yelp and add it to the state collection
 
 
 // <OverlayView

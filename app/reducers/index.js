@@ -8,7 +8,7 @@ import ActiveTrains from './reducer_active_trains';
 import ActiveBus from './reducer_active_bus';
 import ActiveParks from './reducer_active_parks';
 import ActiveGyms from './reducer_active_gyms';
-import ToggleModal from './reducer_toggle_modal_on';
+import ToggleModal from './reducer_toggle_modal';
 import JobInputTerm from './reducer_job_search_term';
 import LastJob from './reducer_last_job';
 import LocationInputTerm from './reducer_location_search_term';

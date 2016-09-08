@@ -8,67 +8,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import BaseComponent from './base_component';
-// import customStyles from '../constants/google_map_modal_styles';
+import customStyles from '../constants/google_map_modal_styles.json';
 import mapStylesObject from '../constants/google_map_styles.json';
-import { fetchJobs, selectJob, toggleModalOn } from '../actions/index';
-import fontawesome from 'fontawesome-markers';
-
-
-const customStyles = {
-  overlay : {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: `rgba(85, 84, 84, 1.0)
-                 url('http://goo.gl/r6Bzbv') 
-                 100% / 100% 
-                 no-repeat`,
-    backgroundBlendMode: 'soft-light',
-    zIndex: 150
-    // #E3E3E3
-    // rgba(48, 44, 44, 0.74902) 
-    // backgroundColor: 'rgba(48, 44, 44, 0.74902)'
-  },
-  content: {
-    minWidth: '90vw',
-    minHeight: '90vh',
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    padding: 0,
-    borderRadius: '8px',
-    transform: 'translate(-50%, -50%)',
-    overflow: 'hidden',
-    zIndex: '200'
-  }
-};
-
-
-// Code for potential inclusion at later date:
-const geolocation = () => {
-  // canUseDOM && navigator.geolocation || {
-  //   getCurrentPosition: (success, failure) => {
-  //     failure(`Your browser doesn't support geolocation.`);
-  //   },
-  // }
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      // console.log(new google.maps.LatLng(pos.lat, pos.lng));
-      return new google.maps.LatLng(pos.lat, pos.lng);
-    });
-    // return new google.maps.LatLng(37.745951, -122.439421);
-  }
-};
-
-// const geolocation = () => { };
+import { fetchJobs, selectJob, toggleModal } from '../actions/index';
 
 
 export default class GMap_Modal extends BaseComponent {
@@ -193,7 +135,7 @@ export default class GMap_Modal extends BaseComponent {
             <h4 className="infoWindow_Header">{ this.parseAndFormatJobTitle(marker.markerTitle) }</h4>
             { companyTitle() }
             <hr />
-            <p>{ marker.address }</p>
+            <div>{ marker.address.map((addressComponent, index) => <p key={ `AddressComponent${index}` }>{ addressComponent }</p>) }</div>
             { itemImage() }
           </div>
          
@@ -347,7 +289,7 @@ export default class GMap_Modal extends BaseComponent {
     // const origin = new google.maps.LatLng(this.props.activeJob.coords),
     //       { directions } = this.state;
 
-    // console.log("Geolocation:", geolocation());
+    console.log("STYLE:\n", customStyles);
 
     return (
       <Modal
@@ -388,7 +330,7 @@ export default class GMap_Modal extends BaseComponent {
             </GoogleMap>
           } />
 
-        <i className="fa fa-times-circle XButton" onClick={ () => this.props.modalDisable() }></i>
+        <i className="fa fa-times-circle XButton" onClick={ () => this.props.deactivateModal() }></i>
       </Modal>
     );
   }
@@ -403,7 +345,7 @@ let mapStateToProps = (state) => {
       markerKey: job.jobkey,
       markerTitle: job.jobtitle,
       company: job.company, 
-      address: job.formattedLocation,
+      address: [job.formattedLocation],
       // markerPhoto: 'No Image',
       showInfo: false
     })),
@@ -413,6 +355,7 @@ let mapStateToProps = (state) => {
       markerKey: restaurant.id,
       markerTitle: restaurant.name,
       address: restaurant.display_address,
+      // address: `${restaurant.display_address[1]}\n${restaurant.display_address[0]}\n${restaurant.display_address[2]}`,
       markerPhoto: restaurant.photo,
       showInfo: false
     })),
@@ -461,7 +404,3 @@ export default connect(mapStateToProps)(GMap_Modal);
 //     <DirectionsRenderer directions={ directions } /> 
 //     : null
 // }
-
-// return this.props.parkMarkers.map((marker, index) => {
-//   return this.addMarker(marker, index);
-// });

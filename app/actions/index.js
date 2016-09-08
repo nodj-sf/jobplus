@@ -95,6 +95,17 @@ export const fetchGyms = (lat, long) => {
   };
 };
 
+export const scrapDetail = (url) => {
+  const request = axios.post('/api/v1/scrap', {
+    url: url,
+    _csrf: getCookie('_csrf')
+  });
+  return {
+    type: 'SCRAP_DATA',
+    payload: request
+  }
+};
+
 export const selectJob = (job) => ({
   type: 'JOB_SELECTED',
   payload: job
@@ -120,31 +131,12 @@ export const lastLocationSearch = (lastLocation) => ({
   payload: lastLocation
 });
 
-// console.log(`Google Maps Modal view toggled ON!`);
-export const toggleModal = () => ({
-  type: 'TOGGLE_MODAL_ON',
-  payload: true
+export const toggleModal = (toggleState) => ({
+  type: 'TOGGLE_MODAL'
 });
 
-// console.log(`Google Maps Modal view toggled OFF!`);
-export const toggleModalOff = () => ({
-  type: 'TOGGLE_MODAL_OFF',
-  payload: false
-});
-
-export const scrapDetail = (url) => {
-  const request = axios.post('/api/v1/scrap', {
-    url: url,
-    _csrf: getCookie('_csrf')
-  });
-
-  return {
-    type: 'SCRAP_DATA',
-    payload: request
-  }
-}
-
-export const loading = (val) => ({
+// Loading animation display state:
+export const loading = (bool) => ({
   type: 'LOADING',
-  payload: val
+  payload: bool
 });

@@ -14,6 +14,7 @@ class SearchBar extends Component {
 
     this.onJobTitleInputChange = this.onJobTitleInputChange.bind(this);
     this.onLocationInputChange = this.onLocationInputChange.bind(this);
+    this.onLocationAutoComplete = this.onLocationAutoComplete.bind(this);
     this.commitLastJobToStore = this.commitLastJobToStore.bind(this);
     this.commitLastLocationToStore = this.commitLastLocationToStore.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -24,13 +25,19 @@ class SearchBar extends Component {
     this.props.jobInputTerm(evt.target.value).payload;
   }
 
-  // Binds the output of a Google Places Autocompletion dialogue to the `locationTerm` state value:
+  // Binds user-provided location names to the current `location` state value:
   onLocationInputChange(evt) {
+    this.props.locationInputTerm(evt.target.value).payload;
+  }
+
+  // Binds the output of a Google Places Autocompletion dialogue to the `locationTerm` state value:
+  onLocationAutoComplete(evt) {
+    if (!(evt.address_components)) { return; }
     let formattedSearchTerm = `${evt.address_components[0].long_name}` + 
       (evt.address_components[1].types.includes('administrative_area_level_1') ? `, ${evt.address_components[1].short_name}`
         : evt.address_components[2].types.includes('administrative_area_level_1') ? `, ${evt.address_components[2].short_name}` 
         : '');
-      console.log(`Autocompletion Locale Formatted Search Term:\t${formattedSearchTerm}`);
+      console.log(`Formatted Locale Autocompletion Search Term:\t${formattedSearchTerm}`);
 
     this.props.locationInputTerm(formattedSearchTerm).payload;
   }
@@ -107,7 +114,8 @@ class SearchBar extends Component {
                 results="4"
                 placeholder="City"
                 autoCapitalize="words"
-                onPlaceSelected={ this.onLocationInputChange } />
+                onChange={ this.onLocationInputChange }
+                onPlaceSelected={ this.onLocationAutoComplete || null } />
             </div>
           </div>
 
