@@ -5,8 +5,20 @@ import BaseComponent from '../components/base_component';
 
 
 class TransportationList extends BaseComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      trainListDisplayState: "flex",
+      busListDisplayState: "flex"
+    };
+
+    this.collapseTrainList = this.collapseTrainList.bind(this);
+    this.collapseBusList = this.collapseBusList.bind(this);
+  }
+
   renderList(list, job) {    
-    return list.slice(0, 3).map((transport, index) => {
+    return list.slice(0, 6).map((transport, index) => {
       const [transportLat, transportLng] = [transport.geometry.location.lat, transport.geometry.location.lng],
             [jobLat, jobLng] = [job.latitude, job.longitude],
             stationDistance = this.getDistanceFromLatLonInKm(jobLat, jobLng, transportLat, transportLng),
@@ -76,40 +88,58 @@ class TransportationList extends BaseComponent {
     });
   }
 
+  collapseTrainList() {
+    this.setState({ trainListDisplayState: this.state.trainListDisplayState === "flex" ? "none" : "flex" });
+  }
+
+  collapseBusList() {
+    this.setState({ busListDisplayState: this.state.busListDisplayState === "flex" ? "none" : "flex" });
+  }
+
   render() {
     let props = this.props,
         job = props.activeJob,
-        [trainsList, busList] = [props.activeTrains, props.activeBus];
+        [trainList, busList] = [props.activeTrains, props.activeBus];
 
     return (
       (this.props.loading) ?
-      <div className="restaurantContainer">
-        <i className="fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner"></i> Loading...
-      </div> :
-      <div>
         <div className="restaurantContainer">
-         <div style={{ backgroundColor: "hsla(222, 100%, 63%, 0.79)" }}>
-           <img src="http://goo.gl/XzVRW7" className="AmenitiesHeader_Img" alt="Transportation subway/metro glyph icon (Blue)." />
-           <h5>Train Stations</h5>
-         </div>
-          <div className="overlay">
-            <ul className="trainList container">
-              { (trainsList.length && this.renderList(trainsList, job)) || 'No results to show for this area.' }
-            </ul> 
+          <i className="fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner"></i> Loading...
+        </div> :
+        <div>
+          <div className="restaurantContainer">
+            <div style={{ backgroundColor: "hsla(222, 100%, 63%, 0.79)" }}>
+              <i className="collapseGlyph fa fa-reorder" onClick={ this.collapseTrainList }></i>
+              <img src="http://goo.gl/XzVRW7" className="AmenitiesHeader_Img" alt="Transportation subway/metro glyph icon (Blue)." />
+              <h5>Train Stations</h5>
+            </div>
+            <div className="overlay">
+              {
+                trainList.length 
+                  ? <ul className="trainList container" style={{ display: this.state.trainListDisplayState }}>
+                      { this.renderList(trainList, job) }
+                    </ul>
+                  : <p className="noResultsMsg">{ `No results for train stations in this area` }</p>
+              }
+            </div>
+          </div>
+          <div className="restaurantContainer">
+            <div style={{ backgroundColor: "hsla(138, 37%, 47%, 0.82)" }}>
+              <i className="collapseGlyph fa fa-reorder" onClick={ this.collapseBusList }></i>
+              <img src="http://goo.gl/wa4ylN" className="AmenitiesHeader_Img" alt="Transportation bus glyph icon (Red)." />
+              <h5>Bus Stations</h5>
+            </div>
+            <div className="overlay overlayBottomMargin">
+              {
+                busList.length 
+                  ? <ul className="busList container" style={{ display: this.state.busListDisplayState }}>
+                      { this.renderList(busList, job) }
+                    </ul>
+                  : <p className="noResultsMsg">{ `No results for bus stations in this area` }</p>
+              }
+            </div>
           </div>
         </div>
-        <div className="restaurantContainer">
-          <div style={{ backgroundColor: "hsla(138, 37%, 47%, 0.82)" }}>
-            <img src="http://goo.gl/wa4ylN" className="AmenitiesHeader_Img" alt="Transportation bus glyph icon (Red)." />
-            <h5>Bus Stops</h5>
-          </div>
-          <div className="overlay overlayBottomMargin">
-            <ul className="busList container">
-              { (busList.length && this.renderList(busList, job)) || 'No results to show for this area.' }
-            </ul>
-          </div>
-        </div>
-      </div>
     );
   }
 }

@@ -148,7 +148,7 @@ div.socialMediaIcons {
 
 div.socialMediaIcons img {
   position: relative;
-  height: 50px;
+  height: 40px;
 }
 
 .teamProfPics {
@@ -899,7 +899,7 @@ i.XButton {
   display: inline-block;
   width: 100%;
   height: 100%;
-  min-height: 200px;
+  /* min-height: 200px; */
   float: left;
   box-sizing: border-box;
   overflow: hidden;
@@ -1035,6 +1035,12 @@ li.restaurantLI > a {
 
 .trainList, .busList {
   background-color: #E9EBEE;
+}
+
+p.noResultsMsg {
+  width: 100%;
+  font-size: 3rem;
+  text-align: center;
 }
 
 #jobInfoBody > div:first-child,
@@ -1219,6 +1225,13 @@ div.job-detail .fa {
   color: #14A4B5;
 }
 
+.collapseGlyph.fa {
+  position: absolute;
+  right: 20px; 
+  font: bold normal 4rem/5rem FontAwesome;
+  cursor: pointer;
+  z-index: 10000;
+}
 
 /* ==========================================================================
    ================== React-Tabs Module Style Declarations ==================
