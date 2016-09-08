@@ -1,4 +1,5 @@
 'use strict';
+
 const getPlace = require('../models/place');
 // const redisClient = require('redis').createClient;
 // const redis = redisClient(6379, 'localhost');
@@ -50,7 +51,7 @@ exports.post = (req, res) => {
     // } else {
       // console.log('api');
       getPlace(coordinate, type)(res)
-        .then((data) => {
+        .then(data => {
           // console.log('data: ', data);
           // Cache data using request body as key
           // redis.set(key, JSON.stringify(data.data));
@@ -59,7 +60,7 @@ exports.post = (req, res) => {
           // return data.respond;
           // res.end();
         })
-        .catch(function(error) {
+        .catch(error => {
           // res.setHeader('Content-Type', 'application/text');
           // res.status(500).send('Something broke!');
         });

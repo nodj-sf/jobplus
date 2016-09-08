@@ -19,10 +19,10 @@ export default class AboutPage extends Component {
             </div>
             <div className="socialMediaIcons">
               <a href={ member.social.GitHub } target="_blank">
-                <img src="http://mattseymour.net/static/img/octocat.png" alt="GitHub OctoCat logo (Black)." />
+                <img src="http://goo.gl/j932OM" alt="GitHub OctoCat logo (Black)." />
               </a>
               <a href={ member.social.LinkedIn } target="_blank">
-                <img src="https://cdn3.iconfinder.com/data/icons/capsocial-round/500/linkedin-128.png" alt="LinkedIn logo (Blue)." />
+                <img src="http://goo.gl/UIzz0I" alt="LinkedIn logo (Blue)." />
               </a>
             </div>
           </div>

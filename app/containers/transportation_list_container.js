@@ -7,8 +7,6 @@ import BaseComponent from '../components/base_component';
 class TransportationList extends BaseComponent {
   renderList(list, job) {    
     return list.slice(0, 3).map((transport, index) => {
-      { console.log(`Transport:\t`, Object.entries(transport)) }
-
       const [transportLat, transportLng] = [transport.geometry.location.lat, transport.geometry.location.lng],
             [jobLat, jobLng] = [job.latitude, job.longitude],
             stationDistance = this.getDistanceFromLatLonInKm(jobLat, jobLng, transportLat, transportLng),

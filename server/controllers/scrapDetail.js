@@ -28,13 +28,13 @@ exports.post = (req, res) => {
       res.end();
     } else {
       scrapDetail(url)(res)
-        .then(function(data) {
+        .then(data => {
           // redis.set(key, JSON.stringify(data.data));
           // redis.expire(key, 3600);
           // return data.respond;
           // res.end();
         })
-        .catch(function(error) {
+        .catch(error => {
           // res.setHeader('Content-Type', 'application/text');
           // res.status(500).send('Something broke!');
         });

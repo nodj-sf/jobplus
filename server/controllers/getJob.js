@@ -62,7 +62,7 @@ exports.post = (req, res) => {
       */
       getIndeed(jobTitle, city, ip)(res)
         // Return data when a promise is return.
-        .then((response) => {
+        .then(response => {
           // Cache data using request body as key
           // redis.set(key, response.data);
           // Set cache to expire in an hour
@@ -70,7 +70,7 @@ exports.post = (req, res) => {
           // response.respond;
           // res.end();
         })
-        .catch(function(error) {
+        .catch(error => {
           // res.setHeader('Content-Type', 'application/text');
           // res.status(500).send('Something broke!');
         });

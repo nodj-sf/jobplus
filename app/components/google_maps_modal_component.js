@@ -61,7 +61,7 @@ const geolocation = () => {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      console.log(new google.maps.LatLng(pos.lat, pos.lng));
+      // console.log(new google.maps.LatLng(pos.lat, pos.lng));
       return new google.maps.LatLng(pos.lat, pos.lng);
     });
     // return new google.maps.LatLng(37.745951, -122.439421);
@@ -347,7 +347,7 @@ export default class GMap_Modal extends BaseComponent {
     // const origin = new google.maps.LatLng(this.props.activeJob.coords),
     //       { directions } = this.state;
 
-    console.log("Geolocation:", geolocation());
+    // console.log("Geolocation:", geolocation());
 
     return (
       <Modal
