@@ -8,4 +8,4 @@ export default function(state = {}, action) {
       // console.log(`Unknown action <${action}> executed! Returning fallback output.`);
       return state;
   }
-}
+};

@@ -168,6 +168,7 @@ div.socialMediaIcons img {
 .teamProfPics > img {
   position: relative;
   width: 100%;
+  min-height: 16vw;
   left: 50%;
   transition: width 2s 0.1s linear;
   transform: translateX(-50%);
@@ -532,22 +533,15 @@ ul.jobsList {
   overflow-y: overlay;
 }
 
-ul.jobsList > div:last-child {
-    margin-bottom: 17.5px;
-}
-
-ul.jobsList > div.noResultsShown {
-  margin-bottom: 0;
-}
-
-li.jobLI,
-ul.jobsList li {
+ul.jobsList li,
+li.jobLI {
   position: relative;
   display: list-item;
   width: 100%;
   max-height: 60px;
   margin-bottom: 6px;
   padding: 4px 10px 0 10px;
+  border-bottom: 1px solid #E1E1E1;
   list-style-type: none;
   box-sizing: border-box;
   background-color: #ECECEC;
@@ -561,10 +555,10 @@ ul.jobsList.activeJobLI {
   border-left: 12.5px solid #14A4B5;
   background-color: #F1F1F1;
   cursor: pointer;
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 
-                      0 6px 10px 0 rgba(0, 0, 0, 0.3);
-  box-shadow:         0 2px 2px 0 rgba(0, 0, 0, 0.2), 
-                      0 6px 10px 0 rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
+  box-shadow:         0 3px 5px 0 rgba(0, 0, 0, 0.3);
+                  /*  0 2px 2px 0 rgba(0, 0, 0, 0.2),
+                      0 3px 5px 0 rgba(0, 0, 0, 0.3); */
 }
 
 li.jobLI h2,
@@ -594,18 +588,18 @@ div.jobLI_MetaInfo {
 .jobLI_MetaInfo i {
   display: inline-block;
   position: relative;
-  width: 50%;
+  width: 70%;
   margin: 0;
   float: left;
 }
 
 .jobLI_MetaInfo i {
+  width: 30%;
   right: 1rem;
   float: right;
   color: #696969;
   text-align: right;
-  font-size: 1.1rem;
-  line-height: 2rem;
+  font: lighter italic 1.1rem/2rem 'Raleway', sans-serif;
 }
 
 button.button-primary {
@@ -613,8 +607,8 @@ button.button-primary {
   height: 5rem;
   left: 3%;
   margin: 20px auto 1rem 25px;
-  /*margin-left: 25px;*/
-  /*margin-bottom: 1rem;*/
+  /* margin-left: 25px; */
+  /* margin-bottom: 1rem; */
   padding: 0 4px;
   font: 900 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
   background-color: #771DE5;
@@ -647,6 +641,14 @@ button.button-primary {
   align-items: flex-start;
   justify-content: space-around;
   align-content: space-around;
+}
+
+.container.inactive {
+  display: none;
+}
+
+.container.active {
+  display: flex;
 }
 
 .container-3 {
@@ -907,7 +909,7 @@ i.XButton {
 
 .restaurantContainer > div {
   position: relative;
-  display: inline-flex;
+  display: block;
   width: 100%;
   height: 50px;
   left: 0;
@@ -960,16 +962,15 @@ div.yelpPhoto {
 
 .yelpPhoto img {
   position: relative;
-  width: 100%;
-  /* min-height: 150px; */
-  /* max-height: 175px; */
+  min-width: 100%;
+  max-width: 115%;
+  min-height: 75px;
   left: 50%;
-  /* top: 50%; */
   transform: translateX(-50%);
 }
 
 .yelpPhoto img.fallbackImage {
-  /* height: 146px; */
+   width: 146px; 
 }
 
 .restaurantLI, 
@@ -1033,7 +1034,7 @@ li.restaurantLI > a {
   }
 
 
-.trainList, .busList {
+.GPlacesList {
   background-color: #E9EBEE;
 }
 
@@ -1267,8 +1268,18 @@ div.job-detail .fa {
   color: #CD2122;                                   /* Color Variants: #C01D1D; */
 }
 
+div.restaurantContainer:last-child div.overlay {
+
+}
+
+div.listItemsContainer {
+  height: 90%;
+  margin-bottom: 25px;
+}
+
+/* .restaurantContainer div.overlay */
 .react-tabs div.overlay,
-.restaurantContainer div.overlay {
+div.restaurantContainer:last-child div.listItemsContainer {
   height: 90%;
   margin-bottom: 25px;
   background-color: #E9EBEE;

@@ -2,34 +2,35 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import RestaurantItem from '../components/restaurant_item_component';
+import BaseComponent from '../components/base_component';
 
 
-class RetaurantList extends Component {
+class RetaurantList extends BaseComponent {
   renderList() {
-    return this.props.activeYelp.map((restaurant) => (
+    return this.props.activeYelp.map((restaurant, index) =>
       <RestaurantItem
         key = { restaurant.id }
         restaurant = { restaurant }
         selectedJob = { this.props.activeJob } />
-    ));
+    );
   }
 
   render() {
     return (
       (this.props.loading) ?
-        <div className="restaurantContainer">
+        <div className='restaurantContainer' style={{ minHeight: '200px' }}>
           {[
-            <i className="fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner"></i>,
-            'Loading...'
+            <i className='fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner' key='RefreshLoaderAnimation'></i>,
+            `\tLoading...`
           ]}
         </div> :
-        <div className="restaurantContainer">
+        <div className='restaurantContainer'>
           <div>
-            <img src="http://goo.gl/pExEEr" className="AmenitiesHeader_Img" alt="Yelp restaurant amenity fork & knife glyph icon (Yelp Red)." />
+            <img src='http://goo.gl/pExEEr' className='AmenitiesHeader_Img' alt='Yelp restaurant amenity fork & knife glyph icon (Yelp Red).' />
             <h5>Nearby Eats</h5>
           </div>
-          <div className="overlay overlayBottomMargin">
-            <ul className="restaurantList container">{ this.renderList() }</ul>
+          <div className='overlay overlayBottomMargin'>
+            <ul className='restaurantList container'>{ this.renderList() }</ul>
           </div>
         </div>
     ); 

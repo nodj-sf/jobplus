@@ -7,22 +7,9 @@ import { connect } from 'react-redux';
 
 import BaseComponent from './base_component';
 import GMap_Modal from './google_maps_modal_component';
-import mapStylesObject from '../constants/google_map_styles.json';
+import mapStyles from '../constants/google_map_styles.json';
+import mapOverlayStyles from '../constants/google_map_overlay_styles.json';
 import { fetchJobs, selectJob, activeBus, toggleModal } from '../actions/index';
-
-
-const STYLES = {
-  mapContainer: {
-    height: '100%'
-  },
-  overlayView: {
-    position: 'relative',
-    width: '100%',
-    height: '50px',
-    background: '#FFF',
-    border: '1px solid #CCC'
-  },
-};
 
 
 class GMap extends BaseComponent {
@@ -40,7 +27,9 @@ class GMap extends BaseComponent {
 
   // Callback function that dynamically repositions the Google Map over the geometric center of a search query's job results:
   centerMap() {
-    const getCenterCoordinate = (arr) => (Math.max.apply(null, arr) + Math.min.apply(null, arr)) / 2;
+    // For a given input, `coordsArr`, function will return the median value among the provided array of coordinates:
+    const getCenterCoordinate = (coordsArr) => coordsArr
+      .sort((coord1, coord2) => coord1 - coord2)[Math.floor((coordsArr.length - 1) / 2)];
 
     let [centerLat, centerLng] = [
           getCenterCoordinate(this.props.jobMarkers.map(jobMarker => jobMarker.coords.lat)), 
@@ -127,7 +116,7 @@ class GMap extends BaseComponent {
 
   // Class methods for control of the Google Maps Modal visibility:
   toggleModal() {
-    return this.props.toggleModal()
+    return this.props.toggleModal();
   }
 
   // Render the appropriate Google Map map marker for the given `marker` input:
@@ -224,7 +213,7 @@ class GMap extends BaseComponent {
               defaultCenter={ this.state.defaultCenter }
               defaultZoom={ this.state.zoomLevel } 
               maxZoom={19}
-              defaultOptions={{ styles: mapStylesObject }}
+              defaultOptions={{ styles: mapStyles }}
               scrollwheel={false}
               ref="map"
               onClick={ () => this.closeAllMarkers() } >
@@ -277,7 +266,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(GMap);
 //   mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
 //   getPixelPositionOffset={this.getPixelPositionOffset} >
 
-//   <div style={STYLES.overlayView}>
+//   <div style={mapOverlayStyles.overlayView}>
 //     <p>OverlayView</p>
 //     <button type="button" style={{ "display": "inline", "border": "none" }} onClick={() => this.modalYes()}>More Map</button>
 //   </div>

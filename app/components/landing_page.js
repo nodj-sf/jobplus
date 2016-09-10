@@ -8,11 +8,11 @@ export default class LandingPage extends Component {
   render() {
     return (
       <div>
-        <div id="bckgHero">
-          <h1 className="intro-logo">
+        <div id='bckgHero'>
+          <h1 className='intro-logo'>
             {[
               'Job',
-              <span key={1}>+</span>
+              <span key='logo-Plus_Span'>+</span>
             ]}
           </h1>
           <SearchBar />

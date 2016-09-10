@@ -1,0 +1,12 @@
+{
+  "mapContainer": {
+    "height": "100%"
+  },
+  "overlayView": {
+    "position": "relative",
+    "width": "100%",
+    "height": "50px",
+    "background": "#FFF",
+    "border": "1px solid #CCC"
+  }
+}

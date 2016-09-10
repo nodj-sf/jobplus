@@ -63,19 +63,19 @@ class Results extends Component {
               <TabList>
                 <Tab>
                   {[
-                    <i className="fa fa-bus" aria-hidden="true" key="bus_Icon"></i>,
+                    <i className='fa fa-bus' aria-hidden='true' key='bus_Icon'></i>,
                     `\tTransportation`
                   ]}
                 </Tab>
                 <Tab>
                   {[
-                    <i className="fa fa-futbol-o" aria-hidden="true" key="soccer-ball_Icon"></i>,
+                    <i className='fa fa-futbol-o' aria-hidden='true' key='soccer-ball_Icon'></i>,
                     `\tAmenities`
                   ]}
                 </Tab>
                 <Tab>
                   {[
-                    <i className="fa fa-yelp" aria-hidden="true" key="Yelp_Icon"></i>,
+                    <i className='fa fa-yelp' aria-hidden='true' key='Yelp_Icon'></i>,
                     `\tYelp`
                   ]}
                 </Tab>

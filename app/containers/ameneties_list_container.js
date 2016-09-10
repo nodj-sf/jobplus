@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import BaseComponent from '../components/base_component';
+import DisplayList from './display_list_container';
+import { toggleParkListDisplay, toggleGymListDisplay } from '../actions/index';
 
 
 class AmenitiesList extends BaseComponent {
+  constructor(props) {
+    super(props);
+
+    // this.toggleBusListDisplay = this.toggleBusListDisplay.bind(this);
+    // this.toggleTrainListDisplay = this.toggleTrainListDisplay.bind(this);
+    this.assignDisplayClass = this.assignDisplayClass.bind(this);
+    this.bar = this.bar.bind(this);
+  }
+  /*
   renderList(list, job) {
     let newList = list.slice(0, 3);
 
@@ -74,47 +86,113 @@ class AmenitiesList extends BaseComponent {
         </li>
       );    
     });
+  } */
+
+  assignDisplayClass(obj) {
+    return obj === 'flex' ? 'GPlacesList container' : 'GPlacesList container inactive';
+  }
+
+  bar(listType) {
+    // const displayStateToggle = (displayState) => displayState === 'flex' ? 'none' : 'flex';
+    console.log('BAR Called');
+    return this.props.toggleContainerDisplay[`${listType.toLowerCase()}ListDisplayState`] === 'flex' ? 'none' : 'flex';
+  }
+
+  renderList(listArr) {
+    return listArr.map((item, index, listArr) => {
+      return (
+        <DisplayList
+          item={ item }
+          list={ item.list }
+          listType={ item.listType }
+          key={ `DisplayList_${item.listType}` }
+          job={ this.props.activeJob }
+          displayClass={ this.assignDisplayClass }
+          bar={ this.bar }
+          toggler={ this.props.toggleContainerDisplay }
+          toggleListDisplay={ item.toggleListDisplay } />
+      );
+    });
   }
 
   render() {
-    let props = this.props;
-    let parksList = props.activeParks;
-    let gymsList = props.activeGyms;
-    let job = props.activeJob;
-    
+    const listMap = [
+      {
+        list: this.props.activeParks,
+        listType: 'Park',
+        listCategory: 'Amenity',
+        listImage: {
+          headerGlyph: {
+            sourceURL: 'http://goo.gl/GLF2Rk',
+            altDescription: 'Park amenity landscape glyph icon (Green).'
+          },
+          fallbackGraphic: {
+            sourceURL: 'http://goo.gl/Uu31GG',
+            altDescription: 'Fallback park amenity placeholder graphic (Gray).'
+          }
+        },
+        headerStyle: {
+          backgroundColor: 'rgba(90, 153, 126, 0.79)'
+        },
+        toggleListDisplay: this.props.toggleParkListDisplay
+      }, {
+        list: this.props.activeGyms,
+        listType: 'Gym',
+        listCategory: 'Amenity',
+        listImage: {
+          headerGlyph: {
+            sourceURL: 'http://goo.gl/zeyx0P',
+            altDescription: 'Gym amenity dumbell glyph icon (Black).'
+          },
+          fallbackGraphic: {
+            sourceURL: 'http://goo.gl/OYfm0X',
+            altDescription: 'Fallback gym amenity placeholder graphic (Gray).'
+          }
+        },
+        headerStyle: {
+          backgroundColor: 'hsla(0, 0%, 20%, 0.57)'
+        },
+        toggleListDisplay: this.props.toggleParkListDisplay
+      }
+    ];
+
+
     return (
       (this.props.loading) ?
-      (
-        <div className="restaurantContainer">
-          <i className="fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner"></i> Loading...
-        </div>
-      ) :
-      (
-        <div>
-          <div className="restaurantContainer">
-            <div style={{ backgroundColor: "rgba(90, 153, 126, 0.79)" }}>
-              <img src="http://goo.gl/GLF2Rk" className="AmenitiesHeader_Img" alt="Park amenity landscape glyph icon (Green)." />
-              <h5>Parks</h5>
-            </div>
-            <div className="overlay">
-              <ul className='trainList container'>{(parksList.length && this.renderList(parksList, job)) 
-                || 'There are no results for this area'}
-              </ul> 
-            </div>
-          </div>
-          <div className="restaurantContainer">
-            <div style={{ backgroundColor: "hsla(0, 0%, 20%, 0.57)" }}>
-              <img src="http://goo.gl/zeyx0P" className="AmenitiesHeader_Img" alt="Gym amenity dumbell glyph icon (Red)." />
-              <h5>Gyms</h5>
-            </div>
-            <div className="overlay overlayBottomMargin">
-              <ul className='busList container'>{gymsList.length && this.renderList(gymsList, job) 
-                || 'There are no results for this area' }
-              </ul>
-            </div>
-          </div>
-        </div>
-      )
+        <div className='restaurantContainer' style={{ minHeight: '200px' }}>
+          {[
+            <i className='fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner' key='RefreshLoaderAnimation'></i>,
+            `\tLoading...`
+          ]}
+        </div> :
+        <div>{ this.renderList(listMap) }</div>
+
+      // (
+      //   <div>
+      //     <div className="restaurantContainer">
+      //       <div style={{ backgroundColor: "rgba(90, 153, 126, 0.79)" }}>
+      //         <img src="http://goo.gl/GLF2Rk" className="AmenitiesHeader_Img" alt="Park amenity landscape glyph icon (Green)." />
+      //         <h5>Parks</h5>
+      //       </div>
+      //       <div className="overlay">
+      //         <ul className='trainList container'>{(parksList.length && this.renderList(parksList, job)) 
+      //           || 'There are no results for this area'}
+      //         </ul> 
+      //       </div>
+      //     </div>
+      //     <div className="restaurantContainer">
+      //       <div style={{ backgroundColor: "hsla(0, 0%, 20%, 0.57)" }}>
+      //         <img src="http://goo.gl/zeyx0P" className="AmenitiesHeader_Img" alt="Gym amenity dumbell glyph icon (Red)." />
+      //         <h5>Gyms</h5>
+      //       </div>
+      //       <div className="overlay overlayBottomMargin">
+      //         <ul className='busList container'>{gymsList.length && this.renderList(gymsList, job) 
+      //           || 'There are no results for this area' }
+      //         </ul>
+      //       </div>
+      //     </div>
+      //   </div>
+      // )
     ); 
   }
 }
@@ -124,10 +202,16 @@ let mapStateToProps = (state) => ({
   activeJob: state.activeJob,
   activeParks: state.activeParks,
   activeGyms: state.activeGyms,
-  loading: state.loading
+  loading: state.loading,
+  toggleContainerDisplay: state.toggleContainerDisplay
 });
 
-export default connect(mapStateToProps)(AmenitiesList);
+let mapDispatchToProps = (dispatch) => bindActionCreators({
+  toggleParkListDisplay,
+  toggleGymListDisplay
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(AmenitiesList);
 
 
 

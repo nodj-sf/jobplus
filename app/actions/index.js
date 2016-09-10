@@ -131,7 +131,7 @@ export const lastLocationSearch = (lastLocation) => ({
   payload: lastLocation
 });
 
-export const toggleModal = (toggleState) => ({
+export const toggleModal = () => ({
   type: 'TOGGLE_MODAL'
 });
 
@@ -139,4 +139,22 @@ export const toggleModal = (toggleState) => ({
 export const loading = (bool) => ({
   type: 'LOADING',
   payload: bool
+});
+
+//
+export const toggleBusListDisplay = () => ({
+  type: 'TOGGLE_BUS_LIST_DISPLAY'
+});
+
+export const toggleTrainListDisplay = (func) => ({
+  type: 'TOGGLE_TRAIN_LIST_DISPLAY',
+  payload: func
+});
+
+export const toggleParkListDisplay = () => ({
+  type: 'TOGGLE_PARK_LIST_DISPLAY'
+});
+
+export const toggleGymListDisplay = () => ({
+  type: 'TOGGLE_GYM_LIST_DISPLAY'
 });

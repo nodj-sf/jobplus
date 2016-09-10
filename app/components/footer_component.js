@@ -13,14 +13,24 @@ class Footer extends Component {
   }
 
   onBtnClick(evt) {
+    // this.props.push(`/${route}`);
+    evt.preventDefault();
     this.props.push('/about');
   }
 
+  returnHome(evt) {
+    evt.preventDefault();
+    this.props.push(document.location.origin);
+  }
+
+
   render() {
+    console.log('ADDRESS:', document.location.pathname);
     return (
       <div className='footerCont'>
         <nav>
           <a onClick={ this.onBtnClick }>About</a>
+          <a href={ document.location.origin }>Home</a>
         </nav>
       </div>
     );
@@ -33,3 +43,9 @@ let mapDispatchToProps = (dispatch) => bindActionCreators({
 
 export default connect(null, mapDispatchToProps)(Footer);
 
+
+// href='/about' -->
+
+// <a onClick={ this.onBtnClick() }>Home</a>
+//    onClick={ this.returnHome }
+//    href='/' 

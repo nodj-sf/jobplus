@@ -26,14 +26,16 @@ export default class GMap_Modal extends BaseComponent {
 
   // Callback function that dynamically repositions the Google Map over the geometric center of a search query's job results:
   centerMap() {
-    const getCenterCoordinate = (arr) => (Math.max.apply(null, arr) + Math.min.apply(null, arr)) / 2,
-          allMarkers = this.props.jobMarkers.concat(
-            this.props.restaurantMarkers, 
-            this.props.busMarkers, 
-            this.props.trainMarkers,
-            this.props.gymMarkers,
-            this.props.parkMarkers
-          );
+    // For a given input, `coordsArr`, function will return the median value among the provided array of coordinates:
+    const getCenterCoordinate = (coordsArr) => coordsArr
+      .sort((coord1, coord2) => coord1 - coord2)[Math.floor((coordsArr.length - 1) / 2)];
+    const allMarkers = this.props.jobMarkers.concat(
+      this.props.restaurantMarkers, 
+      this.props.busMarkers, 
+      this.props.trainMarkers,
+      this.props.gymMarkers,
+      this.props.parkMarkers
+    );
 
     let [centerLat, centerLng] = [
           getCenterCoordinate(allMarkers.map(marker => marker.coords.lat)), 
@@ -135,7 +137,11 @@ export default class GMap_Modal extends BaseComponent {
             <h4 className="infoWindow_Header">{ this.parseAndFormatJobTitle(marker.markerTitle) }</h4>
             { companyTitle() }
             <hr />
-            <div>{ marker.address.map((addressComponent, index) => <p key={ `AddressComponent${index}` }>{ addressComponent }</p>) }</div>
+            <div>
+              { 
+                marker.address.map((addressComponent, index) => <p key={ `AddressComponent${index}` }>{ addressComponent }</p>) 
+              }
+            </div>
             { itemImage() }
           </div>
          
@@ -289,8 +295,6 @@ export default class GMap_Modal extends BaseComponent {
     // const origin = new google.maps.LatLng(this.props.activeJob.coords),
     //       { directions } = this.state;
 
-    console.log("STYLE:\n", customStyles);
-
     return (
       <Modal
         isOpen={ this.props.toggleModal }
@@ -364,6 +368,7 @@ let mapStateToProps = (state) => {
       coords: { 'lat': busMarker.geometry.location.lat, 'lng': busMarker.geometry.location.lng },
       markerKey: busMarker.id,
       markerTitle: busMarker.name,
+      address: [busMarker.vicinity] || ['No Address'],
       // markerPhoto: busMarker.photos[0].photo_reference,
       showInfo: false
     })),
@@ -372,6 +377,7 @@ let mapStateToProps = (state) => {
       coords: { 'lat': trainMarker.geometry.location.lat, 'lng': trainMarker.geometry.location.lng },
       markerKey: trainMarker.id,
       markerTitle: trainMarker.name,
+      address: [trainMarker.vicinity] || ['No Address'],
       // markerPhoto: trainMarker.photos[0].photo_reference,
       showInfo: false
     })),
@@ -380,6 +386,7 @@ let mapStateToProps = (state) => {
       coords: { 'lat': parkMarker.geometry.location.lat, 'lng': parkMarker.geometry.location.lng },
       markerKey: parkMarker.id,
       markerTitle: parkMarker.name,
+      address: [parkMarker.vicinity] || ['No Address'],
       // markerPhoto: parkMarker.photos[0].photo_reference,
       showInfo: false
     })),
@@ -388,6 +395,7 @@ let mapStateToProps = (state) => {
       coords: { 'lat': gymMarker.geometry.location.lat, 'lng': gymMarker.geometry.location.lng },
       markerKey: gymMarker.id,
       markerTitle: gymMarker.name,
+      address: [gymMarker.vicinity] || ['No Address'],
       // markerPhoto: gymMarker.photos[0].photo_reference,
       showInfo: false
     })),

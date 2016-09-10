@@ -12,9 +12,9 @@ class JobList extends BaseComponent {
   constructor(props) {
     super(props);
 
+    this.setActive = this.setActive.bind(this);
     this.jobFunc = this.jobFunc.bind(this);
     this.getData = this.getData.bind(this);
-    this.setActive = this.setActive.bind(this);
     this.init = 0;
   }
 
@@ -80,7 +80,10 @@ class JobList extends BaseComponent {
         </div>
       ) : (this.init++, jobList = (
           <div id="placesContainer">
-            <i className="fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner"></i> Loading...
+            {[
+              <i className="fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner" key="RefreshAnimation"></i>,
+              `\tLoading...`
+            ]}
           </div>
         )
       )
@@ -116,7 +119,7 @@ let mapStateToProps = (state) => ({
   lastLocation: state.lastLocation
 });
 
-let mapDispatchToProps = (dispatch) =>  {
+let mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ 
     selectJob, 
     fetchYelp, 
