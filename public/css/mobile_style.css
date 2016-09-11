@@ -18,6 +18,10 @@ html {
   html {
     font-size: 9px;
   }
+
+  div.meetTheTeam_Container {
+    
+  }
 }
 
 @media (max-width: 900px) {

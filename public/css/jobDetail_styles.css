@@ -30,7 +30,7 @@
   overflow: hidden;
 }
 
-.restaurantContainer > div {
+.restaurantContainer > div:first-child {
   position: relative;
   display: block;
   width: 100%;
@@ -215,7 +215,7 @@ p.noResultsMsg {
 #jobInfoBody > div:first-child,
 .transportationContent, 
 .amenitiesContent {
-  padding-left: 2rem;
+  padding: 0 0 1rem 2rem;
 }
 
 .nameRating > h5 {
@@ -340,3 +340,47 @@ div.restaurantContainer:last-child div.listItemsContainer {
   overflow-x: hidden;
   overflow-y: overlay;
 }
+
+
+/* ==========================================================================
+   ===================== Yelp Modals Style Declarations =====================
+   ========================================================================== */ 
+
+div.yelpModalContainer > div {
+  position: absolute;
+  width: 100%;
+  height: 6rem;
+  background: rgba(0, 0, 0, 0.75);
+  color: #FFF;
+}
+
+div.yelpModalContainer a {
+  color: inherit;
+}
+
+div.yelpRestaurantTitleBar a {
+  position: relative;
+  font: lighter 3.5rem/6rem 'Raleway', 'Helvetica Neue', sans-serif;
+  padding-left: 10px;
+}
+  div.yelpRestaurantTitleBar a:hover {
+    text-decoration: underline;
+  }
+  
+
+div.modalToolbar {
+  display: flex;
+  bottom: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+  div.modalToolbar a:hover:after {
+    position: absolute;
+    content: url(https://lh3.googleusercontent.com/GM1H2h8I1SaiJO-rGxqCQvf9wcyaX73JwcwDSOJRSfRLgc2JpmJd9wc3Jt6PHE5L4PzI0T3-R1aOSj-bUngfQHV2UFyEdfA2aQOc24gQr08926uMh4R0JMmlY5TR1G8IyLIHlHh7FQu80lQtIH-Kpbo0XkGW4nN5tMqNTvlAAfp0EPp6K7pvemQ4wyxr1ON880v-1fONeafNLMkcBWoP_WaXWr-mRuaulncVAdQsgLriH1IhmqDH_wpeTCVKrRQqDxxpBAzvB-e9f9fJ5d8bfN7iuwfIaZPPcUogR3zoSQIb6Xqy9Zw9KA3_gglRPM3UJljiF47-qwl2W3vaiDRDNWmxxcNxHelZcN75OE2op0ovYJTjpx_jpOakuZUoZicQ3pUEPBVAlmRa9xGJlOrL3a1ha2LRz4UxhHChmLcGGQ9pSVeCT_TP7Jog1xKMDxphGjV27CO-0ImerOr8yv39-4lPbSZQSzr3JUykuYCHvwEyp-YvoeUfbsXEKSllGrXqoL9asrhEmxZBOSycdtJGutVOjWoBs8NoqBz-kAde9YlNi1USgvNgNIo9eOWj4_lQ-qJj04tvxB8SOKB80zJ1z8iY-t98XS8GnArmV6npAqJA9mAb0g=h15-no);
+    height: 1.5rem;
+    padding: 0 10px;
+  }
+  div.modalToolbar a:last-child:hover:after {
+    content: url(https://lh3.googleusercontent.com/X5EGJMnZIP_c6HiMu6t8O1YtLFEMh5YFlo8fCrNBl…4fqBegNQLC8-7nLR0Uoh1o3TXM0PEM7jln_MDt-aXKjVLKLcz4cbwa7jwHSnSP7C31g=s15-no);
+  }

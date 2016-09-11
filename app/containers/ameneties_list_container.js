@@ -110,7 +110,8 @@ class AmenitiesList extends BaseComponent {
           displayClass={ this.assignDisplayClass }
           bar={ this.bar }
           toggler={ this.props.toggleContainerDisplay }
-          toggleListDisplay={ item.toggleListDisplay } />
+          toggleListDisplay={ item.toggleListDisplay }
+          reduxStoreProperty={ item.reduxStoreProperty } />
       );
     });
   }
@@ -127,14 +128,15 @@ class AmenitiesList extends BaseComponent {
             altDescription: 'Park amenity landscape glyph icon (Green).'
           },
           fallbackGraphic: {
-            sourceURL: 'http://goo.gl/Uu31GG',
-            altDescription: 'Fallback park amenity placeholder graphic (Gray).'
+            sourceURL: 'http://goo.gl/1YTep6',
+            altDescription: 'Fallback park amenity placeholder graphic (Light Green).'
           }
         },
         headerStyle: {
           backgroundColor: 'rgba(90, 153, 126, 0.79)'
         },
-        toggleListDisplay: this.props.toggleParkListDisplay
+        toggleListDisplay: this.props.toggleParkListDisplay,
+        reduxStoreProperty: 'parkListDisplayState'
       }, {
         list: this.props.activeGyms,
         listType: 'Gym',
@@ -152,7 +154,8 @@ class AmenitiesList extends BaseComponent {
         headerStyle: {
           backgroundColor: 'hsla(0, 0%, 20%, 0.57)'
         },
-        toggleListDisplay: this.props.toggleParkListDisplay
+        toggleListDisplay: this.props.toggleParkListDisplay,
+        reduxStoreProperty: 'gymListDisplayState'
       }
     ];
 

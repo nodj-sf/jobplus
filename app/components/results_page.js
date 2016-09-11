@@ -118,17 +118,3 @@ let mapDispatchToProps = (dispatch) =>  {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);
-
-
-// <Tab>
-//   {[
-//     <i className="fa fa-yelp" aria-hidden="true" key="Yelp_Icon"></i>,
-//     `\tYelp`
-//   ]}
-// </Tab>
-// <Tab>
-//   {[
-//     <i className="fa fa-yelp" aria-hidden="true" key="Yelp_Icon"></i>,
-//     `\tYelp`
-//   ]}
-// </Tab>

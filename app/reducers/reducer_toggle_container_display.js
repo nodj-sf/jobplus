@@ -6,7 +6,7 @@ let listDisplayStates = [
   'parkListDisplayState',
   'gymListDisplayState'
 ].reduce((memo, curr) => {
-    memo[curr] = 'none';
+    memo[curr] = 'flex';
     return memo;
   }, {});
 
@@ -17,22 +17,21 @@ export default function(state = listDisplayStates, action) {
     case 'TOGGLE_BUS_LIST_DISPLAY':
       console.log("BUSUSUSUSUS");
       // state.busListDisplayState = displayStateToggle(state.busListDisplayState);
-      return state;
+      state.busListDisplayState = displayStateToggle(state.busListDisplayState);
     case 'TOGGLE_TRAIN_LIST_DISPLAY':
       // state.trainListDisplayState = displayStateToggle(state.trainListDisplayState);
       // return state;
       console.log("Payload:", action.payload, '\nSTATE:', state);
       // state.trainListDisplayState = action.payload;
       // return state;
-      return Object.assign(state, { trainListDisplayState: displayStateToggle(state.trainListDisplayState)});
+      // Object.assign(state, { trainListDisplayState: displayStateToggle(state.trainListDisplayState)});
 
       // return displayStateToggle(state.trainListDisplayState);
+      state.trainListDisplayState = displayStateToggle(state.trainListDisplayState);
     case 'TOGGLE_PARK_LIST_DISPLAY':
       state.parkListDisplayState = displayStateToggle(state.parkListDisplayState);
-      return state;
     case 'TOGGLE_GYM_LIST_DISPLAY':
       state.gymListDisplayState = displayStateToggle(state.gymListDisplayState);
-      return state;
     default:
       return state;
   }

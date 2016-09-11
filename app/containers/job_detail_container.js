@@ -51,9 +51,9 @@ class JobDetail extends BaseComponent {
           {[
             details,
             `\u2026`,
-            <a href={ this.props.job.url } className='link-state' target='_blank' key={ `JobURL_${this.props.job.key}` }>More</a>
           ]}
         </blockquote>
+        <a href={ this.props.job.url } className='link-state expandFromCenter' target='_blank' key={ `JobURL_${this.props.job.key}` }>More</a>
       </div>
       );
   }

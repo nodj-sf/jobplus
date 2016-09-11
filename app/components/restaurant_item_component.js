@@ -15,7 +15,7 @@ class RestaurantListItem extends BaseComponent {
 
   // Class methods for control of the Yelp Modal visibility:
   toggleYelpModal() {
-    return this.props.toggleYelpModal();
+    return this.props.toggleYelpModal(this.props.restaurant.id);
   }
 
   render() {
@@ -39,7 +39,7 @@ class RestaurantListItem extends BaseComponent {
               (restaurant.photo) ?
                 <div className='yelpPhoto textEllipsis' data-magnify='&#x1f50d'>
                   <img 
-                    src={ this.parseYelpRestaurantPhoto(restaurant.photo) } 
+                    src={ this.parseYelpRestaurantPhoto(restaurant.photo).originalFileSize } 
                     alt={ `Yelp user review rating: ${ restaurant.rating } star(s)` } />
                   <div className='yelpAlphaLayer'>
                     <img 
@@ -48,6 +48,9 @@ class RestaurantListItem extends BaseComponent {
                       onClick={ () => this.toggleYelpModal() } />
                 
                       <RestaurantModal 
+                        yelpID={ this.props.restaurant.id }
+                        yelpRestaurant={ restaurant }
+                        yelpRestaurantName={ this.parseAndFormatJobTitle(restaurant.name) }
                         yelpPhoto={ this.parseYelpRestaurantPhoto(restaurant.photo) }
                         yelpDescription={ `Yelp user review rating: ${ restaurant.rating } star(s)` }
                         deactivateYelpModal={ this.toggleYelpModal } />

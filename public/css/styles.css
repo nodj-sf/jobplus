@@ -17,16 +17,46 @@ h6 {
   margin-bottom: 0;
 }
 
+blockquote {
+  font: 400 italic 1.7rem/2.4rem 'Raleway', 'Helvetica Neue', sans-serif;
+  text-align: justify;
+  margin-bottom: 0;
+  margin-left: 0;
+  padding-left: 1rem;
+  border-left: 5px solid #14A4B5;
+}
+  blockquote:before,
+  blockquote:after {
+    content: open-quote;
+    top: 0.5rem;
+    font: normal 2.4rem/2.4rem 'Helvetica Neue', 'Raleway', sans-serif;
+  }
+  blockquote:after {
+    content: close-quote;
+  }
+
+
 a {
   color: #000;
   text-decoration: none;
 }
   a:hover,
   div.yelpPhoto:hover div.yelpAlphaLayer > img {
-    color: #000;
+    /* color: #000; */
     cursor: pointer;
   }
 
+
+img.featuredImg {
+  /* position: relative; */
+  display: block;
+  min-width: 50vw; 
+  min-height: 50vh;
+  max-width: 90vw;
+  max-height: 90vh;
+  /* left: 50%; */
+  /* transform: translateX(-50%); */
+}
 
 hr {
   margin: 0;
@@ -669,11 +699,18 @@ input:-webkit-autofill {
 }
 
 
-/* Mimic :hover state for non-obvious links
-  .link-state:hover {
-    border-bottom: 1px solid #1BA6B7;
-  }
-*/
+/* Mimic :hover state for non-obvious links */
+/*.link-state:hover */
+.link-state {
+  position: relative;
+  display: block;
+  width: 50px;
+  left: 90%;
+  /* border-bottom: 1px solid #1BA6B7; */
+  font-style: normal;
+  text-align: center;
+}
+
 
 
 /* ==========================================================================
@@ -692,14 +729,13 @@ input:-webkit-autofill {
   font-size: 1.85rem/2.25rem 'Raleway', 'Open Sans', Arial, sans-serif;
   background: rgba(220, 220, 220, 0.58);
   border: 1px solid #C8C8C8;                        /* Color: Gainsboro */
-  border-radius: 2rem 1rem 0 0;
+  border-radius: .5rem .5rem 0 0;
   box-sizing: border-box;
 }
 
 .react-tabs [role='tab'][aria-selected='true'] {
   background-color: #AAA;
   border-color: transparent;
-  border-radius: 2rem 1rem 0 0;
 }
 
 .ReactTabs__Tab:last-child {

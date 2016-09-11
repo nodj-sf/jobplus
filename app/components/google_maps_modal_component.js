@@ -121,7 +121,7 @@ export default class GMap_Modal extends BaseComponent {
             // console.log('PHOTO REF.', marker.markerPhoto);
             if (marker.markerPhoto) {
               return (<img 
-                src={ this.parseYelpRestaurantPhoto(marker.markerPhoto) } 
+                src={ this.parseYelpRestaurantPhoto(marker.markerPhoto).originalFileSize } 
                 className='modalInfoWindow_Pic' 
                 style={{ maxWidth: '300px', height: 'auto' }}
                 alt='Reference photograph [Source: Yelp/Google Places API]' />

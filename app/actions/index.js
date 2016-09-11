@@ -135,8 +135,8 @@ export const toggleModal = () => ({
   type: 'TOGGLE_MODAL'
 });
 
-export const toggleYelpModal = () => ({
-  type: 'TOGGLE_YELP_MODAL'
+export const toggleYelpModal = (yelpId) => ({
+  type: `TOGGLE_YELP_MODAL_${yelpId}`
 });
 
 // Loading animation display state:

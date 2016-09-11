@@ -109,7 +109,7 @@ class DisplayList extends BaseComponent {
           {
             this.props.list.length 
               // ? <ul className={ this.props.displayClass(this.props.toggler.trainListDisplayState) }>
-              ? <ul className={ this.props.displayClass(this.props.bar(this.props.item.listType)) }>
+              ? <ul className={ this.props.displayClass(this.props.toggleContainerDisplay[this.props.reduxStoreProperty]) }>
                   { this.renderList(this.props.list, this.props.job) }
                 </ul>
               : <p className='noResultsMsg'>{ `No results to show for ${this.props.listType} stations in this area.` }</p>
@@ -127,4 +127,8 @@ class DisplayList extends BaseComponent {
 
 };
 
-export default DisplayList;
+let mapStateToProps = (state) => ({
+  toggleContainerDisplay: state.toggleContainerDisplay
+});
+
+export default connect(mapStateToProps)(DisplayList);

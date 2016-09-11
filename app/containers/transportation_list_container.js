@@ -155,7 +155,8 @@ class TransportationList extends BaseComponent {
           displayClass={ this.assignDisplayClass }
           bar={ this.bar }
           toggler={ this.props.toggleContainerDisplay }
-          toggleListDisplay={ item.toggleListDisplay } />
+          toggleListDisplay={ item.toggleListDisplay }
+          reduxStoreProperty={ item.reduxStoreProperty } />
       );
     });
   }
@@ -172,14 +173,15 @@ class TransportationList extends BaseComponent {
             altDescription: 'Subway/metro transport glyph icon (Blue).'
           },
           fallbackGraphic: {
-            sourceURL: 'http://goo.gl/MvtTS3',
+            sourceURL: 'http://goo.gl/cYuu6z',
             altDescription: 'Fallback subway/metro transport placeholder graphic (Blue).'
           }
         },
         headerStyle: {
           backgroundColor: 'hsla(222, 100%, 63%, 0.79)'
         },
-        toggleListDisplay: this.props.toggleTrainListDisplay
+        toggleListDisplay: this.props.toggleTrainListDisplay,
+        reduxStoreProperty: 'trainListDisplayState'
       }, {
         list: this.props.activeBus,
         listType: 'Bus',
@@ -197,9 +199,13 @@ class TransportationList extends BaseComponent {
         headerStyle: {
           backgroundColor: 'hsla(138, 37%, 47%, 0.82)'
         },
-        toggleListDisplay: this.props.toggleBusListDisplay
+        toggleListDisplay: this.props.toggleBusListDisplay,
+        reduxStoreProperty: 'busListDisplayState'
       }
     ];
+
+    // 'jobListDisplayState',
+    // 'restaurantListDisplayState'
 
     return (
       (this.props.loading) ?

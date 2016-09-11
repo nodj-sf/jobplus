@@ -68,7 +68,7 @@ export default class BaseComponent extends Component {
       .trim()
       // .split(/[\s|\/]/gmi)
       // .replace(/\s(\/)\s(?:\w+)/gmi, '$1')
-      // .replace(/\band\b/gmi, "&")
+      // .replace(/\band\b/gmi, '&')
       .replace(/\b([a-z])/gmi, match => match.toUppercase())
       .replace(/\s(\/)\s((?:\w+))/gmi, ((match1, match2) => match1 + match2[0].toUpperCase() + match2.slice(1).toLowerCase())('$1', '$2'))
       .replace(/No\.?(\s+)?(\d+)/gmi, '\u2116. $2')
@@ -116,7 +116,13 @@ export default class BaseComponent extends Component {
 
   // Modifes photo URL from default small-file size ('ms') to large-file size ('l'):
   parseYelpRestaurantPhoto(photo) {
-    return photo.replace(/ms(\.jpg)$/i, 'l$1');
+    let yelpPhotoObj = {
+      originalFileSize: photo.replace(/\/\w+\.(png|jpg|jpeg|bmp|gif)$/i, '/o.$1'),
+      querySelectParameter: photo.replace(/(?:.+\/bphoto\/)(.+)(?:\/\w+\.\w+)$/, '$1'),
+      yelpLightboxURL: (yelpId) => 
+        `https://www.yelp.com/biz_photos/${yelpId}?select=${yelpPhotoObj.querySelectParameter}`
+    };
+    return yelpPhotoObj;
   }
 
   // Returns item tag as a pre-processed, properly formatted string:
