@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 
 import BaseComponent from '../components/base_component';
+import { activeJob, scrapeDetails } from '../actions/index';
 
 
 class JobDetail extends BaseComponent {
@@ -15,33 +16,33 @@ class JobDetail extends BaseComponent {
 
   render() {
     let details = '';
-    if (this.props.scrapDetails) {
-      details = this.props.scrapDetails.data.details;
+    if (this.props.scrapeDetails) {
+      details = this.props.scrapeDetails.data.details;
     }
 
     return !this.props.job ? 
       <h1>Job</h1> :
-      (<div className="job-detail">
+      (<div className='job-detail'>
         <h3>
           <a 
             href={this.props.job.url} 
-            className="expandFromCenter" 
-            target="_blank">{ this.props.job.jobtitle }</a>
+            className='expandFromCenter' 
+            target='_blank'>{ this.props.job.jobtitle }</a>
         </h3>
         <h4>{ this.props.job.company }</h4> 
         <hr />
         <h6>
           {[
             /hour/gmi.test(this.props.formattedRelativeTime) ?
-              <i className="fa fa-clock-o" key="FA-Clock-Face_Glyph"></i> :
-              <i className="fa fa-location-arrow" key="FA-Directional-Arrow_Glyph"></i>,
+              <i className='fa fa-clock-o' key='FA-Clock-Face_Glyph'></i> :
+              <i className='fa fa-location-arrow' key='FA-Directional-Arrow_Glyph'></i>,
             `\t`,
             this.props.job.formattedLocation
           ]}
         </h6>
         <p>
           {[
-            <i className="fa fa-calendar" key="FA-Calendar_Glyph"></i>,
+            <i className='fa fa-calendar' key='FA-Calendar_Glyph'></i>,
             `\t`,
             this.props.job.formattedRelativeTime
           ]}
@@ -50,7 +51,7 @@ class JobDetail extends BaseComponent {
           {[
             details,
             `\u2026`,
-            <a href={ this.props.job.url } className="link-state" target="_blank" key={ `JobURL_${this.props.job.key}` }>More</a>
+            <a href={ this.props.job.url } className='link-state' target='_blank' key={ `JobURL_${this.props.job.key}` }>More</a>
           ]}
         </blockquote>
       </div>
@@ -60,7 +61,7 @@ class JobDetail extends BaseComponent {
 
 let mapStateToProps = (state) => ({ 
   job: state.activeJob,
-  scrapDetails: state.scrapDetails
+  scrapeDetails: state.scrapeDetails
 });
 
 let mapDispatchToProps = (dispatch) => bindActionCreators({

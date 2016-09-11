@@ -17,11 +17,11 @@ export default class AboutPage extends Component {
               <h4>{ member.name }</h4>
               <h6>{ member.job }</h6>
             </div>
-            <div className="socialMediaIcons">
+            <div className='socialMediaIcons'>
               <a href={ member.social.GitHub } target='_blank'>
                 <img src='http://goo.gl/j932OM' alt='GitHub OctoCat logo (Black).' />
               </a>
-              <a href={ member.social.LinkedIn } target="_blank">
+              <a href={ member.social.LinkedIn } target='_blank'>
                 <img src='http://goo.gl/UIzz0I' alt='LinkedIn logo (Blue).' />
               </a>
             </div>
@@ -34,48 +34,48 @@ export default class AboutPage extends Component {
   render() {
     const teamMemberProfiles = [
       {
-        name: "Oliver Isenrich",
-        job: "Full-Stack Engineer",
+        name: 'Oliver Isenrich',
+        job: 'Full-Stack Engineer',
         profilePic: {
-          url: "http://goo.gl/HEDVQG",
-          descript: "Profile Photo - Isenrich, Oliver"
+          url: 'http://goo.gl/HEDVQG',
+          descript: 'Profile Photo - Isenrich, Oliver'
         },
         social: {
-          GitHub: "https://github.com/IsenrichO", 
-          LinkedIn: "https://www.linkedin.com/in/isenricholiver"
+          GitHub: 'https://github.com/IsenrichO',
+          LinkedIn: 'https://www.linkedin.com/in/isenricholiver'
         }
       }, {
-        name: "Damon Nguyen",
-        job: "Full-Stack Engineer",
+        name: 'Damon Nguyen',
+        job: 'Full-Stack Engineer',
         profilePic: {
-          url: "http://goo.gl/zTlonL",
-          descript: "Profile Photo - Nguyen, Damon"
+          url: 'http://goo.gl/zTlonL',
+          descript: 'Profile Photo - Nguyen, Damon'
         },
         social: {
-          GitHub: "https://github.com/damonnguyen92", 
-          LinkedIn: "https://www.linkedin.com/in/damonnguyen92"
+          GitHub: 'https://github.com/damonnguyen92',
+          LinkedIn: 'https://www.linkedin.com/in/damonnguyen92'
         }
       }, {
-        name: "Nick Daniele",
-        job: "Full-Stack Engineer",
+        name: 'Nick Daniele',
+        job: 'Full-Stack Engineer',
         profilePic: {
-          url: "http://goo.gl/1b09P5",
-          descript: "Profile Photo - Daniele, Nick"
+          url: 'http://goo.gl/1b09P5',
+          descript: 'Profile Photo - Daniele, Nick'
         },
         social: {
-          GitHub: "https://github.com/nickdaniele", 
-          LinkedIn: "https://www.linkedin.com/in/ngdaniele"
+          GitHub: 'https://github.com/nickdaniele',
+          LinkedIn: 'https://www.linkedin.com/in/ngdaniele'
         }
       }, {
-        name: "Justin Lien",
-        job: "Full-Stack Engineer",
+        name: 'Justin Lien',
+        job: 'Full-Stack Engineer',
         profilePic: {
-          url: "http://goo.gl/Vwr1zt",
-          descript: "Profile Photo - Lien, Justin"
+          url: 'http://goo.gl/Vwr1zt',
+          descript: 'Profile Photo - Lien, Justin'
         },
         social: {
-          GitHub: "https://github.com/JustinLien", 
-          LinkedIn: "https://www.linkedin.com/in/justinmlien"
+          GitHub: 'https://github.com/JustinLien',
+          LinkedIn: 'https://www.linkedin.com/in/justinmlien'
         }
       }
     ];

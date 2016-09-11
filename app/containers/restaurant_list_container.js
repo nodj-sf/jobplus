@@ -9,9 +9,9 @@ class RetaurantList extends BaseComponent {
   renderList() {
     return this.props.activeYelp.map((restaurant, index) =>
       <RestaurantItem
-        key = { restaurant.id }
-        restaurant = { restaurant }
-        selectedJob = { this.props.activeJob } />
+        key={ restaurant.id }
+        restaurant={ restaurant }
+        selectedJob={ this.props.activeJob } />
     );
   }
 

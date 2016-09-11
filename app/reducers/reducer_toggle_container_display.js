@@ -22,8 +22,9 @@ export default function(state = listDisplayStates, action) {
       // state.trainListDisplayState = displayStateToggle(state.trainListDisplayState);
       // return state;
       console.log("Payload:", action.payload, '\nSTATE:', state);
-      state.trainListDisplayState = action.payload;
-      return state;
+      // state.trainListDisplayState = action.payload;
+      // return state;
+      return Object.assign(state, { trainListDisplayState: displayStateToggle(state.trainListDisplayState)});
 
       // return displayStateToggle(state.trainListDisplayState);
     case 'TOGGLE_PARK_LIST_DISPLAY':

@@ -2,6 +2,7 @@
 html {
   font-size: 10px;
   background-color: #F5F5F5;
+  overflow-x: hidden;
 }
 
 body {
@@ -20,7 +21,8 @@ a {
   color: #000;
   text-decoration: none;
 }
-  a:hover {
+  a:hover,
+  div.yelpPhoto:hover div.yelpAlphaLayer > img {
     color: #000;
     cursor: pointer;
   }
@@ -199,68 +201,10 @@ div.socialMediaIcons img {
   overflow: hidden;
 }
 
-#jobResultsPane {
-  position: relative;
-  display: inline-block;
-  width: 35%;
-  height: 100%;
-  min-height: 700px;
-  float: left;
-  box-sizing: border-box;
-  background: #ECECEC;
-  overflow: hidden;
-  -webkit-box-shadow: 1px 0 8px rgba(0, 0, 0, 0.3);
-  box-shadow:         1px 0 8px rgba(0, 0, 0, 0.3);
-  z-index: 100;
-}
-
-#jobInfoBody {
-  position: relative;
-  display: inline-block;
-  width: 65%;
-  height: 100%;
-  min-height: 700px;
-  float: right;
-  background: -webkit-linear-gradient(#FFF 40%, #E9EBEE 50%);
-  background:      -o-linear-gradient(#FFF 40%, #E9EBEE 50%);
-  background:         linear-gradient(#FFF 40%, #E9EBEE 50%);
-  box-sizing: border-box;
-  overflow-y: scroll;
-}
-
-#jobsContainer {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 66%;
-}
-  #jobsContainer:after,
-  .overlay:after {
-    position: fixed;
-    content: '';
-    width: 100%;
-    height: 15%;
-    max-height: 50px;
-    left: 0;
-    bottom: 0;
-    background: -webkit-linear-gradient(bottom, rgba(236, 236, 236, 1.0) 20%, rgba(236, 236, 236, 0.75) 35%, rgba(236, 236, 236, 0) 75%);
-    background:      -o-linear-gradient(bottom, rgba(236, 236, 236, 1.0) 20%, rgba(236, 236, 236, 0.75) 35%, rgba(236, 236, 236, 0) 75%);
-    background:         linear-gradient(to top, rgba(236, 236, 236, 1.0) 20%, rgba(236, 236, 236, 0.75) 35%, rgba(236, 236, 236, 0) 75%);
-  }
 
 
 div.restaurantContainer .overlayBottomMargin {
   margin-bottom: 17.5px;
-}
-
-#jobsContainer b > i {
-  margin: auto 6px;
-  padding: 0 6px;
-  outline: 1px solid #FFF;
-  text-indent: 5px;
-  text-transform: capitalize;
-  font-style: normal;
-  font-stretch: semi-expanded;
 }
 
 /*
@@ -284,71 +228,6 @@ div.restaurantContainer .overlayBottomMargin {
     margin: auto;
   }
 */
-
-#jobResultsPane > div:first-child {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 34%;
-  box-sizing: border-box;
-  /* pointer-events: none; */
-}
-
-#GMap_Wrapper {
-  position: relative;
-  height: 100%;
-}
-
-#GMap_Wrapper > div:first-child {
-  height: 10%;
-  background: #FFF;
-}
-
-#GMap_Wrapper > div > button {
-  display: block;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  border: none;
-  color: #14A4B5;
-  font-size: 1.5rem;
-  line-height: 1.5rem;
-  transition: font-size 0.25s 0.25s ease-in-out;
-}
-  #GMap_Wrapper > div:first-child:hover button {
-    font-size: 1.75rem;
-    line-height: 1.5rem;
-  }
-
-
-#GMap_Wrapper > div > button > img {
-  height: 50%;
-  margin-left: 1rem;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0.25s 0.25s ease-in,
-              opacity 0.25s 0.3s ease-in
-}
-  #GMap_Wrapper > div:first-child:hover button img {
-    visibility: visible;
-    opacity: 100;
-  }
-
-
-#mapsContainer {
-  position: relative;
-  height: 90%;
-  width: 100%;
-  margin: 0;
-}
-
-#mapsContainer + b {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 4%;
-}
 
 h4.infoWindow_Header {
   display: inline;
@@ -500,107 +379,6 @@ div.box {
   margin: auto;
 }
 
-#jobsContainer > b {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 3.5rem;
-  padding: 4px 0;
-  line-height: 3.5rem;
-  text-align: left;
-  text-indent: 1.5rem;
-  font-size: 1.75rem;
-  font-weight: lighter;
-  /* font-variant: unicase; */
-  color: #FFF;
-  background: -webkit-linear-gradient(231deg, rgba(20,164,181,1) 15%, rgb(93, 188, 200) 44%, rgb(134, 202, 210) 100%);
-  background:      -o-linear-gradient(231deg, rgba(20,164,181,1) 15%, rgb(93, 188, 200) 44%, rgb(134, 202, 210) 100%);
-  background:         linear-gradient(321deg, rgba(20,164,181,1) 15%, rgb(93, 188, 200) 44%, rgb(134, 202, 210) 100%);
-}
-
-#jobsContainer > div {
-  height: 90%;
-  overflow-y: overlay;
-}
-
-ul.jobsList {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  background-color: #ECECEC;
-  overflow-x: hidden;
-  overflow-y: overlay;
-}
-
-ul.jobsList li,
-li.jobLI {
-  position: relative;
-  display: list-item;
-  width: 100%;
-  max-height: 60px;
-  margin-bottom: 6px;
-  padding: 4px 10px 0 10px;
-  border-bottom: 1px solid #E1E1E1;
-  list-style-type: none;
-  box-sizing: border-box;
-  background-color: #ECECEC;
-  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1.0);       /* box-shadow, border-left */
-  overflow: hidden;
-}
-
-ul.jobsList li:hover,
-li.active.jobLI,
-ul.jobsList.activeJobLI {
-  border-left: 12.5px solid #14A4B5;
-  background-color: #F1F1F1;
-  cursor: pointer;
-  -webkit-box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
-  box-shadow:         0 3px 5px 0 rgba(0, 0, 0, 0.3);
-                  /*  0 2px 2px 0 rgba(0, 0, 0, 0.2),
-                      0 3px 5px 0 rgba(0, 0, 0, 0.3); */
-}
-
-li.jobLI h2,
-h2.jobListingTitle {
-  margin: 0 auto;
-  max-height: 60px;
-  overflow: hidden;
-  color: #14A4B5;
-  font: 2.4rem/2.6rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
-  letter-spacing: 0.05rem;
-}
-
-li.jobLi h6 {
-  font: bold 12px/12px Arial, sans-serif;
-}
-
-div.jobLI_MetaInfo {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 20px;
-  bottom: -2px;
-  margin: 0;
-}
-
-.jobLI_MetaInfo h6,
-.jobLI_MetaInfo i {
-  display: inline-block;
-  position: relative;
-  width: 70%;
-  margin: 0;
-  float: left;
-}
-
-.jobLI_MetaInfo i {
-  width: 30%;
-  right: 1rem;
-  float: right;
-  color: #696969;
-  text-align: right;
-  font: lighter italic 1.1rem/2rem 'Raleway', sans-serif;
-}
 
 button.button-primary {
   width: 10%;
@@ -779,40 +557,6 @@ button.button-primary {
   }
 */
 
-div.noResultsShown {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-  div.noResultsShown::before {
-    position: absolute;
-    content: '';
-    width: 125%;
-    height: 100%;
-    right: -35%;
-    top: 85%;
-    background-image: url('../img/frowny-face.svg');
-    background-size: 75% auto;
-    background-repeat: no-repeat;
-    transform: translateY(-50%);
-  }
-
-
-h4.noResultsShown {
-  position: absolute;
-  width: 100%;
-  height: 100px;
-  top: 25%;
-  left: -5%;
-  line-height: 100px;
-  font-size: 4.5rem;
-  font-weight: 900;
-  text-align: center;
-  overflow: hidden;
-  transform: translateY(-50%) rotate(-32deg);
-}
-
 #searchJob {
   -webkit-appearance: textfield;
   transition: padding 0.25s ease-out;
@@ -884,264 +628,13 @@ i.XButton {
   line-height: 3rem;
   box-sizing: border-box;
   border-radius: 50%;
+  z-index: 300;
 }
   i.XButton:hover {
     cursor: pointer;
     color: #1196A5;
     transition: all 0.10s ease-out;
   }
-
-
-/* ==========================================================================
-   =================== Yelp Restaurant Style Declarations ===================
-   ========================================================================== */ 
-
-.restaurantContainer {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  /* min-height: 200px; */
-  float: left;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.restaurantContainer > div {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 50px;
-  left: 0;
-  top: 0;
-  flex-direction: row;
-  justify-content: space-between;
-  box-sizing: border-box;
-  background: hsl(0, 53%, 52%) url('../img/bckg_hero.png') no-repeat;
-  background-blend-mode: color-dodge;
-  backface-visibility: initial;
-  background-position: 10% 30%;
-  background-attachment: scroll;
-  background-origin: border-box;
-  z-index: 1;
-}
-
-.restaurantContainer > div h1 {
-  position: relative;
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-  margin: 0 1.5rem 0 0;
-  float: right;
-  font: normal 3.75rem/5rem 'Raleway', 'Open Sans', Arial, sans-serif;
-  text-align: center;
-}
-
-p {
-  margin: 0;
-  /* margin: 0 33.784; */
-}
-
-div.yelpPhoto {
-  position: relative;
-  width: 100%;
-  /* height: inherit; */
-  min-height: 75px;
-  max-height: 200px;
-  left: 50%;
-  border: 4px solid #14A4B5;
-  line-height: 0;
-  box-sizing: border-box;
-  transform: translateX(-50%);
-  background: -webkit-radial-gradient(circle, #14a4b5 60%, #FFF 125%);
-  background:    -moz-radial-gradient(circle, #14a4b5 60%, #FFF 125%);
-  background:      -o-radial-gradient(circle, #14a4b5 60%, #FFF 125%);
-  background:         radial-gradient(circle, #14a4b5 60%, #FFF 125%);
-  /* background: #14A4B5; */
-}
-
-.yelpPhoto img {
-  position: relative;
-  min-width: 100%;
-  max-width: 115%;
-  min-height: 75px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.yelpPhoto img.fallbackImage {
-   width: 146px; 
-}
-
-.restaurantLI, 
-.transportationCard, 
-.amenitiesCard {
-  position: relative;
-  display: inline-block;
-  min-height: 200px;
-  /* max-height: 400px; */                        /* Uncomment to disable large height-width aspect ratio images */
-  margin: 1rem auto;
-  padding-bottom: 0.75rem;
-  background-color: #FFF;
-  vertical-align: top;
-  -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
-  box-shadow:         0 1px 4px 0 rgba(0, 0, 0, 0.37);
-}
-
-.restaurantLI:hover,
-.transportationCard:hover,
-.amenitiesCard:hover,
-.activeCard {
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 
-                      0 6px 10px 0 rgba(0, 0, 0, 0.3);
-  box-shadow:         0 2px 2px 0 rgba(0, 0, 0, 0.2), 
-                      0 6px 10px 0 rgba(0, 0, 0, 0.3);
-}
-
-.restaurantLI .nameRating:hover,
-.transportationCard .nameRating:hover,
-.amenitiesCard .nameRating:hover {
-  cursor: pointer;
-}
-
-div.amenityDistanceInMiles {
-  display: inline-block;
-  width: 50%;
-  float: left;
-}
-
-li.restaurantLI > a {
-  display: block;
-  height: 100%;
-  width: 100%;
-  overflow-y: hidden;
-}
-
-.expandFromCenter:after {
-  position: relative;
-  display: block;
-  content: '';
-  width: 0;
-  height: 1px;
-  margin: auto;
-  background: transparent;
-  transition: width 0.5s ease, 
-              background-color 0.5s ease;
-}
-  .expandFromCenter:hover:after {
-    width: 100%;
-    background: #1BA6B7;
-  }
-
-
-.GPlacesList {
-  background-color: #E9EBEE;
-}
-
-p.noResultsMsg {
-  width: 100%;
-  font-size: 3rem;
-  text-align: center;
-}
-
-#jobInfoBody > div:first-child,
-.transportationContent, 
-.amenitiesContent {
-  padding-left: 2rem;
-}
-
-.nameRating > h5 {
-  text-align: center;
-  font-weight: 500;
-}
-
-.nameRating > a {
-  display: block;
-  width: 100%;
-  /* max-height: 225px; */
-}
-
-#jobInfoBody div.jobInfoBottomBlock {
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 50%;
-  min-height: 500px;
-  bottom: 0;
-}
-
-.job-detail h3 {
-  width: 100%;
-  margin: 2rem auto;
-  font-weight: bolder;
-  text-align: center;
-}
-
-.job-detail h3 a {
-  text-decoration: none;
-}
-
-.job-detail blockquote a {
-  text-decoration: none;
-  color: #222;
-}
-
-div.verticallyCenter {
-  padding: 0 1.5rem;
-}
-
-.YelpRestaurantAddress {
-  margin-bottom: 5px;
-  font: 1.25rem/1.50rem 'Raleway', sans-serif;
-}
-
-div.YelpRating_Div {
-  position: relative;
-  display: block;
-  width: 100%;
-  overflow: hidden;
-}
-  div.YelpRating_Div > img.YelpRatingStars {
-    position: relative;
-    display: inline-block;
-    height: 1.25rem;
-    top: 0.375rem;
-    float: left;
-  }
-
-  div.YelpRating_Div > p.numRestaurantReviews {
-    position: relative;
-    display: inline-block;
-    float: right;
-    font-size: 1.25rem;
-    line-height: 2rem;
-  }
-
-
-a.YelpPhoneNo {
-  color: #222;
-  font: lighter 1.35rem Courier, monospace, serif;
-  word-spacing: -0.5rem;
-}
-
-a.YelpPhoneNo > em {
-  font-style: normal;
-}
-
-.yelpDescription div.blockDistanceContainer {
-  display: inline-block;
-  height: 1.5rem;
-  float: right;
-}
-
-.yelpDescription div.distanceBlock {
-  position: relative;
-  display: inline-block;
-  height: 1rem; 
-  width: 1rem; 
-  margin: 1.25px;
-  background: #BEBEBE;
-}
 
 
 /* Fix Chrome browser's default AutoFill yellow background */
@@ -1182,57 +675,6 @@ input:-webkit-autofill {
   }
 */
 
-.job-detail h3 a {
-  color: #696969;
-}
-
-.job-detail blockquote a {
-  color: #222;
-}
-
-.restaurantContainer > div:first-child a:hover > i {
-  text-shadow: 0 0 6px #FFF;
-}
-
-
-
-/* ==========================================================================
-   ============== FontAwesome (Class `.fa`) Style Declarations ==============
-   ========================================================================== */
-.restaurantContainer h5 .fa-yelp {
-  color: #000;                      /* #AF0606 */
-  font-weight: 900;
-  text-shadow: 0 0 2px rgba(255, 255, 255, 0.75);
-}
-
-.fa-bus {
-  color: #00F;
-}
-
-.loadingSpinner {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-div.card-body .fa,
-div.job-detail .fa {
-  color: #14A4B5;                       /* rgb(20, 164, 181); */
-  font-size: 1.6rem;
-}
-
-.fa.cardDescriptionGlyph {
-  color: #14A4B5;
-}
-
-.collapseGlyph.fa {
-  position: absolute;
-  right: 20px; 
-  font: bold normal 4rem/5rem FontAwesome;
-  cursor: pointer;
-  z-index: 10000;
-}
 
 /* ==========================================================================
    ================== React-Tabs Module Style Declarations ==================
@@ -1264,25 +706,4 @@ div.job-detail .fa {
   width: 34%;
 }
 
-.react-tabs .fa-yelp {
-  color: #CD2122;                                   /* Color Variants: #C01D1D; */
-}
 
-div.restaurantContainer:last-child div.overlay {
-
-}
-
-div.listItemsContainer {
-  height: 90%;
-  margin-bottom: 25px;
-}
-
-/* .restaurantContainer div.overlay */
-.react-tabs div.overlay,
-div.restaurantContainer:last-child div.listItemsContainer {
-  height: 90%;
-  margin-bottom: 25px;
-  background-color: #E9EBEE;
-  overflow-x: hidden;
-  overflow-y: overlay;
-}

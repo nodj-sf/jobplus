@@ -44,6 +44,7 @@ export default class BaseComponent extends Component {
       'html': 'HTML',
       'css': 'CSS',
       'ios': 'iOS',
+      'iot': 'IoT',
       'javascript': 'JavaScript',
       'js': 'JS',
       'latex': 'LaTeX',
@@ -54,6 +55,7 @@ export default class BaseComponent extends Component {
       'of': 'of',
       'os': 'OS',
       'php': 'PHP',
+      'qa': 'QA',
       'sql': 'SQL',
       'tdd': 'TDD',
       'ui': 'UI',
@@ -79,14 +81,19 @@ export default class BaseComponent extends Component {
       })
       .trim(); */
 
-      let formattedJob = Object.keys(specialFormatTerms)
-        .forEach(term => {
-          if (job.includes(term)) {
-            job = job.replace(term, specialFormatTerms[term]);
-          }
-        });
+      let preprocessedJobStr = job
+        .toLowerCase()
+        .split(' ')
+        .map(word => word in specialFormatTerms ? specialFormatTerms[word] : word)
+        .join(' ');
+      // let formattedJob = Object.keys(specialFormatTerms)
+      //   .forEach(term => {
+      //     if (job.includes(term)) {
+      //       job = job.replace(term, specialFormatTerms[term]);
+      //     }
+      //   });
 
-      return job
+      return preprocessedJobStr
         .replace(/\b([a-z])/gmi, match => match.toUpperCase())
         .replace(/(\s|\b)\/(\s|\b)/g, '/');
   }
@@ -139,24 +146,24 @@ export default class BaseComponent extends Component {
         [filledStars, emptyStars] = [Math.floor(rating), 5 - Math.ceil(rating)];
 
     if (radix) {
-      starsContainer.push(<i className="fa fa-star-half-full" style={{ color: this.ratingColor(rating) }} key={ `RatingHalfStar_${i}` }></i>);
+      starsContainer.push(<i className='fa fa-star-half-full' style={{ color: this.ratingColor(rating) }} key={ `RatingHalfStar_${i}` }></i>);
     }
 
     while (i < filledStars) {
-      starsContainer.unshift(<i className="fa fa-star" style={{ color: this.ratingColor(rating) }} key={ `RatingFilledStar_${i}` }></i>);
+      starsContainer.unshift(<i className='fa fa-star' style={{ color: this.ratingColor(rating) }} key={ `RatingFilledStar_${i}` }></i>);
       i++;
     }
 
     while (j < emptyStars) {
-      starsContainer.push(<i className="fa fa-star-o" style={{ color: this.ratingColor(rating) }} key={ `RatingEmptyStar_${j}` }></i>);
+      starsContainer.push(<i className='fa fa-star-o' style={{ color: this.ratingColor(rating) }} key={ `RatingEmptyStar_${j}` }></i>);
       j++;
     }
 
     return (
-      <div className="starsRating">
+      <div className='starsRating'>
         {[
           // `Rating:\t`,
-          <i className="fa fa-heart cardDescriptionGlyph" key={ `RatingLoveGlyphIcon_${rating}` }></i>,
+          <i className='fa fa-heart cardDescriptionGlyph' key={ `RatingLoveGlyphIcon_${rating}` }></i>,
           `\t`,
           starsContainer,
           `\t${rating}`
@@ -172,7 +179,7 @@ export default class BaseComponent extends Component {
     const repeatBlockGenerator = (numBlocks, color = this.distanceColor(dist)) => {
       let i = 0;
       while (i < numBlocks) {
-        blocksContainer.push(<div className="distanceBlock" style={{ background: color }}></div>);
+        blocksContainer.push(<div className='distanceBlock' style={{ background: color }}></div>);
         i++;
       }
     };
@@ -200,7 +207,7 @@ export default class BaseComponent extends Component {
     }
 
     return (
-      <div className="blockDistanceContainer" key={ `DistanceInBlocks_${dist}` }>
+      <div className='blockDistanceContainer' key={ `DistanceInBlocks_${dist}` }>
         {[ blocksContainer ]}
       </div>
     );

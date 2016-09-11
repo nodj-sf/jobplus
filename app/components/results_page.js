@@ -13,7 +13,7 @@ import Footer from './footer_component';
 import RetaurantList from '../containers/restaurant_list_container';
 import TransportationList from '../containers/transportation_list_container';
 import AmenitiesList from '../containers/ameneties_list_container';
-import { selectJob, fetchYelp, fetchTrains, fetchBus, fetchGyms, fetchParks, scrapDetail, loading } from '../actions/index';
+import { selectJob, fetchYelp, fetchTrains, fetchBus, fetchGyms, fetchParks, scrapeDetail, loading } from '../actions/index';
 
 
 class Results extends Component {
@@ -41,7 +41,7 @@ class Results extends Component {
     props.fetchBus(job.latitude, job.longitude);
     props.fetchParks(job.latitude, job.longitude);
     props.fetchGyms(job.latitude, job.longitude);
-    props.scrapDetail(job.url);
+    props.scrapeDetail(job.url);
   }
 
   render() {
@@ -49,15 +49,15 @@ class Results extends Component {
       <div>
         <Banner />        
 
-        <div id="jobMain">
-          <div id="jobResultsPane">
+        <div id='jobMain'>
+          <div id='jobResultsPane'>
             <div>
               <GMap />
             </div>
             <JobList />
           </div>
             
-          <div id="jobInfoBody">           
+          <div id='jobInfoBody'>           
             <JobDetail /> 
             <Tabs onSelect={ this.handleSelect }>  
               <TabList>
@@ -112,7 +112,7 @@ let mapDispatchToProps = (dispatch) =>  {
     fetchTrains, 
     fetchParks, 
     fetchGyms,
-    scrapDetail,
+    scrapeDetail,
     loading
   }, dispatch);
 };

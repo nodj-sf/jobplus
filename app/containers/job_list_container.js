@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
-import { selectJob, fetchYelp, fetchBus, fetchTrains, fetchParks, fetchGyms, scrapDetail, loading, activeJob } from '../actions/index';
+import { selectJob, fetchYelp, fetchBus, fetchTrains, fetchParks, fetchGyms, scrapeDetail, loading, activeJob } from '../actions/index';
 import JobItem from '../components/job_item_component';
 import BaseComponent from '../components/base_component';
 
@@ -41,7 +41,7 @@ class JobList extends BaseComponent {
     props.fetchBus(lat, lng);
     props.fetchParks(lat, lng);
     props.fetchGyms(lat, lng);
-    props.scrapDetail(job.url);
+    props.scrapeDetail(job.url);
     props.loading(false);
   }
 
@@ -127,7 +127,7 @@ let mapDispatchToProps = (dispatch) => {
     fetchTrains, 
     fetchParks, 
     fetchGyms,
-    scrapDetail,
+    scrapeDetail,
     loading
   }, dispatch);
 };

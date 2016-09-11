@@ -25,7 +25,6 @@ class Footer extends Component {
 
 
   render() {
-    console.log('ADDRESS:', document.location.pathname);
     return (
       <div className='footerCont'>
         <nav>

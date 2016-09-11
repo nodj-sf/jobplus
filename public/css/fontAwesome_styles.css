@@ -1,0 +1,42 @@
+
+/* ==========================================================================
+   ============== FontAwesome (Class `.fa`) Style Declarations ==============
+   ========================================================================== */
+.restaurantContainer h5 .fa-yelp {
+  color: #000;                      /* #AF0606 */
+  font-weight: 900;
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.75);
+}
+
+.fa-yelp {
+  color: #CD2122;                                   /* Color Variants: #C01D1D; */
+}
+
+.fa-bus {
+  color: #00F;
+}
+
+.loadingSpinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div.card-body .fa,
+div.job-detail .fa {
+  color: #14A4B5;                       /* rgb(20, 164, 181); */
+  font-size: 1.6rem;
+}
+
+.fa.cardDescriptionGlyph {
+  color: #14A4B5;
+}
+
+.collapseGlyph.fa {
+  position: absolute;
+  right: 20px; 
+  font: bold normal 4rem/5rem FontAwesome;
+  cursor: pointer;
+  z-index: 10000;
+}

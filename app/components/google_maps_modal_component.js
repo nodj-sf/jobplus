@@ -114,17 +114,17 @@ export default class GMap_Modal extends BaseComponent {
     const onCloseclick = this.handleMarkerClose.bind(this, marker),
           companyTitle = () => {
             if (marker.company) {
-              return (<h5 className="infoWindow_Header">{ this.parseAndFormatJobTitle(marker.company) }</h5>);
+              return (<h5 className='infoWindow_Header'>{ this.parseAndFormatJobTitle(marker.company) }</h5>);
             }     
           },
           itemImage = () => {
-            // console.log("PHOTO REF.", marker.markerPhoto);
+            // console.log('PHOTO REF.', marker.markerPhoto);
             if (marker.markerPhoto) {
               return (<img 
                 src={ this.parseYelpRestaurantPhoto(marker.markerPhoto) } 
-                className="modalInfoWindow_Pic" 
-                style={{ maxWidth: "300px", height: "auto" }}
-                alt="Reference photograph [Source: Yelp/Google Places API]" />
+                className='modalInfoWindow_Pic' 
+                style={{ maxWidth: '300px', height: 'auto' }}
+                alt='Reference photograph [Source: Yelp/Google Places API]' />
               );
             }
           };
@@ -134,7 +134,7 @@ export default class GMap_Modal extends BaseComponent {
         key={ `${marker.markerKey}_info_window` }
         onCloseclick={ onCloseclick } >
           <div>
-            <h4 className="infoWindow_Header">{ this.parseAndFormatJobTitle(marker.markerTitle) }</h4>
+            <h4 className='infoWindow_Header'>{ this.parseAndFormatJobTitle(marker.markerTitle) }</h4>
             { companyTitle() }
             <hr />
             <div>
@@ -303,7 +303,7 @@ export default class GMap_Modal extends BaseComponent {
         <GoogleMapLoader
           containerElement={
             <div 
-              className="GMap_Modal" 
+              className='GMap_Modal' 
               style={{ height: '90vh', width: '90vw' }} />
           }
           googleMapElement={
@@ -334,7 +334,7 @@ export default class GMap_Modal extends BaseComponent {
             </GoogleMap>
           } />
 
-        <i className="fa fa-times-circle XButton" onClick={ () => this.props.deactivateModal() }></i>
+        <i className='fa fa-times-circle XButton' onClick={ () => this.props.deactivateModal() }></i>
       </Modal>
     );
   }

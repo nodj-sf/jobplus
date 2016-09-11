@@ -95,13 +95,13 @@ export const fetchGyms = (lat, long) => {
   };
 };
 
-export const scrapDetail = (url) => {
-  const request = axios.post('/api/v1/scrap', {
+export const scrapeDetail = (url) => {
+  const request = axios.post('/api/v1/scrape', {
     url: url,
     _csrf: getCookie('_csrf')
   });
   return {
-    type: 'SCRAP_DATA',
+    type: 'SCRAPE_DATA',
     payload: request
   }
 };
@@ -133,6 +133,10 @@ export const lastLocationSearch = (lastLocation) => ({
 
 export const toggleModal = () => ({
   type: 'TOGGLE_MODAL'
+});
+
+export const toggleYelpModal = () => ({
+  type: 'TOGGLE_YELP_MODAL'
 });
 
 // Loading animation display state:

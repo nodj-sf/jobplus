@@ -2,6 +2,7 @@ const request = require('request');
 const Promise = require('promise');
 const cheerio = require('cheerio');
 
+
 let details = (url) => {
   return function(res) {
     return new Promise(function(resolve, reject) {
@@ -12,8 +13,8 @@ let details = (url) => {
           let json = {};
           let $ = cheerio.load(html);
           let summary = $('.summary')[0].children.filter(function(obj) {
-            if (obj.data && (obj.data.trim()).length > 0 ) {
-              return obj.data
+            if (obj.data && (obj.data.trim()).length) {
+              return obj.data;
             }
           }).map(function(obj) {
             if (typeof obj.data) {

@@ -9,12 +9,13 @@ import activeBus from './reducer_active_bus';
 import activeParks from './reducer_active_parks';
 import activeGyms from './reducer_active_gyms';
 import toggleModal from './reducer_toggle_modal';
+import toggleYelpModal from './reducer_toggle_yelp_modal';
 import jobInputTerm from './reducer_job_search_term';
 import lastJob from './reducer_last_job';
 import locationInputTerm from './reducer_location_search_term';
 import lastLocation from './reducer_last_location';
 import searchInputs from './reducer_search_inputs';
-import scrapDetails from './reducer_scrap_details';
+import scrapeDetails from './reducer_scrape_details';
 import loading from './reducer_toggle_loading';
 import toggleContainerDisplay from './reducer_toggle_container_display';
 
@@ -28,13 +29,14 @@ const rootReducer = combineReducers({
   activeParks,
   activeGyms,
   toggleModal,
+  toggleYelpModal,
   routing: routerReducer,
   jobInputTerm,
   lastJob,
   locationInputTerm,
   lastLocation,
   searchInputs,
-  scrapDetails,
+  scrapeDetails,
   loading,
   toggleContainerDisplay
 });
