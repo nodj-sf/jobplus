@@ -93,7 +93,9 @@ export default class AboutPage extends Component {
           </a>
         </div>
 
-        <div className='meetTheTeam_Container'>{ this.renderTeamMemberProfiles(teamMemberProfiles) }</div>
+        <div className='meetTheTeam_Container'>
+          { this.renderTeamMemberProfiles(teamMemberProfiles) }
+        </div>
         <Footer />
       </div>
     );

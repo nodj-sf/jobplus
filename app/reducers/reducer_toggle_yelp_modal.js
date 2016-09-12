@@ -1,4 +1,5 @@
 export default function(state = {}, action) {
+  // Utility function returns the string value of the `yelpID` action's input:
   const extractYelpID = () => action.type.replace(/TOGGLE_YELP_MODAL_/, '');
 
   switch (action.type) {
@@ -7,7 +8,8 @@ export default function(state = {}, action) {
         .reduce((memo, curr) => {
           memo[curr] = (curr === `Yelp_Modal_${extractYelpID()}` 
             ? !(~~state[`Yelp_Modal_${extractYelpID()}`]) 
-            : false);
+            : false
+          );
           return memo;
         }, {});
     default:

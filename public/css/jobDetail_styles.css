@@ -147,30 +147,26 @@ div.yelpPhoto > img.fallbackImage {
   min-height: 200px;
   /* max-height: 400px; */                        /* Uncomment to disable large height-width aspect ratio images */
   margin: 1rem auto;
-  padding-bottom: 0.75rem;
+  padding: 0.75rem 0;
   background-color: #FFF;
   vertical-align: top;
   -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
   box-shadow:         0 1px 4px 0 rgba(0, 0, 0, 0.37);
 }
-
-.restaurantLI:hover,
-.transportationCard:hover,
-.amenitiesCard:hover,
-.activeCard {
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 
-                      0 6px 10px 0 rgba(0, 0, 0, 0.3);
-  box-shadow:         0 2px 2px 0 rgba(0, 0, 0, 0.2), 
-                      0 6px 10px 0 rgba(0, 0, 0, 0.3);
-}
-
-/*
-  .restaurantLI .nameRating:hover,
-  .transportationCard .nameRating:hover,
-  .amenitiesCard .nameRating:hover {
-    cursor: pointer;
+  .restaurantLI:hover,
+  .transportationCard:hover,
+  .amenitiesCard:hover,
+  .activeCard {
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 
+                        0 6px 10px 0 rgba(0, 0, 0, 0.3);
+    box-shadow:         0 2px 2px 0 rgba(0, 0, 0, 0.2), 
+                        0 6px 10px 0 rgba(0, 0, 0, 0.3);
   }
-*/
+
+
+li.restaurantLI > div {
+  padding: 0 1.5rem;
+}
 
 div.amenityDistanceInMiles {
   display: inline-block;
@@ -252,10 +248,6 @@ p.noResultsMsg {
 .job-detail blockquote a {
   text-decoration: none;
   color: #222;
-}
-
-div.verticallyCenter {
-  padding: 0 1.5rem;
 }
 
 .YelpRestaurantAddress {
@@ -356,6 +348,7 @@ div.yelpModalContainer > div {
 
 div.yelpModalContainer a {
   color: inherit;
+  font-size: 2rem;
 }
 
 div.yelpRestaurantTitleBar a {
@@ -364,7 +357,7 @@ div.yelpRestaurantTitleBar a {
   padding-left: 10px;
 }
   div.yelpRestaurantTitleBar a:hover {
-    text-decoration: underline;
+    /* text-decoration: underline; */
   }
   
 
@@ -377,10 +370,10 @@ div.modalToolbar {
 }
   div.modalToolbar a:hover:after {
     position: absolute;
-    content: url(https://lh3.googleusercontent.com/GM1H2h8I1SaiJO-rGxqCQvf9wcyaX73JwcwDSOJRSfRLgc2JpmJd9wc3Jt6PHE5L4PzI0T3-R1aOSj-bUngfQHV2UFyEdfA2aQOc24gQr08926uMh4R0JMmlY5TR1G8IyLIHlHh7FQu80lQtIH-Kpbo0XkGW4nN5tMqNTvlAAfp0EPp6K7pvemQ4wyxr1ON880v-1fONeafNLMkcBWoP_WaXWr-mRuaulncVAdQsgLriH1IhmqDH_wpeTCVKrRQqDxxpBAzvB-e9f9fJ5d8bfN7iuwfIaZPPcUogR3zoSQIb6Xqy9Zw9KA3_gglRPM3UJljiF47-qwl2W3vaiDRDNWmxxcNxHelZcN75OE2op0ovYJTjpx_jpOakuZUoZicQ3pUEPBVAlmRa9xGJlOrL3a1ha2LRz4UxhHChmLcGGQ9pSVeCT_TP7Jog1xKMDxphGjV27CO-0ImerOr8yv39-4lPbSZQSzr3JUykuYCHvwEyp-YvoeUfbsXEKSllGrXqoL9asrhEmxZBOSycdtJGutVOjWoBs8NoqBz-kAde9YlNi1USgvNgNIo9eOWj4_lQ-qJj04tvxB8SOKB80zJ1z8iY-t98XS8GnArmV6npAqJA9mAb0g=h15-no);
+    content: url(http://goo.gl/oGGvsL);
     height: 1.5rem;
     padding: 0 10px;
   }
   div.modalToolbar a:last-child:hover:after {
-    content: url(https://lh3.googleusercontent.com/X5EGJMnZIP_c6HiMu6t8O1YtLFEMh5YFlo8fCrNBl…4fqBegNQLC8-7nLR0Uoh1o3TXM0PEM7jln_MDt-aXKjVLKLcz4cbwa7jwHSnSP7C31g=s15-no);
+    content: url(http://goo.gl/Zwu0Ez);
   }

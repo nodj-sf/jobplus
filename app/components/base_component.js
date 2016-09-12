@@ -30,8 +30,11 @@ export default class BaseComponent extends Component {
     const specialFormatTerms = {
       '.net': '.NET',
       'and': '&',
+      'api': 'API',
       'at': '@',
+      'aws': 'AWS',
       'backend': 'Back-End',
+      'bi': 'BI',
       'c#': 'C#',
       'c+': 'C+',
       'c++': 'C++',
@@ -48,6 +51,8 @@ export default class BaseComponent extends Component {
       'javascript': 'JavaScript',
       'js': 'JS',
       'latex': 'LaTeX',
+      'llc': 'LLC',
+      'llp': 'LLP',
       'mariadb': 'MariaDB',
       'mysql': 'MySQL',
       'nosql': 'NoSQL',
@@ -84,8 +89,17 @@ export default class BaseComponent extends Component {
       let preprocessedJobStr = job
         .toLowerCase()
         .split(' ')
-        .map(word => word in specialFormatTerms ? specialFormatTerms[word] : word)
+        .map(word => word in specialFormatTerms 
+          ? specialFormatTerms[word] 
+          : word.replace(/\b([a-z])/gmi, match => match.toUpperCase())
+        )
         .join(' ');
+
+
+        // .replace(/\b([a-z])/gmi, match => match.toUpperCase())
+        // .replace(/(\s|\b)\/(\s|\b)/g, '/')
+        // .join(' ');
+
       // let formattedJob = Object.keys(specialFormatTerms)
       //   .forEach(term => {
       //     if (job.includes(term)) {
@@ -93,9 +107,26 @@ export default class BaseComponent extends Component {
       //     }
       //   });
 
-      return preprocessedJobStr
-        .replace(/\b([a-z])/gmi, match => match.toUpperCase())
-        .replace(/(\s|\b)\/(\s|\b)/g, '/');
+       // preprocessedJobStr
+       return preprocessedJobStr;
+  }
+
+  // Returns an object mapping <addressComponent> keys to their respective string values:
+  parseAndFormatYelpRestaurantAddress(address) {
+    return !address || !address.length 
+      ? 'Address Unlisted'
+      : address.length <= 2 ? {
+          district: null,
+          street: address[0],
+          complements: null,
+          municipality: address.length > 1 ? address[1] : null
+        }
+      : {
+        district: address[address.length - 2],
+        street: address[0],
+        complements: address.length > 3 ? [...address.slice(1, address.length - 2)] : null,
+        municipality: address.slice(-1)[0]
+      };  
   }
 
   // Returns formatted string specifying the period of time since job listing's post date:
@@ -134,6 +165,26 @@ export default class BaseComponent extends Component {
           `${index} ` : 
           `${index.charAt(0).toUpperCase()}${index.slice(1).toLowerCase()} `, '')
       .trim();
+  }
+
+  // Constructs the appropriate Google Maps Directions service URL using geographic coordinates,
+  //  in the case of Google Places API data input, and address strings for Yelp API data input:
+  getGoogleMapsDirectionsURL(listItemCoords, selectedJobCoords, API_Provider) {
+    // Utility function returns "concatenation-case" string (i.e., words joined by plus ("+") signs)
+    //  for parsed `listItemCoords` inputs sourced from the Yelp API:
+    const getConcatCase = (addressObj) => Object.keys(addressObj)
+      .filter(key => key === 'street' || key === 'municipality')
+      .reduce((memo, curr, arr) => {
+        memo.push(addressObj[curr]);
+        return memo;
+      }, [])
+      .join(' ')
+      .replace(/\s/g, '+');
+    let GoogleDirectionsURLPrefix = 'https://www.google.com/maps/dir/';
+
+    return GoogleDirectionsURLPrefix += (API_Provider === 'Google Places API'
+      ? `${selectedJobCoords.lat},${selectedJobCoords.lng}/${listItemCoords.lat},${listItemCoords.lng}/`
+      : `${selectedJobCoords.lat},${selectedJobCoords.lng}/${getConcatCase(listItemCoords)}/`);
   }
 
   // Produces a formatted string representation of an entity's tags:

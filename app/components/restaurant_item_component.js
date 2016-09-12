@@ -13,107 +13,122 @@ class RestaurantListItem extends BaseComponent {
     this.toggleYelpModal = this.toggleYelpModal.bind(this);
   }
 
-  // Class methods for control of the Yelp Modal visibility:
+  // Class method controls visibility of the Yelp Modal respective of `restaurant.id`:
   toggleYelpModal() {
-    return this.props.toggleYelpModal(this.props.restaurant.id);
+    return this.props.toggleYelpModal(this.props.restaurantListItem.id);
   }
 
   render() {
-    const [jobLat, jobLng] = [this.props.selectedJob.latitude, this.props.selectedJob.longitude],
-          restaurant = this.props.restaurant,
-          address = restaurant.display_address,
-          restAddress = [address[1], address[0], ...address.slice(2)],
+    const restaurant = this.props.restaurantListItem,
+          [jobLat, jobLng] = [this.props.selectedJob.latitude, this.props.selectedJob.longitude],
           [restLat, restLng] = [restaurant.coordinate.latitude, restaurant.coordinate.longitude],
+          restaurantAddress = this.parseAndFormatYelpRestaurantAddress(restaurant.display_address),
           [starRatingImage, phoneNo, yelpURL] = [restaurant.rating_img_url, restaurant.phone, restaurant.url],
           restaurantDistance = this.getDistanceFromLatLonInKm(jobLat, jobLng, restLat, restLng),
-          GMapsDirectionsURL = `https://www.google.com/maps/dir/${jobLat},${jobLng}/${address[0].concat(address[2]).split(' ').join('+')}/`;
+          GMapsDirectionsURL = this.getGoogleMapsDirectionsURL(restaurantAddress, { lat: jobLat, lng: jobLng }, 'Yelp API');
+          // GMapsDirectionsURL = `https://www.google.com/maps/dir/${jobLat},${jobLng}/${address[0].concat(address[2]).split(' ').join('+')}/`;
 
     return (
       <li className='restaurantLI one-third' >
-        <div className='verticallyCenter'>
-          <div className='nameRating'>
-            <a href={ restaurant.url } target='_blank'>
-              <h5 className='textEllipsis expandFromCenter'>{ this.parseAndFormatJobTitle(restaurant.name) }</h5>
-            </a>
-            {
-              (restaurant.photo) ?
-                <div className='yelpPhoto textEllipsis' data-magnify='&#x1f50d'>
+        <div className='nameRating'>
+          <a href={ restaurant.url } target='_blank'>
+            <h5 className='textEllipsis expandFromCenter'>
+              { this.parseAndFormatJobTitle(restaurant.name) }
+            </h5>
+          </a>
+          {
+            (restaurant.photo) ?
+              <div className='yelpPhoto textEllipsis' data-magnify='&#x1f50d'>
+                <img 
+                  src={ this.parseYelpRestaurantPhoto(restaurant.photo).originalFileSize } 
+                  alt={ `Yelp user review rating: ${ restaurant.rating } star(s)` } />
+                <div className='yelpAlphaLayer'>
                   <img 
-                    src={ this.parseYelpRestaurantPhoto(restaurant.photo).originalFileSize } 
-                    alt={ `Yelp user review rating: ${ restaurant.rating } star(s)` } />
-                  <div className='yelpAlphaLayer'>
-                    <img 
-                      src='http://goo.gl/UCXx0a' 
-                      alt='Magnifying glass image-expansion action glyph icon (White).'
-                      onClick={ () => this.toggleYelpModal() } />
-                
-                      <RestaurantModal 
-                        yelpID={ this.props.restaurant.id }
-                        yelpRestaurant={ restaurant }
-                        yelpRestaurantName={ this.parseAndFormatJobTitle(restaurant.name) }
-                        yelpPhoto={ this.parseYelpRestaurantPhoto(restaurant.photo) }
-                        yelpDescription={ `Yelp user review rating: ${ restaurant.rating } star(s)` }
-                        deactivateYelpModal={ this.toggleYelpModal } />
-                  </div>
-                </div> :
-                // No Image
-                <div className='yelpPhoto textEllipsis'>
-                  <img 
-                    src='http://goo.gl/PFTnu8' 
-                    className='fallbackImage' 
-                    alt='Fallback Yelp restaurant placeholder graphic (Red).' />
+                    src='http://goo.gl/r1ypJW'
+                    className='cursorAction'
+                    alt='Magnifying glass image-expansion action glyph icon (White).'
+                    onClick={ () => this.toggleYelpModal() } />
+              
+                    <RestaurantModal 
+                      yelpID={ this.props.restaurantListItem.id }
+                      yelpRestaurant={ restaurant }
+                      yelpRestaurantName={ this.parseAndFormatJobTitle(restaurant.name) }
+                      yelpPhoto={ this.parseYelpRestaurantPhoto(restaurant.photo) }
+                      yelpDescription={ `Yelp user review rating: ${ restaurant.rating } star(s)` }
+                      deactivateYelpModal={ this.toggleYelpModal } />
                 </div>
-            }
-          </div>
-          <div className='yelpDescription card-body'>
-            <div className='YelpRating_Div'>
-              <img className='YelpRatingStars' src={ restaurant.rating_img_url } alt='Yelp restaurant photo.' /> 
-              <p className='numRestaurantReviews'>{ `${this.props.restaurant.review_count} Reviews` }</p>
-            </div>
-
-            <div className='YelpRestaurantAddress'>
-              {
-                restAddress.map((addressComponent, index) => 
-                  <p key={ `${restaurant.name}_AddressLine${index}` }>{ addressComponent }</p>
-                )
-              }
-            </div>
-
-            <div>
-              <div className='amenityDistanceInMiles'>
-                {[
-                  <i className='fa fa-map' key={ `Distance_${restaurantDistance}` }></i>,
-                  `\t`,
-                  <a 
-                    href={ GMapsDirectionsURL } 
-                    className='YelpPhoneNo expandFromCenter' 
-                    target='_blank' 
-                    key={ `GMapURL_${GMapsDirectionsURL}` }>
-                    <em 
-                      key={`RestaurantDist_${restaurantDistance}`} 
-                      style={{ color: this.distanceColor(restaurantDistance) }}>
-                      { `${restaurantDistance} mi` }
-                    </em>
-                  </a>
-                ]}
+              </div> :
+              // No Image
+              <div className='yelpPhoto textEllipsis'>
+                <img 
+                  src='http://goo.gl/vkE0vf' 
+                  className='fallbackImage' 
+                  alt='Fallback Yelp restaurant placeholder graphic (Red).' />
               </div>
-              { this.getDistanceBlocks(restaurantDistance) }
-            </div>
-
-            <p style={{ clear: 'both' }}>
-              {[
-                <i className='fa fa-phone-square' key={ `TelNo_${phoneNo}` }></i>,
-                `\t`,
-                <a 
-                  href={ `tel:+1${phoneNo}` } 
-                  className='YelpPhoneNo expandFromCenter' 
-                  target='_blank' 
-                  key={ `PhoneNo_${phoneNo}` }>
-                  { this.parsePhoneNumber(phoneNo) }
-                </a>
-              ]}
+          }
+        </div>
+        <div className='yelpDescription card-body'>
+          <div className='YelpRating_Div'>
+            <img 
+              className='YelpRatingStars' 
+              src={ restaurant.rating_img_url } 
+              alt='Yelp restaurant photo.' /> 
+            <p className='numRestaurantReviews'>
+              { `${this.props.restaurantListItem.review_count} Reviews` }
             </p>
           </div>
+
+          <div className='YelpRestaurantAddress'>
+            {
+              Array.from(
+                Object.keys(restaurantAddress),
+                (key, val) => restaurantAddress[key]
+              ).map((addressComponent, index) => 
+                <p key={ `${restaurant.name}_AddressLine${index}` }>
+                  { addressComponent }
+                </p>
+              )
+            }
+          </div>
+
+          <div>
+            <div className='amenityDistanceInMiles'>
+              {[
+                <i className='fa fa-map' key={ `Distance_${restaurantDistance}` }></i>,
+                `\t`,
+                <a 
+                  href={ GMapsDirectionsURL } 
+                  className='YelpPhoneNo expandFromCenter' 
+                  target='_blank' 
+                  key={ `GMapURL_${GMapsDirectionsURL}` }>
+
+                  <em 
+                    key={`RestaurantDist_${restaurantDistance}`} 
+                    style={{ color: this.distanceColor(restaurantDistance) }}>
+                    { `${restaurantDistance} mi` }
+                  </em>
+                </a>
+              ]}
+            </div>
+            { this.getDistanceBlocks(restaurantDistance) }
+          </div>
+
+          <p style={{ clear: 'both' }}>
+            {[
+              <i 
+                className='fa fa-phone-square' 
+                key={ `TelNo_${phoneNo}` }>
+              </i>,
+              `\t`,
+              <a 
+                href={ `tel:+1${phoneNo}` } 
+                className='YelpPhoneNo expandFromCenter' 
+                target='_blank' 
+                key={ `PhoneNo_${phoneNo}` }>
+                { this.parsePhoneNumber(phoneNo) }
+              </a>
+            ]}
+          </p>
         </div>
       </li>
     );
@@ -129,12 +144,3 @@ let mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestaurantListItem);
-
-// <div className='yelpPhoto textEllipsis' data-magnify='🔍'>
-
-// <div className='YelpRestaurantAddress'>
-//   {[
-//     <p key={ `${restaurant.name}_AddressLine1` }>{ restaurant.display_address[1] }</p>, 
-//     <p key={ `${restaurant.name}_AddressLine2` }>{ restaurant.display_address[0] }</p>
-//   ]}
-// </div>

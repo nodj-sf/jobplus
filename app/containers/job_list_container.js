@@ -3,15 +3,24 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
-import { selectJob, fetchYelp, fetchBus, fetchTrains, fetchParks, fetchGyms, scrapeDetail, loading, activeJob } from '../actions/index';
 import JobItem from '../components/job_item_component';
 import BaseComponent from '../components/base_component';
+import { 
+  selectJob,
+  fetchYelp,
+  fetchBus,
+  fetchTrains,
+  fetchParks,
+  fetchGyms,
+  scrapeDetail,
+  loading,
+  activeJob 
+} from '../actions/index';
 
 
 class JobList extends BaseComponent {
   constructor(props) {
     super(props);
-
     this.setActive = this.setActive.bind(this);
     this.jobFunc = this.jobFunc.bind(this);
     this.getData = this.getData.bind(this);
@@ -56,8 +65,8 @@ class JobList extends BaseComponent {
     //       job={ job } />
     //   ) : this.init 
     //   ? (
-    //       <div className="noResultsShown">
-    //         <h4 className="noResultsShown">No Results Now</h4>
+    //       <div className='noResultsShown'>
+    //         <h4 className='noResultsShown'>No Results Now</h4>
     //       </div>
     //     ) :
 
@@ -75,13 +84,13 @@ class JobList extends BaseComponent {
       });
     } else {
       this.init ? jobList = (
-        <div className="noResultsShown">
-          <h4 className="noResultsShown">No Results Now</h4>
+        <div className='noResultsShown'>
+          <h4 className='noResultsShown'>No Results Now</h4>
         </div>
       ) : (this.init++, jobList = (
-          <div id="placesContainer">
+          <div id='placesContainer'>
             {[
-              <i className="fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner" key="RefreshAnimation"></i>,
+              <i className='fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner' key='RefreshAnimation'></i>,
               `\tLoading...`
             ]}
           </div>
@@ -93,17 +102,17 @@ class JobList extends BaseComponent {
 
   render() {
     return (
-      <div id="jobsContainer" className="jobsPaneLeft appCols">
+      <div id='jobsContainer' className='jobsPaneLeft appCols'>
         <b>
           {[
             `Results for `,
-            <i key="jobTermTitle">{ this.props.lastJob }</i>,
+            <i key='jobTermTitle'>{ this.props.lastJob }</i>,
             ` in `,
-            <i key="locationTermTitle">{ this.props.lastLocation.replace(/(\w+),.*/gmi, `$1`) }</i>
+            <i key='locationTermTitle'>{ this.props.lastLocation.replace(/(\w+),.*/gmi, `$1`) }</i>
           ]}
         </b>
         <div>
-          <ul className="jobsList">{ this.renderList() }</ul>
+          <ul className='jobsList'>{ this.renderList() }</ul>
         </div>
       </div>
     );
@@ -119,18 +128,16 @@ let mapStateToProps = (state) => ({
   lastLocation: state.lastLocation
 });
 
-let mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ 
-    selectJob, 
-    fetchYelp, 
-    fetchBus, 
-    fetchTrains, 
-    fetchParks, 
-    fetchGyms,
-    scrapeDetail,
-    loading
-  }, dispatch);
-};
+let mapDispatchToProps = (dispatch) => bindActionCreators({ 
+  selectJob, 
+  fetchYelp, 
+  fetchBus, 
+  fetchTrains, 
+  fetchParks, 
+  fetchGyms,
+  scrapeDetail,
+  loading
+}, dispatch);
 
 // Promote JobList to a Container:
 export default connect(mapStateToProps, mapDispatchToProps)(JobList);

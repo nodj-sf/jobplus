@@ -24,6 +24,7 @@ blockquote {
   margin-left: 0;
   padding-left: 1rem;
   border-left: 5px solid #14A4B5;
+  color: #696969;
 }
   blockquote:before,
   blockquote:after {
@@ -36,16 +37,25 @@ blockquote {
   }
 
 
+button:hover {
+  border: none;
+}
+
 a {
   color: #000;
   text-decoration: none;
 }
-  a:hover,
-  div.yelpPhoto:hover div.yelpAlphaLayer > img {
-    /* color: #000; */
+  a:hover {
+    color: #000; 
     cursor: pointer;
   }
+  div.yelpPhoto:hover div.yelpAlphaLayer > img {
+    color: #FFF;
+  }
 
+img.cursorAction:hover {
+  cursor: pointer;
+}
 
 img.featuredImg {
   /* position: relative; */
@@ -451,7 +461,7 @@ button.button-primary {
   align-content: space-around;
 }
 
-.container.inactive {
+.inactive {
   display: none;
 }
 

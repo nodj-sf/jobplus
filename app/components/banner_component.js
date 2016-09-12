@@ -24,6 +24,3 @@ export default class Banner extends Component {
     );
   };
 }
-
-
-// <h1 className='navLogoText'>Job+</h1>

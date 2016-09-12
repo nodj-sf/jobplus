@@ -14,14 +14,13 @@ import { fetchJobs, selectJob, activeBus, toggleModal } from '../actions/index';
 class GMap extends BaseComponent {
   constructor(props) {
     super(props);
+    this.toggleModal = this.toggleModal.bind(this);
+    this.jobMarkerCallbackHandler = this.jobMarkerCallbackHandler.bind(this);
     this.state = {
       defaultCenter: new google.maps.LatLng(37.745951, -122.439421),
       geoPos: null,
       zoomLevel: 12
     };
-
-    this.toggleModal = this.toggleModal.bind(this);
-    this.jobMarkerCallbackHandler = this.jobMarkerCallbackHandler.bind(this);
   }
 
   // Callback function that dynamically repositions the Google Map over the geometric center of a search query's job results:
@@ -199,15 +198,16 @@ class GMap extends BaseComponent {
   }
 
   render() {
-    // console.log(`GeoLocation:\t${geolocation()}`);
-
     return (
       <div id='GMap_Wrapper'>
         <div>
           <button type='button' onClick={ () => this.toggleModal() } key='Modal window button'>
             {[
-              `See More Map`,
-              <img src='http://goo.gl/8Xhb6c' key='Mo Map_Icon' alt='Resize map in modal window glyph icon (Black).' />
+              'See More Map',
+              <img 
+                src='http://goo.gl/8Xhb6c' 
+                key='Mo Map_Icon' 
+                alt='Resize map in modal window glyph icon (Black).' />
             ]}
           </button>
         </div>
@@ -215,7 +215,6 @@ class GMap extends BaseComponent {
           containerElement={ <div id='mapsContainer' /> }   
           googleMapElement={
             <GoogleMap 
-              // center={ this.centerMap() }
               center={ this.centerJob() }
               defaultCenter={ this.state.defaultCenter }
               defaultZoom={ this.state.zoomLevel } 
@@ -227,7 +226,9 @@ class GMap extends BaseComponent {
 
               { this.jobMarkerCallbackHandler() }
 
-              <GMap_Modal center={ this.centerMap() } deactivateModal={ this.toggleModal } />
+              <GMap_Modal 
+                center={ this.centerMap() } 
+                deactivateModal={ this.toggleModal } />
             </GoogleMap>
           } />
       </div>
@@ -238,7 +239,10 @@ class GMap extends BaseComponent {
 let mapStateToProps = (state) => ({
   jobMarkers: state.jobs.map(job => ({ 
     markerType: 'job',
-    coords: { 'lat': job.latitude, 'lng': job.longitude },
+    coords: {
+      lat: job.latitude,
+      lng: job.longitude
+    },
     markerKey: job.jobkey,
     markerTitle: job.jobtitle,
     company: job.company, 
@@ -247,10 +251,17 @@ let mapStateToProps = (state) => ({
   })),
   restaurantMarkers: state.activeYelp.map(restaurant => ({
     markerType: 'restaurant',
-    coords: { 'lat': restaurant.coordinate.latitude, 'lng': restaurant.coordinate.longitude },
+    coords: {
+      lat: restaurant.coordinate.latitude,
+      lng: restaurant.coordinate.longitude
+    },
     markerKey: restaurant.id,
     markerTitle: restaurant.name,
-    address: restaurant.display_address,
+    address: [
+      restaurant.display_address[1],
+      restaurant.display_address[0],
+      ...restaurant.display_address.slice(2)
+    ],
     showInfo: false
   })),
   toggleModal: state.toggleModal,

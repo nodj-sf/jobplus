@@ -18,15 +18,28 @@ class RestaurantModal extends Component {
 
         <div className='yelpModalContainer'>
           <div className='yelpRestaurantTitleBar'>
-            <a href={ this.props.yelpRestaurantURL } target='_blank'>{ this.props.yelpRestaurantName }</a>
+            <a 
+              href={ this.props.yelpRestaurantURL } 
+              target='_blank'
+              className='expandFromCenter'>{ this.props.yelpRestaurantName }</a>
           </div>
-          <img className='featuredImg' src={ this.props.yelpPhoto.originalFileSize } alt={ this.props.yelpDescription } />
+          <img 
+            className='featuredImg' 
+            src={ this.props.yelpPhoto.originalFileSize } 
+            alt={ this.props.yelpDescription } />
           <div className='modalToolbar'>
-            <a href={ this.props.yelpPhoto.yelpLightboxURL(this.props.yelpID) } target='_blank'>View On Yelp</a>
-            <a href={ this.props.yelpPhoto.originalFileSize } download={ this.props.yelpID + '_Yelp_Photo' }>Download</a>
+            <a 
+              href={ this.props.yelpPhoto.yelpLightboxURL(this.props.yelpID) } 
+              target='_blank'>View On Yelp</a>
+            <a 
+              href={ this.props.yelpPhoto.originalFileSize } 
+              download={ `${this.props.yelpID}_Yelp_Photo` }>Download</a>
           </div>
         </div>
-        <i className='fa fa-times-circle XButton' onClick={ () => this.props.deactivateYelpModal() }></i>
+        <i 
+          className='fa fa-times-circle XButton' 
+          onClick={ () => this.props.deactivateYelpModal() }>
+        </i>
       </Modal>
 
     );
@@ -39,5 +52,3 @@ let mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(RestaurantModal);
-
-

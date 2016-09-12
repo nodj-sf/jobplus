@@ -131,34 +131,23 @@ export const lastLocationSearch = (lastLocation) => ({
   payload: lastLocation
 });
 
+// ACtion used to handle display toggle of Google Maps Modal box:
 export const toggleModal = () => ({
   type: 'TOGGLE_MODAL'
 });
 
-export const toggleYelpModal = (yelpId) => ({
-  type: `TOGGLE_YELP_MODAL_${yelpId}`
+// Action used to handle display toggle of Yelp Modal boxes:
+export const toggleYelpModal = (yelpID) => ({
+  type: `TOGGLE_YELP_MODAL_${yelpID}`
 });
 
-// Loading animation display state:
+// Action to handle display toggle of Google Places list containers:
+export const toggleGooglePlacesListContainer = (listName) => ({
+  type: `TOGGLE_DISPLAY_LIST_${listName}`
+});
+
+// Controls the display state of the loading animation:
 export const loading = (bool) => ({
   type: 'LOADING',
   payload: bool
-});
-
-//
-export const toggleBusListDisplay = () => ({
-  type: 'TOGGLE_BUS_LIST_DISPLAY'
-});
-
-export const toggleTrainListDisplay = (func) => ({
-  type: 'TOGGLE_TRAIN_LIST_DISPLAY',
-  payload: func
-});
-
-export const toggleParkListDisplay = () => ({
-  type: 'TOGGLE_PARK_LIST_DISPLAY'
-});
-
-export const toggleGymListDisplay = () => ({
-  type: 'TOGGLE_GYM_LIST_DISPLAY'
 });

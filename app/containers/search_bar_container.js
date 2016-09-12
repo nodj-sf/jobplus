@@ -5,13 +5,19 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import Autocomplete from 'react-google-autocomplete';
 
-import { fetchJobs, userSearchInputs, jobInputTerm, lastJobSearch, locationInputTerm, lastLocationSearch } from '../actions/index';
+import { 
+  fetchJobs,
+  userSearchInputs,
+  jobInputTerm,
+  lastJobSearch, 
+  locationInputTerm,
+  lastLocationSearch 
+} from '../actions/index';
 
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
-
     this.onJobTitleInputChange = this.onJobTitleInputChange.bind(this);
     this.onLocationInputChange = this.onLocationInputChange.bind(this);
     this.onLocationAutoComplete = this.onLocationAutoComplete.bind(this);
@@ -93,33 +99,33 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <form id="searchForm" onSubmit={ this.onFormSubmit }>
-        <div className="box">
-          <div className="container-3">
+      <form id='searchForm' onSubmit={ this.onFormSubmit }>
+        <div className='box'>
+          <div className='container-3'>
 
-            <div id="searchInputsBoundary">
+            <div id='searchInputsBoundary'>
               <input 
-                id="searchJob" 
-                className="formSearchInpt"
-                type="search" 
-                results="4" 
-                placeholder="Job"
-                autoComplete="on"
+                id='searchJob' 
+                className='formSearchInpt'
+                type='search'
+                results='4'
+                placeholder='Job'
+                autoComplete='on'
                 onChange={ this.onJobTitleInputChange } />
               
               <Autocomplete
-                id="searchLocation"
-                className="formSearchInpt"
-                type="search"
-                results="4"
-                placeholder="City"
-                autoCapitalize="words"
+                id='searchLocation'
+                className='formSearchInpt'
+                type='search'
+                results='4'
+                placeholder='City'
+                autoCapitalize='words'
                 onChange={ this.onLocationInputChange }
                 onPlaceSelected={ this.onLocationAutoComplete || null } />
             </div>
           </div>
 
-          <button id="jobSearchSubmitBtn" type="submit">Search</button>
+          <button id='jobSearchSubmitBtn' type='submit'>Search</button>
         </div>
       </form>
     );

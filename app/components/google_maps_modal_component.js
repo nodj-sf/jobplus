@@ -13,7 +13,7 @@ import mapStylesObject from '../constants/google_map_styles.json';
 import { fetchJobs, selectJob, toggleModal } from '../actions/index';
 
 
-export default class GMap_Modal extends BaseComponent {
+class GMap_Modal extends BaseComponent {
   constructor(props) {
     super(props);
   }
@@ -74,7 +74,10 @@ export default class GMap_Modal extends BaseComponent {
     }
 
     this.setState({ 
-      markers: typeRef.map(marker => marker === targetMarker ? Object.assign(marker, {showInfo: true}) : marker)
+      markers: typeRef.map(marker => marker === targetMarker 
+        ? Object.assign(marker, {showInfo: true}) 
+        : marker
+      )
     });
     this.centerMap();
   }
@@ -82,7 +85,10 @@ export default class GMap_Modal extends BaseComponent {
   // Deactivates the display state of the clicked-upon map marker item's InfoWindow:
   handleMarkerClose(targetMarker) {
     this.setState({
-      markers: this.props.jobMarkers.map(marker => marker === targetMarker ? { marker, showInfo: false } : marker)
+      markers: this.props.jobMarkers.map(marker => marker === targetMarker 
+        ? { marker, showInfo: false } 
+        : marker
+      )
     });
   }
 
@@ -99,7 +105,7 @@ export default class GMap_Modal extends BaseComponent {
 
     allMarkers.forEach(markerSet => {
       this.setState({
-        markers: markerSet.map(marker => Object.assign( marker, { showInfo: false }))
+        markers: markerSet.map(marker => Object.assign(marker, { showInfo: false }))
       });
     });
   }
@@ -134,17 +140,21 @@ export default class GMap_Modal extends BaseComponent {
         key={ `${marker.markerKey}_info_window` }
         onCloseclick={ onCloseclick } >
           <div>
-            <h4 className='infoWindow_Header'>{ this.parseAndFormatJobTitle(marker.markerTitle) }</h4>
+            <h4 
+              className='infoWindow_Header'>
+              { this.parseAndFormatJobTitle(marker.markerTitle) }
+            </h4>
             { companyTitle() }
             <hr />
             <div>
               { 
-                marker.address.map((addressComponent, index) => <p key={ `AddressComponent${index}` }>{ addressComponent }</p>) 
+                marker.address.map((addressComponent, index) => 
+                  <p key={ `AddressComponent${index}` }>{ addressComponent }</p>
+                ) 
               }
             </div>
             { itemImage() }
           </div>
-         
       </InfoWindow>
     );
   }
@@ -308,6 +318,7 @@ export default class GMap_Modal extends BaseComponent {
           }
           googleMapElement={
             <GoogleMap 
+              center={ this.props.center }
               defaultCenter={ this.props.center }
               defaultZoom={14} 
               maxZoom={14}
@@ -334,18 +345,24 @@ export default class GMap_Modal extends BaseComponent {
             </GoogleMap>
           } />
 
-        <i className='fa fa-times-circle XButton' onClick={ () => this.props.deactivateModal() }></i>
+        <i 
+          className='fa fa-times-circle XButton' 
+          onClick={ () => this.props.deactivateModal() }>
+        </i>
       </Modal>
     );
   }
-}
+};
 
 
 let mapStateToProps = (state) => {
   return {
     jobMarkers: state.jobs.map(job => ({ 
       markerType: 'job',
-      coords: { 'lat': job.latitude, 'lng': job.longitude },
+      coords: {
+        lat: job.latitude,
+        lng: job.longitude
+      },
       markerKey: job.jobkey,
       markerTitle: job.jobtitle,
       company: job.company, 
@@ -355,47 +372,65 @@ let mapStateToProps = (state) => {
     })),
     restaurantMarkers: state.activeYelp.map(restaurant => ({
       markerType: 'restaurant',
-      coords: { 'lat': restaurant.coordinate.latitude, 'lng': restaurant.coordinate.longitude },
+      coords: {
+        lat: restaurant.coordinate.latitude,
+        lng: restaurant.coordinate.longitude
+      },
       markerKey: restaurant.id,
       markerTitle: restaurant.name,
-      address: restaurant.display_address,
-      // address: `${restaurant.display_address[1]}\n${restaurant.display_address[0]}\n${restaurant.display_address[2]}`,
+      address: [
+        restaurant.display_address[1],
+        restaurant.display_address[0],
+        ...restaurant.display_address.slice(2)
+      ],
       markerPhoto: restaurant.photo,
       showInfo: false
     })),
     busMarkers: state.activeBus.slice(0, 3).map(busMarker => ({
       markerType: 'bus',
-      coords: { 'lat': busMarker.geometry.location.lat, 'lng': busMarker.geometry.location.lng },
+      coords: {
+        lat: busMarker.geometry.location.lat,
+        lng: busMarker.geometry.location.lng
+      },
       markerKey: busMarker.id,
       markerTitle: busMarker.name,
-      address: [busMarker.vicinity] || ['No Address'],
+      address: [busMarker.vicinity] || ['Address Unlisted'],
       // markerPhoto: busMarker.photos[0].photo_reference,
       showInfo: false
     })),
     trainMarkers: state.activeTrains.slice(0, 3).map(trainMarker => ({
       markerType: 'train',
-      coords: { 'lat': trainMarker.geometry.location.lat, 'lng': trainMarker.geometry.location.lng },
+      coords: {
+        lat: trainMarker.geometry.location.lat,
+        lng: trainMarker.geometry.location.lng
+      },
       markerKey: trainMarker.id,
       markerTitle: trainMarker.name,
-      address: [trainMarker.vicinity] || ['No Address'],
+      address: [trainMarker.vicinity] || ['Address Unlisted'],
       // markerPhoto: trainMarker.photos[0].photo_reference,
       showInfo: false
     })),
     parkMarkers: state.activeParks.slice(0, 3).map(parkMarker => ({
       markerType: 'park',
-      coords: { 'lat': parkMarker.geometry.location.lat, 'lng': parkMarker.geometry.location.lng },
+      coords: {
+        lat: parkMarker.geometry.location.lat,
+        lng: parkMarker.geometry.location.lng
+      },
       markerKey: parkMarker.id,
       markerTitle: parkMarker.name,
-      address: [parkMarker.vicinity] || ['No Address'],
+      address: [parkMarker.vicinity] || ['Address Unlisted'],
       // markerPhoto: parkMarker.photos[0].photo_reference,
       showInfo: false
     })),
     gymMarkers: state.activeGyms.slice(0, 3).map(gymMarker => ({
       markerType: 'gym',
-      coords: { 'lat': gymMarker.geometry.location.lat, 'lng': gymMarker.geometry.location.lng },
+      coords: {
+        lat: gymMarker.geometry.location.lat,
+        lng: gymMarker.geometry.location.lng
+      },
       markerKey: gymMarker.id,
       markerTitle: gymMarker.name,
-      address: [gymMarker.vicinity] || ['No Address'],
+      address: [gymMarker.vicinity] || ['Address Unlisted'],
       // markerPhoto: gymMarker.photos[0].photo_reference,
       showInfo: false
     })),
