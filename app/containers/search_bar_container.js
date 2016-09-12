@@ -27,22 +27,24 @@ class SearchBar extends Component {
   }
 
   // Binds user-provided job titles to the current `jobTerm` state value:
-  onJobTitleInputChange(evt) {
-    this.props.jobInputTerm(evt.target.value).payload;
+  onJobTitleInputChange(evt = evt || window.event) {
+    this.props.jobInputTerm(evt.target.value || evt.srcElement.value).payload;
   }
 
   // Binds user-provided location names to the current `location` state value:
-  onLocationInputChange(evt) {
-    this.props.locationInputTerm(evt.target.value).payload;
+  onLocationInputChange(evt = evt || window.event) {
+    this.props.locationInputTerm(evt.target.value || evt.srcElement.value).payload;
   }
 
   // Binds the output of a Google Places Autocompletion dialogue to the `locationTerm` state value:
   onLocationAutoComplete(evt) {
     if (!(evt.address_components)) { return; }
-    let formattedSearchTerm = `${evt.address_components[0].long_name}` + 
-      (evt.address_components[1].types.includes('administrative_area_level_1') ? `, ${evt.address_components[1].short_name}`
-        : evt.address_components[2].types.includes('administrative_area_level_1') ? `, ${evt.address_components[2].short_name}` 
-        : '');
+    let formattedSearchTerm = `${evt.address_components[0].long_name}` + (
+      evt.address_components[1].types.includes('administrative_area_level_1') 
+        ? `, ${evt.address_components[1].short_name}`
+        : evt.address_components[2].types.includes('administrative_area_level_1')
+          ? `, ${evt.address_components[2].short_name}` : ''
+    );
       console.log(`Formatted Locale Autocompletion Search Term:\t${formattedSearchTerm}`);
 
     this.props.locationInputTerm(formattedSearchTerm).payload;

@@ -11,11 +11,20 @@ class RetaurantList extends BaseComponent {
   constructor(props) {
     super(props);
     this.toggleListContainer = this.toggleListContainer.bind(this);
+    this.assignClassNames = this.assignClassNames.bind(this);
   }
 
   // Class method calls Redux action on list of type 'Restaurant':
   toggleListContainer() {
     return this.props.toggleGooglePlacesListContainer('Restaurant');
+  }
+
+  // Class method returns CSS classes respective of the Redux store's key-value for the key
+  //  specified by the passed-down `listType` prop:
+  assignClassNames() {
+    if (this.props.toggleContainerDisplay['list_container_Restaurant']) {
+      return 'inactive';
+    }
   }
 
   renderList(restaurantList) {
@@ -29,6 +38,7 @@ class RetaurantList extends BaseComponent {
   }
 
   render() {
+    console.log(this.props.activeJob);
     return (
       (this.props.loading) ?
         <div className='restaurantContainer' style={{ minHeight: '200px' }}>
@@ -53,10 +63,7 @@ class RetaurantList extends BaseComponent {
             <h5>Nearby Eats</h5>
           </div>
           <div className='overlay overlayBottomMargin'>
-            <ul className={ this.props.toggleContainerDisplay['list_container_Restaurant']
-                              ? 'restaurantList container inactive' 
-                              : 'restaurantList container'
-                          }>
+            <ul className={ `restaurantList container ${this.assignClassNames()}` }>
               { this.renderList(this.props.activeYelp) }
             </ul>
           </div>

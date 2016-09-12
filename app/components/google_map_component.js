@@ -3,6 +3,7 @@ import { GoogleMapLoader, GoogleMap, Marker, InfoWindow, OverlayView, SearchBox 
 import { default as InfoBox } from 'react-google-maps/lib/addons/InfoBox';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import BaseComponent from './base_component';
 import GMap_Modal from './google_maps_modal_component';
@@ -16,6 +17,7 @@ class GMap extends BaseComponent {
     super(props);
     this.toggleModal = this.toggleModal.bind(this);
     this.jobMarkerCallbackHandler = this.jobMarkerCallbackHandler.bind(this);
+    this.delayMapCentering = this.delayMapCentering.bind(this);
     this.state = {
       defaultCenter: new google.maps.LatLng(37.745951, -122.439421),
       geoPos: null,
@@ -37,8 +39,8 @@ class GMap extends BaseComponent {
   }
 
   // Callback function that dynamically repositions the Google Map over the `activeJob` coordinates:
-  centerJob() {
-    return new google.maps.LatLng({ lat: this.props.activeJob.latitude, lng: this.props.activeJob.longitude });
+  centerJob(jobCoords) {
+    return new google.maps.LatLng({ lat: jobCoords.latitude, lng: jobCoords.longitude });
   }
 
   // Recenters Google Map over the geometric center of the continential United States:
@@ -47,6 +49,10 @@ class GMap extends BaseComponent {
       zoomLevel: 5,
       defaultCenter: new google.maps.LatLng(39.828175, -98.5795)    // Geographic center of the contiguous US
     });
+  }
+
+  delayMapCentering(jobCoords) {
+    _.debounce(this.centerJob, 1000)(jobCoords);
   }
 
   // Toggle to 'true' to show InfoWindow and re-render component:
@@ -201,7 +207,10 @@ class GMap extends BaseComponent {
     return (
       <div id='GMap_Wrapper'>
         <div>
-          <button type='button' onClick={ () => this.toggleModal() } key='Modal window button'>
+          <button 
+            type='button' 
+            onClick={ () => this.toggleModal() } key='Modal window button'>
+
             {[
               'See More Map',
               <img 
@@ -215,7 +224,8 @@ class GMap extends BaseComponent {
           containerElement={ <div id='mapsContainer' /> }   
           googleMapElement={
             <GoogleMap 
-              center={ this.centerJob() }
+              // center={ this.delayMapCentering(this.props.activeJob) }
+              center={ this.centerJob(this.props.activeJob) }
               defaultCenter={ this.state.defaultCenter }
               defaultZoom={ this.state.zoomLevel } 
               maxZoom={19}

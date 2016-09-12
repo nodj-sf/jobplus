@@ -565,14 +565,13 @@ button.button-primary {
   background: #2B303B;
 }
 
-.container-3 input:focus::-webkit-input-placeholder {
+.container-3 input:focus::-webkit-input-placeholder,      /* Chrome/Opera/Safari */
+.container-3 input:focus::-moz-placeholder,               /* Firefox 19+ */
+.container-3 input:focus:-ms-input-placeholder            /* IE 10+ */
+.container-3 input:focus:-moz-placeholder {               /* Firefox 18- */
   font-size: 18px;
 }
 
-.container-3 input:focus::-webkit-input-placeholder {
-   font-size: 18px;
-   /* text-indent: 75%; */
-}
 
 /* Previously used to control the magnifying glass search glyph icon's formatting:
   .container-3 input.formSearchInpt:focus + span.icon {
@@ -704,8 +703,8 @@ input:-webkit-autofill {
   box-shadow:         inset 0 0 0 1000px #7A7A7A;
 
   /* Internet Explorer (IE) extraneous settings */
-  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30);
   -ms-filter: "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
+  filter:     "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
 }
 
 

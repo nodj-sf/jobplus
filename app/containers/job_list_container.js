@@ -41,61 +41,45 @@ class JobList extends BaseComponent {
 
   // Collectively calls the lot of Redux action creators imported above:
   getData(job) {
-    let props = this.props,
-        [lat, lng] = [job.latitude, job.longitude];
+    let props = this.props;
     
     props.selectJob(job);
-    props.fetchYelp(job.city, lat, lng);
-    props.fetchTrains(lat, lng);
-    props.fetchBus(lat, lng);
-    props.fetchParks(lat, lng);
-    props.fetchGyms(lat, lng);
+    props.fetchYelp(job.city, job.latitude, job.longitude);
+
+    [props.fetchTrains, props.fetchBus, props.fetchParks, props.fetchGyms]
+      .forEach(action => action(job.latitude, job.longitude));
+
     props.scrapeDetail(job.url);
     props.loading(false);
   }
 
   renderList() {
-
-    // let jobList = this.props.jobs.length 
-    //   ? this.props.job.map(job =>
-    //     <JobItem
-    //       key={ job.jobkey }
-    //       setActive={ this.setActive }
-    //       jobFunc={ this.jobFunc }
-    //       job={ job } />
-    //   ) : this.init 
-    //   ? (
-    //       <div className='noResultsShown'>
-    //         <h4 className='noResultsShown'>No Results Now</h4>
-    //       </div>
-    //     ) :
-
-
     let jobList;
     if (this.props.jobs.length) {
-      jobList = this.props.jobs.map(job => {
-        return (
-          <JobItem
-            key={ job.jobkey }
-            setActive={ this.setActive }
-            jobFunc={ this.jobFunc }
-            job={ job } />
-        );
-      });
+      jobList = this.props.jobs.map((job, index) =>
+        <JobItem
+          key={ job.jobkey }
+          setActive={ this.setActive }
+          jobFunc={ this.jobFunc }
+          job={ job } />
+      );
     } else {
-      this.init ? jobList = (
-        <div className='noResultsShown'>
-          <h4 className='noResultsShown'>No Results Now</h4>
-        </div>
-      ) : (this.init++, jobList = (
+      this.init
+        ? jobList =
+          <div className='noResultsShown'>
+            <h4 className='noResultsShown'>No Results Now</h4>
+          </div>
+        : (this.init++, jobList =
           <div id='placesContainer'>
             {[
-              <i className='fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner' key='RefreshAnimation'></i>,
+              <i 
+                className='fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner' 
+                key='RefreshAnimation'>
+              </i>,
               `\tLoading...`
             ]}
           </div>
         )
-      )
     }
     return jobList;
   }
@@ -108,11 +92,15 @@ class JobList extends BaseComponent {
             `Results for `,
             <i key='jobTermTitle'>{ this.props.lastJob }</i>,
             ` in `,
-            <i key='locationTermTitle'>{ this.props.lastLocation.replace(/(\w+),.*/gmi, `$1`) }</i>
+            <i key='locationTermTitle'>
+              { this.props.lastLocation.replace(/(\w+),.*/gmi, `$1`) }
+            </i>
           ]}
         </b>
         <div>
-          <ul className='jobsList'>{ this.renderList() }</ul>
+          <ul className='jobsList'>
+            { this.renderList() }
+          </ul>
         </div>
       </div>
     );

@@ -4,9 +4,6 @@ import React, { Component } from 'react';
 // New class `BaseComponent` extends React `Component`, but is modified to include 
 //  a variety of static helper class methods that may be shared by all sub-classes.
 export default class BaseComponent extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   // Returns Hex color value based on the magnitude of the input distance:
   distanceColor(dist) {
@@ -68,47 +65,15 @@ export default class BaseComponent extends Component {
       'with': 'w/'
     };
 
-    /*
+    // let preprocessedJobStr;
     return job
-      .trim()
-      // .split(/[\s|\/]/gmi)
-      // .replace(/\s(\/)\s(?:\w+)/gmi, '$1')
-      // .replace(/\band\b/gmi, '&')
-      .replace(/\b([a-z])/gmi, match => match.toUppercase())
-      .replace(/\s(\/)\s((?:\w+))/gmi, ((match1, match2) => match1 + match2[0].toUpperCase() + match2.slice(1).toLowerCase())('$1', '$2'))
-      .replace(/No\.?(\s+)?(\d+)/gmi, '\u2116. $2')
-      .replace(/(\w+)(?:,)\sInc(?!\.)/gmi, '$1, Inc.')
+      .toLowerCase()
       .split(' ')
-      .reduce((memo, index) => {
-        return index.toLowerCase() in specialFormatTerms ?
-          memo += ` ${specialFormatTerms[index.toLowerCase()]} ` :
-          memo += ` ${index.charAt(0).toUpperCase()}${index.slice(1).toLowerCase()} `;
-      })
-      .trim(); */
-
-      let preprocessedJobStr = job
-        .toLowerCase()
-        .split(' ')
-        .map(word => word in specialFormatTerms 
-          ? specialFormatTerms[word] 
-          : word.replace(/\b([a-z])/gmi, match => match.toUpperCase())
-        )
-        .join(' ');
-
-
-        // .replace(/\b([a-z])/gmi, match => match.toUpperCase())
-        // .replace(/(\s|\b)\/(\s|\b)/g, '/')
-        // .join(' ');
-
-      // let formattedJob = Object.keys(specialFormatTerms)
-      //   .forEach(term => {
-      //     if (job.includes(term)) {
-      //       job = job.replace(term, specialFormatTerms[term]);
-      //     }
-      //   });
-
-       // preprocessedJobStr
-       return preprocessedJobStr;
+      .map(word => word in specialFormatTerms ? specialFormatTerms[word]  // Map special terms
+        : new RegExp(`[A-Z]{${word.length}}`, 'm').test(word) ? word      // Capture acronyms
+        : word.replace(/\b([a-z])/gmi, match => match.toUpperCase())
+      )
+      .join(' ');
   }
 
   // Returns an object mapping <addressComponent> keys to their respective string values:
@@ -140,9 +105,7 @@ export default class BaseComponent extends Component {
   // Modifies plain-text nine-digit phone number [Format: XXXXXXXXX] to 
   //  conform to the desired style [Format: +1 (XXX) XXX-XXX]:
   parsePhoneNumber(num) {
-    if (num) {
-      return num.replace(/^(\d{3})(\d{4})(\d{3})/, '+1 ($1) $2-$3');
-    }
+    return !!num ? num.replace(/^(\d{3})(\d{4})(\d{3})/, '+1 ($1) $2-$3') : 'Unlisted number';
   }
 
   // Modifes photo URL from default small-file size ('ms') to large-file size ('l'):
@@ -170,6 +133,7 @@ export default class BaseComponent extends Component {
   // Constructs the appropriate Google Maps Directions service URL using geographic coordinates,
   //  in the case of Google Places API data input, and address strings for Yelp API data input:
   getGoogleMapsDirectionsURL(listItemCoords, selectedJobCoords, API_Provider) {
+    
     // Utility function returns "concatenation-case" string (i.e., words joined by plus ("+") signs)
     //  for parsed `listItemCoords` inputs sourced from the Yelp API:
     const getConcatCase = (addressObj) => Object.keys(addressObj)
@@ -180,9 +144,8 @@ export default class BaseComponent extends Component {
       }, [])
       .join(' ')
       .replace(/\s/g, '+');
-    let GoogleDirectionsURLPrefix = 'https://www.google.com/maps/dir/';
 
-    return GoogleDirectionsURLPrefix += (API_Provider === 'Google Places API'
+    return 'https://www.google.com/maps/dir/' + (API_Provider === 'Google Places API'
       ? `${selectedJobCoords.lat},${selectedJobCoords.lng}/${listItemCoords.lat},${listItemCoords.lng}/`
       : `${selectedJobCoords.lat},${selectedJobCoords.lng}/${getConcatCase(listItemCoords)}/`);
   }
@@ -283,19 +246,20 @@ export default class BaseComponent extends Component {
   }
 
   // Returns the Euclidean distance separating two geographical points in miles (mi):
-  getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-    const R = 6371,       // Radius (r) of the Earth in kilometers (km)
-          kmToMilesConversionFactor = 0.621371;
+  getDistanceFromLatLngInKm(coordsObj1, coordsObj2) {
+    const RADIUS_OF_EARTH = 6371,                    // Units: Kilometers (km)
+          KM_TO_MILES_CONVERSION_FACTOR = 0.621371,
+          [{ lat: lat1, lng: lng1 }, { lat: lat2, lng: lng2 }] = [coordsObj1, coordsObj2];
 
-    let [dLat, dLon] = [this.deg2rad(lat2 - lat1), this.deg2rad(lon2 - lon1)];  // Class method `deg2rad` defined above
+    let [dLat, dLng] = [this.deg2rad(lat2 - lat1), this.deg2rad(lng2 - lng1)];  // Class method `deg2rad` defined above
     let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
             Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * 
-            Math.sin(dLon / 2) * Math.sin(dLon / 2); 
+            Math.sin(dLng / 2) * Math.sin(dLng / 2); 
     let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)),
-        d = R * c;        // Distance (d) in kilometers (km)
+        distance = RADIUS_OF_EARTH * c;             // Units: Kilometers (km)
     
-    // Convert kilometers (km) to miles (mi)
-    return +`${(d * kmToMilesConversionFactor).toFixed(2)}`;
+    // Convert back-conversion from kilometers (km) to miles (mi):
+    return +`${(distance * KM_TO_MILES_CONVERSION_FACTOR).toFixed(2)}`;
   }
 
 }

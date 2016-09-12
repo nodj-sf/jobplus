@@ -12,10 +12,6 @@ class AmenitiesList extends BaseComponent {
     super(props);
   }
 
-  assignDisplayClass(obj) {
-    return obj === 'flex' ? 'GPlacesList container' : 'GPlacesList container inactive';
-  }
-
   renderList(amenitiesList) {
     return amenitiesList.map((item, index, amenitiesList) =>
       <DisplayList
@@ -98,28 +94,3 @@ let mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AmenitiesList);
-
-
-
-// <i className='fa fa-futbol-o' aria-hidden='true' key='FontAwesome (.fa) soccer ball glyph icon (Black).'></i>
-
-// {[,
-//   <img src={DBIc} className='amenityHeaderGlyph' />,
-//   'Gyms & Fitness'
-// ]}
-
-
-// <div className='yelpDescription card-body'>
-//   <p className='numRestaurantReviews'>{ place.rating }</p>
-//   <i>{ `${this.getDistanceFromLatLonInKm(job.latitude,job.longitude,place.geometry.location.lat, place.geometry.location.lng)} mi` }</i>
-// </div>
-
-
-// var React = require('react');
-// var Icon = require('babel!svg-react!../svg/my-icon.svg?name=Icon');
-
-// module.exports = React.createClass({
-//     render () {
-//         return <Icon className='normal' />;
-//     }
-// });

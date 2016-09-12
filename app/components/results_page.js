@@ -46,15 +46,9 @@ class Results extends Component {
     props.selectJob(job);
     props.fetchYelp(job.city, job.latitude, job.longitude);
 
-    [props.fetchTrains,
-     props.fetchBus,
-     props.fetchParks,
-     props.fetchGyms
-    ].forEach(action => action(job.latitude, job.longitude));
-    // props.fetchTrains(job.latitude, job.longitude);
-    // props.fetchBus(job.latitude, job.longitude);
-    // props.fetchParks(job.latitude, job.longitude);
-    // props.fetchGyms(job.latitude, job.longitude);
+    [props.fetchTrains, props.fetchBus, props.fetchParks, props.fetchGyms]
+      .forEach(action => action(job.latitude, job.longitude));
+      
     props.scrapeDetail(job.url);
   }
 

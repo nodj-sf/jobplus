@@ -5,18 +5,18 @@ const cheerio = require('cheerio');
 
 let details = (url) => {
   return function(res) {
-    return new Promise(function(resolve, reject) {
-      request(url, function(error, response, html) {
+    return new Promise((resolve, reject) => {
+      request(url, (error, response, html) => {
         if (error) { 
           reject(error);
         } else {
           let json = {};
           let $ = cheerio.load(html);
-          let summary = $('.summary')[0].children.filter(function(obj) {
+          let summary = $('.summary')[0].children.filter(obj => {
             if (obj.data && (obj.data.trim()).length) {
               return obj.data;
             }
-          }).map(function(obj) {
+          }).map(obj => {
             if (typeof obj.data) {
               return obj.data;
             }

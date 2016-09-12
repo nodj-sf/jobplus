@@ -10,6 +10,7 @@ class DisplayList extends BaseComponent {
   constructor(props) {
     super(props);
     this.toggleListContainer = this.toggleListContainer.bind(this);
+    this.assignClassNames = this.assignClassNames.bind(this);
   }
 
   // Class method calls Redux action on list of type specified by passed-down `listType` prop:
@@ -17,12 +18,20 @@ class DisplayList extends BaseComponent {
     return this.props.toggleGooglePlacesListContainer(this.props.listType);
   }
 
+  // Class method returns CSS classes respective of the Redux store's key-value for the key
+  //  specified by the passed-down `listType` prop:
+  assignClassNames() {
+    if (this.props.toggleContainerDisplay[`list_container_${this.props.listType}`]) {
+      return 'inactive';
+    }
+  }
+
   renderList(list, job) {    
     return list.slice(0, 6).map((listItem, index) => {
-      const [listItem_Latitude, listItem_Longitude] = [listItem.geometry.location.lat, listItem.geometry.location.lng],
-            [jobLat, jobLng] = [job.latitude, job.longitude],
-            stationDistance = this.getDistanceFromLatLonInKm(jobLat, jobLng, listItem_Latitude, listItem_Longitude),
-            GMapsDirectionsURL = `https://www.google.com/maps/dir/${jobLat},${jobLng}/${listItem_Latitude},${listItem_Longitude}/`,
+      const listItemCoords = { lat: listItem.geometry.location.lat, lng: listItem.geometry.location.lng },
+            jobCoords = { lat: job.latitude, lng: job.longitude },
+            stationDistance = this.getDistanceFromLatLngInKm(jobCoords, listItemCoords),
+            GMapsDirectionsURL = this.getGoogleMapsDirectionsURL(listItemCoords, jobCoords, 'Google Places API'),
             [fallbackImageURL, fallbackImageAlt] = [
               this.props.item.listImage.fallbackGraphic.sourceURL, 
               this.props.item.listImage.fallbackGraphic.altDescription
@@ -34,10 +43,10 @@ class DisplayList extends BaseComponent {
       }
       
       return (
-        <li className='restaurantLI one-third' key={listItem.place_id}>
+        <li className='restaurantLI one-third' key={ `GooglePlacesItemID_${listItem.place_id}` }>
           <div className='nameRating'>
             <a 
-              href={ `http://maps.google.com/?q=${listItem_Latitude},${listItem_Longitude}` }
+              href={ `http://maps.google.com/?q=${listItemCoords.lat},${listItemCoords.lng}` }
               target='_blank' >
               
               <h5 className='textEllipsis expandFromCenter'>
@@ -46,7 +55,7 @@ class DisplayList extends BaseComponent {
               { 
                 (listItem.photos) ? 
                   <div className='yelpPhoto textEllipsis'>
-                    <img src={ img } alt={ listItem.name } />
+                    <img src={ itemImage } alt={ `Yelp restaurant photo: ${listItem.name}` } />
                   </div> : 
                   // No Image 
                   <div className='yelpPhoto textEllipsis'>
@@ -138,17 +147,10 @@ class DisplayList extends BaseComponent {
         <div className='listItemsContainer'>
           {
             this.props.list.length 
-              ? <ul className={ this.props.toggleContainerDisplay[`list_container_${this.props.listType}`]
-                                  ? 'GPlacesList container inactive' 
-                                  : 'GPlacesList container'
-                              }>
+              ? <ul className={ `GPlacesList container ${this.assignClassNames()}` }>
                   { this.renderList(this.props.list, this.props.job) }
                 </ul>
-              // : <p className='noResultsMsg'>
-              : <p className={ this.props.toggleContainerDisplay[`list_container_${this.props.listType}`]
-                                  ? 'noResultsMsg inactive' 
-                                  : 'noResultsMsg'
-                             }>
+              : <p className={ `noResultsMsg ${this.assignClassNames()}` }>
                   { `No results to show for ${this.props.listType} stations in this area.` }
                 </p>
           }
@@ -156,13 +158,6 @@ class DisplayList extends BaseComponent {
       </div>
     );
   }
-  //       <div className="overlay overlayBottomMargin">
-  //         <ul className='busList container'>{gymsList.length && this.renderList(gymsList, job) 
-  //           || 'There are no results for this area' }
-  //         </ul>
-  //       </div>
-
-
 };
 
 let mapStateToProps = (state) => ({
@@ -175,3 +170,9 @@ let mapDispatchToProps = (dispatch) => bindActionCreators({
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(DisplayList);
+
+// <div className="overlay overlayBottomMargin">
+//   <ul className='busList container'>{gymsList.length && this.renderList(gymsList, job) 
+//     || 'There are no results for this area' }
+//   </ul>
+// </div>

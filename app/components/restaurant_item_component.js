@@ -20,13 +20,12 @@ class RestaurantListItem extends BaseComponent {
 
   render() {
     const restaurant = this.props.restaurantListItem,
-          [jobLat, jobLng] = [this.props.selectedJob.latitude, this.props.selectedJob.longitude],
-          [restLat, restLng] = [restaurant.coordinate.latitude, restaurant.coordinate.longitude],
+          restaurantCoords = { lat: restaurant.coordinate.latitude, lng: restaurant.coordinate.longitude },
+          jobCoords = { lat: this.props.selectedJob.latitude, lng: this.props.selectedJob.longitude },
           restaurantAddress = this.parseAndFormatYelpRestaurantAddress(restaurant.display_address),
-          [starRatingImage, phoneNo, yelpURL] = [restaurant.rating_img_url, restaurant.phone, restaurant.url],
-          restaurantDistance = this.getDistanceFromLatLonInKm(jobLat, jobLng, restLat, restLng),
-          GMapsDirectionsURL = this.getGoogleMapsDirectionsURL(restaurantAddress, { lat: jobLat, lng: jobLng }, 'Yelp API');
-          // GMapsDirectionsURL = `https://www.google.com/maps/dir/${jobLat},${jobLng}/${address[0].concat(address[2]).split(' ').join('+')}/`;
+          restaurantDistance = this.getDistanceFromLatLngInKm(jobCoords, restaurantCoords),
+          phoneNo = restaurant.phone,
+          GMapsDirectionsURL = this.getGoogleMapsDirectionsURL(restaurantAddress, jobCoords, 'Yelp API');
 
     return (
       <li className='restaurantLI one-third' >

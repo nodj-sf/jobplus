@@ -116,22 +116,25 @@ export const jobInputTerm = (jobTerm) => ({
   payload: { jobTerm }
 });
 
-export const lastJobSearch = (lastJob) => ({
-  type: 'LAST_JOB',
-  payload: lastJob
-});
 
 export const locationInputTerm = (locationTerm) => ({
   type: 'LOCATION_INPUT_TERM',
   payload: { locationTerm }
 });
 
+// ACtion registers for job input on user submission of new search query:
+export const lastJobSearch = (lastJob) => ({
+  type: 'LAST_JOB',
+  payload: lastJob
+});
+
+// Action registers for location input on user submission of new search query:
 export const lastLocationSearch = (lastLocation) => ({
   type: 'LAST_LOCATION',
   payload: lastLocation
 });
 
-// ACtion used to handle display toggle of Google Maps Modal box:
+// Action used to handle display toggle of Google Maps Modal box:
 export const toggleModal = () => ({
   type: 'TOGGLE_MODAL'
 });
