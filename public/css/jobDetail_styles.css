@@ -135,9 +135,7 @@ div.yelpPhoto > img {
   transform: translateX(-50%);
 }
 
-div.yelpPhoto > img.fallbackImage {
-  width: 146px; 
-}
+div.yelpPhoto > img.fallbackImage { width: 146px; }
 
 .restaurantLI, 
 .transportationCard, 
@@ -164,9 +162,7 @@ div.yelpPhoto > img.fallbackImage {
   }
 
 
-li.restaurantLI > div {
-  padding: 0 1.5rem;
-}
+li.restaurantLI > div { padding: 0 1.5rem; }
 
 div.amenityDistanceInMiles {
   display: inline-block;
@@ -198,9 +194,7 @@ li.restaurantLI > a {
   }
 
 
-.GPlacesList {
-  background-color: #E9EBEE;
-}
+.GPlacesList { background-color: #E9EBEE; }
 
 p.noResultsMsg {
   width: 100%;
@@ -210,9 +204,7 @@ p.noResultsMsg {
 
 #jobInfoBody > div:first-child,
 .transportationContent, 
-.amenitiesContent {
-  padding: 0 0 1rem 2rem;
-}
+.amenitiesContent { padding: 0 0 1rem 2rem; }
 
 .nameRating > h5 {
   text-align: center;
@@ -241,9 +233,7 @@ p.noResultsMsg {
   text-align: center;
 }
 
-.job-detail h3 a {
-  text-decoration: none;
-}
+.job-detail h3 a { text-decoration: none; }
 
 .job-detail blockquote a {
   text-decoration: none;
@@ -284,9 +274,7 @@ a.YelpPhoneNo {
   word-spacing: -0.5rem;
 }
 
-a.YelpPhoneNo > em {
-  font-style: normal;
-}
+a.YelpPhoneNo > em { font-style: normal; }
 
 .yelpDescription div.blockDistanceContainer {
   display: inline-block;
@@ -302,17 +290,11 @@ a.YelpPhoneNo > em {
   margin: 1.25px;
   background: #BEBEBE;
 }
-.job-detail h3 a {
-  color: #696969;
-}
+.job-detail h3 a { color: #696969; }
 
-.job-detail blockquote a {
-  color: #222;
-}
+.job-detail blockquote a { color: #222; }
 
-.restaurantContainer > div:first-child a:hover > i {
-  text-shadow: 0 0 6px #FFF;
-}
+.restaurantContainer > div:first-child a:hover > i { text-shadow: 0 0 6px #FFF; }
 
 div.restaurantContainer:last-child div.overlay {
 
