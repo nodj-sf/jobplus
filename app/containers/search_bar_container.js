@@ -28,11 +28,13 @@ class SearchBar extends Component {
 
   // Binds user-provided job titles to the current `jobTerm` state value:
   onJobTitleInputChange(evt = evt || window.event) {
+    evt.preventDefault();
     this.props.jobInputTerm(evt.target.value || evt.srcElement.value).payload;
   }
 
   // Binds user-provided location names to the current `location` state value:
   onLocationInputChange(evt = evt || window.event) {
+    evt.preventDefault();
     this.props.locationInputTerm(evt.target.value || evt.srcElement.value).payload;
   }
 
@@ -45,7 +47,7 @@ class SearchBar extends Component {
         : evt.address_components[2].types.includes('administrative_area_level_1')
           ? `, ${evt.address_components[2].short_name}` : ''
     );
-      console.log(`Formatted Locale Autocompletion Search Term:\t${formattedSearchTerm}`);
+      // console.log(`Formatted Locale Autocompletion Search Term:\t${formattedSearchTerm}`);
 
     this.props.locationInputTerm(formattedSearchTerm).payload;
   }
@@ -68,62 +70,34 @@ class SearchBar extends Component {
     this.commitLastJobToStore();
     this.props.push('/results');
   }
- 
-  // Bias the autocomplete object to the user's geographical location,
-  // as supplied by the browser's 'navigator.geolocation' object.
-  /* 
-    geolocate() {
-      let autocomplete = new Google.maps.places.Autocomplete(
-        // @type {!HTMLInputElement} //
-        (document.getElementById('searchLocation')),
-        {types: ['geocode']}
-        // {types: ['(cities)']}
-      );
-
-      // When the user selects an address from the dropdown, populate the address fields in the form.
-      autocomplete.addListener('place_changed', fillInAddress);
-
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-          var geolocation = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          var circle = new google.maps.Circle({
-            center: geolocation,
-            radius: position.coords.accuracy
-          });
-          autocomplete.setBounds(circle.getBounds());
-        });
-      }
-    } 
-  */
 
   render() {
     return (
       <form id='searchForm' onSubmit={ this.onFormSubmit }>
         <div className='box'>
           <div className='container-3'>
-
             <div id='searchInputsBoundary'>
               <input 
                 id='searchJob' 
                 className='formSearchInpt'
-                type='search'
+                type='input'
                 results='4'
                 placeholder='Job'
                 autoComplete='on'
-                onChange={ this.onJobTitleInputChange } />
-              
+                autoCapitalize='words'
+                onChange={ this.onJobTitleInputChange }
+                required />
               <Autocomplete
                 id='searchLocation'
                 className='formSearchInpt'
-                type='search'
+                type='input'
                 results='4'
                 placeholder='City'
+                autoComplete='on'
                 autoCapitalize='words'
                 onChange={ this.onLocationInputChange }
-                onPlaceSelected={ this.onLocationAutoComplete || null } />
+                onPlaceSelected={ this.onLocationAutoComplete || null }
+                required />
             </div>
           </div>
 

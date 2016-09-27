@@ -10,6 +10,12 @@ body {
   width: 100%;
 }
 
+body input:focus,
+*:selection,
+*:active,
+*:visited,
+*:target { outline: none; };
+
 h3,
 h4,
 h5,
@@ -37,25 +43,17 @@ blockquote {
   }
 
 
-button:hover {
-  border: none;
-}
+button:hover { border: none; }
 
-a {
+a,
+a:hover {
   color: #000;
   text-decoration: none;
 }
-  a:hover {
-    color: #000; 
-    cursor: pointer;
-  }
-  div.yelpPhoto:hover div.yelpAlphaLayer > img {
-    color: #FFF;
-  }
+  div.yelpPhoto:hover div.yelpAlphaLayer > img { color: #FFF; }
 
-img.cursorAction:hover {
-  cursor: pointer;
-}
+a,
+img.cursorAction:hover { cursor: pointer; }
 
 img.featuredImg {
   /* position: relative; */
@@ -89,9 +87,7 @@ hr {
   font: 500 4.5vh/6vh 'Oswald', 'Open Sans', 'Raleway', sans-serif;
 }
 
-.intro-logo span {
-  color: #7A7A7A;
-}
+.intro-logo span { color: #7A7A7A; }
 
 #bckgHero {
   position: relative;
@@ -128,8 +124,6 @@ hr {
   margin: 0;
   background: #FFF;
 }
-
-/* .appCols {  } */
 
 div.meetTheTeam_Container {
   position: relative;
@@ -174,9 +168,7 @@ div.socialShare_Container h6 {
   font-weight: bold;
 }
 
-div.socialShare_Container h6 {
-  font: inherit;
-}
+div.socialShare_Container h6 { font: inherit; }
 
 div.socialMediaIcons {
   display: flex;
@@ -222,7 +214,6 @@ div.socialMediaIcons img {
        -o-filter: grayscale(100%);
 }
     .teamProfPics:hover > img {
-      width: 125%;
       -webkit-filter: grayscale(0);
          -moz-filter: grayscale(0);
           -ms-filter: grayscale(0);
@@ -245,29 +236,7 @@ div.socialMediaIcons img {
 
 
 
-div.restaurantContainer .overlayBottomMargin { margin-bottom: 17.5px; }
-
-/*
-  #chartContainer {
-    position: relative;
-    display: inline-block;
-    width: 40%;
-    min-height: 200px;
-    float: right;
-    background: -webkit-linear-gradient(209deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
-    background:      -o-linear-gradient(209deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
-    background:         linear-gradient(299deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
-  }
-*/
-
-/*
-  svg.rd3-chart {
-    position: relative;
-    display: block;
-    width: 80%;
-    margin: auto;
-  }
-*/
+.restaurantContainer .overlayBottomMargin { margin-bottom: 17.5px; }
 
 h4.infoWindow_Header {
   display: inline;
@@ -339,8 +308,6 @@ div#overlay {
   background: transparent; 
   z-index: 10;
 }
-
-/* #headSection1 {  } */
 
 #searchForm { 
   position: relative;
@@ -486,21 +453,6 @@ button.button-primary {
 
 .one-third { width: 30%; }
 
-/*
-  .container > .one-third:nth-of-type(3n + 1) {
-    margin-left: 2.5%;
-  }
-
-  .container > .one-third:nth-of-type(3n + 2) {
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-  }
-
-  .container > .one-third:nth-of-type(3n + 3) {
-    margin-right: 2.5%;
-  }
-*/
-
 #searchInputsBoundary {
   position: relative;
   display: flex;
@@ -514,7 +466,8 @@ button.button-primary {
   align-content: center;
 }
 
-#searchLocation { text-transform: capitalize; }
+#searchLocation,
+#searchJob { text-transform: capitalize; }
 
 .container-3 input.formSearchInpt {
   width: 37.5%;
@@ -548,6 +501,7 @@ button.button-primary {
 #searchInputsBoundary *:focus + * {
   width: 50%;
   text-indent: 1rem;
+  outline: none;
   background: #2B303B;
 }
 
@@ -713,24 +667,22 @@ input:-webkit-autofill {
 /* ==========================================================================
    ================== React-Tabs Module Style Declarations ==================
    ========================================================================== */
-.react-tabs [role='tablist'] { margin: 0; }
-
-.react-tabs [role='tab'] {
+.ReactTabs__TabList[role='tablist'][role='tablist'] { margin: 0; }
+.ReactTabs__Tab[role='tab'] {
   width: 33%;
   margin-bottom: 0;
   padding: 4px 0;
   text-align: left;
   text-indent: 1rem;
-  font-size: 1.85rem/2.25rem 'Raleway', 'Open Sans', Arial, sans-serif;
+  font: 1.85rem/2.25rem 'Raleway', 'Open Sans', Arial, sans-serif;
   background: rgba(220, 220, 220, 0.58);
-  border: 1px solid #C8C8C8;                        /* Color: Gainsboro */
+  border: 1px solid #C8C8C8;      /* Color: Gainsboro */
   border-radius: .5rem .5rem 0 0;
   box-sizing: border-box;
 }
-
-.react-tabs [role='tab'][aria-selected='true'] {
+.ReactTabs__Tab[role='tab'][aria-selected='true'] {
   background-color: rgb(20, 164, 181);
   border-color: transparent;
 }
-
+.ReactTabs__TabList > li:last-child[aria-selected='true'] { background-color: hsl(0, 53%, 52%); }
 .ReactTabs__Tab:last-child { width: 34%; }

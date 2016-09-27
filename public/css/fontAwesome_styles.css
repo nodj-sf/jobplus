@@ -3,18 +3,14 @@
    ============== FontAwesome (Class `.fa`) Style Declarations ==============
    ========================================================================== */
 .restaurantContainer h5 .fa-yelp {
-  color: #000;                      /* #AF0606 */
+  color: #000;      /* #AF0606 */
   font-weight: 900;
   text-shadow: 0 0 2px rgba(255, 255, 255, 0.75);
 }
 
-.fa-yelp {
-  color: #CD2122;                                   /* Color Variants: #C01D1D; */
-}
-
-.fa-bus {
-  color: #00F;
-}
+.fa-yelp {color: #000 }     /* Color Variants: #C01D1D; | #CD2122; */
+.fa-bus { color: #00F; }
+.fa.cardDescriptionGlyph { color: #14A4B5; }
 
 .loadingSpinner {
   position: absolute;
@@ -25,12 +21,8 @@
 
 div.card-body .fa,
 div.job-detail .fa {
-  color: #14A4B5;                       /* rgb(20, 164, 181); */
-  font-size: 1.6rem;
-}
-
-.fa.cardDescriptionGlyph {
   color: #14A4B5;
+  font-size: 1.6rem;
 }
 
 .collapseGlyph.fa {
