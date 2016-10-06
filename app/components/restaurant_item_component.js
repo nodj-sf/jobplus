@@ -11,11 +11,19 @@ class RestaurantListItem extends BaseComponent {
   constructor(props) {
     super(props);
     this.toggleYelpModal = this.toggleYelpModal.bind(this);
+    this.getYelpDescription = this.getYelpDescription.bind(this);
   }
 
   // Class method controls visibility of the Yelp Modal respective of `restaurant.id`:
   toggleYelpModal() {
     return this.props.toggleYelpModal(this.props.restaurantListItem.id);
+  }
+
+  // Description formatting to account for plurality (> 1) or singularity (=== 1) of Yelp user review rating stars:
+  getYelpDescription(restaurant) {
+    const baseClause = 'Yelp user review rating: ';
+    let rating = restaurant.rating;
+    return `${baseClause}${rating} star${rating != 1 ? 's' : ''}.`;
   }
 
   render() {
@@ -40,20 +48,20 @@ class RestaurantListItem extends BaseComponent {
               <div className='yelpPhoto textEllipsis' data-magnify='&#x1f50d'>
                 <img 
                   src={ this.parseYelpRestaurantPhoto(restaurant.photo).originalFileSize } 
-                  alt={ `Yelp user review rating: ${ restaurant.rating } star(s)` } />
+                  alt={ this.getYelpDescription(restaurant) } />
                 <div className='yelpAlphaLayer'>
                   <img 
                     src='http://goo.gl/r1ypJW'
                     className='cursorAction'
                     alt='Magnifying glass image-expansion action glyph icon (White).'
                     onClick={ () => this.toggleYelpModal() } />
-              
+
                     <RestaurantModal 
                       yelpID={ this.props.restaurantListItem.id }
                       yelpRestaurant={ restaurant }
                       yelpRestaurantName={ this.parseAndFormatJobTitle(restaurant.name) }
                       yelpPhoto={ this.parseYelpRestaurantPhoto(restaurant.photo) }
-                      yelpDescription={ `Yelp user review rating: ${ restaurant.rating } star(s)` }
+                      yelpDescription={ this.getYelpDescription(restaurant) }
                       deactivateYelpModal={ this.toggleYelpModal } />
                 </div>
               </div> :
@@ -96,13 +104,12 @@ class RestaurantListItem extends BaseComponent {
                 <i className='fa fa-map' key={ `Distance_${restaurantDistance}` }></i>,
                 `\t`,
                 <a 
-                  href={ GMapsDirectionsURL } 
-                  className='YelpPhoneNo expandFromCenter' 
-                  target='_blank' 
-                  key={ `GMapURL_${GMapsDirectionsURL}` }>
-
-                  <em 
-                    key={`RestaurantDist_${restaurantDistance}`} 
+                  key={ `GMapURL_${GMapsDirectionsURL}` }
+                  href={ GMapsDirectionsURL }
+                  className='YelpPhoneNo expandFromCenter'
+                  target='_blank'>
+                  <em
+                    // key={`RestaurantDist_${restaurantDistance}`}
                     style={{ color: this.distanceColor(restaurantDistance) }}>
                     { `${restaurantDistance} mi` }
                   </em>
@@ -115,15 +122,15 @@ class RestaurantListItem extends BaseComponent {
           <p style={{ clear: 'both' }}>
             {[
               <i 
-                className='fa fa-phone-square' 
-                key={ `TelNo_${phoneNo}` }>
+                key={ `TelNo_${phoneNo}` }
+                className='fa fa-phone-square'>
               </i>,
               `\t`,
               <a 
-                href={ `tel:+1${phoneNo}` } 
-                className='YelpPhoneNo expandFromCenter' 
-                target='_blank' 
-                key={ `PhoneNo_${phoneNo}` }>
+                key={ `PhoneNo_${phoneNo}` }
+                href={ `tel:+1${phoneNo}` }
+                className='YelpPhoneNo expandFromCenter'
+                target='_blank'>
                 { this.parsePhoneNumber(phoneNo) }
               </a>
             ]}

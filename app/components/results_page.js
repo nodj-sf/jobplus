@@ -41,7 +41,6 @@ class Results extends Component {
   // Primary callback used in aggregation of the `results_page` display view:
   initJob(job) {
     let props = this.props;
-
     props.loading(false);
     props.selectJob(job);
     props.fetchYelp(job.city, job.latitude, job.longitude);

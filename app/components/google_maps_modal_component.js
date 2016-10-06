@@ -10,18 +10,18 @@ import { connect } from 'react-redux';
 import BaseComponent from './base_component';
 import customStyles from '../constants/google_map_modal_styles.json';
 import mapStylesObject from '../constants/google_map_styles.json';
+import mapMarkerPaths from '../constants/map_marker_paths.json';
 import { fetchJobs, selectJob, toggleModal } from '../actions/index';
 
 
 class GMap_Modal extends BaseComponent {
   constructor(props) {
     super(props);
-  }
-
-  state = {
-    // origin: new google.maps.LatLng(this.props.activeJob.latitude, this.props.activeJob.longitude),
-    // destination: new google.maps.LatLng(41.8525800, -87.6514100),
-    directions: null
+    this.state = {
+      // origin: new google.maps.LatLng(this.props.activeJob.latitude, this.props.activeJob.longitude),
+      // destination: new google.maps.LatLng(41.8525800, -87.6514100),
+      directions: null
+    };
   }
 
   // Callback function that dynamically repositions the Google Map over the geometric center of a search query's job results:
@@ -67,7 +67,7 @@ class GMap_Modal extends BaseComponent {
         break;
       case 'park':
         typeRef = this.props.parkMarkers;
-        break
+        break;
       default:
         typeRef = this.props.jobMarkers;
         break;
@@ -212,6 +212,9 @@ class GMap_Modal extends BaseComponent {
         PIN_FILL_COLOR = '#FFF'; 
         break;
     }
+      // JOB_MARKER:
+        // "PIN_FILL_COLOR": marker.markerKey === this.props.activeJob.jobkey ? '#14A4B5' : '#7A7A7A',
+        // "PIN_Z_INDEX": marker.markerKey === this.props.activeJob.jobkey ? 1000 : 900,
 
     return (
       <Marker

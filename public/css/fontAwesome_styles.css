@@ -8,8 +8,11 @@
   text-shadow: 0 0 2px rgba(255, 255, 255, 0.75);
 }
 
-.fa-yelp {color: #000 }     /* Color Variants: #C01D1D; | #CD2122; */
+ul[role='tablist'] .fa { text-shadow: 0 0 0.5px DimGray; }
+
 .fa-bus { color: #00F; }
+.fa-futbol-o { color: #00A65E; }
+.fa-yelp {color: #AD0C13; }     /* Color Variants: #C01D1D; | #CD2122; */
 .fa.cardDescriptionGlyph { color: #14A4B5; }
 
 .loadingSpinner {

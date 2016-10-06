@@ -10,6 +10,7 @@ import { toggleGooglePlacesListContainer } from '../actions/index';
 class AmenitiesList extends BaseComponent {
   constructor(props) {
     super(props);
+    this.renderList = this.renderList.bind(this);
   }
 
   renderList(amenitiesList) {
@@ -62,7 +63,6 @@ class AmenitiesList extends BaseComponent {
         }
       }
     ];
-
 
     return (
       (this.props.loading) ?

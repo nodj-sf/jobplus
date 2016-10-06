@@ -8,6 +8,18 @@ import yelpRestaurantModalStyles from '../constants/yelp_restaurant_modal_styles
 class RestaurantModal extends Component {
   constructor(props) {
     super(props);
+    this.getRestaurantIndex = this.getRestaurantIndex.bind(this);
+    this.viewNextPhoto = this.viewNextPhoto.bind(this);
+  }
+
+  getRestaurantIndex(restaurant) {
+    let restaurantID = restaurant.replace(/Yelp_Modal_/, '');
+    return this.props.yelpListings.findIndex(obj => obj.id === restaurantID);
+  }
+
+  viewNextPhoto() {
+    this.props.deactivateYelpModal();
+
   }
 
   render() {
@@ -15,13 +27,28 @@ class RestaurantModal extends Component {
       <Modal
         isOpen={ this.props.yelpModalState[`Yelp_Modal_${this.props.yelpID}`] }
         style={ yelpRestaurantModalStyles } >
-
+        <i 
+          className='fa fa-times-circle XButton' 
+          onClick={ () => this.props.deactivateYelpModal() }>
+        </i>
         <div className='yelpModalContainer'>
           <div className='yelpRestaurantTitleBar'>
             <a 
               href={ this.props.yelpRestaurantURL } 
               target='_blank'
-              className='expandFromCenter'>{ this.props.yelpRestaurantName }</a>
+              className='expandFromCenter'>
+              { this.props.yelpRestaurantName }
+            </a>
+          </div>
+          <div className='navigation-arrows-wrapper'>
+            <i
+              className='navigation-arrow-icon'
+              onClick={ () => this.viewNextPhoto() }>
+            </i>
+            <i
+              className='navigation-arrow-icon'
+              onClick={ () => this.viewNextPhoto() }>
+            </i>
           </div>
           <img 
             className='featuredImg' 
@@ -30,25 +57,29 @@ class RestaurantModal extends Component {
           <div className='modalToolbar'>
             <a 
               href={ this.props.yelpPhoto.yelpLightboxURL(this.props.yelpID) } 
-              target='_blank'>View On Yelp</a>
+              target='_blank'>
+              View On Yelp
+            </a>
             <a 
               href={ this.props.yelpPhoto.originalFileSize } 
-              download={ `${this.props.yelpID}_Yelp_Photo` }>Download</a>
+              download={ `${this.props.yelpID}_Yelp_Photo` }>
+              Download
+            </a>
           </div>
         </div>
-        <i 
-          className='fa fa-times-circle XButton' 
-          onClick={ () => this.props.deactivateYelpModal() }>
-        </i>
       </Modal>
-
     );
   }
 
 };
 
 let mapStateToProps = (state) => ({
-  yelpModalState: state.toggleYelpModal
+  yelpModalState: state.toggleYelpModal,
+  yelpListings: state.activeYelp
 });
 
 export default connect(mapStateToProps)(RestaurantModal);
+
+
+// &lt; 
+// &gt; 

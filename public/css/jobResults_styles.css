@@ -201,8 +201,10 @@ div.jobLI_MetaInfo {
 
 #mapsContainer {
   position: relative;
-  height: 90%;
-  width: 100%;
+  /* width: 100%; */
+  width: 400px;
+  /* height: 90%; */
+  height: 275px;
   margin: 0;
 }
 

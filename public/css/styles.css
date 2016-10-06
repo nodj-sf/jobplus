@@ -19,9 +19,7 @@ body input:focus,
 h3,
 h4,
 h5,
-h6 {
-  margin-bottom: 0;
-}
+h6 { margin-bottom: 0; }
 
 blockquote {
   font: 400 italic 1.7rem/2.4rem 'Raleway', 'Helvetica Neue', sans-serif;
@@ -38,9 +36,7 @@ blockquote {
     top: 0.5rem;
     font: normal 2.4rem/2.4rem 'Helvetica Neue', 'Raleway', sans-serif;
   }
-  blockquote:after {
-    content: close-quote;
-  }
+  blockquote:after { content: close-quote; }
 
 
 button:hover { border: none; }
@@ -53,6 +49,9 @@ a:hover {
   div.yelpPhoto:hover div.yelpAlphaLayer > img { color: #FFF; }
 
 a,
+i:not(.fa),
+button,
+input[type='submit'],
 img.cursorAction:hover { cursor: pointer; }
 
 img.featuredImg {
@@ -71,14 +70,6 @@ hr {
   box-sizing: border-box;
   border-width: 0;
   border-top: 1px solid #E1E1E1;
-}
-
-.textEllipsis {
-  word-break: break-word;
-  word-wrap: break-word;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
 }
 
 .intro-logo {
@@ -233,8 +224,6 @@ div.socialMediaIcons img {
   background: #FFF;
   overflow: hidden;
 }
-
-
 
 .restaurantContainer .overlayBottomMargin { margin-bottom: 17.5px; }
 
@@ -407,6 +396,7 @@ button.button-primary {
     background-color: #A7A5A5;
   }
 
+
 .container { 
   position: relative;
   display: flex;
@@ -512,85 +502,10 @@ button.button-primary {
   font-size: 18px;
 }
 
-
-/* Previously used to control the magnifying glass search glyph icon's formatting:
-  .container-3 input.formSearchInpt:focus + span.icon {
-    position: absolute;
-    left: 1.5%;
-    margin: 0 14px;
-    color: #FFF;
-    line-height: 60px;
-    font-size: 3rem;
-    z-index: 10;
-  }
-
-  .container-3 span {
-    position: absolute;
-    left: 26.5%;
-    margin: 0 10px;
-    line-height: 4.5vh;
-    // font-size: 2.5rem; //
-    z-index: 10;
-    color: #FFF;
-    transition: all 0.25s ease-in;                    // left, font-size //
-  }
-*/
-
 #searchJob {
   -webkit-appearance: textfield;
   -webkit-transition: padding 0.25s ease-out;
   transition:         padding 0.25s ease-out;
-}
-
-input[type='search'] {
-  position: relative;
-  display: inline-block;
-  width: 50%;
-  /* left: 50%; */
-  margin: auto;
-  box-sizing: border-box;
-  /* transform: translateX(-50%); */
-}
-
-input[type='search']::-webkit-search-decoration,
-input[type='search']::-webkit-search-cancel-button,
-input[type='search']::-webkit-search-results-button,
-input[type='search']::-webkit-search-results-decoration {
-  display: none;
-}
-
-/* Apple Safari / Google Chrome browsers */
-input::-webkit-input-placeholder {
-  font: 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
-  text-indent: 1rem;
-  color: #FFF;
-  opacity: 0.80;
-  -webkit-transition: text-indent 0.25s ease-out;
-  transition:         text-indent 0.25s ease-out;
-}
-
-/* Firefox 18- */
-input:-moz-placeholder {
-  font: 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
-  text-indent: 1rem;
-  color: #FFF;
-  opacity: 0.80;
-}
-
-/* Firefox 19+ */
-input::-moz-placeholder {
-  font: 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
-  text-indent: 1rem;
-  color: #FFF;
-  opacity: 0.80;
-}
-
-/* Microsoft (MS) Internet Explorer (IE) */
-input:-ms-input-placeholder {
-  font: 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
-  text-indent: 1rem;
-  color: #FFF;
-  opacity: 0.80; 
 }
 
 h2.modalJobTitle { text-align: center; }
@@ -617,6 +532,58 @@ i.XButton {
   }
 
 
+
+/* ==========================================================================
+   ================== Form Input Fields Style Declarations ==================
+   ========================================================================== */
+ input[type='search']::-webkit-search-decoration,
+ input[type='search']::-webkit-search-cancel-button,
+ input[type='search']::-webkit-search-results-button,
+ input[type='search']::-webkit-search-results-decoration { display: none; }
+ input[type='search'] {
+   position: relative;
+   display: inline-block;
+   width: 50%;
+   /* left: 50%; */
+   margin: auto;
+   box-sizing: border-box;
+   /* transform: translateX(-50%); */
+ }
+
+ /* Apple Safari / Google Chrome browsers */
+ input::-webkit-input-placeholder {
+   font: 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
+   text-indent: 1rem;
+   color: #FFF;
+   opacity: 0.80;
+   -webkit-transition: text-indent 0.25s ease-out;
+   transition:         text-indent 0.25s ease-out;
+ }
+
+ /* Firefox 18- */
+ input:-moz-placeholder {
+   font: 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
+   text-indent: 1rem;
+   color: #FFF;
+   opacity: 0.80;
+ }
+
+ /* Firefox 19+ */
+ input::-moz-placeholder {
+   font: 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
+   text-indent: 1rem;
+   color: #FFF;
+   opacity: 0.80;
+ }
+
+ /* Microsoft (MS) Internet Explorer (IE) */
+ input:-ms-input-placeholder {
+   font: 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
+   text-indent: 1rem;
+   color: #FFF;
+   opacity: 0.80; 
+ }
+   
 /* Fix Chrome browser's default AutoFill yellow background */
 /* Change Autocomplete styles in Chrome */
 input:-webkit-autofill,

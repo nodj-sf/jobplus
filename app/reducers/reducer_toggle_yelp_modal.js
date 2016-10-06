@@ -12,6 +12,7 @@ export default function(state = {}, action) {
           );
           return memo;
         }, {});
+        console.log('STATE YELP:', state);
     default:
       return state;
   }
