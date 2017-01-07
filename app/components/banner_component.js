@@ -13,9 +13,8 @@ export default class Banner extends Component {
       <div className='bannerCont'>
         <a href='/'>
           <h1 className='intro-logo'>
-            {[
-              'Job',
-              <span key={ 'logo-Plus_Span' }>+</span>
+            {["Job",
+              <span key={"logo-Plus_Span"}>+</span>
             ]}
           </h1>
         </a>
@@ -24,3 +23,6 @@ export default class Banner extends Component {
     );
   };
 }
+
+
+// <h1 className='navLogoText'>Job+</h1>
