@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { GoogleMapLoader, GoogleMap, Marker, InfoWindow, SearchBox } from 'react-google-maps';
 import { default as InfoBox } from 'react-google-maps/lib/addons/InfoBox';
 import Modal from 'react-modal';
+import { triggerEvent } from 'react-google-maps/lib/utils';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -34,6 +35,10 @@ const geolocation = (() => {
 class GMap extends BaseComponent {
   constructor(props) {
     super(props);
+    this.toggleModal = this.toggleModal.bind(this);
+    this.jobMarkerCallbackHandler = this.jobMarkerCallbackHandler.bind(this);
+    this.delayMapCentering = this.delayMapCentering.bind(this);
+    this.handleMapLoad = this.handleMapLoad.bind(this);
     this.state = {
       defaultCenter: new google.maps.LatLng(37.745951, -122.439421),
       geoPos: null,
@@ -193,8 +198,13 @@ class GMap extends BaseComponent {
     });
   }
 
+  handleMapLoad() {
+    triggerEvent(this.refs.map, 'resize');
+  }
+
   render() {
     return (
+<<<<<<< ae2272669d5f2b032fd0a3bb7b72fffbaee9f01a
       <GoogleMapLoader
         containerElement={ 
           <div 
@@ -258,3 +268,44 @@ export default connect(mapStateToProps, mapDispatchToProps)(GMap);
 
 // Not sure if we need this line(originally on line 194): coords: new google.maps.LatLng(job.latitude, job.longitude)
 // We need to get the photo from yelp and add it to the state collection
+
+// <div id='GMap_Wrapper'>
+//   <div>
+//     <button 
+//       key='Modal window button'
+//       type='button'
+//       onClick={ () => this.toggleModal() }>
+
+//       {[
+//         'See More Map',
+//         <img
+//           key='Mo Map_Icon'
+//           src='http://goo.gl/8Xhb6c'
+//           alt='Resize map in modal window glyph icon (Black).' />
+//       ]}
+//     </button>
+//   </div>
+//   <GoogleMapLoader
+//     containerElement={ <div id='mapsContainer' /> }   
+//     googleMapElement={
+//       <GoogleMap 
+//         // center={ this.delayMapCentering(this.props.activeJob) }
+//         // center={ this.props.activeJob ? this.centerJob(this.props.activeJob) : this.state.defaultCenter }
+//         defaultCenter={ this.state.defaultCenter }
+//         defaultZoom={ this.state.zoomLevel } 
+//         defaultOptions={{ styles: mapStyles }}
+//         resetBoundsOnResize={true}
+//         scrollwheel={false}
+//         maxZoom={19}
+//         ref='map'
+//         onLoad= { this.handleMapLoad }
+//         onClick={ () => this.closeAllMarkers() } >
+
+//         { this.jobMarkerCallbackHandler() }
+
+//         <GMap_Modal 
+//           center={ this.centerMap() } 
+//           deactivateModal={ this.toggleModal } />
+//       </GoogleMap>
+//     } />
+// </div>
