@@ -202,9 +202,12 @@ class GMap extends BaseComponent {
     triggerEvent(this.refs.map, 'resize');
   }
 
+  handleMapLoad() {
+    triggerEvent(this.refs.map, 'resize');
+  }
+
   render() {
     return (
-<<<<<<< ae2272669d5f2b032fd0a3bb7b72fffbaee9f01a
       <GoogleMapLoader
         containerElement={ 
           <div 
