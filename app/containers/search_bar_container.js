@@ -66,8 +66,8 @@ class SearchBar extends Component {
   onFormSubmit(evt) {
     evt.preventDefault();
     this.props.fetchJobs(this.props.jobTerm, this.props.locationTerm);
-    this.commitLastLocationToStore();
     this.commitLastJobToStore();
+    this.commitLastLocationToStore();
     this.props.push('/results');
   }
 

@@ -3,11 +3,11 @@ const request = require('request');
 const Promise = require('promise');
 
 /*
- * Seach Indeed API
- * @param {string} jobTitle 
- * @param {string} city
- * @param {string} ip
- * @return object
+ * Seach Indeed API:
+ *  @param {string} jobTitle 
+ *  @param {string} city
+ *  @param {string} ip
+ *  @return object
 */
 let getIndeed = (query, city, userIP) => {
   query = encodeURI(query);
@@ -15,9 +15,9 @@ let getIndeed = (query, city, userIP) => {
 
   /*
    * Callback function returns an object
-   * one object holding the data (data)
-   * and the other object (respond)
-   * invoke a server respond object.
+   *  one object holding the data (data)
+   *  and the other object (respond)
+   *  invoke a server respond object.
   */
   return (res) => {
     return new Promise((resolve, reject) => {

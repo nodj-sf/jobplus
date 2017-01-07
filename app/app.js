@@ -22,7 +22,7 @@ class App extends Component {
     return (
       <Provider store={ store }>
         <Router history={ history }>
-          <Route path='/'component={ LandingPage } />
+          <Route path='/' component={ LandingPage } />
           <Route path='results' component={ Results } />
           <Route path='about' component={ AboutPage } />
         </Router>

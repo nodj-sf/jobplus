@@ -11,7 +11,7 @@ exports.post = (req, res) => {
       jobTitle = reqBody.jobTitle,
       city = reqBody.city,
       key = JSON.stringify(reqBody).toLowerCase();
-  // remove _csrf from req.body to presist caching
+  // Remove _csrf from req.body to presist caching:
   if (reqBody._csrf) {
     try {
       delete reqBody._csrf;
@@ -34,7 +34,7 @@ exports.post = (req, res) => {
   // redis.del(key);
   
   /*
-   * Return data from cache if exists
+   * Return data from cache if exists:
   */
   
   // redis.get(key, (err, result) => {
@@ -54,16 +54,16 @@ exports.post = (req, res) => {
       // console.log('make api call');
 
       /*
-       * Search Indeed API and cache data
-       * @param {string} jobTitle 
-       * @param {string} city
-       * @param {string} ip
-       * @return response JSON || response from cache
+       * Search Indeed API & cache data:
+       *  @param {string} jobTitle 
+       *  @param {string} city
+       *  @param {string} ip
+       *  @return response JSON || response from cache
       */
       getIndeed(jobTitle, city, ip)(res)
-        // Return data when a promise is return.
+        // Return data when a promise is returned:
         .then(response => {
-          // Cache data using request body as key
+          // Cache data using request body as key:
           // redis.set(key, response.data);
           // Set cache to expire in an hour
           // redis.expire(key, 3600);

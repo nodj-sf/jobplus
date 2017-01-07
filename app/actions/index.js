@@ -116,7 +116,6 @@ export const jobInputTerm = (jobTerm) => ({
   payload: { jobTerm }
 });
 
-
 export const locationInputTerm = (locationTerm) => ({
   type: 'LOCATION_INPUT_TERM',
   payload: { locationTerm }

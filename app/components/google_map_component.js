@@ -107,21 +107,24 @@ class GMap extends BaseComponent {
     const onCloseclick = this.handleMarkerClose.bind(this, marker),
           companyTitle = () => {
             if (marker.company) {
-              return (<h5 className='infoWindow_Header'>{ this.parseAndFormatJobTitle(marker.company) }</h5>);
-            }     
+              return (
+                <h5 className='infoWindow_Header'>
+                  { this.parseAndFormatJobTitle(marker.company) }
+                </h5>
+              );
+            }    
           };
 
     return (
       <InfoWindow
         key={ `${marker.markerKey}_info_window` }
         onCloseclick={ onCloseclick } >
-          <div>
-            <h4 className='infoWindow_Header'>{ this.parseAndFormatJobTitle(marker.markerTitle) }</h4>
-            { companyTitle() }
-            <hr />
-            <p>{ marker.address }</p>
-          </div>
-         
+        <div>
+          <h4 className='infoWindow_Header'>{ this.parseAndFormatJobTitle(marker.markerTitle) }</h4>
+          { companyTitle() }
+          <hr />
+          <p>{ marker.address }</p>
+        </div>
       </InfoWindow>
     );
   }

@@ -11,7 +11,7 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, 'public/js'),
-    filename: 'main.js',
+    filename: 'main.js'
   },
   module: {
     loaders: [{
