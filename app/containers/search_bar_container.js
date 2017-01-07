@@ -3,105 +3,63 @@ import { Router, Route, hashHistory, browserHistory } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import Autocomplete from 'react-google-autocomplete';
 
-import { 
-  fetchJobs,
-  userSearchInputs,
-  jobInputTerm,
-  lastJobSearch, 
-  locationInputTerm,
-  lastLocationSearch 
-} from '../actions/index';
+import { fetchJobs, userSearchInputs, jobInputTerm, locationInputTerm } from '../actions/index';
 
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
+
     this.onJobTitleInputChange = this.onJobTitleInputChange.bind(this);
     this.onLocationInputChange = this.onLocationInputChange.bind(this);
-    this.onLocationAutoComplete = this.onLocationAutoComplete.bind(this);
-    this.commitLastJobToStore = this.commitLastJobToStore.bind(this);
-    this.commitLastLocationToStore = this.commitLastLocationToStore.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
-  // Binds user-provided job titles to the current `jobTerm` state value:
-  onJobTitleInputChange(evt = evt || window.event) {
+  onJobTitleInputChange(evt) {
     evt.preventDefault();
-    this.props.jobInputTerm(evt.target.value || evt.srcElement.value).payload;
+    this.props.jobInputTerm(evt.target.value).payload;
   }
 
-  // Binds user-provided location names to the current `location` state value:
-  onLocationInputChange(evt = evt || window.event) {
+  onLocationInputChange(evt) {
     evt.preventDefault();
-    this.props.locationInputTerm(evt.target.value || evt.srcElement.value).payload;
+    this.props.locationInputTerm(evt.target.value).payload;
   }
 
-  // Binds the output of a Google Places Autocompletion dialogue to the `locationTerm` state value:
-  onLocationAutoComplete(evt) {
-    if (!(evt.address_components)) { return; }
-    let formattedSearchTerm = `${evt.address_components[0].long_name}` + (
-      evt.address_components[1].types.includes('administrative_area_level_1') 
-        ? `, ${evt.address_components[1].short_name}`
-        : evt.address_components[2].types.includes('administrative_area_level_1')
-          ? `, ${evt.address_components[2].short_name}` : ''
-    );
-      // console.log(`Formatted Locale Autocompletion Search Term:\t${formattedSearchTerm}`);
-
-    this.props.locationInputTerm(formattedSearchTerm).payload;
-  }
-
-  // Serves to retain a memory of only the user's last job search input term:
-  commitLastJobToStore() {
-    this.props.lastJobSearch(this.props.jobTerm).payload;
-  }
-
-  // Serves to retain a memory of only the user's last location search input term:
-  commitLastLocationToStore() {
-    this.props.lastLocationSearch(this.props.locationTerm).payload;
-  }
-
-  // Initiates the retrieval of relevant job postings (from the Indeed API) upon form submission:
   onFormSubmit(evt) {
     evt.preventDefault();
     this.props.fetchJobs(this.props.jobTerm, this.props.locationTerm);
-    this.commitLastJobToStore();
-    this.commitLastLocationToStore();
     this.props.push('/results');
   }
 
   render() {
     return (
-      <form id='searchForm' onSubmit={ this.onFormSubmit }>
-        <div className='box'>
-          <div className='container-3'>
-            <div id='searchInputsBoundary'>
+      <form id="searchForm" onSubmit={this.onFormSubmit}>
+        <div className="box">
+          <div className="container-3">
+
+            <div id="searchInputsBoundary">
               <input 
-                id='searchJob' 
-                className='formSearchInpt'
-                type='input'
-                results='4'
-                placeholder='Job'
-                autoComplete='on'
-                autoCapitalize='words'
-                onChange={ this.onJobTitleInputChange }
-                required />
-              <Autocomplete
-                id='searchLocation'
-                className='formSearchInpt'
-                type='input'
-                results='4'
-                placeholder='City'
-                autoComplete='on'
-                autoCapitalize='words'
-                onChange={ this.onLocationInputChange }
-                onPlaceSelected={ this.onLocationAutoComplete || null }
-                required />
+                id="search" 
+                className="formSearchInpt"
+                type="search" 
+                results="4" 
+                placeholder="Job"
+                defaultValue={this.props.jobTerm}
+                onChange={this.onJobTitleInputChange} />
+              
+              <input 
+                id="searchLocation"
+                className="formSearchInpt"
+                type="search"
+                results="4"
+                placeholder="City"
+                defaultValue={this.props.locationTerm}
+                onChange={this.onLocationInputChange} />
             </div>
           </div>
 
-          <button id='jobSearchSubmitBtn' type='submit'>Search</button>
+          <button id="jobSearchSubmitBtn" type="submit">Search</button>
         </div>
       </form>
     );
@@ -110,18 +68,14 @@ class SearchBar extends Component {
 
 
 let mapStateToProps = (state) => ({ 
-  jobTerm: state.jobInputTerm,
-  lastJob: state.lastJob,
-  locationTerm: state.locationInputTerm,
-  lastLocation: state.lastLocation,
+  jobTerm: state.jobInputTerm, 
+  locationTerm: state.locationInputTerm 
 });
 
 let mapDispatchToProps = (dispatch) => bindActionCreators({
   fetchJobs,
   jobInputTerm,
-  lastJobSearch,
   locationInputTerm,
-  lastLocationSearch,
   userSearchInputs,
   push 
 }, dispatch);

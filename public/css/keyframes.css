@@ -2,26 +2,13 @@
 
 /* Keyframe Animations: */
 @keyframes scroll {
-  100% { background-position: 0px -3000px; }
-}
-@-webkit-keyframes scroll {
-  100% { background-position: 0px -3000px; }
-}
-@-moz-keyframes scroll {
-  100% { background-position: 0px -3000px; }
-}
-@-o-keyframes scroll {
-  100% { background-position: 0px -3000px; }
-}
-@-ms-keyframes scroll {
-  background-position: 0px -3000px;
+  100% {
+    background-position:0px -3000px;
+  }
 }
 
-
-
-@keyframes MyAnimation {
-  100% { background-position: 0px -3000px; }
-}
 @-webkit-keyframes MyAnimation {
-  100% { background-position: 0px -3000px; }
+  100% {
+    background-position:0px -3000px;
+  }
 }

@@ -1,5 +1,4 @@
 'use strict';
-
 let GooglePlaces = require('googleplaces');
 const Promise = require('promise');
 const _ = require('lodash');

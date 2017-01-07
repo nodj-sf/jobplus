@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { selectJob, fetchYelp, fetchTrains, fetchBus, fetchGyms, fetchParks, scrapDetail, loading } from '../actions/index';
 import { bindActionCreators } from 'redux';
-import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 
 import Banner from './banner_component';
 import DataDiagram from './diagram_component';
@@ -13,42 +13,33 @@ import Footer from './footer_component';
 import RetaurantList from '../containers/restaurant_list_container';
 import TransportationList from '../containers/transportation_list_container';
 import AmenitiesList from '../containers/ameneties_list_container';
-import {
-  selectJob,
-  fetchYelp,
-  fetchTrains,
-  fetchBus,
-  fetchGyms,
-  fetchParks,
-  scrapeDetail,
-  loading
-} from '../actions/index';
+import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 
 
 class Results extends Component {
   constructor(props) {
     super(props);
+
     this.initJob = this.initJob.bind(this);
   }
 
-  // Lifecycle method:
   componentDidUpdate(nextProps) {
-    if (this.props.jobs.length) {
+    if (this.props.jobs.length > 0) {
      this.initJob(this.props.jobs[0]);
     }
   }
 
-  // Primary callback used in aggregation of the `results_page` display view:
   initJob(job) {
     let props = this.props;
+
     props.loading(false);
     props.selectJob(job);
     props.fetchYelp(job.city, job.latitude, job.longitude);
-
-    [props.fetchTrains, props.fetchBus, props.fetchParks, props.fetchGyms]
-      .forEach(action => action(job.latitude, job.longitude));
-      
-    props.scrapeDetail(job.url);
+    props.fetchTrains(job.latitude, job.longitude);
+    props.fetchBus(job.latitude, job.longitude);
+    props.fetchParks(job.latitude, job.longitude);
+    props.fetchGyms(job.latitude, job.longitude);
+    props.scrapDetail(job.url);
   }
 
   render() {
@@ -56,46 +47,31 @@ class Results extends Component {
       <div>
         <Banner />        
 
-        <div id='jobMain'>
-          <div id='jobResultsPane'>
+        <div id="jobMain">
+          <div id="jobResultsPane">
             <div>
               <GMap />
             </div>
             <JobList />
           </div>
             
-          <div id='jobInfoBody'>           
+          <div id="jobInfoBody">           
             <JobDetail /> 
-            <Tabs onSelect={ this.handleSelect }>  
+            <Tabs onSelect={this.handleSelect} >  
               <TabList>
                 <Tab>
-                  {[
-                    <i 
-                      className='fa fa-bus' 
-                      aria-hidden='true' 
-                      key='bus_Icon'>
-                    </i>,
-                    `\tTransportation`
+                  {[<i className="fa fa-bus" aria-hidden="true" key={"bus_Icon"}></i>,
+                    " Transportation"
                   ]}
                 </Tab>
                 <Tab>
-                  {[
-                    <i 
-                      className='fa fa-futbol-o' 
-                      aria-hidden='true' 
-                      key='soccer-ball_Icon'>
-                    </i>,
-                    `\tAmenities`
+                  {[<i className="fa fa-futbol-o" aria-hidden="true" key={"soccer-ball_Icon"}></i>,
+                    " Amenities"
                   ]}
                 </Tab>
                 <Tab>
-                  {[
-                    <i 
-                      className='fa fa-yelp' 
-                      aria-hidden='true' 
-                      key='Yelp_Icon'>
-                    </i>,
-                    `\tYelp`
+                  {[<i className="fa fa-yelp" aria-hidden="true" key={"Yelp_Icon"}></i>,
+                    " Yelp"
                   ]}
                 </Tab>
               </TabList>
@@ -123,15 +99,17 @@ let mapStateToProps = (state) => ({
   jobs: state.jobs 
 });
 
-let mapDispatchToProps = (dispatch) => bindActionCreators({ 
-  selectJob, 
-  fetchYelp,
-  fetchBus, 
-  fetchTrains, 
-  fetchParks, 
-  fetchGyms,
-  scrapeDetail,
-  loading
-}, dispatch);
+let mapDispatchToProps = (dispatch) =>  { 
+  return bindActionCreators({ 
+    selectJob, 
+    fetchYelp,
+    fetchBus, 
+    fetchTrains, 
+    fetchParks, 
+    fetchGyms,
+    scrapDetail,
+    loading
+  }, dispatch);
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);
