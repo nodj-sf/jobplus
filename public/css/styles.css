@@ -2,11 +2,67 @@
 html {
   font-size: 10px;
   background-color: #F5F5F5;
+  overflow-x: hidden;
 }
 
 body {
   position: relative;
   width: 100%;
+}
+
+body input:focus,
+*:selection,
+*:active,
+*:visited,
+*:target { outline: none; };
+
+h3,
+h4,
+h5,
+h6 { margin-bottom: 0; }
+
+blockquote {
+  font: 400 italic 1.7rem/2.4rem 'Raleway', 'Helvetica Neue', sans-serif;
+  text-align: justify;
+  margin-bottom: 0;
+  margin-left: 0;
+  padding-left: 1rem;
+  border-left: 5px solid #14A4B5;
+  color: #696969;
+}
+  blockquote:before,
+  blockquote:after {
+    content: open-quote;
+    top: 0.5rem;
+    font: normal 2.4rem/2.4rem 'Helvetica Neue', 'Raleway', sans-serif;
+  }
+  blockquote:after { content: close-quote; }
+
+
+button:hover { border: none; }
+
+a,
+a:hover {
+  color: #000;
+  text-decoration: none;
+}
+  div.yelpPhoto:hover div.yelpAlphaLayer > img { color: #FFF; }
+
+a,
+i:not(.fa),
+button,
+input[type='submit'],
+img.cursorAction:hover { cursor: pointer; }
+
+img.featuredImg {
+  /* position: relative; */
+  display: block;
+  min-width: 50vw; 
+  min-height: 50vh;
+  max-width: 90vw;
+  max-height: 90vh;
+  /* left: 50%; */
+  /* transform: translateX(-50%); */
 }
 
 hr {
@@ -16,36 +72,31 @@ hr {
   border-top: 1px solid #E1E1E1;
 }
 
-.textEllipsis {
-  word-break: break-word;
-  word-wrap: break-word;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
 .intro-logo {
-  position: absolute;
-  left: 50px;
+  margin: 0;
   color: #FFF;
-  font: 4.5vh/6vh 'Oswald', 'Raleway', sans-serif;
+  font: 500 4.5vh/6vh 'Oswald', 'Open Sans', 'Raleway', sans-serif;
 }
 
-.intro-logo span {
-  color: #7A7A7A;
-}
-
-a:hover {
-  color: #000;
-}
+.intro-logo span { color: #7A7A7A; }
 
 #bckgHero {
   position: relative;
   width: 100%;
   height: 65vh;
-  top: 10vh;
-  background: #E6E6E6 url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/footer_lodyas.png");
+  top: 17.5vh;
+  background: #E6E6E6 url('http://goo.gl/4gsH3y') 100% / contain repeat;
   animation: 100s scroll infinite linear;
+}
+
+#bckgHero > h1.intro-logo {
+  position: relative;
+  width: 100vw;
+  top: 22.5%;
+  left: 50%;
+  font: 400 10vh/10vh 'Oswald', 'Open Sans', 'Raleway', sans-serif;
+  text-align: center;
+  transform: translateX(-50%);
 }
 
 #app {
@@ -65,7 +116,101 @@ a:hover {
   background: #FFF;
 }
 
-/* .appCols {  } */
+div.meetTheTeam_Container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 75vh;
+  max-height: 300px;
+  top: 57.5%;
+  flex-direction: row;
+  align-content: space-around;
+  align-items: center;
+  justify-content: space-around;
+  transform: translateY(-50%);
+}
+
+div.profileCard {
+  width: 18vw;
+  height: 100%;
+  /* max-height: 425px; */
+  border-radius: 1.5rem;
+  background: -webkit-linear-gradient(bottom, #8E9EAB, #F5F5F5);
+  background:      -o-linear-gradient(bottom, #8E9EAB, #F5F5F5);
+  background:         linear-gradient(to top, #8E9EAB, #F5F5F5);
+}
+
+div.socialShare_Container {
+  position: absolute;
+  display: flex;
+  width: 18vw;
+  height: 40%;
+  bottom: 2.5%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-content: space-between;
+}
+
+div.socialShare_Container h4,
+div.socialShare_Container h6 {
+  font: bold 2.9rem/1 'Raleway', 'Open Sans', sans-serif;
+  text-align: center;
+  font-weight: bold;
+}
+
+div.socialShare_Container h6 { font: inherit; }
+
+div.socialMediaIcons {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  align-content: space-around;
+}
+
+div.socialMediaIcons img {
+  position: relative;
+  height: 40px;
+}
+
+.teamProfPics {
+  position: relative;
+  width: 16vw;
+  height: 16vw;
+  top: -14vw;
+  margin: auto;
+  border: 2.5px ridge #14A4B5;
+  border-radius: 50%;
+  overflow: hidden;
+  box-sizing: border-box;
+  -webkit-transition: all 0.25s 0s ease-out;
+  transition:         all 0.25s 0s ease-out;
+  transform: translateY(50%);
+}
+
+.teamProfPics > img {
+  position: relative;
+  width: 100%;
+  min-height: 16vw;
+  left: 50%;
+  -webkit-transition: width 2s 0.1s linear;
+  transition:         width 2s 0.1s linear;
+  transform: translateX(-50%);
+  -webkit-filter: grayscale(100%);
+     -moz-filter: grayscale(100%);
+      -ms-filter: grayscale(100%);
+       -o-filter: grayscale(100%);
+}
+    .teamProfPics:hover > img {
+      -webkit-filter: grayscale(0);
+         -moz-filter: grayscale(0);
+          -ms-filter: grayscale(0);
+           -o-filter: grayscale(0);
+    }
+
 
 #jobMain {
   position: relative;
@@ -80,121 +225,67 @@ a:hover {
   overflow: hidden;
 }
 
-#jobResultsPane {
-  position: relative;
-  display: inline-block;
-  width: 35%;
-  height: 100%;
-  min-height: 700px;
-  float: left;
-  box-sizing: border-box;
-  background: #ECECEC;
-  overflow: hidden;
-  box-shadow: 5px 0 12.5px 0.5px #ADADAD;
-  z-index: 100;
-}
-
-#jobInfoBody {
-  position: relative;
-  display: inline-block;
-  width: 65%;
-  height: 100%;
-  min-height: 700px;
-  float: right;
-  box-sizing: border-box;
-  overflow-y: scroll;
-}
-
-#jobsContainer {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 66%;
-}
-
-  #jobsContainer::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 15%;
-    max-height: 50px;
-    left: 0;
-    bottom: 0;
-    background: -webkit-linear-gradient(bottom, rgba(236, 236, 236, 1.0) 20%, rgba(236, 236, 236, 0.75) 35%, rgba(236, 236, 236, 0) 75%);
-    background:      -o-linear-gradient(bottom, rgba(236, 236, 236, 1.0) 20%, rgba(236, 236, 236, 0.75) 35%, rgba(236, 236, 236, 0) 75%);
-    background:         linear-gradient(to top, rgba(236, 236, 236, 1.0) 20%, rgba(236, 236, 236, 0.75) 35%, rgba(236, 236, 236, 0) 75%);
-  }
-
-#jobsContainer b > i {
-  margin: auto 6px;
-  padding: 0 6px;
-  outline: 1px solid #FFF;
-  font-style: normal;
-  font-stretch: semi-expanded;
-  text-indent: 5px;
-  text-transform: capitalize;
-}
-
-#chartContainer {
-  position: relative;
-  display: inline-block;
-  width: 40%;
-  min-height: 200px;
-  float: right;
-  background: -webkit-linear-gradient(209deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
-  background:      -o-linear-gradient(209deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
-  background:         linear-gradient(299deg, rgba(95, 20, 181, 0.75) 15%, rgba(119, 29, 229, 0.66) 34%, rgba(119, 29, 221, 0.3) 82%);
-}
-
-#jobResultsPane > div:first-child {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 34%;
-  box-sizing: border-box;
-  /* pointer-events: none; */
-}
-
-#mapsContainer {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  margin: 0;
-}
-
-#mapsContainer + b {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 4%;
-}
+.restaurantContainer .overlayBottomMargin { margin-bottom: 17.5px; }
 
 h4.infoWindow_Header {
   display: inline;
   margin-bottom: 0;
   color: #14A4B5;
-  font: 600 14px/16px "Raleway", "Helvetica Neue", Arial, sans-serif;
+  font: 600 14px/16px 'Raleway', 'Helvetica Neue', Arial, sans-serif;
 }
-
 
 #placesContainer h5, 
-.restaurantContainer h5 {
-  width: 96%;
+.restaurantContainer > h5, 
+.restaurantContainer > div:first-child {
+  display: block;
+  width: 100%;
   text-align: center;
-  margin: 0.5em auto;
+  font-size: 4rem;
+  line-height: 5rem;
 }
 
-.restaurantContainer > h5 {
-  background: #E9EBEE;
-  padding: 1em 0;
-  margin: 0;
-  width: 100%;
+.restaurantContainer > div:first-child > h5 {
+  display: inline;
+  padding-left: 25px;
+  font-size: 4rem;
+  line-height: 5rem;
 }
+
+.AmenitiesHeader_Img {
+  position: relative;
+  height: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.restaurantContainer .nameRating h5 {
+  width: 100%;
+  margin: 0.65rem auto;
+  text-align: center;
+  font-size: 2rem;
+  font-variant: small-caps;                 /* Candidate for possible removal depending on others` stylistic opinions */
+}
+  h5.textEllipsis.expandFromCenter:first-letter {
+    color: #1BA6B7;
+    font-weight: 900;
+    font-size: 2.15rem;
+    letter-spacing: 0.1rem;
+  }
 
 h5.infoWindow_Header {
   margin-bottom: 0;
   font-size: 1.5rem;
   font-weight: 400;
+}
+
+.modalInfoWindow_Pic {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  left: 50%;
+  margin: 5px auto;
+  transform: translateX(-50%);
+  overflow-x: hidden;
 }
 
 div#overlay {
@@ -207,17 +298,10 @@ div#overlay {
   z-index: 10;
 }
 
-.ReactModal__Overlay {
-  z-index: 150;
-  background: rgba(41, 37, 37, 0.59);
-}
-
-#headSection1 {  }
-
 #searchForm { 
   position: relative;
   display: inline-block;
-  width: 75%;
+  width: 85%;
   height: 100%;
   margin-bottom: 0;
   float: right;
@@ -237,7 +321,7 @@ div.box {
   position: absolute;
   left: 50px;
   color: #000;
-  font: 4.5vh/6vh "Raleway", "Open Sans", Helvetica, Arial, sans-serif;
+  font: 4.5vh/6vh 'Raleway', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .bannerCont {
@@ -249,171 +333,69 @@ div.box {
   background: -webkit-linear-gradient(231deg, rgba(20, 164, 181, 1) 15%, rgb(70, 183, 197) 84%, rgb(92, 192, 204) 160%);
   background:      -o-linear-gradient(231deg, rgba(20, 164, 181, 1) 15%, rgb(70, 183, 197) 84%, rgb(92, 192, 204) 160%);
   background:         linear-gradient(321deg, rgba(20, 164, 181, 1) 15%, rgb(70, 183, 197) 84%, rgb(92, 192, 204) 160%);
-  box-shadow: 0 5px 4px 0.5px #ADADAD;
+  -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  box-shadow:         0 1px 8px rgba(0, 0, 0, 0.3);
   z-index: 150;
 }
 
-svg.rd3-chart {
+.bannerCont > a {
   position: relative;
-  display: block;
-  width: 80%;
-  margin: auto;
+  display: inline-block;
+  width: 15%;
+  height: 6vh;
+  float: left;
+  text-align: center;
 }
 
 .footerCont {
   position: fixed;
+  height: 4.5rem;
   width: 100%;
-  height: 65px;
   bottom: 0;
   left: 0;
   background: #7A7A7A;
   z-index: 100;
 }
 
-#jobsContainer > b {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 3.5rem;
-  padding: 4px 0;
-  /* font-variant: unicase; */
-  text-align: left;
-  text-indent: 15px;
-  font-size: 1.75rem;
-  font-weight: lighter;
-  line-height: 3.5rem;
-  color: #FFF;
-  background: -webkit-linear-gradient(231deg, rgba(20,164,181,1) 15%, rgb(93, 188, 200) 44%, rgb(134, 202, 210) 100%);
-  background:      -o-linear-gradient(231deg, rgba(20,164,181,1) 15%, rgb(93, 188, 200) 44%, rgb(134, 202, 210) 100%);
-  background:         linear-gradient(321deg, rgba(20,164,181,1) 15%, rgb(93, 188, 200) 44%, rgb(134, 202, 210) 100%);
-}
+.footerCont a { font: 400 2.25rem/4rem 'Raleway'; }
 
-#jobsContainer > div {
-  height: 90%;
-  overflow-y: overlay;
-}
-
-ul.jobsList {
+.footerCont nav {
   position: relative;
+  display: flex;
   width: 100%;
   height: 100%;
-  margin: 0;
-  background-color: #ECECEC;
-  overflow-x: hidden;
-  overflow-y: overlay;
 }
 
-ul.jobsList > div:last-child {
-    margin-bottom: 17.5px;
-}
+.footerCont nav a { margin: auto; }
 
-ul.jobsList > div.noResultsShown {
-  margin-bottom: 0;
-}
-
-li.jobLI,
-ul.jobsList li {
-  position: relative;
-  display: list-item;
-  width: 100%;
-  max-height: 60px;
-  margin-bottom: 6px;
-  padding: 4px 10px 0 10px;
-  list-style-type: none;
-  box-sizing: border-box;
-  background-color: #ECECEC;
-  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1.0);       /* box-shadow, border-left */
-  overflow: hidden;
-}
-
-ul.jobsList li:hover,
-li.active.jobLI,
-ul.jobsList.activeJobLI {
-  border-left: 12.5px solid #14A4B5;
-  background-color: #F1F1F1;
-  cursor: pointer;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 
-              0 6px 10px 0 rgba(0, 0, 0, 0.3);
-}
-
-li.jobLI h2,
-h2.jobListingTitle {
-  margin: 0 auto;
-  max-height: 60px;
-  overflow: hidden;
-  color: #14A4B5;
-  font: 2.4rem/2.6rem "Raleway", "Open Sans", Helvetica, Arial, sans-serif;
-  letter-spacing: 0.05rem;
-}
-
-li.jobLi h6 {
-  font: bold 12px/12px Arial, sans-serif;
-}
-
-div.jobLI_MetaInfo {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 20px;
-  bottom: -2px;
-  margin: 0;
-}
-
-.jobLI_MetaInfo h6,
-.jobLI_MetaInfo i {
-  display: inline-block;
-  position: relative;
-  width: 50%;
-  margin: 0;
-  float: left;
-}
-
-.jobLI_MetaInfo i {
-  right: 10px;
-  float: right;
-  color: #696969;
-  text-align: right;
-  font-size: 1.1rem;
-  line-height: 2rem;
-}
 
 button.button-primary {
   width: 10%;
-  height: 50px;
+  height: 5rem;
   left: 3%;
-  margin: 20px auto;
-  margin-left: 25px;
-  margin-bottom: 1rem;
-  padding: 0px 4px;
-  font: 900 20px/50px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
+  margin: 20px auto 1rem 25px;
+  /* margin-left: 25px; */
+  /* margin-bottom: 1rem; */
+  padding: 0 4px;
+  font: 900 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
   background-color: #771DE5;
   color: #A7A5A5;
   border-radius: 4px;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow:         none;
   box-sizing: content-box;
-  transition: background 0.25s ease-out, 
-              color 0.25s ease-out;
+  -webkit-transition: background 0.25s ease-out, 
+                      color 0.25s ease-out;;
+  transition:         background 0.25s ease-out, 
+                      color 0.25s ease-out;
 }
-
-button.button-primary:focus {
-  background-color: #1EAEDB;
-}
-
-button.button-primary:hover {
-  color: #771DE5;
-  background-color: #A7A5A5;
-}
-
-/*
-  .container {
-    position: relative;
-    display: block;
-    width: 100%;
-    max-width: 2000px;
-    margin: 0;
-    // transform: translateX(12.5%); 
+  button.button-primary:focus { background-color: #1EAEDB; }
+  button.button-primary:hover {
+    border: none;
+    color: #771DE5;
+    background-color: #A7A5A5;
   }
-*/
+
 
 .container { 
   position: relative;
@@ -421,7 +403,7 @@ button.button-primary:hover {
   width: 100%;
   max-width: 2000px;
   margin: 0;
-  padding-top: 10px;
+  padding-top: 1rem;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -429,17 +411,8 @@ button.button-primary:hover {
   align-content: space-around;
 }
 
-/* 
-  .restaurantList.container,
-  .trainList.container,
-  .busList.container {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-  }
-*/
+.inactive { display: none; }
+.container.active { display: flex; }
 
 .container-3 {
   position: relative;
@@ -451,38 +424,24 @@ button.button-primary:hover {
 
 .container-3 + button {
   position: relative;
-  width: 15%;
+  min-width: 15%;
   margin: 0;
   padding: 0;
-  font-size: 18px;
+  font-size: 1.8rem;
   color: #FFF;
-  transition: all 0.25s ease-in;              /* color, background */
-}
-
-.one-third {
-  width: 30%;
+  box-sizing: border-box;
+  -webkit-transition: all 0.25s ease-in;              /* color, background */
+  transition:         all 0.25s ease-in;              /* color, background */
 }
 
 .container-3 + button:hover {
   background: rgba(255, 255, 255, 0.89);
   color: #14A4B5;
-  /* box-shadow: inset 0 -5px 8px 1px rgba(255, 255, 255, 0.55); */
+  /* -webkit-box-shadow: inset 0 -5px 8px 1px rgba(255, 255, 255, 0.55);
+     box-shadow:         inset 0 -5px 8px 1px rgba(255, 255, 255, 0.55); */
 }
 
-/*
-  .container > .one-third:nth-of-type(3n + 1) {
-    margin-left: 2.5%;
-  }
-
-  .container > .one-third:nth-of-type(3n + 2) {
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-  }
-
-  .container > .one-third:nth-of-type(3n + 3) {
-    margin-right: 2.5%;
-  }
-*/
+.one-third { width: 30%; }
 
 #searchInputsBoundary {
   position: relative;
@@ -497,8 +456,11 @@ button.button-primary:hover {
   align-content: center;
 }
 
+#searchLocation,
+#searchJob { text-transform: capitalize; }
+
 .container-3 input.formSearchInpt {
-  width: 40%;
+  width: 37.5%;
   height: 100%;
   max-height: 55px;
   margin: 0;
@@ -510,6 +472,7 @@ button.button-primary:hover {
   -webkit-border-radius: 5px 0 0 5px;
      -moz-border-radius: 5px 0 0 5px;
           border-radius: 5px 0 0 5px;
+  -webkit-transition: all 0.25s ease-in;
   transition: all 0.25s ease-in;
 }
 
@@ -526,414 +489,167 @@ button.button-primary:hover {
 #searchInputsBoundary *:focus, 
 #searchInputsBoundary * ~ *:focus, 
 #searchInputsBoundary *:focus + * {
-  /* padding: 30px 0; */
   width: 50%;
+  text-indent: 1rem;
+  outline: none;
   background: #2B303B;
 }
 
-.container-3 input:focus::-webkit-input-placeholder {
+.container-3 input:focus::-webkit-input-placeholder,      /* Chrome/Opera/Safari */
+.container-3 input:focus::-moz-placeholder,               /* Firefox 19+ */
+.container-3 input:focus:-ms-input-placeholder            /* IE 10+ */
+.container-3 input:focus:-moz-placeholder {               /* Firefox 18- */
   font-size: 18px;
 }
 
-.container-3 input:focus::-webkit-input-placeholder {
-   font-size: 12px;
-   text-indent: 75%; 
-}
-
-.container-3 span {
-  position: absolute;
-  left: 26.5%;
-  margin: 0 10px;
-  line-height: 4.5vh;
-  /* font-size: 2.5rem; */
-  z-index: 10;
-  color: #FFF;
-  transition: all 0.25s ease-in;                    /* left, font-size */
-}
-
-.container-3 input.formSearchInpt:focus + span.icon {
-  position: absolute;
-  left: 1.5%;
-  margin: 0 14px;
-  color: #FFF;
-  line-height: 60px;
-  font-size: 3rem;
-  z-index: 10;
-}
-
-div.noResultsShown {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-}
-
-  div.noResultsShown::before {
-    position: absolute;
-    width: 125%;
-    height: 100%;
-    background-image: url("../img/frowny-face.svg");
-    background-size: 75% auto;
-    right: -35%;
-    top: 85%;
-    background-repeat: no-repeat;
-    content: "";
-    transform: translateY(-50%);
-  }
-
-h4.noResultsShown {
-  position: absolute;
-  width: 100%;
-  height: 100px;
-  top: 25%;
-  overflow: hidden;
-  left: -5%;
-  line-height: 100px;
-  font-size: 50px;
-  font-weight: 900;
-  text-align: center;
-  transform: translateY(-50%) rotate(-32deg);
-}
-
-#search {
+#searchJob {
   -webkit-appearance: textfield;
-  transition: padding 0.25s ease-out;
+  -webkit-transition: padding 0.25s ease-out;
+  transition:         padding 0.25s ease-out;
 }
 
-input[type='search'] {
-  position: relative;
-  display: inline-block;
-  width: 50%;
-  /* left: 50%; */
-  margin: auto;
-  /* transform: translateX(-50%); */
-  box-sizing: border-box;
-}
-
-input[type='search']::-webkit-search-decoration,
-input[type='search']::-webkit-search-cancel-button,
-input[type='search']::-webkit-search-results-button,
-input[type='search']::-webkit-search-results-decoration {
-  display: none;
-}
-
-input::-webkit-input-placeholder {                  /* Apple Safari / Google Chrome browsers */
-   font: 20px/50px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
-   text-indent: 20px;
-   color: #FFF;
-   opacity: 0.80;
-   transition: text-indent 0.25s ease-out;
-}
-input:-moz-placeholder {                            /* Firefox 18- */
-  font: 20px/50px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
-  text-indent: 20px;
-  color: #FFF;
-  opacity: 0.80;
-}
-input::-moz-placeholder {                           /* Firefox 19+ */
-  font: 20px/50px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
-  text-indent: 20px;
-  color: #FFF;
-  opacity: 0.80;
-}
-input:-ms-input-placeholder {                       /* Microsoft (MS) Internet Explorer (IE) */
-  font: 20px/50px 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
-  text-indent: 20px;
-  color: #FFF;
-  opacity: 0.80; 
-}
-
-h2.modalJobTitle {
-  text-align: center;
-}
+h2.modalJobTitle { text-align: center; }
 
 i.XButton {
   position: absolute;
-  right: 15px;
-  width: 40px;
-  top: 15px;
+  right: 1.5rem;
+  width: 4rem;
+  top: 1.5rem;
   height: 30px;
-  background: white;
-  font-size: 50px;
+  background: #FFF;
+  font-size: 5rem;
   color: #14A4B5;
-  line-height: 30px;
+  line-height: 3rem;
   box-sizing: border-box;
   border-radius: 50%;
-  /* border: 2px solid #14A4B5; */
+  z-index: 300;
 }
-
-i.XButton:hover {
-  cursor: pointer;
-}
-
-
-/*  *********************************************
-    *********************************************
-    ********************************************* */  
-
-
-.restaurantContainer {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  float: left;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.restaurantContainer > div {
-  position: relative;
-  display: inline-flex;
-  width: 100%;
-  height: 50px;
-  left: 0;
-  top: 0;
-  flex-direction: row;
-  justify-content: space-between;
-  box-sizing: border-box;
-  /*background: hsl(0, 53%, 52%) url("../img/bckg_hero.png") no-repeat;*/
-  background-blend-mode: color-dodge;
-  backface-visibility: initial;
-  background-position: 10% 30%;
-  background-attachment: scroll;
-  background-origin: border-box;
-  z-index: 1;
-}
-
-/* 
-.restaurantContainer > div:first-child a {
-  position: relative;
-  display: inline-block;
-  height: 100%;
-  width: 5%;
-  float: left;
-}
-*/
-
-a {
-  color: black;
-  text-decoration: none;
-}
-
-/*
-.restaurantContainer > div a img {
-  position: absolute;
-  display: none;
-  height: 85%;
-  left: 50%;
-  top: 7.5%;
-  margin: 0;
-  padding: 0;
-  transform: translateX(-50%);
-  box-sizing: border-box;
-}
-*/
-
-.restaurantContainer > div h1 {
-  position: relative;
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-  margin: 0 1.5rem 0 0;
-  float: right;
-  font: normal 3.75rem/5rem "Raleway", Arial, sans-serif;
-  text-align: center;
-}
-
-p {
-  margin-top: 33.784;
-  margin-bottom: 0px;
-  margin-top: 33.784;
-}
-
-img.yelpPhoto {
-  position: relative;
-  width: 90%;
-  max-height: 175px;
-  left: 50%;
-  top: 2.5%;
-  transform: translateX(-50%);
-}
-
-.restaurantContainer div.overlay,
-.react-tabs div.overlay {
-  height: 90%;
-  overflow-x: hidden;
-  overflow-y: overlay;
-  background-color: #E9EBEE;
-}
-
-.restaurantLI, 
-.transportationCard, 
-.amenitiesCard {
-  position: relative;
-  display: inline-block;
-  min-height: 200px;
-  max-height: 400px;
-  vertical-align: top;
-  padding-bottom: 1em;
-  background-color: #FFF;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
-}
-
-.restaurantLI:hover,
-.transportationCard:hover,
-.amenitiesCard:hover {
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 
-              0 6px 10px 0 rgba(0, 0, 0, 0.3);
-}
-
-.restaurantLI .nameRating:hover,
-.transportationCard .nameRating:hover,
-.amenitiesCard .nameRating:hover {
-  cursor: pointer;
-}
-
-li.restaurantLI > a {
-  display: block;
-  height: 100%;
-  width: 100%;
-  overflow-y: hidden;
-}
-
-.expandFromCenter:after {
-  display: block;
-  width: 0;
-  height: 1px;
-  position: relative;
-  content: "";
-  margin: auto;
-  background: transparent;
-  transition: width .5s ease, 
-              background-color .5s ease;
-}
-  .expandFromCenter:hover:after {
-    width: 90%;
-    background: #1BA6B7;
+  i.XButton:hover {
+    cursor: pointer;
+    color: #1196A5;
+    -webkit-transition: all 0.10s ease-out;
+    transition:         all 0.10s ease-out;
   }
 
 
-.trainList, .busList {
-  background-color: #E9EBEE;
-}
 
-.transportationContent, 
-.amenitiesContent {
-  padding-left: 20px;
-}
+/* ==========================================================================
+   ================== Form Input Fields Style Declarations ==================
+   ========================================================================== */
+ input[type='search']::-webkit-search-decoration,
+ input[type='search']::-webkit-search-cancel-button,
+ input[type='search']::-webkit-search-results-button,
+ input[type='search']::-webkit-search-results-decoration { display: none; }
+ input[type='search'] {
+   position: relative;
+   display: inline-block;
+   width: 50%;
+   /* left: 50%; */
+   margin: auto;
+   box-sizing: border-box;
+   /* transform: translateX(-50%); */
+ }
 
-#jobInfoBody > div:first-child {
-  padding-left: 20px;
-}
+ /* Apple Safari / Google Chrome browsers */
+ input::-webkit-input-placeholder {
+   font: 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
+   text-indent: 1rem;
+   color: #FFF;
+   opacity: 0.80;
+   -webkit-transition: text-indent 0.25s ease-out;
+   transition:         text-indent 0.25s ease-out;
+ }
 
-.nameRating > h5 {
-  text-align: center;
-  font-weight: 500;
-}
+ /* Firefox 18- */
+ input:-moz-placeholder {
+   font: 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
+   text-indent: 1rem;
+   color: #FFF;
+   opacity: 0.80;
+ }
 
-.nameRating > a {
-  word-break: break-word;
-  word-wrap: break-word;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-size: 20px;
-  display: block;
-  width: 100%;
-  overflow-x: hidden;
-  text-decoration: none;
-}
+ /* Firefox 19+ */
+ input::-moz-placeholder {
+   font: 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
+   text-indent: 1rem;
+   color: #FFF;
+   opacity: 0.80;
+ }
 
-#jobInfoBody div.jobInfoBottomBlock {
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 50%;
-  min-height: 500px;
-  bottom: 0;
-}
-
-.job-detail h3 {
-  width: 100%;
-  text-align: center;
-}
-
-.job-detail h3 a {
-  text-decoration: none;
-}
-
-.job-detail blockquote a {
-  text-decoration: none;
-  color: #222;
-}
-
-.yelp-rating, .card-body {
-  margin-left: 14px;
-}
-
-p.YelpRestaurantAddress {
-  font-size: 1.25rem;
-  line-height: 1.35rem;
-}
-
-div.YelpRating_Div {
-  position: relative;
-  display: block;
-  width: 98%;
-  overflow: hidden;
-}
-  div.YelpRating_Div > img.YelpRatingStars {
-    position: relative;
-    display: inline-block;
-    height: 1.25rem;
-    top: 0.375rem;
-    float: left;
-  }
-
-  div.YelpRating_Div > p.numRestaurantReviews {
-    position: relative;
-    display: inline-block;
-    float: right;
-    font-size: 1.25rem;
-    line-height: 2rem;
-  }
-
-
-a.YelpPhoneNo {
-  color: #222;
-  font-family: Courier, monospace, serif;
-  word-spacing: -5px;
-  font-weight: lighter;
-  font-size: 1.35rem;
-  /* letter-spacing: 0.1px;
-}
-
+ /* Microsoft (MS) Internet Explorer (IE) */
+ input:-ms-input-placeholder {
+   font: 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
+   text-indent: 1rem;
+   color: #FFF;
+   opacity: 0.80; 
+ }
+   
 /* Fix Chrome browser's default AutoFill yellow background */
+/* Change Autocomplete styles in Chrome */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+input:-webkit-autofill, 
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none;
+  -webkit-text-fill-color: #FFF !important;
+  -webkit-box-shadow: inset 0 0 0 1000px #000;
+  -moz-box-shadow:    inset 0 0 0 1000px #000;
+  box-shadow:         inset 0 0 0 1000px #000;
+  -webkit-transition: background-color 5000s 0s ease-in-out;
+  transition:         background-color 5000s 0s ease-in-out;
+}
+
 input:-webkit-autofill {
   -webkit-text-fill-color: #FFF !important;
-  -webkit-box-shadow: inset 0 0 0px 1000px #7A7A7A;
+  -webkit-box-shadow: inset 0 0 0 1000px #7A7A7A;
+  -moz-box-shadow:    inset 0 0 0 1000px #7A7A7A;
+  box-shadow:         inset 0 0 0 1000px #7A7A7A;
+
+  /* Internet Explorer (IE) extraneous settings */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
+  filter:     "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
 }
+
 
 /* Mimic :hover state for non-obvious links */
-.link-state:hover {
-  border-bottom: 1px solid #1BA6B7;
-}
-
-.job-detail h3 a {
-  text-decoration: none;
-}
-
-.job-detail blockquote a {
-  color: #222;
-  text-decoration: none;
-}
-
-.fa-yelp {
-  color: #AF0606;
-}
-
-.fa-bus {
-  color: #00F;
+/* .link-state:hover */
+.link-state {
+  position: relative;
+  display: block;
+  width: 50px;
+  left: 90%;
+  /* border-bottom: 1px solid #1BA6B7; */
+  font-style: normal;
+  text-align: center;
 }
 
 
+
+/* ==========================================================================
+   ================== React-Tabs Module Style Declarations ==================
+   ========================================================================== */
+.ReactTabs__TabList[role='tablist'][role='tablist'] { margin: 0; }
+.ReactTabs__Tab[role='tab'] {
+  width: 33%;
+  margin-bottom: 0;
+  padding: 4px 0;
+  text-align: left;
+  text-indent: 1rem;
+  font: 1.85rem/2.25rem 'Raleway', 'Open Sans', Arial, sans-serif;
+  background: rgba(220, 220, 220, 0.58);
+  border: 1px solid #C8C8C8;      /* Color: Gainsboro */
+  border-radius: .5rem .5rem 0 0;
+  box-sizing: border-box;
+}
+.ReactTabs__Tab[role='tab'][aria-selected='true'] {
+  background-color: rgb(20, 164, 181);
+  border-color: transparent;
+}
+.ReactTabs__TabList > li:last-child[aria-selected='true'] { background-color: hsl(0, 53%, 52%); }
+.ReactTabs__Tab:last-child { width: 34%; }

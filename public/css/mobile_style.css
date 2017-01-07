@@ -15,38 +15,69 @@ html {
 
 
 @media (max-width: 1000px) {
-  html {
-    font-size: 9px;
-  }
+  html { font-size: 9px; }
+  div.meetTheTeam_Container {  }
 }
 
-@media (max-width: 900px) {
-  html {
-    font-size: 8px;
-  }
+@media (max-width: 850px) {
+  html { font-size: 8px; }
+  li.one-third { width: 45%; }
 }
 
 @media (max-width: 700px) {
-  html {
-    font-size: 7px;
-  }
+  html { font-size: 7px; }
 }
 
 @media only screen
   and (max-width: 660px) {
 
-/*  html {
-    font-size: 7px;
-  }*/
+  div#bckgHero {
+    height: 100vh;
+    top: 0;
+  }
 
   #appContainer { 
     height: auto;
     background: transparent;
   }
 
-  form#searchForm {
-    
+  #searchForm {
+    position: relative;
+    display: block;
+    height: 50%;
   }
+
+  div.bannerCont { height: 12vh; }
+  form#searchForm { width: 100vw; }
+  div.box { display: inline-flex; }
+
+  div.container-3 + button#jobSearchSubmitBtn {
+    position: relative;
+    line-height: 30px;
+    height: 30px;
+  }
+
+  div.container-3 input.formSearchInpt {
+    font-size: 2.5rem;
+    letter-spacing: 0.35rem;
+    text-indent: 0;
+  }
+  
+  #searchInputsBoundary *:focus {
+    width: 45%;
+    background: #2B303B;
+    padding: 6px 10px;
+  }
+
+  .container-3 + button {
+    background: #14A4B5;
+    font-size: 1rem;
+  }
+    .container-3 + button:hover {
+      background: #FFF;
+      color: #14A4B5;
+    }
+
 
   #jobMain {
     display: flex;
@@ -55,128 +86,98 @@ html {
     transform: none;
   }
 
+  #mapsContainer { height: 30vh; }
+    #mapsContainer:hover { cursor: pointer; }
+
+  div#jobResultsPane {
+    min-height: 25vh;
+    max-height: 80vh;
+  }
+
   #jobResultsPane,
   #jobInfoBody {
     position: relative;
     display: block;
     width: 88vw;
-    top: 4vh;
-    margin: 25px auto;
+    margin: 10vh auto 25px auto;
     background: #FFF;
-    box-shadow: 0 4px 8px 1.5px rgba(0, 0, 0, 0.37);
+    -webkit-box-shadow: 0 4px 8px 1.5px rgba(0, 0, 0, 0.37);
+    box-shadow:         0 4px 8px 1.5px rgba(0, 0, 0, 0.37);
+  }
+  #jobInfoBody {
+    min-height: 0;
+    margin: 25px auto;
   }
 
-  div#jobResultsPane {
-    height: 60vh;
-  }
+  #jobsContainer { max-height: 350px; }
 
-  #mapsContainer {
-    height: 30vh;
-  }
-    #mapsContainer:hover {
-      cursor: pointer;
-    }
+  #jobsContainer > div { max-height: inherit; }
 
-  #searchForm {
-    position: relative;
-    display: block;
-    /* width: 100%; */
-    /* top: 6vh; */
-  }
+  #jobsContainer > b { height: 10%; }
+    #jobsContainer::after {  }
 
-  #jobsContainer::after {
-  }
 
   #jobInfoBody div.jobInfoBottomBlock {
     position: relative;
     display: flex;
-    flex-direction: column;
     width: 100%;
     min-height: 500px;
     bottom: 0;
+    flex-direction: column;
   }
 
-  #restaurantContainer {
+  .restaurantContainer {
     position: relative;
     display: block;
     width: 100%;
-    height: 60vh;
-    /* float: left; */
+    min-height: 0;
+    max-height: 400px; 
+    /* margin-bottom: 25px; */
     box-sizing: border-box;
     overflow: scroll;
   }
 
-  #jobInfoBody div.jobInfoBottomBlock {
+  ul.jobsList {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    min-height: 500px;
-    bottom: 0;
+    max-height: 350px;
+    overflow-y: scroll;
   }
 
-  #restaurantContainer {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 60vh;
-    /* float: left; */
-    box-sizing: border-box;
+  div.listItemsContainer {
+    max-height: 350px;
+    margin-bottom: 25px;
     overflow: scroll;
   }
 
-  #jobInfoBody div.jobInfoBottomBlock {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    min-height: 500px;
-    bottom: 0;
-  }
-
-  #restaurantContainer {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 60vh;
-    /* float: left; */
-    box-sizing: border-box;
-    overflow: scroll;
-  }
-
-  #jobInfoBody div.jobInfoBottomBlock {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    min-height: 500px;
-    bottom: 0;
-  }
-
-  #restaurantContainer {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 60vh;
-    /* float: left; */
-    box-sizing: border-box;
-    overflow: scroll;
-  }
-
-  .container-3 input.formSearchInpt{
-    font-size: 1rem;
-    letter-spacing: 0.35rem;
-    text-indent: 0;
-  }
+  i.XButton { width: 28.5px; }
   
-  .container-3 + button {
-    background: #14A4B5;
-    font-size: 1rem;
+  div.noResultsShown:before {
+    position: absolute;
+    content: '';
+    width: auto;
+    height: 85%;
+    left: 50%;
+    top: 50%;
+    background-image: url(../img/frowny-face.svg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    transform: translate(-50%, -50%);
   }
-    .container-3 + button:hover {
-      background: #FFF;
-      color: #14A4B5;
-    } 
+
+  h4.noResultsShown {
+    left: 50%;
+    top: 50%;
+    font-size: 6rem;
+    transform: translate(-50%, -50%) rotate(-25deg);
+  }
+
+  div.yelpPhoto { max-height: 100px; }
+  
+  .yelpPhoto img {
+    min-height: 85px;
+    max-height: 150px;
+  }
+
 
 }
 

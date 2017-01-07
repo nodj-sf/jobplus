@@ -1,0 +1,37 @@
+
+/* ==========================================================================
+   ============== FontAwesome (Class `.fa`) Style Declarations ==============
+   ========================================================================== */
+.restaurantContainer h5 .fa-yelp {
+  color: #000;      /* #AF0606 */
+  font-weight: 900;
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.75);
+}
+
+ul[role='tablist'] .fa { text-shadow: 0 0 0.5px DimGray; }
+
+.fa-bus { color: #00F; }
+.fa-futbol-o { color: #00A65E; }
+.fa-yelp {color: #AD0C13; }     /* Color Variants: #C01D1D; | #CD2122; */
+.fa.cardDescriptionGlyph { color: #14A4B5; }
+
+.loadingSpinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div.card-body .fa,
+div.job-detail .fa {
+  color: #14A4B5;
+  font-size: 1.6rem;
+}
+
+.collapseGlyph.fa {
+  position: absolute;
+  right: 20px; 
+  font: bold normal 4rem/5rem FontAwesome;
+  cursor: pointer;
+  z-index: 10000;
+}
