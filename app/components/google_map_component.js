@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { GoogleMapLoader, GoogleMap, Marker, InfoWindow, SearchBox } from 'react-google-maps';
 import { default as InfoBox } from 'react-google-maps/lib/addons/InfoBox';
-import Modal from 'react-modal';
+import { triggerEvent } from 'react-google-maps/lib/utils';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -71,10 +71,10 @@ class GMap extends BaseComponent {
         break;
     }
 
-    this.setState({ 
+    this.setState({
       markers: typeRef.map(marker => {
         return marker === targetMarker ? Object.assign(marker, {showInfo: true}) : marker;
-      }) 
+      })
     });
     this.centerMap();
   }
@@ -113,7 +113,7 @@ class GMap extends BaseComponent {
             <hr />
             <p>{marker.formattedLocation}</p>
           </div>
-         
+
       </InfoWindow>
     );
   }
@@ -151,7 +151,7 @@ class GMap extends BaseComponent {
         PIN_FILL_COLOR = '#AF0606';
         break;
       default:
-        PIN_FILL_COLOR = '#FFF'; 
+        PIN_FILL_COLOR = '#FFF';
         break;
     }
 
@@ -196,16 +196,16 @@ class GMap extends BaseComponent {
   render() {
     return (
       <GoogleMapLoader
-        containerElement={ 
-          <div 
-            id="mapsContainer" 
-            onDoubleClick={() => this.modalYes()} /> 
-        }   
+        containerElement={
+          <div
+            id="mapsContainer"
+            onDoubleClick={() => this.modalYes()} />
+        }
         googleMapElement={
-          <GoogleMap 
+          <GoogleMap
             center={this.centerMap()}
             defaultCenter={this.state.defaultCenter}
-            defaultZoom={this.state.zoomLevel} 
+            defaultZoom={this.state.zoomLevel}
             maxZoom={19}
             defaultOptions={{ styles: mapStylesObject }}
             scrollwheel={false}
@@ -216,20 +216,20 @@ class GMap extends BaseComponent {
 
             <GMap_Modal center={this.centerMap()} modalEnable={this.modalYes} modalDisable={this.modalNo} />
           </GoogleMap>
-        } 
+        }
       />
     );
   }
 }
 
 let mapStateToProps = (state) => ({
-  jobMarkers: state.jobs.map(job => ({ 
+  jobMarkers: state.jobs.map(job => ({
     markerType: 'job',
     coords: { "lat": job.latitude, "lng": job.longitude },
     // jobKey: job.jobkey,
     markerKey: job.jobkey,
     markerTitle: job.jobtitle,
-    company: job.company, 
+    company: job.company,
     formattedLocation: job.formattedLocation,
     showInfo: false
   })),
@@ -246,7 +246,7 @@ let mapStateToProps = (state) => ({
   activeBus: state.activeBus
 });
 
-let mapDispatchToProps = (dispatch) => bindActionCreators({ 
+let mapDispatchToProps = (dispatch) => bindActionCreators({
   selectJob,
   toggleModal,
   toggleModalOff,
