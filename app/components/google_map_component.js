@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { GoogleMapLoader, GoogleMap, Marker, InfoWindow, OverlayView, SearchBox } from 'react-google-maps';
 import { default as InfoBox } from 'react-google-maps/lib/addons/InfoBox';
+import { triggerEvent } from 'react-google-maps/lib/utils';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import _ from 'lodash';
@@ -18,6 +19,7 @@ class GMap extends BaseComponent {
     this.toggleModal = this.toggleModal.bind(this);
     this.jobMarkerCallbackHandler = this.jobMarkerCallbackHandler.bind(this);
     this.delayMapCentering = this.delayMapCentering.bind(this);
+    this.handleMapLoad = this.handleMapLoad.bind(this);
     this.state = {
       defaultCenter: new google.maps.LatLng(37.745951, -122.439421),
       geoPos: null,
@@ -207,6 +209,10 @@ class GMap extends BaseComponent {
     };
   }
 
+  handleMapLoad() {
+    triggerEvent(this.refs.map, 'resize');
+  }
+
   render() {
     return (
       <div id='GMap_Wrapper'>
@@ -230,7 +236,7 @@ class GMap extends BaseComponent {
           googleMapElement={
             <GoogleMap 
               // center={ this.delayMapCentering(this.props.activeJob) }
-              center={ this.props.activeJob ? this.centerJob(this.props.activeJob) : this.state.defaultCenter }
+              // center={ this.props.activeJob ? this.centerJob(this.props.activeJob) : this.state.defaultCenter }
               defaultCenter={ this.state.defaultCenter }
               defaultZoom={ this.state.zoomLevel } 
               defaultOptions={{ styles: mapStyles }}
@@ -238,6 +244,7 @@ class GMap extends BaseComponent {
               scrollwheel={false}
               maxZoom={19}
               ref='map'
+              onLoad= { this.handleMapLoad }
               onClick={ () => this.closeAllMarkers() } >
 
               { this.jobMarkerCallbackHandler() }
