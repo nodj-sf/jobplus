@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
 
-
 module.exports = {
   devtool: 'cheap-eval-source-map',
   entry: [
@@ -23,11 +22,11 @@ module.exports = {
       loader: 'json'
     }, {
       test: /\.(jpe?g|png|gif|svg)$/i,
-      loader: 'file-loader?name=/public/img/[name].[ext]'
+      loader: 'file'
     }]
   },
   devServer: {
-    contentBase: './public',
+  contentBase: "./public",
     noInfo: false,
     hot: true,
     inline: true,
