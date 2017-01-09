@@ -1,11 +1,11 @@
-export default function(state = {}, action) {
+export default function(state = '', action) {
   // console.log(`Action ${action} on Active Jobs Reducer.`);
   switch(action.type) {
-    case 'JOB_SELECTED':
+    case 'LAST_LOCATION':
       // console.log(`Active Job Key ID: ${action.payload.jobkey}`);
       return action.payload;
     default:
       // console.log(`Unknown action <${action}> executed! Returning fallback output.`);
       return state;
   }
-};
+}

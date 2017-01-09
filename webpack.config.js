@@ -15,18 +15,20 @@ module.exports = {
   },
   module: {
     loaders: [{
-      test: /\.jsx?$/,
+      test: /\.jsx?$/i,
+      exclude: /node_modules/,
+      // include: path.join(__dirname, 'app')
       loaders: ['react-hot', 'babel'],
-      include: path.join(__dirname, 'app')
     }, {
-      test: /\.json$/,
+      test: /\.json$/i,
       loader: 'json'
     }, {
       test: /\.(jpe?g|png|gif|svg)$/i,
-      loader: 'file'
+      loader: 'file?name=/public/img/[name].[ext]'
     }]
   },
   devServer: {
+    contentBase: __dirname,
     // contentBase: 'dist/',
     noInfo: false,
     hot: true,
