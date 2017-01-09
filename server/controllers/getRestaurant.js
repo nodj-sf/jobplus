@@ -26,7 +26,7 @@ exports.post = (req, res) => {
     key = JSON.stringify(reqBody).toLowerCase();
   }
 
-  redis.del(key);
+  // redis.del(key);
 
   req.check('city', 'City is required.').notEmpty();
   req.check('coordinate.latitude', 'Latitude is required.').notEmpty();

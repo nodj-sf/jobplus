@@ -1,3 +1,4 @@
+'use strict';
 const scrapeDetail = require('../models/details');
 const redisClient = require('redis').createClient;
 const redis = redisClient(6379, 'localhost');
@@ -17,7 +18,7 @@ exports.post = (req, res) => {
     key = JSON.stringify(reqBody).toLowerCase();
   }
 
-  redis.del(key);
+  // redis.del(key);
 
   redis.get(key, function(err, result) {
 
