@@ -31,7 +31,7 @@ exports.post = (req, res) => {
     return;
   }
 
-  redis.del(key);
+  // redis.del(key);
 
   /*
    * Return data from cache if exists

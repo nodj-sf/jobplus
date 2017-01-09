@@ -4,7 +4,7 @@ const app = express();
 const request = require('request');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-// const RedisStore = require('connect-redis')(session);
+const RedisStore = require('connect-redis')(session);
 const lusca = require('lusca');
 const expressValidator = require('express-validator');
 
@@ -28,7 +28,7 @@ app.use(session({
   name: 'Express Session Token',
   resave: true,
   saveUninitialized: true,
-  // store: new RedisStore()
+  store: new RedisStore()
 }));
 
 app.use(function (req, res, next) {

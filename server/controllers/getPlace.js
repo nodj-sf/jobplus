@@ -23,7 +23,7 @@ exports.post = (req, res) => {
     key = JSON.stringify(reqBody).toLowerCase();
   }
 
-  redis.del(key);
+  // redis.del(key);
 
   req.check('coordinate.lat', 'Latitude is required.').notEmpty();
   req.check('coordinate.long', 'Longitude is required.').notEmpty();
