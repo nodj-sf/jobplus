@@ -4,13 +4,13 @@ const app = express();
 const request = require('request');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const RedisStore = require('connect-redis')(session);
+// const RedisStore = require('connect-redis')(session);
 const lusca = require('lusca');
 const expressValidator = require('express-validator');
 
 
 /*
-** Load local environment variables from .env 
+** Load local environment variables from .env
 ** file where secrets and keys are configured.
 */
 
@@ -23,12 +23,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: true,
-  saveUninitialized: true,
-  store: new RedisStore()
-}));
+// app.use(session({
+//   secret: process.env.SESSION_SECRET,
+//   name: 'Express Session Token',
+//   resave: true,
+//   saveUninitialized: true,
+//   // store: new RedisStore()
+// }));
 
 app.use(function (req, res, next) {
   if (!req.session) {
@@ -63,7 +64,7 @@ const getJob = require('./controllers/getJob');
 const getPlace = require('./controllers/getPlace');
 const scrapDetail = require('./controllers/scrapDetail');
 
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../')));
 
 /*
 ** App routes.

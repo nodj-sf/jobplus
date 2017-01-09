@@ -4,7 +4,6 @@ import { selectJob, fetchYelp, fetchTrains, fetchBus, fetchGyms, fetchParks, scr
 import { bindActionCreators } from 'redux';
 
 import Banner from './banner_component';
-import DataDiagram from './diagram_component';
 import GMap from './google_map_component';
 import JobList from '../containers/job_list_container';
 import JobDetail from '../containers/job_detail_container';
@@ -45,7 +44,7 @@ class Results extends Component {
   render() {
     return (
       <div>
-        <Banner />        
+        <Banner />
 
         <div id="jobMain">
           <div id="jobResultsPane">
@@ -54,10 +53,10 @@ class Results extends Component {
             </div>
             <JobList />
           </div>
-            
-          <div id="jobInfoBody">           
-            <JobDetail /> 
-            <Tabs onSelect={this.handleSelect} >  
+
+          <div id="jobInfoBody">
+            <JobDetail />
+            <Tabs onSelect={this.handleSelect} >
               <TabList>
                 <Tab>
                   {[<i className="fa fa-bus" aria-hidden="true" key={"bus_Icon"}></i>,
@@ -95,17 +94,17 @@ class Results extends Component {
 };
 
 
-let mapStateToProps = (state) => ({ 
-  jobs: state.jobs 
+let mapStateToProps = (state) => ({
+  jobs: state.jobs
 });
 
-let mapDispatchToProps = (dispatch) =>  { 
-  return bindActionCreators({ 
-    selectJob, 
+let mapDispatchToProps = (dispatch) =>  {
+  return bindActionCreators({
+    selectJob,
     fetchYelp,
-    fetchBus, 
-    fetchTrains, 
-    fetchParks, 
+    fetchBus,
+    fetchTrains,
+    fetchParks,
     fetchGyms,
     scrapDetail,
     loading

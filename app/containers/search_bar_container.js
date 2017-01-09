@@ -3,8 +3,6 @@ import { Router, Route, hashHistory, browserHistory } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import Autocomplete from 'react-google-autocomplete';
-// import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
 import GooglePlacesAutocomplete from '../components/GooglePlacesAutocompleteAPI';
 
 import {

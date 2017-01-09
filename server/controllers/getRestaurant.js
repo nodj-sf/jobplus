@@ -1,7 +1,7 @@
 'use strict';
 const getYelp = require('../models/restaurant');
-const redisClient = require('redis').createClient;
-const redis = redisClient(6379, 'localhost');
+// const redisClient = require('redis').createClient;
+// const redis = redisClient(6379, 'localhost');
 const util = require('util');
 
 
@@ -11,10 +11,10 @@ exports.post = (req, res) => {
       city = reqBody.city,
       coordinate = reqBody.coordinate,
       key = JSON.stringify(reqBody).toLowerCase();
-      
+
   // remove _csrf from req.body to presist caching.
-  // Because we are using reqBody as a key name we must remove the _csrf because everytime 
-  // a client sends a request to the backend a new _csrf is append to the request therefore the accessing of the redis 
+  // Because we are using reqBody as a key name we must remove the _csrf because everytime
+  // a client sends a request to the backend a new _csrf is append to the request therefore the accessing of the redis
   // data base would be invalid
   if (reqBody._csrf) {
     try {
@@ -43,23 +43,23 @@ exports.post = (req, res) => {
    * return data if session exist.
   */
 
-  redis.get(key, (err, result) => {
+  // redis.get(key, (err, result) => {
 
     res.setHeader('Content-Type', 'application/json');
 
-    if (result) {
-      // console.log('return from redis');
-      res.send(JSON.parse(result));
-      res.end();
-    } else {
+    // if (result) {
+    //   // console.log('return from redis');
+    //   res.send(JSON.parse(result));
+    //   res.end();
+    // } else {
       // console.log('api');
       getYelp(restaurant, city, coordinate)(res)
         .then((data) => {
           // console.log('data: ', data);
           // Cache data using request body as key
-          redis.set(key, JSON.stringify(data.data));
+          // redis.set(key, JSON.stringify(data.data));
           // Set cache to expire in an hour
-          redis.expire(key, 3600);
+          // redis.expire(key, 3600);
           return data.respond;
           res.end();
         })
@@ -67,6 +67,6 @@ exports.post = (req, res) => {
           res.setHeader('Content-Type', 'application/text');
           res.status(500).send('Something broke!');
         });
-    }
-  });
+    // }
+  // });
 };
