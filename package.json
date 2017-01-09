@@ -74,6 +74,9 @@
     "react-router-redux": "^4.0.5",
     "react-tabs": "^0.7.0",
     "redux": "^3.5.2",
+    "rimraf": "^2.5.4",
+    "svg-inline-loader": "^0.6.1",
+    "svg-react-loader": "^0.3.7",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   },

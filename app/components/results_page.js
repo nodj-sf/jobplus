@@ -34,10 +34,12 @@ class Results extends Component {
     props.loading(false);
     props.selectJob(job);
     props.fetchYelp(job.city, job.latitude, job.longitude);
+
     props.fetchTrains(job.latitude, job.longitude);
     props.fetchBus(job.latitude, job.longitude);
     props.fetchParks(job.latitude, job.longitude);
     props.fetchGyms(job.latitude, job.longitude);
+
     props.scrapDetail(job.url);
   }
 
@@ -54,23 +56,38 @@ class Results extends Component {
             <JobList />
           </div>
 
-          <div id="jobInfoBody">
+          <div id='jobInfoBody'>
             <JobDetail />
-            <Tabs onSelect={this.handleSelect} >
+            <Tabs onSelect={ this.handleSelect }>
               <TabList>
                 <Tab>
-                  {[<i className="fa fa-bus" aria-hidden="true" key={"bus_Icon"}></i>,
-                    " Transportation"
+                  {[
+                    <i
+                      className='fa fa-bus'
+                      aria-hidden='true'
+                      key='bus_Icon'>
+                    </i>,
+                    `\tTransportation`
                   ]}
                 </Tab>
                 <Tab>
-                  {[<i className="fa fa-futbol-o" aria-hidden="true" key={"soccer-ball_Icon"}></i>,
-                    " Amenities"
+                  {[
+                    <i
+                      className='fa fa-futbol-o'
+                      aria-hidden='true'
+                      key='soccer-ball_Icon'>
+                    </i>,
+                    `\tAmenities`
                   ]}
                 </Tab>
                 <Tab>
-                  {[<i className="fa fa-yelp" aria-hidden="true" key={"Yelp_Icon"}></i>,
-                    " Yelp"
+                  {[
+                    <i
+                      className='fa fa-yelp'
+                      aria-hidden='true'
+                      key='Yelp_Icon'>
+                    </i>,
+                    `\tYelp`
                   ]}
                 </Tab>
               </TabList>
@@ -98,17 +115,15 @@ let mapStateToProps = (state) => ({
   jobs: state.jobs
 });
 
-let mapDispatchToProps = (dispatch) =>  {
-  return bindActionCreators({
-    selectJob,
-    fetchYelp,
-    fetchBus,
-    fetchTrains,
-    fetchParks,
-    fetchGyms,
-    scrapDetail,
-    loading
-  }, dispatch);
-};
+let mapDispatchToProps = (dispatch) => bindActionCreators({
+  selectJob,
+  fetchYelp,
+  fetchBus,
+  fetchTrains,
+  fetchParks,
+  fetchGyms,
+  scrapeDetail,
+  loading
+}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);

@@ -27,7 +27,7 @@ module.exports = {
     }]
   },
   devServer: {
-    // contentBase: 'dist/',
+    contentBase: 'dist/',
     noInfo: false,
     hot: true,
     inline: true,

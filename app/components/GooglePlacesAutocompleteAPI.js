@@ -12,14 +12,15 @@ class GooglePlacesAutocomplete extends Component {
     this._handleDownKey = this._handleDownKey.bind(this);
     this._handleUpKey = this._handleUpKey.bind(this);
     this._handleSelect = this._handleSelect.bind(this);
+    this._handleFocusChange = this._handleFocusChange.bind(this);
     this._selectAddress = this._selectAddress.bind(this);
     this._selectActiveItemAtIndex = this._selectActiveItemAtIndex.bind(this);
     this._setActiveItemAtIndex = this._setActiveItemAtIndex.bind(this);
 
     this.autocompleteCallback = this.autocompleteCallback.bind(this);
-    this._handleFocusChange = this._handleFocusChange.bind(this);
     this.handleInputKeyDown = this.handleInputKeyDown.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.renderAutocomplete = this.renderAutocomplete.bind(this);
     this.renderSuggestedLocation = this.renderSuggestedLocation.bind(this);
 
     this.state = { autocompleteItems: [] };
@@ -45,13 +46,9 @@ class GooglePlacesAutocomplete extends Component {
     })
   }
 
-  _clearAutocomplete() {
-    this.setState({ autocompleteItems: [] });
-  }
+  _clearAutocomplete() { this.setState({ autocompleteItems: [] }); }
 
-  _getActiveItem() {
-    return this.state.autocompleteItems.find(item => item.active)
-  }
+  _getActiveItem() { return this.state.autocompleteItems.find(item => item.active); }
 
 
   _handleEnterKey() {
@@ -112,8 +109,13 @@ class GooglePlacesAutocomplete extends Component {
   }
 
   _handleFocusChange(evt) {
-    let parent = evt.target.parentElement;
-    parent.classList.toggle('active');
+    const [parentContainer, suggestionsList] = [evt.target.parentElement, this.refs.suggestionsList],
+          isActive = parentContainer.classList.contains('active');
+
+    parentContainer.classList.toggle('active');
+    isActive
+      ? suggestionsList.classList.remove('enableList')
+      : suggestionsList.classList.add('enableList');
   }
 
   handleInputKeyDown(evt) {
@@ -189,10 +191,18 @@ class GooglePlacesAutocomplete extends Component {
     const { autocompleteItems } = this.state;
     const { styles } = this.props;
 
-    if (autocompleteItems.length === 0) { return null; }
+    if (autocompleteItems.length === 0) {
+      return (
+        <ul
+          className="__autocomplete-container"
+          ref="suggestionsList" />
+      );
+    }
 
     return (
-      <ul className="__autocomplete-container">
+      <ul
+        className="__autocomplete-container"
+        ref="suggestionsList">
         { autocompleteItems.map(place => this.renderSuggestedLocation(place)) }
       </ul>
     );

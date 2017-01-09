@@ -23,6 +23,8 @@ class SearchBar extends Component {
     this.onLocationInputChange = this.onLocationInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
 
+    this._handleFocusChange = this._handleFocusChange.bind(this);
+
     this.onChange = (address) => this.setState({ address });
 
     this.state = {
@@ -76,22 +78,32 @@ class SearchBar extends Component {
     this.props.push('/results');
   }
 
+  _handleFocusChange(evt) {
+    const parentContainer = evt.target.parentElement;
+    parentContainer.classList.toggle('active');
+  }
+
   render() {
     return (
       <form id="searchForm" onSubmit={ this.onFormSubmit }>
         <div className="box">
           <div className="container-3">
             <div id="searchInputsBoundary">
-              <input
-                id="searchJob"
-                className="formSearchInpt"
-                type="text"
-                results="4"
-                placeholder="Job"
-                autoComplete="on"
-                autoCapitalize="words"
-                onChange={ this.onJobTitleInputChange }
-                required={ true } />
+              <div
+                className="formSearchInpt">
+                <input
+                  id="searchJob"
+                  className="formSearchInpt"
+                  type="text"
+                  results="4"
+                  placeholder="Job"
+                  autoComplete="on"
+                  autoCapitalize="words"
+                  onFocus={ this._handleFocusChange }
+                  onBlur={ this._handleFocusChange }
+                  onChange={ this.onJobTitleInputChange }
+                  required={ true } />
+              </div>
               <GooglePlacesAutocomplete
                 id="searchLocation"
                 className="formSearchInpt"
