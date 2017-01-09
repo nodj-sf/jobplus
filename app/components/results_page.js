@@ -122,7 +122,7 @@ let mapDispatchToProps = (dispatch) => bindActionCreators({
   fetchTrains,
   fetchParks,
   fetchGyms,
-  scrapeDetail,
+  scrapDetail,
   loading
 }, dispatch);
 
