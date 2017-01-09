@@ -18,9 +18,11 @@ import {
 class SearchBar extends Component {
   constructor(props) {
     super(props);
-
     this.onJobTitleInputChange = this.onJobTitleInputChange.bind(this);
     this.onLocationInputChange = this.onLocationInputChange.bind(this);
+    this.onLocationAutoComplete = this.onLocationAutoComplete.bind(this);
+    this.commitLastJobToStore = this.commitLastJobToStore.bind(this);
+    this.commitLastLocationToStore = this.commitLastLocationToStore.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
 
     this._handleFocusChange = this._handleFocusChange.bind(this);
@@ -32,9 +34,10 @@ class SearchBar extends Component {
     };
   }
 
-  onJobTitleInputChange(evt) {
+  // Binds user-provided job titles to the current `jobTerm` state value:
+  onJobTitleInputChange(evt = evt || window.event) {
     evt.preventDefault();
-    this.props.jobInputTerm(evt.target.value).payload;
+    this.props.jobInputTerm(evt.target.value || evt.srcElement.value).payload;
   }
 
   // Binds user-provided location names to the current `location` state value:
@@ -75,6 +78,8 @@ class SearchBar extends Component {
   onFormSubmit(evt) {
     evt.preventDefault();
     this.props.fetchJobs(this.props.jobTerm, this.props.locationTerm);
+    this.commitLastLocationToStore();
+    this.commitLastJobToStore();
     this.props.push('/results');
   }
 
@@ -141,7 +146,9 @@ let mapStateToProps = (state) => ({
 let mapDispatchToProps = (dispatch) => bindActionCreators({
   fetchJobs,
   jobInputTerm,
+  lastJobSearch,
   locationInputTerm,
+  lastLocationSearch,
   userSearchInputs,
   push
 }, dispatch);

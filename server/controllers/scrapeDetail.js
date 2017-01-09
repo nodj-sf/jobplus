@@ -1,6 +1,6 @@
 const scrapeDetail = require('../models/details');
-// const redisClient = require('redis').createClient;
-// const redis = redisClient(6379, 'localhost');
+const redisClient = require('redis').createClient;
+const redis = redisClient(6379, 'localhost');
 
 
 exports.post = (req, res) => {
@@ -17,27 +17,27 @@ exports.post = (req, res) => {
     key = JSON.stringify(reqBody).toLowerCase();
   }
 
-  // redis.del(key);
+  redis.del(key);
 
-  // redis.get(key, function(err, result) {
+  redis.get(key, function(err, result) {
 
     res.setHeader('Content-Type', 'application/json');
 
-    // if (result) {
-    //   res.send(JSON.parse(result));
-    //   res.end();
-    // } else {
+    if (result) {
+      res.send(JSON.parse(result));
+      res.end();
+    } else {
       scrapeDetail(url)(res)
         .then(data => {
-          // redis.set(key, JSON.stringify(data.data));
-          // redis.expire(key, 3600);
-          // return data.respond;
-          // res.end();
+          redis.set(key, JSON.stringify(data.data));
+          redis.expire(key, 3600);
+          return data.respond;
+          res.end();
         })
         .catch(error => {
-          // res.setHeader('Content-Type', 'application/text');
-          // res.status(500).send('Something broke!');
+          res.setHeader('Content-Type', 'application/text');
+          res.status(500).send('Something broke!');
         });
-    // }
-  // });
+    }
+  });
 };
