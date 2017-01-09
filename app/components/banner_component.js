@@ -18,7 +18,7 @@ export default class Banner extends Component {
             ]}
           </h1>
         </a>
-        <SearchBar className='twelve columns' /> 
+        <SearchBar className='twelve columns' />
       </div>
     );
   };

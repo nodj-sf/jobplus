@@ -4,6 +4,7 @@ const redisClient = require('redis').createClient;
 const redis = redisClient(6379, 'localhost');
 const util = require('util');
 
+
 exports.post = (req, res) => {
   // console.log("Request:", req.body);
   let reqBody = req.body,
@@ -29,13 +30,13 @@ exports.post = (req, res) => {
     res.status(400).send('errors: ' + util.inspect(errors));
     return;
   }
-  
-  // redis.del(key);
-  
+
+  redis.del(key);
+
   /*
    * Return data from cache if exists
   */
-  
+
   redis.get(key, (err, result) => {
 
     res.setHeader('Content-Type', 'application/json');
@@ -49,12 +50,12 @@ exports.post = (req, res) => {
             || req.connection.remoteAddress
             || req.socket.remoteAddress
             || req.connection.socket.remoteAddress;
-      
+
       // console.log('make api call');
 
       /*
        * Search Indeed API and cache data
-       * @param {string} jobTitle 
+       * @param {string} jobTitle
        * @param {string} city
        * @param {string} ip
        * @return response JSON || response from cache

@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 
+
 module.exports = {
   devtool: 'cheap-eval-source-map',
   entry: [
@@ -9,24 +10,26 @@ module.exports = {
     path.join(__dirname, 'app/app')
   ],
   output: {
-    path: path.join(__dirname, 'public/js'),
-    filename: 'main.js',
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js',
   },
   module: {
     loaders: [{
-      test: /\.jsx?$/,
+      test: /\.jsx?$/i,
+      exclude: /node_modules/,
+      // include: path.join(__dirname, 'app')
       loaders: ['react-hot', 'babel'],
-      include: path.join(__dirname, 'app')
-    }, { 
-      test: /\.json$/, 
+    }, {
+      test: /\.json$/i,
       loader: 'json'
     }, {
       test: /\.(jpe?g|png|gif|svg)$/i,
-      loader: 'file'
+      loader: 'file?name=/public/img/[name].[ext]'
     }]
   },
   devServer: {
-  contentBase: "./public",
+    contentBase: __dirname,
+    // contentBase: 'dist/',
     noInfo: false,
     hot: true,
     inline: true,

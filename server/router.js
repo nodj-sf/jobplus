@@ -4,13 +4,13 @@ const app = express();
 const request = require('request');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const RedisStore = require('connect-redis')(session);
+// const RedisStore = require('connect-redis')(session);
 const lusca = require('lusca');
 const expressValidator = require('express-validator');
 
 
 /*
-** Load local environment variables from .env 
+** Load local environment variables from .env
 ** file where secrets and keys are configured.
 */
 
@@ -25,9 +25,10 @@ app.use(expressValidator());
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
+  name: 'Express Session Token',
   resave: true,
   saveUninitialized: true,
-  store: new RedisStore()
+  // store: new RedisStore()
 }));
 
 app.use(function (req, res, next) {
@@ -61,9 +62,9 @@ app.use((req, res, next) => {
 const getRestaurant = require('./controllers/getRestaurant');
 const getJob = require('./controllers/getJob');
 const getPlace = require('./controllers/getPlace');
-const scrapDetail = require('./controllers/scrapDetail');
+const scrapDetail = require('./controllers/scrapeDetail');
 
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../')));
 
 /*
 ** App routes.
@@ -72,9 +73,14 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.post('/api/v1/jobs', getJob.post);
 app.post('/api/v1/food', getRestaurant.post);
 app.post('/api/v1/places', getPlace.post);
-app.post('/api/v1/scrap', scrapDetail.post);
+app.post('/api/v1/scrape', scrapDetail.post);
 
-app.get('/results', function(req, res) {
+app.get('/results', (req, res) => {
+  res.redirect('/');
+  res.end();
+});
+
+app.get('/about', (req, res) => {
   res.redirect('/');
   res.end();
 });

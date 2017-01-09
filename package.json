@@ -4,19 +4,42 @@
   "description": "[![Stories in Ready](https://badge.waffle.io/mks-sf-40-nodj/nodj.svg?label=ready&title=Ready)](http://waffle.io/mks-sf-40-nodj/nodj)",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon",
+    "build": "NODE_ENV=production webpack -p",
+    "db:install": "brew install redis",
+    "db:restart": "brew services restart redis",
+    "db:start": "brew services start redis",
+    "db:stop": "brew services stop redis",
+    "dev": "webpack-dev-server --progress --profile --colors",
     "lint": "eslint app",
+    "start": "nodemon",
     "test": "mocha -w app/test/helpers/browser.js app/test/*_test.js",
-    "dev": "webpack-dev-server --progress --profile --colors"
+    "watch": "webpack -w"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JustinLien/nodj.git"
   },
-  "author": "Nick Daniele, Justin Lien, Damon Nguyen, Oliver Isenrich",
+  "author": "Oliver Isenrich, Nick Daniele, Justin Lien, Damon Nguyen",
+  "contributors": [
+    {
+      "name": "Oliver Isenrich",
+      "email": "isenrich@yahoo.com",
+      "url": "http://isenrich.io"
+    },
+    {
+      "name": "Nick Daniele"
+    },
+    {
+      "name": "Damon Nguyen"
+    },
+    {
+      "name": "Justin Lien"
+    }
+  ],
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/JustinLien/nodj/issues"
+    "url": "https://github.com/JustinLien/nodj/issues",
+    "email": "isenrich@yahoo.com"
   },
   "homepage": "https://github.com/JustinLien/nodj#readme",
   "devDependencies": {
@@ -30,7 +53,6 @@
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
     "cheerio": "^0.20.0",
-    "d3": "^3.5.17",
     "enzyme": "^2.4.1",
     "eslint": "^3.3.0",
     "eslint-plugin-react": "^6.0.0",
@@ -40,7 +62,6 @@
     "lodash": "^4.15.0",
     "mocha": "^3.0.0",
     "nodemon": "^1.10.0",
-    "rd3": "^0.7.0",
     "react": "^15.2.1",
     "react-addons-test-utils": "^15.3.0",
     "react-dom": "^15.3.0",
@@ -53,6 +74,9 @@
     "react-router-redux": "^4.0.5",
     "react-tabs": "^0.7.0",
     "redux": "^3.5.2",
+    "rimraf": "^2.5.4",
+    "svg-inline-loader": "^0.6.1",
+    "svg-react-loader": "^0.3.7",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   },
