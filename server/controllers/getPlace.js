@@ -19,7 +19,7 @@ exports.post = (req, res) => {
     } catch (e) {
       console.error('csrf does not exists.');
     }
-    // Create key based on request body to use for caching
+    // Create key based on request body to use for caching:
     key = JSON.stringify(reqBody).toLowerCase();
   }
 
@@ -34,13 +34,10 @@ exports.post = (req, res) => {
     return;
   }
 
-  /*
-   * Check if redis has a sesson stored
-   * return data if session exist.
-  */
 
+  // Check if Redis has a session maintained in storage
+  //  and, if so, return contained data:
   redis.get(key, (err, result) => {
-
     res.setHeader('Content-Type', 'application/json');
 
     if (result) {

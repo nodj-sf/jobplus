@@ -12,17 +12,16 @@ exports.post = (req, res) => {
       coordinate = reqBody.coordinate,
       key = JSON.stringify(reqBody).toLowerCase();
 
-  // remove _csrf from req.body to presist caching.
+  // Remove _csrf from req.body to presist caching.
   // Because we are using reqBody as a key name we must remove the _csrf because everytime
-  // a client sends a request to the backend a new _csrf is append to the request therefore the accessing of the redis
-  // data base would be invalid
+  // a client sends a request to the backend a new _csrf is append to the request therefore the accessing of the Redis
+  // DB would be invalid:
   if (reqBody._csrf) {
     try {
       delete reqBody._csrf;
     } catch (e) {
       console.error('csrf does not exists.');
     }
-
     key = JSON.stringify(reqBody).toLowerCase();
   }
 
@@ -38,13 +37,10 @@ exports.post = (req, res) => {
     return;
   }
 
-  /*
-   * Check if redis has a sesson stored
-   * return data if session exist.
-  */
 
+  // Check if Redis has a session maintained in storage
+  //  and, if so, return contained data:
   redis.get(key, (err, result) => {
-
     res.setHeader('Content-Type', 'application/json');
 
     if (result) {

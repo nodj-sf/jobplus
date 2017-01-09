@@ -1,3 +1,4 @@
+'use strict';
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -9,16 +10,14 @@ const lusca = require('lusca');
 const expressValidator = require('express-validator');
 
 
-/*
-** Load local environment variables from .env
-** file where secrets and keys are configured.
-*/
-
+// Load local environment variables from .env
+//  file where secrets and keys are configured:
 let dotenv;
 dotenv = require('dotenv');
 dotenv.load({ path: '.env' });
 
-//Middleware
+
+// Middleware:
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
@@ -48,17 +47,18 @@ app.use(lusca({
 }));
 
 app.use((req, res, next) => {
-  if (req.path === '/') {
-    next();
-  } else {
-    lusca.csrf()(req, res, next);
-  }
+  req.path === '/'
+    ? next()
+    : lusca.csrf()(req, res, next);
+  // if (req.path === '/') {
+  //   next();
+  // } else {
+  //   lusca.csrf()(req, res, next);
+  // }
 });
 
-/*
-** Route Controllers
-*/
 
+// Route Controllers:
 const getRestaurant = require('./controllers/getRestaurant');
 const getJob = require('./controllers/getJob');
 const getPlace = require('./controllers/getPlace');
@@ -66,10 +66,8 @@ const scrapDetail = require('./controllers/scrapeDetail');
 
 app.use(express.static(path.join(__dirname, '../')));
 
-/*
-** App routes.
-*/
 
+// App Routes:
 app.post('/api/v1/jobs', getJob.post);
 app.post('/api/v1/food', getRestaurant.post);
 app.post('/api/v1/places', getPlace.post);

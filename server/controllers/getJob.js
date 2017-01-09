@@ -18,9 +18,10 @@ exports.post = (req, res) => {
     } catch (e) {
       console.error('csrf does not exists.');
     }
-
     key = JSON.stringify(reqBody).toLowerCase();
   }
+
+  // redis.del(key);
 
   req.check('city', 'City is required.').notEmpty();
   req.check('jobTitle', 'Job title is required.').notEmpty();
@@ -31,12 +32,9 @@ exports.post = (req, res) => {
     return;
   }
 
-  // redis.del(key);
 
-  /*
-   * Return data from cache if exists
-  */
-
+  // Check if Redis has a session maintained in storage
+  //  and, if so, return contained data:
   redis.get(key, (err, result) => {
 
     res.setHeader('Content-Type', 'application/json');
