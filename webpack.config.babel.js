@@ -1,3 +1,4 @@
+'use strict';
 import Webpack from 'webpack';
 import WebpackMerge from 'webpack-merge';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
@@ -7,16 +8,17 @@ import PostCSS from './postcss.config';
 import path from 'path';
 
 
-const VENDOR_LIBS = [ "body-parser", "connect-redis", "dotenv",
-  "express", "express-session", "express-validator", "googleplaces",
-  "lodash", "lusca", "react", "react-dom", "react-google-maps",
-  "react-modal", "react-promise", "react-redux", "react-router",
-  "react-router-redux", "react-tabs", "redis", "redux", "request",
-  "skeleton-css", "util", "webpack", "webpack-dev-server", "yelp"
+const isProductionEnv = (process.env.NODE_ENV === 'production');
+  console.log(`Node environment:\t${isProductionEnv}`);
+
+const VENDOR_LIBS = ["body-parser", "dotenv",
+  "googleplaces", "lodash", "lusca", "react", "react-dom",
+  "react-google-maps", "react-modal", "react-promise",
+  "react-redux", "react-router", "react-router-redux",
+  "react-tabs", "redux", "request", "util", "yelp"
 ];
 
 const BASE_CONFIG = {
-  devtool: 'cheap-eval-source-map',
   entry: {
     bundle: path.resolve(__dirname, 'app/app'),
     vendor: VENDOR_LIBS
@@ -32,6 +34,12 @@ const BASE_CONFIG = {
         test: /\.jsx?$/i,
         exclude: /(node_modules|bower_components)/,
         use: 'babel'
+      }, {
+        test: /\.css$/i,
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style',
+          loader: 'css'
+        })
       }, {
         test: /\.(scss|sass)$/i,
         loader: ExtractTextPlugin.extract({
@@ -64,7 +72,7 @@ const BASE_CONFIG = {
     }),
     new Webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
     }),
     new Webpack.LoaderOptionsPlugin({
@@ -76,9 +84,18 @@ const BASE_CONFIG = {
     }),
     new ExtractTextPlugin('styles.css'),
     new HTMLWebpackPlugin({
-      template: 'index.html'
+      template: 'public/index.html'
     })
   ],
+  node: {
+    console: false,
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
+  },
+  cache: true,
+  watch: true,
+  devtool: `${isProductionEnv ? 'inline' : 'cheap-eval'}-source-map`,
   resolve: {
     extensions: ['.js', '.jsx']
   },
@@ -88,6 +105,9 @@ const BASE_CONFIG = {
 };
 
 const DEV_SERVER = {
+  plugins: [
+    new Webpack.HotModuleReplacementPlugin()
+  ],
   devServer: {
     contentBase: __dirname,
     historyApiFallback: true,
@@ -117,18 +137,21 @@ const DEV_SERVER = {
     timings: true,
     version: false,
     warnings: true
-  },
-  plugins: [
-    new Webpack.HotModuleReplacementPlugin()
-  ]
+  }
 };
 
 
-if (process.env.NODE_ENV === 'production') {
-  module.exports = WebpackMerge(BASE_CONFIG, DEV_SERVER);
-} else {
-  module.exports = BASE_CONFIG;
-}
+const AGGREGATE_CONFIG = isProductionEnv
+  ? BASE_CONFIG
+  : WebpackMerge(BASE_CONFIG, DEV_SERVER);
+
+export default AGGREGATE_CONFIG;
+
+// if (process.env.NODE_ENV === 'production') {
+//   module.exports = WebpackMerge(BASE_CONFIG, DEV_SERVER);
+// } else {
+//   module.exports = BASE_CONFIG;
+// }
 
 
 // 'webpack-dev-server/client?http://localhost:3000',
