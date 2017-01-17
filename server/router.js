@@ -46,9 +46,11 @@ app.use(lusca({
 }));
 
 app.use((req, res, next) => {
-  req.path === '/'
-    ? next()
-    : lusca.csrf()(req, res, next);
+  if (req.path === '/') {
+    next();
+  } else {
+    lusca.csrf()(req, res, next);
+  }
 });
 
 
