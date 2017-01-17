@@ -23,7 +23,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 
 app.use(session({
-  // name: 'Express Session Token',
   secret: process.env.SESSION_SECRET,
   resave: true,
   saveUninitialized: true,
