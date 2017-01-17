@@ -1,0 +1,361 @@
+
+/* `JobDetail` Component Styles:
+ * ------------------------------- */
+#jobInfoBody {
+  position: relative;
+  display: inline-block;
+  width: 65%;
+  height: 100%;
+  min-height: 700px;
+  float: right;
+  background: linear-gradient(#FFF 40%, #E9EBEE 50%);
+  box-sizing: border-box;
+  overflow-y: scroll;
+}
+
+
+/* ==========================================================================
+   =================== Yelp Restaurant Style Declarations ===================
+   ========================================================================== */
+
+.restaurantContainer {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  /* min-height: 200px; */
+  float: left;
+  background-color: #E9EBEE;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  > div {
+    &:first-child {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 50px;
+      left: 0;
+      top: 0;
+      flex-direction: row;
+      justify-content: space-between;
+      box-sizing: border-box;
+      // background: hsl(0, 53%, 52%) url('../img/bckg_hero.png') no-repeat;
+      background: hsl(0, 53%, 52%) url(https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_styleguide/15ee41b0c3b2/assets/img/structural/header_stars@2x.png) center / contain;
+      background-blend-mode: color-dodge;
+      backface-visibility: initial;
+      background-position: 10% 30%;
+      background-attachment: scroll;
+      background-origin: border-box;
+      z-index: 1;
+    }
+
+    h1 {
+      position: relative;
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      margin: 0 1.5rem 0 0;
+      float: right;
+      font: normal 3.75rem/5rem 'Raleway', 'Open Sans', Arial, sans-serif;
+      text-align: center;
+    }
+  }
+}
+
+.yelpPhoto {
+  position: relative;
+  width: 100%;
+  min-height: 75px;
+  max-height: 200px;
+  left: 50%;
+  border: 4px solid #14A4B5;
+  line-height: 0;
+  box-sizing: border-box;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, #14a4b5 60%, #FFF 125%);
+
+  &:hover .yelpAlphaLayer {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 6rem;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0.65) 80%, rgba(0, 0, 0, 0) 99%);
+
+    > img {
+      position: absolute;
+      height: 3rem;
+      width: 2.6rem;
+      top: 50%;
+      right: 5px;
+      transform: translateY(-50%);
+    }
+  }
+
+  > img {
+    position: relative;
+    min-width: 100%;
+    max-width: 115%;
+    min-height: 75px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &.fallbackImage { width: 146px; }
+  }
+
+  .yelpAlphaLayer {
+    height: 0;
+    transition: height 0.095s ease-out;
+  }
+}
+
+.restaurantLI,
+.transportationCard,
+.amenitiesCard {
+  position: relative;
+  display: inline-block;
+  min-height: 200px;
+  /* max-height: 400px; */                        /* Uncomment to disable large height-width aspect ratio images */
+  margin: 1rem auto;
+  padding: 0.75rem 0;
+  background-color: #FFF;
+  vertical-align: top;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+
+  &:hover,
+  .activeCard {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2),
+                0 6px 10px 0 rgba(0, 0, 0, 0.3);
+  }
+}
+
+.restaurantLI {
+  > div { padding: 0 1.5rem; }
+  > a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    overflow-y: hidden;
+  }
+  p { margin: 0; }
+}
+
+.amenityDistanceInMiles {
+  display: inline-block;
+  width: 50%;
+  float: left;
+}
+
+.expandFromCenter:after {
+  position: relative;
+  display: block;
+  content: '';
+  width: 0;
+  height: 1px;
+  margin: auto;
+  background: transparent;
+  transition: width 0.5s ease,
+              background-color 0.5s ease;
+}
+  .expandFromCenter:hover:after {
+    width: 100%;
+    background: #1BA6B7;
+  }
+
+.GPlacesList { background-color: #E9EBEE; }
+
+p.noResultsMsg {
+  width: 100%;
+  font-size: 3rem;
+  text-align: center;
+}
+
+#jobInfoBody {
+  > div:first-child,
+  .transportationContent,
+  .amenitiesContent { padding: 0 0 1rem 2rem; }
+
+  .jobInfoBottomBlock {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 50%;
+    min-height: 500px;
+    bottom: 0;
+  }
+}
+
+.nameRating {
+  > h5 {
+    text-align: center;
+    font-weight: 500;
+  }
+  > a {
+    display: block;
+    width: 100%;
+  }
+}
+
+.job-detail {
+  h3 {
+    width: 100%;
+    margin: 2rem auto;
+    font-weight: bolder;
+    text-align: center;
+
+    a {
+      text-decoration: none;
+      color: #696969;
+    }
+  }
+  blockquote a {
+    text-decoration: none;
+    color: #222;
+  }
+}
+
+.YelpRestaurantAddress {
+  margin-bottom: 5px;
+  font: 1.25rem/1.50rem 'Raleway', sans-serif;
+}
+.YelpRating_Div {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+
+  > img.YelpRatingStars {
+    position: relative;
+    display: inline-block;
+    height: 1.25rem;
+    top: 0.375rem;
+    float: left;
+  }
+
+  > .numRestaurantReviews {
+    position: relative;
+    display: inline-block;
+    float: right;
+    font-size: 1.25rem;
+    line-height: 2rem;
+  }
+}
+
+a.YelpPhoneNo {
+  color: #222;
+  font: lighter 1.35rem Courier, monospace, serif;
+  word-spacing: -0.5rem;
+
+  > em { font-style: normal; }
+}
+
+.yelpDescription {
+  .blockDistanceContainer {
+    display: inline-block;
+    height: 1.5rem;
+    float: right;
+  }
+  .distanceBlock {
+    position: relative;
+    display: inline-block;
+    height: 1rem;
+    width: 1rem;
+    margin: 1.25px;
+    background: #BEBEBE;
+  }
+}
+
+.restaurantContainer > div:first-child a:hover > i { text-shadow: 0 0 6px #FFF; }
+
+div.listItemsContainer {
+  height: 90%;
+  margin-bottom: 25px;
+}
+
+.react-tabs div.overlay,
+.restaurantContainer:last-child .listItemsContainer {
+  height: 90%;
+  margin-bottom: 25px;
+  background-color: #E9EBEE;
+  overflow-x: hidden;
+  overflow-y: overlay;
+}
+
+
+/* ==========================================================================
+   ===================== Yelp Modals Style Declarations =====================
+   ========================================================================== */
+
+.yelpModalContainer {
+  > div {
+    position: absolute;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    color: #FFF;
+    opacity: 0;
+    transition: opacity 0.125s ease-in;
+  }
+  a {
+    padding: 0.75rem 0;
+    font-size: 1.75rem;
+    color: inherit;
+  }
+  &:hover > div { opacity: 1; }
+}
+
+.yelpRestaurantTitleBar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+
+  a {
+    position: relative;
+    padding-left: 10px;
+    font: lighter 3.5rem/6rem 'Raleway', 'Helvetica Neue', sans-serif;
+
+    &:hover { /* text-decoration: underline; */ }
+  }
+}
+
+.navigation-arrows-wrapper {
+  position: absolute;
+  display: flex;
+  width: 95%;
+  left: 50%;
+  top: 50%;
+  flex-direction: row;
+  justify-content: space-between;
+  transform: translate(-50%, -50%);
+  background: transparent;
+}
+.navigation-arrow-icon {
+  width: 27px;
+  height: 45px;
+  font: bold oblique 6rem Helvetica, 'Helvetica Neue', Arial, sans-serif;
+  font-stretch: ultra-expanded;
+  background: url('https://www.facebook.com/rsrc.php/v3/y9/r/1b8LvWSePrz.png') no-repeat 0 -46px / 31px 241px;
+
+  &:first-child { background-position: 0 0; }
+}
+
+.modalToolbar {
+  display: flex;
+  bottom: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+
+  a:hover:after {
+    position: absolute;
+    content: url(http://goo.gl/oGGvsL);
+    height: 1.5rem;
+    padding: 0 10px;
+  }
+
+  a:last-child:hover:after {
+    content: url(http://goo.gl/Zwu0Ez);
+  }
+}
