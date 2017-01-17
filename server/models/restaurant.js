@@ -2,10 +2,10 @@
 let Yelp = require('yelp');
 
 const yelp = new Yelp({
-  consumer_key: process.env.YELPKEY,
-  consumer_secret: process.env.YELPSECRET,
+  consumer_key: process.env.YELP_KEY,
+  consumer_secret: process.env.YELP_SECRET,
   token: process.env.TOKEN,
-  token_secret: process.env.TOKENSECRET
+  token_secret: process.env.TOKEN_SECRET
 });
 
 // Add latLong argument
@@ -14,7 +14,7 @@ let getYelp = (food, city, coordinate, limit) => {
     return yelp.search({ term: food, location: city, cll: coordinate.latitude + ',' + coordinate.longitude })   // Implement
       .then((data) => {
         let restaurants = data.businesses.slice(0, limit);
-        
+
         restaurants = restaurants.map((obj) => {
           return {
             name: obj.name,

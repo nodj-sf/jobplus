@@ -3,7 +3,6 @@ import Webpack from 'webpack';
 import WebpackMerge from 'webpack-merge';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
-import Autoprefixer from 'autoprefixer';
 import PostCSS from './postcss.config';
 import path from 'path';
 
@@ -84,7 +83,7 @@ const BASE_CONFIG = {
     }),
     new ExtractTextPlugin('styles.css'),
     new HTMLWebpackPlugin({
-      template: 'public/index.html'
+      template: 'assets/index.html'
     })
   ],
   node: {
