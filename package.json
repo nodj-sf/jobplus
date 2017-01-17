@@ -15,6 +15,7 @@
     "db:stop": "brew services stop redis",
     "dev": "webpack-dev-server --progress --profile --colors",
     "lint": "eslint app",
+    "serve": "NODE_ENV=development webpack-dev-server -d",
     "start": "nodemon",
     "test": "mocha -w app/test/helpers/browser.js app/test/*_test.js",
     "watch": "webpack -w"
@@ -23,7 +24,11 @@
     "type": "git",
     "url": "git+https://github.com/JustinLien/nodj.git"
   },
-  "author": "Oliver Isenrich, Nick Daniele, Justin Lien, Damon Nguyen",
+  "author": {
+    "name": "Oliver Isenrich",
+    "email": "isenrich@yahoo.com",
+    "url": "http://isenrich.io"
+  },
   "contributors": [
     {
       "name": "Oliver Isenrich",
@@ -31,13 +36,16 @@
       "url": "http://isenrich.io"
     },
     {
-      "name": "Nick Daniele"
+      "name": "Nick Daniele",
+      "email": "ngdaniele@gmail.com"
     },
     {
-      "name": "Damon Nguyen"
+      "name": "Damon Nguyen",
+      "email": "damonnguyen92@gmail.com"
     },
     {
-      "name": "Justin Lien"
+      "name": "Justin Lien",
+      "email": "sillyjustin@gmail.com"
     }
   ],
   "license": "ISC",
@@ -49,13 +57,13 @@
   "devDependencies": {
     "autoprefixer": "^6.6.1",
     "axios": "^0.13.1",
-    "babel-core": "^6.11.4",
+    "babel-core": "^6.21.0",
     "babel-eslint": "^6.1.2",
-    "babel-loader": "^6.2.4",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-transform-object-rest-spread": "^6.20.2",
     "babel-preset-env": "^1.1.6",
-    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
-    "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.18.0",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
@@ -86,6 +94,7 @@
     "svg-inline-loader": "^0.6.1",
     "svg-react-loader": "^0.3.7",
     "url-loader": "^0.5.7",
+    "webpack-dev-server": "^2.2.0-rc.0",
     "webpack-merge": "^2.3.1"
   },
   "dependencies": {
@@ -109,11 +118,11 @@
     "react-tabs": "^0.8.2",
     "redis": "^2.6.2",
     "redux": "^3.6.0",
+    "redux-promise": "^0.5.3",
     "request": "^2.74.0",
     "skeleton-css": "^2.0.4",
     "util": "^0.10.3",
     "webpack": "^2.1.0-beta.26",
-    "webpack-dev-server": "^2.2.0-rc.0",
     "yelp": "^1.0.1"
   }
 }
