@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": [
+    "Oliver Isenrich"
+  ],
+  "author": "Oliver Isenrich <isenrich@yahoo.com> (http://isenrich.io)",
+  "contributors": [
+    "Oliver Isenrich <isenrich@yahoo.com> (http://isenrich.io)"
+  ],
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack-dev-server --colors --inline --profile --progress",
+    "lint": "eslint app",
+    "start": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack -w"
+  },
+  "name": "",
+  "description": "Version control and source code for the Job+ web application."
+}
