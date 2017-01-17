@@ -156,6 +156,7 @@ class GooglePlacesAutocomplete extends Component {
   autocompleteItemStyle(active) {
     return active
       ? { ...defaultStyles.autocompleteItemActive, ...this.props.styles.autocompleteItemActive }
+      // ? { }
       : { };
   }
 
@@ -176,6 +177,7 @@ class GooglePlacesAutocomplete extends Component {
   }
 
   renderSuggestedLocation(place, id) {
+    console.log('LOGGED PLACE:', place);
     return (
       <li
         key={ `AutoSuggestLocation_${place.placeId}` }
