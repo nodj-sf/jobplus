@@ -1,3 +1,4 @@
+'use strict';
 import React, { Component } from 'react';
 import { GoogleMapLoader, GoogleMap, Marker, InfoWindow, SearchBox, DirectionsRenderer} from 'react-google-maps';
 import { default as InfoBox } from 'react-google-maps/lib/addons/InfoBox';

@@ -1,3 +1,4 @@
+'use strict';
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
@@ -26,15 +27,16 @@ class RestaurantModal extends Component {
     return (
       <Modal
         isOpen={ this.props.yelpModalState[`Yelp_Modal_${this.props.yelpID}`] }
-        style={ yelpRestaurantModalStyles } >
-        <i 
-          className='fa fa-times-circle XButton' 
+        style={ yelpRestaurantModalStyles }
+        contentLabel='Yelp Restaurant Modal Component' >
+        <i
+          className='fa fa-times-circle XButton'
           onClick={ () => this.props.deactivateYelpModal() }>
         </i>
         <div className='yelpModalContainer'>
           <div className='yelpRestaurantTitleBar'>
-            <a 
-              href={ this.props.yelpRestaurantURL } 
+            <a
+              href={ this.props.yelpRestaurantURL }
               target='_blank'
               className='expandFromCenter'>
               { this.props.yelpRestaurantName }
@@ -50,18 +52,18 @@ class RestaurantModal extends Component {
               onClick={ () => this.viewNextPhoto() }>
             </i>
           </div>
-          <img 
-            className='featuredImg' 
-            src={ this.props.yelpPhoto.originalFileSize } 
+          <img
+            className='featuredImg'
+            src={ this.props.yelpPhoto.originalFileSize }
             alt={ this.props.yelpDescription } />
           <div className='modalToolbar'>
-            <a 
-              href={ this.props.yelpPhoto.yelpLightboxURL(this.props.yelpID) } 
+            <a
+              href={ this.props.yelpPhoto.yelpLightboxURL(this.props.yelpID) }
               target='_blank'>
               View On Yelp
             </a>
-            <a 
-              href={ this.props.yelpPhoto.originalFileSize } 
+            <a
+              href={ this.props.yelpPhoto.originalFileSize }
               download={ `${this.props.yelpID}_Yelp_Photo` }>
               Download
             </a>
@@ -81,5 +83,5 @@ let mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(RestaurantModal);
 
 
-// &lt; 
-// &gt; 
+// &lt;
+// &gt;
