@@ -50,11 +50,6 @@ app.use((req, res, next) => {
   req.path === '/'
     ? next()
     : lusca.csrf()(req, res, next);
-  // if (req.path === '/') {
-  //   next();
-  // } else {
-  //   lusca.csrf()(req, res, next);
-  // }
 });
 
 
@@ -64,7 +59,7 @@ const getJob = require('./controllers/getJob');
 const getPlace = require('./controllers/getPlace');
 const scrapDetail = require('./controllers/scrapeDetail');
 
-app.use(express.static(path.join(__dirname, '../')));
+app.use(express.static(path.join(__dirname, '../dist')));
 
 
 // App Routes:
