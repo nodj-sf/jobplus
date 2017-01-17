@@ -311,7 +311,8 @@ class GMap_Modal extends BaseComponent {
     return (
       <Modal
         isOpen={ this.props.toggleModal }
-        style={ customStyles } >
+        style={ customStyles }
+        contentLabel='Google Maps Modal Component' >
 
         <GoogleMapLoader
           containerElement={
@@ -323,18 +324,17 @@ class GMap_Modal extends BaseComponent {
             <GoogleMap
               center={ this.props.center }
               defaultCenter={ this.props.center }
-              defaultZoom={14}
-              maxZoom={14}
+              defaultZoom={ 14 }
+              maxZoom={ 14 }
               defaultOptions={{ styles: mapStylesObject }}
-              scrollwheel={false}
+              scrollwheel={ false }
               ref='map'
               onClick={ () => this.closeAllMarkers() } >
 
               <MarkerClusterer
                 averageCenter
                 enableRetinaIcons
-                gridSize={40} >
-
+                gridSize={ 40 } >
                 { this.restaurantMarkerCallbackHandler() }
                 { this.busMarkerCallbackHandler() }
                 { this.trainMarkerCallbackHandler() }
@@ -344,7 +344,6 @@ class GMap_Modal extends BaseComponent {
 
                 { this.jobMarkerCallbackHandler() }
                 {  }
-
             </GoogleMap>
           } />
 

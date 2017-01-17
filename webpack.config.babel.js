@@ -11,11 +11,11 @@ import path from 'path';
 const isProductionEnv = (process.env.NODE_ENV === 'production');
   console.log(`Node environment:\t${isProductionEnv}`);
 
-const VENDOR_LIBS = ["body-parser", "dotenv",
-  "googleplaces", "lodash", "lusca", "react", "react-dom",
+const VENDOR_LIBS = ["body-parser",
+  "googleplaces", "lodash", "react", "react-dom",
   "react-google-maps", "react-modal", "react-promise",
   "react-redux", "react-router", "react-router-redux",
-  "react-tabs", "redux", "request", "util", "yelp"
+  "react-tabs", "redux", "util", "yelp"
 ];
 
 const BASE_CONFIG = {
