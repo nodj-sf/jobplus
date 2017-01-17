@@ -1,10 +1,19 @@
 import axios from 'axios';
 
 
+// const getCookie = (name) => {
+//   const value = `;${document.cookie}`,
+//         parts = value.split('; ' + name + '=');
+//   return parts.length === 2 ? decodeURIComponent(parts.pop().split(';').shift()) : '';
+// };
+
 const getCookie = (name) => {
-  const value = `;${document.cookie}`,
-        parts = value.split('; ' + name + '=');
-  return parts.length === 2 ? decodeURIComponent(parts.pop().split(';').shift()) : '';
+  const value = '; ' + document.cookie;
+  const parts = value.split('; ' + name + '=');
+  if (parts.length === 2) {
+    return decodeURIComponent(parts.pop().split(';').shift());
+  }
+  return '';
 };
 
 export const fetchJobs = (jobSearch, city) => {
