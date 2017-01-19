@@ -111,6 +111,7 @@
     "express-session": "^1.14.0",
     "express-validator": "^2.20.8",
     "googleplaces": "^0.6.0",
+    "jquery": "^3.1.1",
     "lodash": "^4.17.4",
     "lusca": "^1.4.1",
     "react": "^15.4.2",
