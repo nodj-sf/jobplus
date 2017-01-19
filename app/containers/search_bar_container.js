@@ -103,7 +103,8 @@ class SearchBar extends Component {
                   results="4"
                   placeholder="Job"
                   autoComplete="on"
-                  autoCapitalize="words"
+                  autoCapitalize=""
+                  autoFocus={ true }
                   onFocus={ this._handleFocusChange }
                   onBlur={ this._handleFocusChange }
                   onChange={ this.onJobTitleInputChange }
