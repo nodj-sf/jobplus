@@ -13,6 +13,13 @@ import { activeJob, scrapeDetails } from '../actions/index';
 class JobDetail extends BaseComponent {
   constructor(props) {
     super(props);
+    this.state = { companyLogoURL: '' };
+  }
+
+  componentDidMount() {
+    // this.setState({ companyLogoURL: this.props.activeCompanyData.logo });
+    // this.refs.img.src = this.props.activeCompanyData.logo;
+    // console.log('REF IMG:', this.refs.img);
   }
 
   render() {
@@ -33,30 +40,42 @@ class JobDetail extends BaseComponent {
               { this.props.job.jobtitle }
             </a>
           </h3>
-          <h4>{ this.props.job.company }</h4>
-          <hr />
-          <h6>
-            {[
-              /hour/gmi.test(this.props.formattedRelativeTime)
-                ? <i
-                  className='fa fa-clock-o'
-                  key='FA-Clock-Face_Glyph' />
-                : <i
-                  className='fa fa-location-arrow'
-                  key='FA-Directional-Arrow_Glyph' />,
-              `\t`,
-              this.props.job.formattedLocation
-            ]}
-          </h6>
-          <p>
-            {[
-              <i
-                className='fa fa-calendar'
-                key='FA-Calendar_Glyph' />,
-              `\t`,
-              this.props.job.formattedRelativeTime
-            ]}
-          </p>
+          <div className="job-company-header">
+            <img
+              ref="img"
+              src={ `${this.props.activeCompanyData.logo}?size=100` }
+              alt={ `${this.props.job.company} corporate logo (100px).` }
+              onError={ () => this.src='https://upload.wikimedia.org/wikipedia/commons/c/ce/Example_image.png' } />
+            <div>
+              <h4>{ this.props.job.company }</h4>
+              <hr />
+              <div className="job-meta-info">
+                <h6>
+                  {[
+                    /hour/gmi.test(this.props.formattedRelativeTime)
+                      ? <i
+                        className='fa fa-clock-o'
+                        key='FA-Clock-Face_Glyph' />
+                      : <i
+                        className='fa fa-location-arrow'
+                        key='FA-Directional-Arrow_Glyph' />,
+                    `\t`,
+                    this.props.job.formattedLocation
+                  ]}
+                </h6>
+                <h6>
+                  {[
+                    <i
+                      className='fa fa-calendar'
+                      key='FA-Calendar_Glyph' />,
+                    `\t`,
+                    this.props.job.formattedRelativeTime
+                  ]}
+                </h6>
+              </div>
+            </div>
+          </div>
+
           <blockquote>
             {[
               details,
@@ -77,6 +96,7 @@ class JobDetail extends BaseComponent {
 
 let mapStateToProps = (state) => ({
   job: state.activeJob,
+  activeCompanyData: state.activeCompanyData,
   scrapeDetails: state.scrapeDetails
 });
 

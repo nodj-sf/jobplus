@@ -7,6 +7,7 @@ import JobItem from '../components/job_item_component';
 import BaseComponent from '../components/base_component';
 import {
   selectJob,
+  fetchCompanyData,
   fetchYelp,
   fetchBus,
   fetchTrains,
@@ -44,6 +45,7 @@ class JobList extends BaseComponent {
     let props = this.props;
 
     props.selectJob(job);
+    props.fetchCompanyData(job.company);
     props.fetchYelp(job.city, job.latitude, job.longitude);
 
     [props.fetchTrains, props.fetchBus, props.fetchParks, props.fetchGyms]
@@ -110,6 +112,7 @@ class JobList extends BaseComponent {
 let mapStateToProps = (state) => ({
   jobs: state.jobs,
   activeJob: state.activeJob,
+  activeCompanyData: state.activeCompanyData,
   jobTerm: state.jobInputTerm,
   lastJob: state.lastJob,
   locationTerm: state.locationInputTerm,
@@ -118,6 +121,7 @@ let mapStateToProps = (state) => ({
 
 let mapDispatchToProps = (dispatch) => bindActionCreators({
   selectJob,
+  fetchCompanyData,
   fetchYelp,
   fetchBus,
   fetchTrains,
