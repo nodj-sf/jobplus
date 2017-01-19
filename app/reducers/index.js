@@ -3,6 +3,7 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 import jobs from './reducer_jobs';
 import activeJob from './reducer_active_job';
+import activeCompanyData from './active_company';
 import activeYelp from './reducer_active_yelp';
 import activeTrains from './reducer_active_trains';
 import activeBus from './reducer_active_bus';
@@ -38,7 +39,8 @@ const rootReducer = combineReducers({
   searchInputs,
   scrapeDetails,
   loading,
-  toggleContainerDisplay
+  toggleContainerDisplay,
+  activeCompanyData
 });
 
 export default rootReducer;
