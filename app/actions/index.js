@@ -1,5 +1,25 @@
 'use strict';
 import axios from 'axios';
+import $ from 'jquery';
+
+
+export const FETCH_COMPANY_DATA = 'FETCH_COMPANY_DATA';
+export const FETCH_JOBS = 'FETCH_JOBS';
+export const FETCH_YELP = 'FETCH_YELP';
+export const FETCH_TRAINS = 'FETCH_TRAINS';
+export const FETCH_BUS = 'FETCH_BUS';
+export const FETCH_PARKS = 'FETCH_PARKS';
+export const FETCH_GYMS = 'FETCH_GYMS';
+export const SCRAPE_DATA = 'SCRAPE_DATA';
+export const JOB_SELECTED = 'JOB_SELECTED';
+export const JOB_INPUT_TERM = 'JOB_INPUT_TERM';
+export const LOCATION_INPUT_TERM = 'LOCATION_INPUT_TERM';
+export const LAST_JOB = 'LAST_JOB';
+export const LAST_LOCATION = 'LAST_LOCATION';
+export const TOGGLE_MODAL = 'TOGGLE_MODAL';
+export const TOGGLE_YELP_MODAL_ = 'TOGGLE_YELP_MODAL_';
+export const TOGGLE_DISPLAY_LIST_ = 'TOGGLE_DISPLAY_LIST_';
+export const LOADING = 'LOADING';
 
 
 // const getCookie = (name) => {
@@ -8,13 +28,29 @@ import axios from 'axios';
 //   return parts.length === 2 ? decodeURIComponent(parts.pop().split(';').shift()) : '';
 // };
 
-const getCookie = (name) => {
+export const getCookie = (name) => {
   const value = '; ' + document.cookie;
   const parts = value.split('; ' + name + '=');
   if (parts.length === 2) {
     return decodeURIComponent(parts.pop().split(';').shift());
   }
   return '';
+};
+
+export const fetchCompanyData = (companyName) => {
+  const request = axios
+    .get('https://autocomplete.clearbit.com/v1/companies/suggest', {
+      params: { query: companyName }
+    })
+    .then(response => {
+      console.log('Axios GET response:', response);
+      return response;
+    });
+
+  return {
+    type: FETCH_COMPANY_DATA,
+    payload: request
+  };
 };
 
 export const fetchJobs = (jobSearch, city) => {
@@ -92,10 +128,7 @@ export const fetchParks = (lat, long) => {
 
 export const fetchGyms = (lat, long) => {
   const request = axios.post('/api/v1/places', {
-    coordinate: {
-      lat: lat,
-      long: long
-    },
+    coordinate: { lat, long },
     _csrf: getCookie('_csrf'),
     type: 'gym'
   });
@@ -118,7 +151,7 @@ export const scrapeDetail = (url) => {
 
 export const selectJob = (job) => ({
   type: 'JOB_SELECTED',
-  payload: job
+  payload: Object.assign({}, job, { companyData: fetchCompanyData(job.company) })
 });
 
 export const jobInputTerm = (jobTerm) => ({
