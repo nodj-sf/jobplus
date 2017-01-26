@@ -8,22 +8,50 @@ import { push } from 'react-router-redux';
 
 import BaseComponent from '../components/base_component';
 import { activeJob, scrapeDetails } from '../actions/index';
+import BusinessIcon from '../../assets/img/business-icon.svg';
 
 
 class JobDetail extends BaseComponent {
   constructor(props) {
     super(props);
-    this.state = { companyLogoURL: '' };
+    this.renderLogo = this.renderLogo.bind(this);
+    this.state = { companyLogoURL: this.props.activeCompanyData.logo };
   }
 
-  componentDidMount() {
+  // componentDidMount() {
     // this.setState({ companyLogoURL: this.props.activeCompanyData.logo });
     // this.refs.img.src = this.props.activeCompanyData.logo;
     // console.log('REF IMG:', this.refs.img);
+  // }
+
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.activeCompanyData.logo !== undefined) {
+  //     this.setState({ companyLogoURL: nextProps.activeCompanyData.logo });
+  //     console.log('NEXT PROPS:', nextProps);
+  //   }
+  // }
+
+  renderLogo() {
+    const logoURL = this.props.activeCompanyData.logo;
+    console.log('CALLING RENDER_LOGO', logoURL, BusinessIcon);
+
+    // ? 'https://upload.wikimedia.org/wikipedia/commons/c/ce/Example_image.png'
+    this.refs.img.src = (
+      !logoURL
+        ? BusinessIcon
+        : `${this.props.activeCompanyData.logo}?size=100`
+    );
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.renderLogo();
+  }
+
+  componentDidMount() { this.renderLogo(); }
+
   render() {
-    let details = '';
+    let details = '',
+        currentJob = this.props.job;
     if (this.props.scrapeDetails) {
       details = this.props.scrapeDetails.data.details;
     }
@@ -31,8 +59,8 @@ class JobDetail extends BaseComponent {
     return !this.props.job
       ? ( <h1>Job</h1> )
       : (
-        <div className='job-detail'>
-          <h3>
+        <div className="job-detail">
+          <h3 className="textEllipsis">
             <a
               href={ this.props.job.url }
               className='expandFromCenter'
@@ -41,13 +69,20 @@ class JobDetail extends BaseComponent {
             </a>
           </h3>
           <div className="job-company-header">
-            <img
-              ref="img"
-              src={ `${this.props.activeCompanyData.logo}?size=100` }
-              alt={ `${this.props.job.company} corporate logo (100px).` }
-              onError={ () => this.src='https://upload.wikimedia.org/wikipedia/commons/c/ce/Example_image.png' } />
             <div>
-              <h4>{ this.props.job.company }</h4>
+              <img
+                ref="img"
+                src={ this.renderLogo }
+                alt={ `${this.props.job.company} corporate logo (100px).` }
+                onError={ () => this.src='https://upload.wikimedia.org/wikipedia/commons/c/ce/Example_image.png' } />
+            </div>
+            <div>
+              <a
+                href={ `http://${this.props.activeCompanyData.domain}` }
+                target="_blank"
+                rel="external">
+                <h4>{ this.props.job.company }</h4>
+              </a>
               <hr />
               <div className="job-meta-info">
                 <h6>
@@ -105,3 +140,6 @@ let mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(JobDetail);
+
+
+// this.parseAndFormatJobTitle(currentJob.jobtitle)

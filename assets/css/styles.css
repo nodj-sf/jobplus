@@ -464,7 +464,7 @@ button.button-primary {
   height: 100%;
   max-height: 55px;
   margin: 0;
-  background: #7A7A7A;
+  background-color: rgba(122, 122, 122, 0.75);
   color: #FFF;
   font-size: 18px;
   letter-spacing: 0.35rem;
@@ -484,7 +484,11 @@ button.button-primary {
   border: none;
   text-indent: 1rem;
   text-transform: capitalize;
-  background: transparent;
+  background-color: transparent;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #14A4B5;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.27);
 }
 
 #searchInputsBoundary > .formSearchInpt:last-child {
@@ -510,6 +514,7 @@ button.button-primary {
   height: 0;
   opacity: 0;
   visibility: hidden;
+  list-style: none inside url('../img/map_marker_glyph.svg');
 }
 .formSearchInpt .enableList {
   height: auto;
@@ -518,6 +523,9 @@ button.button-primary {
 }
 
 .formSearchInpt li {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  font-size: 1.75rem;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;

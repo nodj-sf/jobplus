@@ -1,6 +1,5 @@
+'use strict';
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-
 import BaseComponent from './base_component';
 
 
@@ -9,24 +8,27 @@ export default class JobItem extends BaseComponent {
     super(props);
   }
 
-  jobListItemClickHandler() {
-    this.props.jobFunc(this.props.job);
+  componentDidMount() {
+    if (this.props.defaultToActive) {
+      this.props.jobFunc(this.props.job);
+    }
   }
 
   render() {
+    const currentJob = this.props.job;
+
     return (
-      <div>
-        <li className={this.props.setActive(this.props.job)} onClick={() => this.props.jobFunc(this.props.job) }>
-          <h2 className="textEllipsis">{ this.parseAndFormatJobTitle(this.props.job.jobtitle) }</h2>
-          <div className="jobLI_MetaInfo">
-            <h6>
-              <b>{this.props.job.company || 'Unlisted'}</b>
-            </h6>
-            <i className="daysSincePosted">{ this.parseAndFormatDaysSincePosted(this.props.job.formattedRelativeTime) }</i>
-          </div>
-        </li>
-        <hr />
-      </div>
+      <li
+        className={ this.props.setActive(currentJob) }
+        onClick={ () => this.props.jobFunc(currentJob) }>
+        <h2 className="textEllipsis">{ this.parseAndFormatJobTitle(currentJob.jobtitle) }</h2>
+        <div className="jobLI_MetaInfo">
+          <h6>
+            <b>{ currentJob.company || 'Unlisted' }</b>
+          </h6>
+          <i className="daysSincePosted">{ this.parseAndFormatDaysSincePosted(currentJob.formattedRelativeTime) }</i>
+        </div>
+      </li>
     );
   }
-}
+};
