@@ -27,7 +27,7 @@ blockquote {
   margin-bottom: 0;
   margin-left: 0;
   padding-left: 1rem;
-  border-left: 5px solid #14A4B5;
+  border-left: 5px solid $theme-teal;
   color: #696969;
   &:before,
   &:after {
@@ -43,10 +43,10 @@ button:hover { border: none; }
 
 a,
 a:hover {
-  color: #000;
+  color: $theme-black;
   text-decoration: none;
 }
-  div.yelpPhoto:hover div.yelpAlphaLayer > img { color: #FFF; }
+  div.yelpPhoto:hover div.yelpAlphaLayer > img { color: $theme-white; }
 
 a,
 i:not(.fa),
@@ -109,7 +109,7 @@ hr {
   min-height: 700px;
   top: 6vh;
   margin: 0;
-  background: #FFF;
+  background: $theme-white;
 }
 
 div.meetTheTeam_Container {
@@ -177,12 +177,10 @@ div.socialMediaIcons img {
   height: 16vw;
   top: -14vw;
   margin: auto;
-  border: 2.5px ridge #14A4B5;
+  border: 2.5px ridge $theme-teal;
   border-radius: 50%;
   overflow: hidden;
-  box-sizing: border-box;
-  -webkit-transition: all 0.25s 0s ease-out;
-  transition:         all 0.25s 0s ease-out;
+  transition: all 0.25s 0s ease-out;
   transform: translateY(50%);
 }
 
@@ -191,8 +189,7 @@ div.socialMediaIcons img {
   width: 100%;
   min-height: 16vw;
   left: 50%;
-  -webkit-transition: width 2s 0.1s linear;
-  transition:         width 2s 0.1s linear;
+  transition: width 2s 0.1s linear;
   transform: translateX(-50%);
   -webkit-filter: grayscale(100%);
      -moz-filter: grayscale(100%);
@@ -334,8 +331,7 @@ div.box {
   background: -webkit-linear-gradient(231deg, rgba(20, 164, 181, 1) 15%, rgb(70, 183, 197) 84%, rgb(92, 192, 204) 160%);
   background:      -o-linear-gradient(231deg, rgba(20, 164, 181, 1) 15%, rgb(70, 183, 197) 84%, rgb(92, 192, 204) 160%);
   background:         linear-gradient(321deg, rgba(20, 164, 181, 1) 15%, rgb(70, 183, 197) 84%, rgb(92, 192, 204) 160%);
-  -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
-  box-shadow:         0 1px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
   z-index: 150;
 }
 
@@ -369,26 +365,20 @@ div.box {
 
 .footerCont nav a { margin: auto; }
 
-
 button.button-primary {
   width: 10%;
   height: 5rem;
   left: 3%;
   margin: 20px auto 1rem 25px;
-  /* margin-left: 25px; */
-  /* margin-bottom: 1rem; */
   padding: 0 4px;
   font: 900 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
   background-color: #771DE5;
   color: #A7A5A5;
   border-radius: 4px;
-  -webkit-box-shadow: none;
-  box-shadow:         none;
+  box-shadow: none;
   box-sizing: content-box;
-  -webkit-transition: background 0.25s ease-out,
-                      color 0.25s ease-out;;
-  transition:         background 0.25s ease-out,
-                      color 0.25s ease-out;
+  transition: background 0.25s ease-out,
+              color 0.25s ease-out;
 }
   button.button-primary:focus { background-color: #1EAEDB; }
   button.button-primary:hover {
@@ -475,7 +465,7 @@ button.button-primary {
     transition: all 0.25s ease-in;
     &:first-child { border-radius: 5px 0 0 5px; }
     &:last-child {
-      border-left: 0.5px solid $theme-white;
+      border-left: 1px inset $theme-white;
       border-radius: 0 5px 5px 0;
     }
     &.active {
@@ -519,7 +509,7 @@ button.button-primary {
     text-indent: 1rem;
     text-transform: capitalize;
     background-color: transparent;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 900;
     color: $theme-teal;
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.27);
@@ -538,7 +528,7 @@ button.button-primary {
   margin: 0;
   padding: 0 1rem;
   border: none;
-  border-left: 1px solid $theme-white;
+  border-left: 1px inset $theme-white;
   border-radius: 0 0.5rem 0.5rem 0;
   color: $theme-white;
   font-size: 3rem;
