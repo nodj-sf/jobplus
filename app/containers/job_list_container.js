@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-
 import JobItem from '../components/job_item_component';
 import BaseComponent from '../components/base_component';
 import {
@@ -31,7 +30,7 @@ class JobList extends BaseComponent {
   // Handles delegation of the appropriate `className` values of jobs such that the currently
   //  active job (`activeJob`) has an additional class of `.active`:
   setActive(job) {
-    return job === this.props.activeJob ? 'active jobLI' : 'jobLI';
+    return `${job === this.props.activeJob ? 'active ' : ''}jobLI`;
   }
 
   // Cues loading animation and a debounced query to the Indeed API for relevant job postings:
@@ -63,7 +62,8 @@ class JobList extends BaseComponent {
           key={ job.jobkey }
           setActive={ this.setActive }
           jobFunc={ this.jobFunc }
-          job={ job } />
+          job={ job }
+          defaultToActive={ index === 0 ? true : false } />
       );
     } else {
       this.init
@@ -100,9 +100,7 @@ class JobList extends BaseComponent {
           ]}
         </b>
         <div>
-          <ul className='jobsList'>
-            { this.renderList() }
-          </ul>
+          <ul className='jobsList'>{ this.renderList() }</ul>
         </div>
       </div>
     );
@@ -112,7 +110,7 @@ class JobList extends BaseComponent {
 let mapStateToProps = (state) => ({
   jobs: state.jobs,
   activeJob: state.activeJob,
-  activeCompanyData: state.activeCompanyData,
+  // activeCompanyData: state.activeCompanyData,
   jobTerm: state.jobInputTerm,
   lastJob: state.lastJob,
   locationTerm: state.locationInputTerm,
