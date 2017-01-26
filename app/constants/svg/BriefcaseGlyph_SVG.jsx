@@ -4,7 +4,7 @@ import React from 'react';
 
 const BriefcaseGlyph = () => (
   <svg
-    class="nav-icon"
+    className="svg-glyphs nav-icon-glyph"
     // width="24px"
     // height="24px"
     preserveAspectRatio="xMinYMin meet"
