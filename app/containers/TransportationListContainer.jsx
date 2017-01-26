@@ -11,12 +11,17 @@ import { toggleGooglePlacesListContainer, loading } from '../actions/index';
 class TransportationList extends BaseComponent {
   constructor(props) {
     super(props);
+    this.handleListToggleClick = this.handleListToggleClick.bind(this);
     // this.delayOnLoad = this.delayOnLoad.bind(this);
     // this.getData = this.getData.bind(this);
   }
 
   assignDisplayClass(obj) {
     return obj === 'flex' ? 'GPlacesList container' : 'GPlacesList container inactive';
+  }
+
+  handleListToggleClick(listName) {
+    this.props.toggleGooglePlacesListContainer(listName);
   }
 
   renderList(transportationList) {
@@ -71,19 +76,19 @@ class TransportationList extends BaseComponent {
     ];
 
     return (
-      (this.props.loading) ?
-        <div className='restaurantContainer' style={{ minHeight: '200px' }}>
-          {[
-            <i
-              className='fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner'
-              key='RefreshLoaderAnimation'>
-            </i>,
-            `\tLoading...`
-          ]}
-        </div> :
-        <div>
-          { this.renderList(listMap) }
-        </div>
+      this.props.loading ?
+        (
+          <div
+            className="restaurantContainer"
+            style={{ minHeight: '200px' }}>
+            {[
+              <i
+                className="fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner"
+                key="RefreshLoaderAnimation" />,
+              `\tLoading...`
+            ]}
+          </div>
+        ) : ( <div>{ this.renderList(listMap) }</div> )
     );
   }
 };

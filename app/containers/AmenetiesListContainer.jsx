@@ -65,17 +65,17 @@ class AmenitiesList extends BaseComponent {
     ];
 
     return (
-      (this.props.loading) ?
-        <div className='restaurantContainer' style={{ minHeight: '200px' }}>
-          {[
-            <i
-              className='fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner'
-              key='RefreshLoaderAnimation'>
-            </i>,
-            `\tLoading...`
-          ]}
-        </div> :
-        <div>{ this.renderList(listMap) }</div>
+      this.props.loading ?
+        (
+          <div className='restaurantContainer' style={{ minHeight: '200px' }}>
+            {[
+              <i
+                className='fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner'
+                key='RefreshLoaderAnimation' />,
+              `\tLoading...`
+            ]}
+          </div>
+        ) : ( <div>{ this.renderList(listMap) }</div> )
     );
   }
 }
