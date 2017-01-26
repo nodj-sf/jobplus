@@ -19,7 +19,7 @@ const VENDOR_LIBS = ["body-parser",
 
 const BASE_CONFIG = {
   entry: {
-    bundle: path.resolve(__dirname, 'app/app'),
+    bundle: path.resolve(__dirname, 'app/App'),
     vendor: VENDOR_LIBS
   },
   output: {

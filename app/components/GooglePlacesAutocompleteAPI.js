@@ -217,9 +217,9 @@ class GooglePlacesAutocomplete extends Component {
     return (
       <div
         id="searchLocation"
-        className="formSearchInpt">
+        className="form-search-inpt">
         <input
-          className="formSearchInpt"
+          className="form-search-inpt"
           type="text"
           ref="locationInput"
           placeholder={ placeholder }

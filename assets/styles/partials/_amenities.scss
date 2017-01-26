@@ -1,0 +1,75 @@
+
+.panel-header {
+  @include flex(flex, row nowrap, space-between, center);
+  height: 5rem;
+  color: $theme-white;
+  background: hsl(0, 53%, 52%) url('../img/stars-bckg.svg') center / 100% 150% no-repeat scroll border-box;
+  background-blend-mode: color-dodge;
+  backface-visibility: initial;
+  .AmenitiesHeader_Img {
+    height: 40px;
+    margin: 0 0 0 2rem;
+  }
+  h5 { font-size: 3rem; }
+}
+
+.restaurantContainer {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  float: left;
+  background-color: $theme-off-white;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  > div {
+    h1 {
+      position: relative;
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      margin: 0 1.5rem 0 0;
+      float: right;
+      font: normal 3.75rem/5rem 'Raleway', 'Open Sans', Arial, sans-serif;
+      text-align: center;
+    }
+  }
+}
+
+
+
+
+
+
+
+a.YelpPhoneNo {
+  color: #222;
+  font: lighter 1.35rem Courier, monospace, serif;
+  word-spacing: -0.5rem;
+
+  > em { font-style: normal; }
+}
+
+.yelpDescription {
+  > * {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-top: 0.75rem !important;
+    overflow: hidden;
+  }
+  .blockDistanceContainer {
+    display: inline-block;
+    height: 1.5rem;
+    float: right;
+  }
+  .distanceBlock {
+    position: relative;
+    display: inline-block;
+    height: 1rem;
+    width: 1rem;
+    margin: 1.25px;
+    background: #BEBEBE;
+  }
+}

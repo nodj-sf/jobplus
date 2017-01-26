@@ -1,17 +1,19 @@
-export default function(state = {}, action) {
-  // Utility function returns the string value of the `listName` action's input:
-  const extractListName = () => action.type.replace(/TOGGLE_DISPLAY_LIST_/, '');
+'use strict';
+import { TOGGLE_DISPLAY_LIST_ } from '../actions/index';
+import { extractIdentifier } from './utilities';
+
+
+export default function toggleContainerDisplay(state = {}, action) {
+  const extractListName = extractIdentifier(action.type, 'TOGGLE_DISPLAY_LIST_');
 
   switch (action.type) {
-    case `TOGGLE_DISPLAY_LIST_${extractListName()}`:
-      state = [...new Set(Object.keys(state).concat(`list_container_${extractListName()}`))]
-        .reduce((memo, curr) => {
-          memo[curr] = (curr === `list_container_${extractListName()}`
-            ? !(~~state[`list_container_${extractListName()}`])
-            : state[curr]
-          );
-          return memo;
-        }, {});
+    case `TOGGLE_DISPLAY_LIST_${extractListName}`:
+      // console.log(`Action <${action.type}> triggered without payload (intentionally).`, state);
+      const listName = `list_container_${extractListName}`,
+            newState = Object.assign({}, state, {
+              [listName]: (listName in state ? !state[listName] : true)
+            });
+      return newState;
     default:
       return state;
   }

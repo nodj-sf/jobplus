@@ -2,7 +2,7 @@
 import { JOB_SELECTED } from '../actions/index';
 
 
-export default function(state = {}, action) {
+export default function activeJob(state = {}, action) {
   // console.log(`Action ${action} on Active Jobs Reducer.`);
   switch(action.type) {
     case JOB_SELECTED:

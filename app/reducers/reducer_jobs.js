@@ -2,10 +2,10 @@
 import { FETCH_JOBS } from '../actions/index';
 
 
-export default function(state = [], action) {
+export default function jobs(state = [], action) {
   switch(action.type) {
     case FETCH_JOBS:
-      // console.log(`Action ${action.type} on Jobs reducer.`);
+      // console.log(`Action <${action.type}> executed with payload:\n`, action.payload);
       let data = action.payload.data;
         console.log('DATA:', data, data.results);
       return data.results;
