@@ -1,6 +1,6 @@
+'use strict';
 import { combineReducers } from 'redux';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
-
 import jobs from './reducer_jobs';
 import activeJob from './reducer_active_job';
 import activeCompanyData from './active_company';
