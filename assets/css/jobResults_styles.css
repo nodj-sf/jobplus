@@ -44,7 +44,7 @@
   }
 
 
-#jobsContainer b > i {
+#jobsContainer strong > i {
   margin: auto 6px;
   padding: 0 6px;
   outline: 1px solid #FFF;
@@ -54,7 +54,7 @@
   font-stretch: semi-expanded;
 }
 
-#jobsContainer > b {
+#jobsContainer > strong {
   position: relative;
   display: block;
   width: 100%;
@@ -208,7 +208,7 @@ div.jobLI_MetaInfo {
   margin: 0;
 }
 
-#mapsContainer + b {
+#mapsContainer + strong {
   position: relative;
   display: block;
   width: 100%;
