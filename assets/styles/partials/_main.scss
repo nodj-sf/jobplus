@@ -259,6 +259,7 @@ div#overlay {
   width: 100%;
   float: none;
 }
+#search-form .form-search-inpt:last-child { border-radius: 0 5px 5px 0; }
 
 div.box {
   position: relative;
@@ -334,13 +335,13 @@ button.button-primary {
   box-sizing: content-box;
   transition: background 0.25s ease-out,
               color 0.25s ease-out;
-}
-  button.button-primary:focus { background-color: #1EAEDB; }
-  button.button-primary:hover {
+  &:focus { background-color: #1EAEDB; }
+  &:hover {
     border: none;
     color: #771DE5;
     background-color: #A7A5A5;
   }
+}
 
 .container {
   position: relative;
@@ -613,7 +614,7 @@ input:-webkit-autofill {
 .ReactTabs__Tab {
   &List {
     &[role='tablist'][role='tablist'] { margin: 0; }
-    > li:last-child[aria-selected='true'] { background-color: hsl(0, 53%, 52%); }
+    // > li:last-child[aria-selected='true'] { background-color: hsl(0, 53%, 52%); }
   }
   &[role='tab'] {
     width: 33%;
