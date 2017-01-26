@@ -1,10 +1,10 @@
 {
-  "name": "nodj",
-  "version": "0.0.2",
+  "name": "JobPlus",
+  "version": "2.0.0",
   "engines": {
     "node": ">=0.8.0"
   },
-  "description": "[![Stories in Ready](https://badge.waffle.io/mks-sf-40-nodj/nodj.svg?label=ready&title=Ready)](http://waffle.io/mks-sf-40-nodj/nodj)",
+  "description": "Version control and source code for the Job+ web application. [![Stories in Ready](https://badge.waffle.io/mks-sf-40-nodj/nodj.svg?label=ready&title=Ready)](http://waffle.io/mks-sf-40-nodj/nodj)",
   "main": "server.js",
   "scripts": {
     "build": "NODE_ENV=production npm run clean && webpack -p",
@@ -20,9 +20,15 @@
     "test": "mocha -w app/test/helpers/browser.js app/test/*_test.js",
     "watch": "webpack -w"
   },
+  "keywords": [
+    "Job+",
+    "JobPlus",
+    "Job Search",
+    "Oliver Isenrich"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JustinLien/nodj.git"
+    "url": "git+https://github.com/IsenrichO/JobPlus.git"
   },
   "author": {
     "name": "Oliver Isenrich",
@@ -48,12 +54,12 @@
       "email": "sillyjustin@gmail.com"
     }
   ],
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JustinLien/nodj/issues",
+    "url": "https://github.com/IsenrichO/JobPlus/issues",
     "email": "isenrich@yahoo.com"
   },
-  "homepage": "https://github.com/JustinLien/nodj#readme",
+  "homepage": "https://github.com/IsenrichO/JobPlus/#readme",
   "devDependencies": {
     "autoprefixer": "^6.6.1",
     "axios": "^0.13.1",
@@ -105,6 +111,7 @@
     "express-session": "^1.14.0",
     "express-validator": "^2.20.8",
     "googleplaces": "^0.6.0",
+    "jquery": "^3.1.1",
     "lodash": "^4.17.4",
     "lusca": "^1.4.1",
     "react": "^15.4.2",

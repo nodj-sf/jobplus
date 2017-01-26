@@ -177,7 +177,7 @@ class GooglePlacesAutocomplete extends Component {
   }
 
   renderSuggestedLocation(place, id) {
-    console.log('LOGGED PLACE:', place);
+    // console.log('LOGGED PLACE:', place);
     return (
       <li
         key={ `AutoSuggestLocation_${place.placeId}` }
@@ -217,9 +217,9 @@ class GooglePlacesAutocomplete extends Component {
     return (
       <div
         id="searchLocation"
-        className="formSearchInpt">
+        className="form-search-inpt">
         <input
-          className="formSearchInpt"
+          className="form-search-inpt"
           type="text"
           ref="locationInput"
           placeholder={ placeholder }

@@ -19,13 +19,13 @@ const VENDOR_LIBS = ["body-parser",
 
 const BASE_CONFIG = {
   entry: {
-    bundle: path.resolve(__dirname, 'app/app'),
+    bundle: path.resolve(__dirname, 'app/App'),
     vendor: VENDOR_LIBS
   },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].[hash].js'
-    // publicPath: 'http://oliver.jobplus.online/'
+    // publicPath: 'http://oliver.jobplus.online'
   },
   module: {
     rules: [
@@ -54,10 +54,10 @@ const BASE_CONFIG = {
       }, {
         test: /\.(jpe?g|png|gif|bmp|svg|ttif)$/i,
         use: [
-          {
-            loader: 'url',
-            options: { limit: 40000 }
-          },
+          // {
+          //   loader: 'url',
+          //   options: { limit: 40000 }
+          // },
           'file?name=/images/[name].[ext]',
           'image-webpack'
         ]
@@ -108,7 +108,7 @@ const DEV_SERVER = {
     new Webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
-    contentBase: __dirname,
+    // contentBase: __dirname,
     historyApiFallback: true,
     host: 'localhost',
     hot: true,
