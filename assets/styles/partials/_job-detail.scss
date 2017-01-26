@@ -15,6 +15,9 @@
 
 .job-company-header {
   height: 100px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
   > div {
     &:first-child {
       width: 108px;

@@ -1,0 +1,12 @@
+
+/* Generic heritable CSS classes
+ * -------------------------------- */
+ .one-third { width: 30%; }
+
+ .text-of {
+  word-break: break-word;
+  word-wrap: break-word;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
