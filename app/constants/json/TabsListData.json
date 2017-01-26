@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Transportation",
+    "key": "bus",
+    "iconClass": "bus"
+  }, {
+    "name": "Amenities",
+    "key": "soccer-ball",
+    "iconClass": "futbol-o"
+  }, {
+    "name": "Yelp",
+    "key": "Yelp",
+    "iconClass": "yelp"
+  }
+]
