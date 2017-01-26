@@ -11,15 +11,8 @@ import LandingPage from './components/LandingPage';
 import AboutPage from './components/AboutPage';
 import reducers from './reducers/index';
 
-import '../assets/styles/master.scss';
-
-import '../assets/css/normalize.css';
 import '../assets/css/skeleton.css';
-
-import '../assets/css/styles.css';
-import '../assets/css/jobResults_styles.css';
-import '../assets/css/fontAwesome_styles.css';
-
+import '../assets/styles/master.scss';
 
 
 const routerMid = routerMiddleware(browserHistory),
