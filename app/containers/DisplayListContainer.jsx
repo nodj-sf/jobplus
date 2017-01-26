@@ -128,11 +128,9 @@ class DisplayList extends BaseComponent {
   render() {
     return (
       <div className="restaurantContainer">
-        <div style={{ backgroundColor: '#14A4B5' }}>
-          <i
-            className="collapseGlyph fa fa-reorder"
-            onClick={ () => this.toggleListContainer() }>
-          </i>
+        <div
+          className="panel-header"
+          style={{ backgroundColor: '#14A4B5' }}>
           <img
             src={ this.props.item.listImage.headerGlyph.sourceURL }
             className="AmenitiesHeader_Img"
@@ -144,6 +142,9 @@ class DisplayList extends BaseComponent {
                 : `${this.props.item.listType}s`
             }
           </h5>
+          <i
+            className="collapseGlyph fa fa-reorder"
+            onClick={ () => this.toggleListContainer() } />
         </div>
         <div className="listItemsContainer">
           {
