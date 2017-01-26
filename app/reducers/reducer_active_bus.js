@@ -1,8 +1,11 @@
-export default function(state = [], action) {  
+'use strict';
+import { FETCH_BUS } from '../actions/index';
+
+
+export default function activeBus(state = [], action) {
   switch(action.type) {
-    case 'FETCH_BUS':
-      // Returning initial state for now until we get backend data
-      // console.log('action.payload: ',action.payload);
+    case FETCH_BUS:
+      // console.log(`Action <${action.type}> executed with payload:\n`, action.payload);
       return action.payload.data.results;
     default:
       return state;
