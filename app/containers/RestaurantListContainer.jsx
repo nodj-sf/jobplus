@@ -41,28 +41,29 @@ class RetaurantList extends BaseComponent {
     console.log(this.props.activeJob);
     return (
       (this.props.loading) ?
-        <div className='restaurantContainer' style={{ minHeight: '200px' }}>
+        <div
+          className="restaurantContainer"
+          style={{ minHeight: '200px' }}>
           {[
             <i
-              className='fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner'
-              key='RefreshLoaderAnimation'>
-            </i>,
+              className="fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner"
+              key="RefreshLoaderAnimation" />,
             `\tLoading...`
           ]}
         </div> :
-        <div className='restaurantContainer'>
+        <div className="restaurantContainer">
           <div>
             <i
-              className='collapseGlyph fa fa-reorder'
+              className="collapseGlyph fa fa-reorder"
               onClick={ () => this.toggleListContainer() }>
             </i>
             <img
-              src='http://goo.gl/pExEEr'
-              className='AmenitiesHeader_Img'
-              alt='Yelp restaurant amenity fork & knife glyph icon (Yelp Red).' />
+              src="http://goo.gl/pExEEr"
+              className="amenity-logo"
+              alt="Yelp restaurant amenity fork & knife glyph icon (Yelp Red)." />
             <h5>Nearby Eats</h5>
           </div>
-          <div className='overlay overlayBottomMargin'>
+          <div className="overlay overlayBottomMargin">
             <ul className={ `restaurantList container ${this.assignClassNames()}` }>
               { this.renderList(this.props.activeYelp) }
             </ul>
