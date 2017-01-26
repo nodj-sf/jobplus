@@ -7,12 +7,21 @@ $theme-off-white: #E9EBEE;
 $theme-black: #000;
 $theme-gray: #7A7A7A;
 $theme-gray-lt: #E1E1E1;
+$theme-trans: transparent;
 $theme-inpt-active: #2B303B;
 
 
+/* Sass @mixin Declarations
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+@mixin flex($display: flex, $flow: row nowrap, $justify: space-around, $align: center) {
+  display: $display;
+  flex-flow: $flow;
+  justify-content: $justify;
+  align-items: $align;
+}
+
 /* Sass @import Declarations
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-@import './partials/job-detail';    // Styles corresponding to `JobDetail` component
 @import './partials/global';        // Base HTML element styles
 @import './partials/atomic';        // Atomic classes for ad hoc delegation
 @import './partials/utility';       // Generic classes available for inheritance
@@ -20,3 +29,7 @@ $theme-inpt-active: #2B303B;
 @import './partials/keyframes';     // CSS animations defined via the keyframes @-rule
 @import './partials/svg';           // Inline-rendered SVG styles
 @import './partials/mobile';        // Alternate media (e.g., mobile) styles
+@import './partials/font-awesome';  // FontAwesome stylistic modifications
+@import './partials/job-detail';    // Styles corresponding to `JobDetail` component
+@import './partials/job-results';   // Styles corresponding to `ResultsPage` component
+@import './partials/amenities';     // Tabbed navigation content styles

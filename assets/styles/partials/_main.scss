@@ -1,25 +1,4 @@
 
-html {
-  font-size: 10px !important;
-  background-color: #F5F5F5;
-  overflow-x: hidden;
-}
-
-body {
-  position: relative;
-  width: 100%;
-}
-
-body input:focus,
-*:selection,
-*:active,
-*:visited,
-*:target { outline: none; };
-
-h3,
-h4,
-h5,
-h6 { margin-bottom: 0; }
 
 blockquote {
   font: 400 italic 1.7rem/2.4rem 'Raleway', 'Helvetica Neue', sans-serif;
@@ -213,7 +192,7 @@ div.socialMediaIcons img {
   top: 6vh;
   margin: 0;
   padding: 0;
-  background: #FFF;
+  background: $theme-white;
   overflow: hidden;
 }
 
@@ -224,30 +203,6 @@ h4.infoWindow_Header {
   margin-bottom: 0;
   color: $theme-teal;
   font: 600 14px/16px 'Raleway', 'Helvetica Neue', Arial, sans-serif;
-}
-
-#placesContainer h5,
-.restaurantContainer > h5,
-.restaurantContainer > div:first-child {
-  display: block;
-  width: 100%;
-  text-align: center;
-  font-size: 4rem;
-  line-height: 5rem;
-}
-
-.restaurantContainer > div:first-child > h5 {
-  display: inline;
-  padding-left: 25px;
-  font-size: 4rem;
-  line-height: 5rem;
-}
-
-.AmenitiesHeader_Img {
-  position: relative;
-  height: 40px;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .restaurantContainer .nameRating h5 {
@@ -419,20 +374,20 @@ button.button-primary {
       }
     }
     input::-webkit-input-placeholder {                // Chrome | Opera | Safari
-      font: oblique 1.8rem bold Raleway, sans-serif;
-      color: rgba(255, 255, 255, 0.5);
+      font: oblique 2.5rem bold Raleway, sans-serif;
+      color: rgba(255, 255, 255, 0.65);
     }
     input::-moz-placeholder {                         // Firefox 19+
-      font: oblique 1.8rem bold Raleway, sans-serif;
-      color: rgba(255, 255, 255, 0.5);
+      font: oblique 2.5rem bold Raleway, sans-serif;
+      color: rgba(255, 255, 255, 0.65);
     }
     input:-ms-input-placeholder {                     // IE 10+
-      font: oblique 1.8rem bold Raleway, sans-serif;
-      color: rgba(255, 255, 255, 0.5);
+      font: oblique 2.5rem bold Raleway, sans-serif;
+      color: rgba(255, 255, 255, 0.65);
     }
     input:-moz-placeholder {                          // Firefox 18-
-      font: oblique 1.8rem bold Raleway, sans-serif;
-      color: rgba(255, 255, 255, 0.5);
+      font: oblique 2.5rem bold Raleway, sans-serif;
+      color: rgba(255, 255, 255, 0.65);
     }
   }
 }
@@ -464,10 +419,7 @@ button.button-primary {
     -webkit-transition: all 0.25s ease-in;
     transition: all 0.25s ease-in;
     &:first-child { border-radius: 5px 0 0 5px; }
-    &:last-child {
-      border-left: 1px inset $theme-white;
-      border-radius: 0 5px 5px 0;
-    }
+    &:nth-child(2) { border-left: 1px inset $theme-white; }
     &.active {
       width: 70%;
       outline: none;
@@ -500,6 +452,21 @@ button.button-primary {
       &:hover { background-color: $theme-gray; }
     }
   }
+  .yolo {
+    position: relative;
+    width: 5rem;
+    height: 100%;
+    max-height: 5.5rem;
+    margin: 0;
+    padding: 0 1rem;
+    border: none;
+    border-left: 1px inset $theme-white;
+    border-radius: 0 0.5rem 0.5rem 0;
+    color: $theme-white;
+    font-size: 3rem;
+    background-color: hsla(0, 0%, 48%, 0.75);
+    line-height: inherit;
+  }
   input {
     width: 100%;
     height: 100%;
@@ -509,8 +476,7 @@ button.button-primary {
     text-indent: 1rem;
     text-transform: capitalize;
     background-color: transparent;
-    font-size: 2.5rem;
-    font-weight: 900;
+    font: normal 500 2.5rem 'Helvetica Neue', sans-serif;
     color: $theme-teal;
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.27);
   }
@@ -520,30 +486,9 @@ button.button-primary {
 #searchJob { text-transform: capitalize; }
 
 
-.yolo {
-  position: relative;
-  width: 5rem;
-  height: 100%;
-  max-height: 5.5rem;
-  margin: 0;
-  padding: 0 1rem;
-  border: none;
-  border-left: 1px inset $theme-white;
-  border-radius: 0 0.5rem 0.5rem 0;
-  color: $theme-white;
-  font-size: 3rem;
-  background-color: hsla(0, 0%, 48%, 0.75);
-  line-height: inherit;
-}
-
-
-
-
-
 #searchJob {
+  transition: padding 0.25s ease-out;
   -webkit-appearance: textfield;
-  -webkit-transition: padding 0.25s ease-out;
-  transition:         padding 0.25s ease-out;
 }
 
 h2.modalJobTitle { text-align: center; }
@@ -561,19 +506,17 @@ i.XButton {
   box-sizing: border-box;
   border-radius: 50%;
   z-index: 300;
-}
-  i.XButton:hover {
+  &:hover {
     cursor: pointer;
     color: #1196A5;
-    -webkit-transition: all 0.10s ease-out;
-    transition:         all 0.10s ease-out;
+    transition: all 0.10s ease-out;
   }
+}
 
 
 
-/* ==========================================================================
-   ================== Form Input Fields Style Declarations ==================
-   ========================================================================== */
+/* Form Input Fields Style Declarations
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
  input[type='search']::-webkit-search-decoration,
  input[type='search']::-webkit-search-cancel-button,
  input[type='search']::-webkit-search-results-button,
@@ -582,27 +525,24 @@ i.XButton {
    position: relative;
    display: inline-block;
    width: 50%;
-   /* left: 50%; */
    margin: auto;
    box-sizing: border-box;
-   /* transform: translateX(-50%); */
  }
 
  /* Apple Safari / Google Chrome browsers */
  input::-webkit-input-placeholder {
    font: 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
    text-indent: 1rem;
-   color: #FFF;
+   color: $theme-white;
    opacity: 0.80;
-   -webkit-transition: text-indent 0.25s ease-out;
-   transition:         text-indent 0.25s ease-out;
+   transition: text-indent 0.25s ease-out;
  }
 
  /* Firefox 18- */
  input:-moz-placeholder {
    font: 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
    text-indent: 1rem;
-   color: #FFF;
+   color: $theme-white;
    opacity: 0.80;
  }
 
@@ -610,7 +550,7 @@ i.XButton {
  input::-moz-placeholder {
    font: 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
    text-indent: 1rem;
-   color: #FFF;
+   color: $theme-white;
    opacity: 0.80;
  }
 
@@ -618,7 +558,7 @@ i.XButton {
  input:-ms-input-placeholder {
    font: 2rem/5rem 'Raleway', 'Open Sans', Helvetica, Arial, sans-serif;
    text-indent: 1rem;
-   color: #FFF;
+   color: $theme-white;
    opacity: 0.80;
  }
 
@@ -635,19 +575,14 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   border: none;
-  -webkit-text-fill-color: #FFF !important;
-  -webkit-box-shadow: inset 0 0 0 1000px #000;
-  -moz-box-shadow:    inset 0 0 0 1000px #000;
-  box-shadow:         inset 0 0 0 1000px #000;
-  -webkit-transition: background-color 5000s 0s ease-in-out;
-  transition:         background-color 5000s 0s ease-in-out;
+  box-shadow: inset 0 0 0 1000px $theme-black;
+  transition: background-color 5000s 0s ease-in-out;
+  -webkit-text-fill-color: $theme-white !important;
 }
 
 input:-webkit-autofill {
-  -webkit-text-fill-color: #FFF !important;
-  -webkit-box-shadow: inset 0 0 0 1000px #7A7A7A;
-  -moz-box-shadow:    inset 0 0 0 1000px #7A7A7A;
-  box-shadow:         inset 0 0 0 1000px #7A7A7A;
+  box-shadow: inset 0 0 0 1000px $theme-gray;
+  -webkit-text-fill-color: $theme-white !important;
 
   /* Internet Explorer (IE) extraneous settings */
   -ms-filter: "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
@@ -669,25 +604,50 @@ input:-webkit-autofill {
 
 
 
-/* ==========================================================================
-   ================== React-Tabs Module Style Declarations ==================
-   ========================================================================== */
-.ReactTabs__TabList[role='tablist'][role='tablist'] { margin: 0; }
-.ReactTabs__Tab[role='tab'] {
-  width: 33%;
-  margin-bottom: 0;
-  padding: 4px 0;
-  text-align: left;
-  text-indent: 1rem;
-  font: 1.85rem/2.25rem 'Raleway', 'Open Sans', Arial, sans-serif;
-  background: rgba(220, 220, 220, 0.58);
-  border: 1px solid #C8C8C8;      /* Color: Gainsboro */
-  border-radius: .5rem .5rem 0 0;
-  box-sizing: border-box;
+/* React-Tabs Module Style Declarations
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.ReactTabs {
+  * { border-radius: 0 !important; }
+  &.react-tabs { overflow: hidden; }
 }
-.ReactTabs__Tab[role='tab'][aria-selected='true'] {
-  background-color: rgb(20, 164, 181);
-  border-color: transparent;
+.ReactTabs__Tab {
+  &List {
+    &[role='tablist'][role='tablist'] { margin: 0; }
+    > li:last-child[aria-selected='true'] { background-color: hsl(0, 53%, 52%); }
+  }
+  &[role='tab'] {
+    width: 33%;
+    margin-bottom: 0;
+    padding: 4px 0;
+    text-align: left;
+    text-indent: 1rem;
+    font: 1.85rem/2.25rem 'Raleway', 'Open Sans', Arial, sans-serif;
+    background: rgba(220, 220, 220, 0.58);
+    border: 1px solid #C8C8C8;
+    &[aria-selected='true'] {
+      background-color: rgb(20, 164, 181);
+      border-color: $theme-trans;
+    }
+  }
+  &:last-child { width: 34%; }
+  &--selected {
+    &:before,
+    &:after {
+      position: absolute;
+      content: '';
+      top: -1px;
+    }
+    &:before {
+      left: calc(100% + 1.5px);
+      border-bottom: 37px solid rgba(61, 61, 61, 0.58);
+      border-right: 25px solid $theme-trans;
+      z-index: 1;
+    }
+    &:after {
+      left: 100%;
+      border-bottom: 37px solid $theme-teal;
+      border-right: 25px solid $theme-trans;
+      z-index: 2;
+    }
+  }
 }
-.ReactTabs__TabList > li:last-child[aria-selected='true'] { background-color: hsl(0, 53%, 52%); }
-.ReactTabs__Tab:last-child { width: 34%; }
