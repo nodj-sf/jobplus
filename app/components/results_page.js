@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
-
 import Banner from './banner_component';
 import GMap from './google_map_component';
 import JobList from '../containers/job_list_container';
@@ -61,11 +60,16 @@ class Results extends Component {
             <div>
               <GMap />
             </div>
-            <JobList />
+            <JobList
+              // activeCompanyData={ this.props.activeCompanyData }
+              // fetchActiveCompanyData={ this.props.fetchCompanyData }
+              />
           </div>
 
           <div id='jobInfoBody'>
-            <JobDetail />
+            <JobDetail
+              // data={ this.props.activeCompanyData }
+              />
             <Tabs onSelect={ this.handleSelect }>
               <TabList>
                 <Tab>
