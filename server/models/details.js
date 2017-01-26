@@ -1,12 +1,14 @@
+'use strict';
 const request = require('request');
 const Promise = require('promise');
 const cheerio = require('cheerio');
+
 
 let details = (url) => {
   return function(res) {
     return new Promise(function(resolve, reject) {
       request(url, function(error, response, html) {
-        if (error) { 
+        if (error) {
           reject(error);
         } else {
           let json = {};
@@ -20,7 +22,7 @@ let details = (url) => {
               return obj.data;
             }
           });
-          
+
           json.details = summary.join(' ').slice(0, 400);
           json = JSON.stringify(json);
 
