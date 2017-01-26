@@ -1,0 +1,27 @@
+{
+  "overlay": {
+    "position": "fixed",
+    "width": "100vw",
+    "height": "100vh",
+    "left": 0,
+    "top": 0,
+    "background": "rgba(0, 0, 0, .875) 100% center / 100%",
+    "backgroundBlendMode": "soft-light",
+    "zIndex": 150
+  }, 
+  "content": {
+    "position": "absolute",
+    "maxWidth": "90vw",
+    "maxHeight": "90vh",
+    "left": "50%",
+    "right": "initial",
+    "top": "50%",
+    "bottom": "initial",
+    "padding": 0,
+    "border": "2.5px solid #14A4B5",
+    "borderRadius": "4px",
+    "transform": "translate(-50%, -50%)",
+    "overflow": "hidden",
+    "zIndex": 200
+  }  
+}
