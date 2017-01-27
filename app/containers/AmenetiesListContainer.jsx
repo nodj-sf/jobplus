@@ -67,11 +67,13 @@ class AmenitiesList extends BaseComponent {
     return (
       this.props.loading ?
         (
-          <div className='restaurantContainer' style={{ minHeight: '200px' }}>
+          <div
+            className="restaurantContainer"
+            style={{ minHeight: '200px' }}>
             {[
               <i
-                className='fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner'
-                key='RefreshLoaderAnimation' />,
+                className="fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner"
+                key="RefreshLoaderAnimation" />,
               `\tLoading...`
             ]}
           </div>

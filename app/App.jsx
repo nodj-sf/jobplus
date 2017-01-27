@@ -6,9 +6,9 @@ import { Provider } from 'react-redux';
 import { Router, Route, hashHistory, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
 import promiseMiddleware from 'redux-promise';
-import Results from './components/ResultsPage';
-import LandingPage from './components/LandingPage';
-import AboutPage from './components/AboutPage';
+import Results from './components/pages/ResultsPage';
+import LandingPage from './components/pages/LandingPage';
+import AboutPage from './components/pages/AboutPage';
 import reducers from './reducers/index';
 
 import '../assets/css/skeleton.css';

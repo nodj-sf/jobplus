@@ -13,12 +13,35 @@ $theme-inpt-active: #2B303B;
 
 /* Sass @mixin Declarations
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-@mixin flex($display: flex, $flow: row nowrap, $justify: space-around, $align: center) {
+@mixin flex($display: flex, $flow: row nowrap, $justify: space-around, $alignItems: center, $alignContent: center) {
   display: $display;
   flex-flow: $flow;
   justify-content: $justify;
-  align-items: $align;
-}
+  align-items: $alignItems;
+  align-content: $alignContent;
+};
+
+
+/* Sass %placeholder Declarations
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+%inptPlaceholder {
+  font: oblique 2.5rem bold Raleway, sans-serif;
+  color: rgba(255, 255, 255, 0.65);
+};
+%show {
+  opacity: 1;
+  visibility: visible;
+};
+%hide {
+  opacity: 0;
+  visibility: hidden;
+};
+%tealGradient {
+  background: -webkit-linear-gradient(231deg, rgba(20, 164, 181, 1) 15%, rgb(70, 183, 197) 84%, rgb(92, 192, 204) 160%);
+  background:      -o-linear-gradient(231deg, rgba(20, 164, 181, 1) 15%, rgb(70, 183, 197) 84%, rgb(92, 192, 204) 160%);
+  background:         linear-gradient(321deg, rgba(20, 164, 181, 1) 15%, rgb(70, 183, 197) 84%, rgb(92, 192, 204) 160%);
+};
+
 
 /* Sass @import Declarations
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -33,3 +56,4 @@ $theme-inpt-active: #2B303B;
 @import './partials/job-detail';    // Styles corresponding to `JobDetail` component
 @import './partials/job-results';   // Styles corresponding to `ResultsPage` component
 @import './partials/amenities';     // Tabbed navigation content styles
+@import './partials/react-tabs';    // Ported/overwriting styles for React-Tabs module

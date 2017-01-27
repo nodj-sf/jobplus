@@ -1,15 +1,16 @@
 
 .panel-header {
-  @include flex(flex, row nowrap, space-between, center);
+  @include flex(flex, row nowrap, center, center);
   height: 5rem;
   color: $theme-white;
-  background: hsl(0, 53%, 52%) url('../img/stars-bckg.svg') center / 100% 150% no-repeat scroll border-box;
+  background: $theme-teal url('../img/stars-bckg.svg') center / cover no-repeat scroll border-box;
   background-blend-mode: color-dodge;
   backface-visibility: initial;
-  .AmenitiesHeader_Img {
-    height: 40px;
-    margin: 0 0 0 2rem;
+  .amenity-logo {
+    height: 4rem;
+    margin: 0 2rem 0 0;
   }
+  header { @include flex(flex, row nowrap, center, center); }
   h5 { font-size: 3rem; }
 }
 
@@ -20,9 +21,7 @@
   height: 100%;
   float: left;
   background-color: $theme-off-white;
-  box-sizing: border-box;
   overflow: hidden;
-
   > div {
     h1 {
       position: relative;

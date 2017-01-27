@@ -1,0 +1,48 @@
+
+/* React-Tabs Module Style Declarations
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.ReactTabs {
+  * { border-radius: 0 !important; }
+  &.react-tabs { overflow: hidden; }
+}
+.ReactTabs__Tab {
+  &List {
+    &[role='tablist'][role='tablist'] { margin: 0; }
+    // > li:last-child[aria-selected='true'] { background-color: hsl(0, 53%, 52%); }
+  }
+  &[role='tab'] {
+    width: 33%;
+    margin-bottom: 0;
+    padding: 4px 0;
+    text-align: left;
+    text-indent: 1rem;
+    font: 1.85rem/2.25rem 'Raleway', 'Open Sans', Arial, sans-serif;
+    background: rgba(220, 220, 220, 0.58);
+    border: 1px solid #C8C8C8;
+    &[aria-selected='true'] {
+      background-color: rgb(20, 164, 181);
+      border-color: $theme-trans;
+    }
+  }
+  &:last-child { width: 34%; }
+  &--selected {
+    &:before,
+    &:after {
+      position: absolute;
+      content: '';
+      top: -1px;
+    }
+    &:before {
+      left: calc(100% + 1.5px);
+      border-bottom: 37px solid rgba(61, 61, 61, 0.58);
+      border-right: 25px solid $theme-trans;
+      z-index: 1;
+    }
+    &:after {
+      left: 100%;
+      border-bottom: 37px solid $theme-teal;
+      border-right: 25px solid $theme-trans;
+      z-index: 2;
+    }
+  }
+}
