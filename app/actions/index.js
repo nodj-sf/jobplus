@@ -20,21 +20,21 @@ export const TOGGLE_DISPLAY_LIST_ = 'TOGGLE_DISPLAY_LIST_';
 export const LOADING = 'LOADING';
 
 
-// const getCookie = (name) => {
-//   const value = `;${document.cookie}`,
-//         parts = value.split('; ' + name + '=');
-//   return parts.length === 2 ? decodeURIComponent(parts.pop().split(';').shift()) : '';
-// };
-
 // Utility function for generating Express session token:
 export const getCookie = (name) => {
-  const value = '; ' + document.cookie;
-  const parts = value.split('; ' + name + '=');
-  if (parts.length === 2) {
-    return decodeURIComponent(parts.pop().split(';').shift());
-  }
-  return '';
+  const cookieVal = `; ${document.cookie}`,
+        cookieParts = cookieVal.split(`; ${name}=`);
+  return (cookieParts.length === 2 ? decodeURIComponent(cookieParts.pop().split(';').shift()) : '');
 };
+
+// export const getCookie = (name) => {
+//   const value = '; ' + document.cookie;
+//   const parts = value.split('; ' + name + '=');
+//   if (parts.length === 2) {
+//     return decodeURIComponent(parts.pop().split(';').shift());
+//   }
+//   return '';
+// };
 
 // Cues retrieval of selected (i.e., active) company data via call to Clearbit API:
 export const fetchCompanyData = (companyName) => {
