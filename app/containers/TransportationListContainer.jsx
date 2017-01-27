@@ -11,13 +11,13 @@ import { toggleGooglePlacesListContainer, loading } from '../actions/index';
 class TransportationList extends BaseComponent {
   constructor(props) {
     super(props);
+    this.assignDisplayClass = this.assignDisplayClass.bind(this);
     this.handleListToggleClick = this.handleListToggleClick.bind(this);
-    // this.delayOnLoad = this.delayOnLoad.bind(this);
-    // this.getData = this.getData.bind(this);
+    this.renderList = this.renderList.bind(this);
   }
 
   assignDisplayClass(obj) {
-    return obj === 'flex' ? 'GPlacesList container' : 'GPlacesList container inactive';
+    return `GPlacesList container${obj === 'flex' ? '' : ' inactive'}`;
   }
 
   handleListToggleClick(listName) {

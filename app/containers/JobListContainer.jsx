@@ -40,6 +40,41 @@ class JobList extends BaseComponent {
     _.debounce(this.getData, 200)(job);
   }
 
+  //
+  renderJobPostings(jobsArr) {
+    return jobsArr.map((job, index) =>
+      <JobItem
+        key={ job.jobkey }
+        setActive={ this.setActive }
+        jobFunc={ this.jobFunc }
+        job={ job }
+        defaultToActive={ index === 0 ? true : false } />
+    );
+  }
+
+  //
+  renderEmptyResponseFallback() {
+    return (
+      <div className="noResultsShown">
+        <h4 className="noResultsShown">No Results At This Time</h4>
+      </div>
+    );
+  }
+
+  //
+  renderLoadingAnimation() {
+    return (
+      <div id="placesContainer">
+        {[
+          <i
+            className="fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner"
+            key="RefreshAnimation" />,
+          `\tLoading...`
+        ]}
+      </div>
+    );
+  }
+
   // Collectively calls the lot of Redux action creators imported above:
   getData(job) {
     let props = this.props;
@@ -69,16 +104,15 @@ class JobList extends BaseComponent {
     } else {
       this.init
         ? jobList =
-          <div className='noResultsShown'>
-            <h4 className='noResultsShown'>No Results Now</h4>
+          <div className="noResultsShown">
+            <h4 className="noResultsShown">No Results At This Time</h4>
           </div>
         : (this.init++, jobList =
-          <div id='placesContainer'>
+          <div id="placesContainer">
             {[
               <i
-                className='fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner'
-                key='RefreshAnimation'>
-              </i>,
+                className="fa fa-refresh fa-spin fa-5x fa-fw loadingSpinner"
+                key="RefreshAnimation" />,
               `\tLoading...`
             ]}
           </div>
@@ -89,19 +123,21 @@ class JobList extends BaseComponent {
 
   render() {
     return (
-      <div id='jobsContainer' className='jobsPaneLeft appCols'>
+      <div
+        id="jobsContainer"
+        className="jobsPaneLeft appCols">
         <strong>
           {[
             `Results for `,
-            <i key='jobTermTitle'>{ this.props.lastJob }</i>,
+            <i key="jobTermTitle">{ this.props.lastJob }</i>,
             ` in `,
-            <i key='locationTermTitle'>
+            <i key="locationTermTitle">
               { this.props.lastLocation.replace(/(\w+),.*/gmi, `$1`) }
             </i>
           ]}
         </strong>
         <div>
-          <ul className='jobsList'>{ this.renderList() }</ul>
+          <ul className="jobs-list">{ this.renderList() }</ul>
         </div>
       </div>
     );

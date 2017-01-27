@@ -13,19 +13,20 @@ ul[role='tablist'] .fa { text-shadow: 0 0 0.5px DimGray; }
   &-bus { color: #00F; }
   &-futbol-o { color: #00A65E; }
   &-yelp {color: #AD0C13; }     /* Color Variants: #C01D1D; | #CD2122; */
+  &-refresh {
+    position: relative;
+    display: block;
+    top: calc(50% - 5vw);
+    margin: auto;
+    font-size: 10vw;
+  }
   &.cardDescriptionGlyph { color: $theme-teal; }
   &.collapseGlyph {
-    margin: 0 2rem 0 0;
-    font: bold normal 4rem/5rem FontAwesome;
+    position: absolute;
+    right: 2rem;
+    font: 400 normal 4rem/5rem FontAwesome;
     cursor: pointer;
   }
-}
-
-.loadingSpinner {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
 }
 
 div.card-body .fa,

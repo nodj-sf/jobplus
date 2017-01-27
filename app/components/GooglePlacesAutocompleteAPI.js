@@ -1,5 +1,5 @@
 'use strict';
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 
 class GooglePlacesAutocomplete extends Component {
@@ -37,9 +37,9 @@ class GooglePlacesAutocomplete extends Component {
     }
 
     this.setState({
-      autocompleteItems: predictions.map((p, idx) => ({
-        suggestion: p.description,
-        placeId: p.place_id,
+      autocompleteItems: predictions.map((place, idx) => ({
+        suggestion: place.description,
+        placeId: place.place_id,
         active: false,
         index: idx
       }))
@@ -62,30 +62,30 @@ class GooglePlacesAutocomplete extends Component {
   _handleDownKey() {
     const activeItem = this._getActiveItem()
     if (activeItem === undefined) {
-      this._selectActiveItemAtIndex(0)
+      this._selectActiveItemAtIndex(0);
     } else {
-      const nextIndex = (activeItem.index + 1) % this.state.autocompleteItems.length
-      this._selectActiveItemAtIndex(nextIndex)
+      const nextIndex = (activeItem.index + 1) % this.state.autocompleteItems.length;
+      this._selectActiveItemAtIndex(nextIndex);
     }
   }
 
   _handleUpKey() {
-    const activeItem = this._getActiveItem()
+    const activeItem = this._getActiveItem();
     if (activeItem === undefined) {
-      this._selectActiveItemAtIndex(this.state.autocompleteItems.length - 1)
+      this._selectActiveItemAtIndex(this.state.autocompleteItems.length - 1);
     } else {
-      let prevIndex
+      let prevIndex;
       if (activeItem.index === 0) {
-        prevIndex = this.state.autocompleteItems.length - 1
+        prevIndex = this.state.autocompleteItems.length - 1;
       } else {
-        prevIndex = (activeItem.index - 1) % this.state.autocompleteItems.length
+        prevIndex = (activeItem.index - 1) % this.state.autocompleteItems.length;
       }
-      this._selectActiveItemAtIndex(prevIndex)
+      this._selectActiveItemAtIndex(prevIndex);
     }
   }
 
   _handleSelect(address) {
-    this.props.onSelect ? this.props.onSelect(address) : this.props.onChange(address)
+    this.props.onSelect ? this.props.onSelect(address) : this.props.onChange(address);
   }
 
   _selectAddress(address) {
@@ -103,7 +103,7 @@ class GooglePlacesAutocomplete extends Component {
     // console.log(`Moused over index ${setIndex}!`);
     const newState = this.state.autocompleteItems.map((item, index) => ({
       ...item,
-      active: index === setIndex ? true : false
+      active: (index === setIndex ? true : false)
     }));
     this.setState({ autocompleteItems: newState });
   }
@@ -136,7 +136,7 @@ class GooglePlacesAutocomplete extends Component {
       case (KEY_CODE > 57 && KEY_CODE < 65):
       case (KEY_CODE > 90 && KEY_CODE < 96):
       case (KEY_CODE > 105):
-        console.warn(`No actions recognized for input <${String.fromCharCode(KEY_CODE)}> corresponding to keyCode <${KEY_CODE}>.`);
+        // console.warn(`No actions recognized for input <${String.fromCharCode(KEY_CODE)}> corresponding to keyCode <${KEY_CODE}>.`);
         break;
     }
   }
@@ -161,19 +161,25 @@ class GooglePlacesAutocomplete extends Component {
   }
 
   renderLabel() {
-    if (this.props.hideLabel) { return null }
-    return (<label style={this.props.styles.label} className={this.props.classNames.label || ''}>Location</label>)
+    if (this.props.hideLabel) { return null; }
+    return (
+      <label
+        style={this.props.styles.label}
+        className={this.props.classNames.label || ''}>
+        Location
+      </label>
+    );
   }
 
   renderOverlay() {
-    if (this.state.autocompleteItems.length === 0) { return null }
+    if (this.state.autocompleteItems.length === 0) { return null; }
     return (
       <div
         className="PlacesAutocomplete__overlay"
         // style={defaultStyles.autocompleteOverlay}
         onClick={ () => this._clearAutocomplete() }>
       </div>
-    )
+    );
   }
 
   renderSuggestedLocation(place, id) {
@@ -181,7 +187,7 @@ class GooglePlacesAutocomplete extends Component {
     return (
       <li
         key={ `AutoSuggestLocation_${place.placeId}` }
-        className="__autocomplete-item text-of"
+        className={ `__autocomplete-item text-of${place.active ? ' activeSuggestion' : ''}` }
         onMouseOver={ () => this._setActiveItemAtIndex(place.index) }
         onClick={ () => this._selectAddress(place.suggestion) }>
         { this.props.autocompleteItem({ suggestion: place.suggestion }) }
@@ -190,8 +196,8 @@ class GooglePlacesAutocomplete extends Component {
   }
 
   renderAutocomplete() {
-    const { autocompleteItems } = this.state;
-    const { styles } = this.props;
+    const { autocompleteItems } = this.state,
+          { styles } = this.props;
 
     if (autocompleteItems.length === 0) {
       return (
@@ -212,12 +218,12 @@ class GooglePlacesAutocomplete extends Component {
 
   // TODO: remove `classNames.container` in the next version release.
   render() {
-    const { classNames, styles, value } = this.props;
-    const { autoCapitalize, autoComplete, callback, results, placeholder } = this.props.options;
+    const { assignedClasses, classNames, styles, value } = this.props,
+          { autoCapitalize, autoComplete, callback, results, placeholder } = this.props.options;
     return (
       <div
         id="searchLocation"
-        className="form-search-inpt">
+        className={ assignedClasses }>
         <input
           className="form-search-inpt"
           type="text"
@@ -237,7 +243,7 @@ class GooglePlacesAutocomplete extends Component {
       </div>
     )
   }
-}
+};
 
 // { this.props.autocompleteItem({ suggestion: place.suggestion }) }
 
@@ -246,39 +252,40 @@ class GooglePlacesAutocomplete extends Component {
 
 
 GooglePlacesAutocomplete.propTypes = {
-  value: React.PropTypes.string.isRequired,
-  onChange: React.PropTypes.func.isRequired,
-  onSelect: React.PropTypes.func,
-  placeholder: React.PropTypes.string,
-  hideLabel: React.PropTypes.bool,
-  autocompleteItem: React.PropTypes.func,
-  classNames: React.PropTypes.shape({
-    root: React.PropTypes.string,
-    label: React.PropTypes.string,
-    input: React.PropTypes.string,
-    autocompleteContainer: React.PropTypes.string,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onSelect: PropTypes.func,
+  placeholder: PropTypes.string,
+  hideLabel: PropTypes.bool,
+  autocompleteItem: PropTypes.func,
+  assignedClasses: PropTypes.string,
+  classNames: PropTypes.shape({
+    root: PropTypes.string,
+    label: PropTypes.string,
+    input: PropTypes.string,
+    autocompleteContainer: PropTypes.string,
   }),
-  styles: React.PropTypes.shape({
-    root: React.PropTypes.object,
-    label: React.PropTypes.object,
-    input: React.PropTypes.object,
-    autocompleteContainer: React.PropTypes.object,
-    autocompleteItem: React.PropTypes.object,
-    autocompleteItemActive: React.PropTypes.object
+  styles: PropTypes.shape({
+    root: PropTypes.object,
+    label: PropTypes.object,
+    input: PropTypes.object,
+    autocompleteContainer: PropTypes.object,
+    autocompleteItem: PropTypes.object,
+    autocompleteItemActive: PropTypes.object
   }),
-  options: React.PropTypes.shape({
-    bounds: React.PropTypes.object,
-    componentRestrictions: React.PropTypes.object,
-    location: React.PropTypes.object,
-    offset: React.PropTypes.oneOfType([
-      React.PropTypes.number,
-      React.PropTypes.string
+  options: PropTypes.shape({
+    bounds: PropTypes.object,
+    componentRestrictions: PropTypes.object,
+    location: PropTypes.object,
+    offset: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string
     ]),
-    radius: React.PropTypes.oneOfType([
-      React.PropTypes.number,
-      React.PropTypes.string
+    radius: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string
     ]),
-    types: React.PropTypes.array
+    types: PropTypes.array
   })
 };
 

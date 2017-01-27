@@ -3,7 +3,7 @@
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .map-marker-glyph {
   height: 1rem;
-  fill: #FFF;
+  fill: $theme-white;
   fill-opacity: 1;
   fill-rule: nonzero;
   stroke: none;
@@ -15,4 +15,28 @@
   stroke-dashoffset: 0;
   stroke-opacity: 1;
   opacity: 1;
+}
+
+.app-logo-glyph {
+  // width: 176px;
+  height: 6vh;
+  #bckg-hero & { height: 15vh; }
+  g {
+    font: 500 5vh 'Oswald';
+    stroke: none;
+    stroke-width: 1;
+    fill: none;
+    fill-rule: evenodd;
+    letter-spacing: 3px;
+  }
+  tspan {
+    &:first-child {
+      fill: $theme-white;
+      font-size: 7rem;
+    }
+    &:last-child {
+      font-size: 9rem;
+      fill: $theme-gray;
+    }
+  }
 }
