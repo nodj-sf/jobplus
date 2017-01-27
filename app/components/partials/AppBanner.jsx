@@ -1,6 +1,6 @@
 'use strict';
 import React, { Component } from 'react';
-import SearchBar from '../../containers/SearchBarContainer';
+import SearchBar from '../../containers/SearchBarContainer_Secondary';
 import AppLogo from '../../constants/svg/AppLogo_SVG';
 
 

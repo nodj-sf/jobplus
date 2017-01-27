@@ -12,7 +12,7 @@ import TabsListData from '../../constants/json/TabsListData.json';
 import TabPanelsData from '../../constants/json/TabPanelsData';
 
 import JobDetail from '../../containers/JobDetailContainer';
-import SearchBar from '../../containers/SearchBarContainer';
+import SearchBar from '../../containers/SearchBarContainer_Secondary';
 import {
   selectJob,
   fetchYelp,
