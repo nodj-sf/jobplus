@@ -2,33 +2,43 @@
 let Yelp = require('yelp');
 
 const yelp = new Yelp({
-  consumer_key: process.env.YELPKEY,
-  consumer_secret: process.env.YELPSECRET,
+  consumer_key: process.env.YELP_KEY,
+  consumer_secret: process.env.YELP_SECRET,
   token: process.env.TOKEN,
-  token_secret: process.env.TOKENSECRET
+  token_secret: process.env.TOKEN_SECRET
 });
 
-let getYelp = (food, location, limit) => {
+// Add latLong argument
+let getYelp = (food, city, coordinate, limit) => {
   return (res) => {
-    yelp.search({ term: food, location: location })
-    .then((data) => {
-      let restaurants = data.businesses.slice(0, limit);
-      restaurants = restaurants.map((obj) => {
-        let parseData = {};
-        parseData.name = obj.name;
-        parseData.url = obj.url;
-        parseData.rating = obj.rating;
-        parseData.review_count = obj.review_count;
-        parseData.phone = obj.phone;
-        parseData.coordinate = obj.location.coordinate;
-        return parseData;
+    return yelp.search({ term: food, location: city, cll: coordinate.latitude + ',' + coordinate.longitude })
+      .then((data) => {
+        let restaurants = data.businesses.slice(0, limit);
+
+        restaurants = restaurants.map((obj) => {
+          return {
+            name: obj.name,
+            url: obj.url,
+            rating: obj.rating,
+            review_count: obj.review_count,
+            phone: obj.phone,
+            coordinate: obj.location.coordinate,
+            id: obj.id,
+            rating_img_url: obj.rating_img_url,
+            display_address: obj.location.display_address,
+            photo: obj.image_url
+          };
+        });
+
+        return {
+          respond: res.send(restaurants),
+          data: restaurants
+        };
+      })
+      .catch((err) => {
+        console.error(err);
       });
-      return res.send(restaurants);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-  }
-}
+  };
+};
 
 module.exports = getYelp;

@@ -1,0 +1,20 @@
+
+/* CSS Keyframe Animation Declarations
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+// Scroll animation:
+@-webkit-keyframes scroll {
+  100% { background-position: 0px -3000px; }
+}
+@-moz-keyframes scroll {
+  100% { background-position: 0px -3000px; }
+}
+@-ms-keyframes scroll {
+  100% { background-position: 0px -3000px; }
+}
+@-o-keyframes scroll {
+  100% { background-position: 0px -3000px; }
+}
+@keyframes scroll {
+  100% { background-position: 0px -3000px; }
+}
