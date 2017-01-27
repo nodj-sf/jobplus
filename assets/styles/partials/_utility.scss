@@ -1,0 +1,44 @@
+
+/* Generic Heritable Style Classes
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+ .one-third { width: 30%; }
+
+ .text-of {
+  word-break: break-word;
+  word-wrap: break-word;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+// Mimic :hover state for non-obvious links
+/* .link-state:hover */
+.link-state {
+  position: relative;
+  display: block;
+  width: 50px;
+  left: 90%;
+  /* border-bottom: 1px solid #1BA6B7; */
+  font-style: normal;
+  text-align: center;
+}
+
+i.XButton {
+  position: absolute;
+  right: 1.5rem;
+  width: 4rem;
+  top: 1.5rem;
+  height: 30px;
+  background-color: $theme-white;
+  font-size: 5rem;
+  color: $theme-teal;
+  line-height: 3rem;
+  box-sizing: border-box;
+  border-radius: 50%;
+  z-index: 300;
+  &:hover {
+    cursor: pointer;
+    color: #1196A5;
+    transition: all 0.10s ease-out;
+  }
+}
