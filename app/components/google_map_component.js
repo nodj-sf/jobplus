@@ -37,17 +37,30 @@ class GMap extends BaseComponent {
     this.state = {
       defaultCenter: new google.maps.LatLng(37.745951, -122.439421),
       geoPos: null,
-      zoomLevel: 12
+      zoomLevel: 15
     };
 
     this.modalNo = this.modalNo.bind(this);
     // this.addTimeDelayedMarker = this.addTimeDelayedMarker.bind(this);
     this.jobMarkerCallbackHandler = this.jobMarkerCallbackHandler.bind(this);
+    this.busMarkerCallbackHandler = this.busMarkerCallbackHandler.bind(this);
+    this.trainMarkerCallbackHandler = this.trainMarkerCallbackHandler.bind(this);
+    this.parkMarkerCallbackHandler = this.parkMarkerCallbackHandler.bind(this);
+    this.gymMarkerCallbackHandler = this.gymMarkerCallbackHandler.bind(this);
   }
 
-  centerMap() {
+  centerMap(coordinates) {
     // console.log(`First map marker coordinates: ${this.props.markers[0].coords}`);
-    return this.props.jobMarkers.length ? this.props.jobMarkers[0].coords : this.state.defaultCenter;
+    if (coordinates !== undefined) {
+      const latitude = coordinates.lat;
+      const longitude = coordinates.lng;
+      return {
+        lat: latitude,
+        lng: longitude
+       }
+    } else {
+      return this.props.jobMarkers.length ? this.props.jobMarkers[0].coords : this.state.defaultCenter;
+    }
   }
 
   centerZoomOverUSA() {
@@ -57,7 +70,7 @@ class GMap extends BaseComponent {
   // Toggle to 'true' to show InfoWindow and re-render component
   handleMarkerClick(targetMarker) {
     this.closeAllMarkers();
-
+    const targetMarkerCordinates = targetMarker.coords;
     let typeRef;
     switch (targetMarker.markerType) {
       case 'job':
@@ -66,17 +79,29 @@ class GMap extends BaseComponent {
       case 'restaurant':
         typeRef = this.props.restaurantMarkers;
         break;
+      case 'bus':
+        typeRef = this.props.busMarkers;
+        break
+      case 'train':
+        typeRef = this.props.trainMarkers;
+        break;
+      case 'gym':
+        typeRef = this.props.gymMarkers;
+        break;
+      case 'park':
+        typeRef = this.props.parkMarkers;
+        break
       default:
         typeRef = this.props.jobMarkers;
         break;
     }
 
-    this.setState({ 
+    this.setState({
       markers: typeRef.map(marker => {
         return marker === targetMarker ? Object.assign(marker, {showInfo: true}) : marker;
-      }) 
+      })
     });
-    this.centerMap();
+    this.centerMap(targetMarkerCordinates);
   }
 
   handleMarkerClose(targetMarker) {
@@ -102,20 +127,79 @@ class GMap extends BaseComponent {
 
   renderInfoWindow(marker, ref) {
     const onCloseclick = this.handleMarkerClose.bind(this, marker);
+    if (marker.markerType === "restaurant") {
+      return (
+        <InfoWindow
+          key={`${marker.markerKey}_info_window`}
+          onCloseclick={onCloseclick} >
+            <div style={{width: '300px'}}>
+              <div className="col-xs-12">
+                <h4 className="infoWindow_Header text-center">{marker.markerTitle}</h4>
+                <a href={marker.url} target="_blank">
+                  <img className="img-responsive" style={{margin: '0px auto', padding: '5px 0px', width: '150px'}} src={this.parseYelpRestaurantPhoto(marker.imageUrl)} />
+                </a>
+              </div>
+              <div className="col-xs-12">
+                <img className="img-responsive" style={{margin: '0px auto', padding: '5px 0px'}} src={marker.ratingImageUrl} />
+              </div>
+              <div className="col-xs-12">
+                <p className="text-center">{marker.address}</p>
+              </div>
+              <div className="col-xs-12">
+                <blockquote style={{fontSize: '.9em', borderLeft: '5px solid #52B3D9'}}>{marker.textSnippet}</blockquote>
+              </div>
+            </div>
+        </InfoWindow>
+      );
+    } else if (marker.markerType === 'job') {
+      return (
+        <InfoWindow
+          key={`${marker.markerKey}_info_window`}
+          onCloseclick={onCloseclick} >
+            <div style={{width: '300px'}}>
+              <div className="col-xs-12">
+                <h4 className="infoWindow_Header">{marker.company}</h4>
+                <a href={marker.url} target="_blank">
+                  <h5 className="infoWindow_Header">{this.parseAndFormatJobTitle(marker.markerTitle)}</h5>
+                </a>
+              </div>
+              <div className="col-xs-12">
+                <p>This job was posted {marker.formattedRelativeTime}</p>
+                <blockquote style={{fontSize: '.9em', borderLeft: '5px solid #52B3D9'}}>{marker.snippet.replace(/[b/<>]/g, '')}</blockquote>
+              </div>
+            </div>
+        </InfoWindow>
+      );
+    } else if (marker.markerType === 'park') {
+        return (
+          <InfoWindow
+            key={`${marker.markerKey}_info_window`}
+            onCloseclick={onCloseclick} >
+              <div>
+                <h4 className="infoWindow_Header">{this.parseAndFormatJobTitle(marker.markerTitle)}</h4>
+                <h5 className="infoWindow_Header">{marker.company}</h5>
+                <p>{marker.vicinity}</p>
+                <p>{marker.rating ? `rating: ${marker.rating}` : null}</p>
+                <p>{marker.formattedLocation}</p>
+                <p>{marker.isOpen ? 'The park is open at this momment.' : 'The park is closed at this momment.' }</p>
+              </div>
+          </InfoWindow>
+        );
+      } else {
+        return (
+          <InfoWindow
+            key={`${marker.markerKey}_info_window`}
+            onCloseclick={onCloseclick} >
+              <div>
+                <h4 className="infoWindow_Header">{this.parseAndFormatJobTitle(marker.markerTitle)}</h4>
+                <h5 className="infoWindow_Header">{marker.company}</h5>
+                <p>{marker.vicinity}</p>
+                <p>{marker.formattedLocation}</p>
+              </div>
 
-    return (
-      <InfoWindow
-        key={`${marker.markerKey}_info_window`}
-        onCloseclick={onCloseclick} >
-          <div>
-            <h4 className="infoWindow_Header">{this.parseAndFormatJobTitle(marker.markerTitle)}</h4>
-            <h5 className="infoWindow_Header">{marker.company}</h5>
-            <hr />
-            <p>{marker.formattedLocation}</p>
-          </div>
-         
-      </InfoWindow>
-    );
+          </InfoWindow>
+        );
+      }
   }
 
   // // Class methods for control of the Google Maps Modal visibility:
@@ -139,19 +223,39 @@ class GMap extends BaseComponent {
 
     switch (marker.markerType) {
       case 'job':
-        MAP_PIN = 'm 260.01758,94.537109 0,7.535161 24.25195,0 0,-7.535161 -24.25195,0 z m 12.125,-45.03125 c -41.42135,0 -75,33.578645 -75,75.000001 0,41.42136 34.93882,90.3563 75,173.92773 41.48975,-83.57143 75,-132.50637 75,-173.92773 0,-41.421356 -33.57865,-75.000001 -75,-75.000001 z m -15.71823,38.316402 31.54859,0 4.49157,3.62151 0,12.739189 4.13054,0 21.78509,0 0,66.68953 -21.78509,0 -48.46094,0 -22.22909,0 0,-66.68953 22.22909,0 3.68655,0 0,-12.739189 4.60368,-3.62151 z';
-        PIN_SCALE = (1 / 5);
-        PIN_FILL_COLOR = marker.markerKey === this.props.activeJob.jobkey ? '#14A4B5' : '#7A7A7A';
+        MAP_PIN = 'M409.133,109.203c-19.608-33.592-46.205-60.189-79.798-79.796C295.736,9.801,259.058,0,219.273,0   c-39.781,0-76.47,9.801-110.063,29.407c-33.595,19.604-60.192,46.201-79.8,79.796C9.801,142.8,0,179.489,0,219.267   c0,39.78,9.804,76.463,29.407,110.062c19.607,33.592,46.204,60.189,79.799,79.798c33.597,19.605,70.283,29.407,110.063,29.407   s76.47-9.802,110.065-29.407c33.593-19.602,60.189-46.206,79.795-79.798c19.603-33.596,29.403-70.284,29.403-110.062   C438.533,179.485,428.732,142.795,409.133,109.203z';
+        PIN_SCALE = (1 / 25);
+        PIN_FILL_COLOR = '#52B3D9';
         PIN_Z_INDEX = marker.markerKey === this.props.activeJob.jobkey ? 1000 : 900;
-        PIN_STROKE_WEIGHT = 1.0;
+        PIN_STROKE_WEIGHT = 1.50;
         break;
       case 'restaurant':
-        MAP_PIN = 'm 407.89288,264.21951 c -5.37639,-14.73114 5.5253,-38.94878 -6.80684,-50.63187 l -97.80958,-92.6617 -5.6044,5.60439 80.7416,91.95041 -11.309,11.10857 -91.85018,-80.64139 -5.6044,5.6044 80.7897,91.99848 -10.85201,11.56557 -92.35527,-81.14647 -5.6044,5.60439 90.6414,101.85019 c 10.94643,12.30007 35.26576,-4.39892 49.2033,4.36813 20.28775,12.76148 147.29347,169.78332 170.1524,146.47922 C 574.48412,411.96774 418.9608,284.09174 407.89288,264.21951 Z m -24.98672,17.32934 c 0,0 -150.92241,134.90217 -132.83507,151.0178 C 265.1961,449.5518 381.896,333.06662 381.896,333.06662 l 32.32488,30.30459 c 0,0 165.19346,-141.28371 126.77415,-238.90108 -72.57602,68.99235 -158.08887,157.07872 -158.08887,157.07872 z';
-        PIN_SCALE = (1 / 13);
-        PIN_FILL_COLOR = '#AF0606';
+        MAP_PIN = 'M409.133,109.203c-19.608-33.592-46.205-60.189-79.798-79.796C295.736,9.801,259.058,0,219.273,0   c-39.781,0-76.47,9.801-110.063,29.407c-33.595,19.604-60.192,46.201-79.8,79.796C9.801,142.8,0,179.489,0,219.267   c0,39.78,9.804,76.463,29.407,110.062c19.607,33.592,46.204,60.189,79.799,79.798c33.597,19.605,70.283,29.407,110.063,29.407   s76.47-9.802,110.065-29.407c33.593-19.602,60.189-46.206,79.795-79.798c19.603-33.596,29.403-70.284,29.403-110.062   C438.533,179.485,428.732,142.795,409.133,109.203z';
+        PIN_SCALE = (1 / 25);
+        PIN_FILL_COLOR = '#D64541';
+        break;
+      case 'train':
+        MAP_PIN = 'M409.133,109.203c-19.608-33.592-46.205-60.189-79.798-79.796C295.736,9.801,259.058,0,219.273,0   c-39.781,0-76.47,9.801-110.063,29.407c-33.595,19.604-60.192,46.201-79.8,79.796C9.801,142.8,0,179.489,0,219.267   c0,39.78,9.804,76.463,29.407,110.062c19.607,33.592,46.204,60.189,79.799,79.798c33.597,19.605,70.283,29.407,110.063,29.407   s76.47-9.802,110.065-29.407c33.593-19.602,60.189-46.206,79.795-79.798c19.603-33.596,29.403-70.284,29.403-110.062   C438.533,179.485,428.732,142.795,409.133,109.203z';
+        PIN_FILL_COLOR = '#6C7A89';
+        PIN_SCALE = 1 / 25;
+        break;
+      case 'bus':
+        MAP_PIN = 'M409.133,109.203c-19.608-33.592-46.205-60.189-79.798-79.796C295.736,9.801,259.058,0,219.273,0   c-39.781,0-76.47,9.801-110.063,29.407c-33.595,19.604-60.192,46.201-79.8,79.796C9.801,142.8,0,179.489,0,219.267   c0,39.78,9.804,76.463,29.407,110.062c19.607,33.592,46.204,60.189,79.799,79.798c33.597,19.605,70.283,29.407,110.063,29.407   s76.47-9.802,110.065-29.407c33.593-19.602,60.189-46.206,79.795-79.798c19.603-33.596,29.403-70.284,29.403-110.062   C438.533,179.485,428.732,142.795,409.133,109.203z';
+        PIN_FILL_COLOR = '#6C7A89';
+        PIN_SCALE = 1 / 25;
+        break;
+      case 'park':
+        MAP_PIN = 'M409.133,109.203c-19.608-33.592-46.205-60.189-79.798-79.796C295.736,9.801,259.058,0,219.273,0   c-39.781,0-76.47,9.801-110.063,29.407c-33.595,19.604-60.192,46.201-79.8,79.796C9.801,142.8,0,179.489,0,219.267   c0,39.78,9.804,76.463,29.407,110.062c19.607,33.592,46.204,60.189,79.799,79.798c33.597,19.605,70.283,29.407,110.063,29.407   s76.47-9.802,110.065-29.407c33.593-19.602,60.189-46.206,79.795-79.798c19.603-33.596,29.403-70.284,29.403-110.062   C438.533,179.485,428.732,142.795,409.133,109.203z';
+        PIN_FILL_COLOR = '#F7CA18';
+        PIN_SCALE = 1 / 25;
+        break;
+      case 'gym':
+        MAP_PIN = 'M409.133,109.203c-19.608-33.592-46.205-60.189-79.798-79.796C295.736,9.801,259.058,0,219.273,0   c-39.781,0-76.47,9.801-110.063,29.407c-33.595,19.604-60.192,46.201-79.8,79.796C9.801,142.8,0,179.489,0,219.267   c0,39.78,9.804,76.463,29.407,110.062c19.607,33.592,46.204,60.189,79.799,79.798c33.597,19.605,70.283,29.407,110.063,29.407   s76.47-9.802,110.065-29.407c33.593-19.602,60.189-46.206,79.795-79.798c19.603-33.596,29.403-70.284,29.403-110.062   C438.533,179.485,428.732,142.795,409.133,109.203z';
+        PIN_FILL_COLOR = '#000';
+        PIN_SCALE = 1 / 25;
         break;
       default:
-        PIN_FILL_COLOR = '#FFF'; 
+        PIN_FILL_COLOR = '#FFF';
         break;
     }
 
@@ -193,60 +297,124 @@ class GMap extends BaseComponent {
     });
   }
 
+  busMarkerCallbackHandler() {
+    return this.props.busMarkers.map((marker, index) => {
+      return this.addMarker(marker, index);
+    });
+  }
+
+  trainMarkerCallbackHandler() {
+    return this.props.trainMarkers.map((marker, index) => {
+      return this.addMarker(marker, index);
+    });
+  }
+
+  parkMarkerCallbackHandler() {
+    return this.props.parkMarkers.map((marker, index) => {
+      return this.addMarker(marker, index);
+    });
+  }
+
+  gymMarkerCallbackHandler() {
+    return this.props.gymMarkers.map((marker, index) => {
+      return this.addMarker(marker, index);
+    });
+  }
+
   render() {
     return (
       <GoogleMapLoader
-        containerElement={ 
-          <div 
-            id="mapsContainer" 
-            onDoubleClick={() => this.modalYes()} /> 
-        }   
+        containerElement={<div id="mapsContainer" />}
         googleMapElement={
-          <GoogleMap 
+          <GoogleMap
             center={this.centerMap()}
             defaultCenter={this.state.defaultCenter}
-            defaultZoom={this.state.zoomLevel} 
+            defaultZoom={this.state.zoomLevel}
             maxZoom={19}
             defaultOptions={{ styles: mapStylesObject }}
             scrollwheel={false}
             ref="map" >
-
             { this.jobMarkerCallbackHandler() }
             { this.restaurantMarkerCallbackHandler() }
-
-            <GMap_Modal center={this.centerMap()} modalEnable={this.modalYes} modalDisable={this.modalNo} />
+            { this.busMarkerCallbackHandler() }
+            { this.trainMarkerCallbackHandler() }
+            { this.parkMarkerCallbackHandler() }
+            { this.gymMarkerCallbackHandler() }
           </GoogleMap>
-        } 
+        }
       />
     );
   }
 }
 
-let mapStateToProps = (state) => ({
-  jobMarkers: state.jobs.map(job => ({ 
-    markerType: 'job',
-    coords: { "lat": job.latitude, "lng": job.longitude },
-    // jobKey: job.jobkey,
-    markerKey: job.jobkey,
-    markerTitle: job.jobtitle,
-    company: job.company, 
-    formattedLocation: job.formattedLocation,
-    showInfo: false
-  })),
-  restaurantMarkers: state.activeYelp.map(restaurant => ({
-    markerType: 'restaurant',
-    coords: { "lat": restaurant.coordinate.latitude, "lng": restaurant.coordinate.longitude },
-    markerKey: restaurant.id,
-    markerTitle: restaurant.name,
-    address: restaurant.display_address,
-    showInfo: false
-  })),
-  toggleModal: state.toggleModal,
-  activeJob: state.activeJob,
-  activeBus: state.activeBus
-});
+let mapStateToProps = (state) => {
+  return {
+    jobMarkers: state.jobs.map(job => ({
+      markerType: 'job',
+      coords: { "lat": job.latitude, "lng": job.longitude },
+      // jobKey: job.jobkey,
+      markerKey: job.jobkey,
+      markerTitle: job.jobtitle,
+      company: job.company,
+      formattedLocation: job.formattedLocation,
+      coordinate: job.coordinate,
+      snippet: job.snippet,
+      url: job.url,
+      formattedRelativeTime: job.formattedRelativeTime,
+      showInfo: false
+    })),
+    restaurantMarkers: state.activeYelp.map(restaurant => ({
+      markerType: 'restaurant',
+      coords: { "lat": restaurant.coordinate.latitude, "lng": restaurant.coordinate.longitude },
+      markerKey: restaurant.id,
+      markerTitle: restaurant.name,
+      address: restaurant.display_address,
+      url: restaurant.url,
+      imageUrl: restaurant.photo,
+      textSnippet: restaurant.snippetText,
+      ratingImageUrl: restaurant.rating_img_url,
+      showInfo: false
+    })),
+    busMarkers: state.activeBus.slice(0, 3).map(busMarker => ({
+      markerType: 'bus',
+      coords: { "lat": busMarker.geometry.location.lat, "lng": busMarker.geometry.location.lng },
+      markerKey: busMarker.id,
+      markerTitle: busMarker.name,
+      vicinity: busMarker.vicinity,
+      showInfo: false
+    })),
+    trainMarkers: state.activeTrains.slice(0, 3).map(trainMarker => ({
+      markerType: 'train',
+      coords: { "lat": trainMarker.geometry.location.lat, "lng": trainMarker.geometry.location.lng },
+      markerKey: trainMarker.id,
+      markerTitle: trainMarker.name,
+      vicinity: trainMarker.vicinity,
+      showInfo: false
+    })),
+    parkMarkers: state.activeParks.slice(0, 3).map(parkMarker => ({
+      markerType: 'park',
+      coords: { "lat": parkMarker.geometry.location.lat, "lng": parkMarker.geometry.location.lng },
+      markerKey: parkMarker.id,
+      markerTitle: parkMarker.name,
+      vicinity: parkMarker.vicinity,
+      isOpen: parkMarker.opening_hours.open_now,
+      rating: parkMarker.rating,
+      showInfo: false
+    })),
+    gymMarkers: state.activeGyms.slice(0, 3).map(gymMarker => ({
+      markerType: 'gym',
+      coords: { "lat": gymMarker.geometry.location.lat, "lng": gymMarker.geometry.location.lng },
+      markerKey: gymMarker.id,
+      markerTitle: gymMarker.name,
+      vicinity: gymMarker.vicinity,
+      showInfo: false
+    })),
+    toggleModal: state.toggleModal,
+    activeJob: state.activeJob
+  };
+};
 
-let mapDispatchToProps = (dispatch) => bindActionCreators({ 
+let mapDispatchToProps = (dispatch) => bindActionCreators({
   selectJob,
   toggleModal,
   toggleModalOff,

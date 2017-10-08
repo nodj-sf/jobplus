@@ -6,13 +6,17 @@ import SearchBar from '../containers/search_bar_container';
 class LandingPage extends Component {
  render() {
    return (
-    <div>
-      <div id="bckgHero">
-        <h1 className="intro-logo" style={{ "top": "25%", "left": "50%", "transform": "translateX(-50%)", "fontSize": "10vh" }}>
-          {["Job",
-            <span key={1}>+</span>
-          ]}
-        </h1>
+    <div className="col-xs-12" style={{padding: 0}}>
+      <div>
+        <div id="bckgHero" className="col-xs-12">
+          <h1 className="intro-logo" style={{ "top": "28%", "left": "50%", "transform": "translateX(-50%)", "fontSize": "10vh" }}>
+            {["Job",
+              <span key={1}>+</span>
+            ]}
+          </h1>
+        </div>
+      </div>
+      <div className="col-xs-12">
         <SearchBar />
       </div>
     </div>

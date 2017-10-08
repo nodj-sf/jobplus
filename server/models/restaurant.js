@@ -14,7 +14,7 @@ let getYelp = (food, city, coordinate, limit) => {
     return yelp.search({ term: food, location: city, cll: coordinate.latitude + ',' + coordinate.longitude })   // Implement
       .then((data) => {
         let restaurants = data.businesses.slice(0, limit);
-        
+
         restaurants = restaurants.map((obj) => {
           return {
             name: obj.name,
@@ -26,7 +26,8 @@ let getYelp = (food, city, coordinate, limit) => {
             id: obj.id,
             rating_img_url: obj.rating_img_url,
             display_address: obj.location.display_address,
-            photo: obj.image_url
+            photo: obj.image_url,
+            snippetText: obj.snippet_text
           };
         });
 

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import Subheader from 'material-ui/Subheader';
 
 import BaseComponent from '../components/base_component';
 
@@ -7,34 +9,24 @@ import BaseComponent from '../components/base_component';
 class AmenitiesList extends BaseComponent {
   renderList(list, job) {
     let newList = list.slice(0, 3);
-
     return newList.map((place, i) => {
-      let img = '';
-
+      const amenitiesName = place.name;
+      const ratingDescription = place.rating ? `Ratings: ${place.rating}/5` : <span style={{fontSize: '.8em'}}>Not Rated</span>;
+      const distanceDescription = `Miles away: ${this.getDistanceFromLatLonInKm(job.latitude, job.longitude, place.geometry.location.lat, place.geometry.location.lng)}`;
+      let amenitiesPlaceImage = '';
       if (place.photos) {
-        img = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&photoreference=${place.photos[0].photo_reference}&key=AIzaSyC56PLIo323RpHzaKe-ZunaS_0Tn5DgyGY`;
+        amenitiesPlaceImage = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=250&photoreference=${place.photos[0].photo_reference}&key=AIzaSyC56PLIo323RpHzaKe-ZunaS_0Tn5DgyGY`;
       }
-      
       return (
-        <li className="restaurantLI one-third" key = {i} >
+        <li key={place.place_id} className="col-xs-12 col-md-4 mobilePaddingLeftRight0" style={{listStyle: 'none'}} >
           <a target="_blank" href={ `http://maps.google.com/?q=${place.geometry.location.lat},${place.geometry.location.lng}` } >
-            <div className="verticallyCenter">
-              <div className="nameRating">
-                <h5 className="textEllipsis expandFromCenter">{ place.name }</h5>
-                { 
-                  (place.photos) ? 
-                  <img className="yelpPhoto" src={ img } alt={ place.name } /> : 
-                  'No Image' 
-                }
-              </div>
-              <div className="yelpDescription card-body">
-                <p className="numRestaurantReviews">{ place.rating }</p>
-                <i>{ `${this.getDistanceFromLatLonInKm(job.latitude,job.longitude,place.geometry.location.lat, place.geometry.location.lng)} mi` }</i>
-              </div>
-            </div>
+            <Card>
+              <img className="col-xs-12 img-responsive" style={{padding: 0}} src={amenitiesPlaceImage} />
+              <CardTitle title={amenitiesName} subtitle={distanceDescription + ", " + ratingDescription} />
+            </Card>
           </a>
         </li>
-      );    
+      );
     });
   }
 
@@ -43,35 +35,29 @@ class AmenitiesList extends BaseComponent {
     let parksList = props.activeParks;
     let gymsList = props.activeGyms;
     let job = props.activeJob;
-    
+
     return (
       (this.props.loading) ?
-      <div className="restaurantContainer">
-        <i className="fa fa-cog fa-spin fa-5x fa-fw"></i> Loading...
+      <div className="col-xs-12 text-center">
+        <i className="fa fa-cog fa-spin fa-2x fa-fw"></i> <span>Loading...</span>
       </div> :
       <div>
-        <div className="restaurantContainer">
-          <h5>
-            {[<i className="fa fa-futbol-o" aria-hidden="true" key="FontAwesome soccer ball glyph icon"></i>,
-              `\tParks`
-            ]}
-          </h5> 
-          <div className="overlay">
-            <ul className='trainList container'>{(parksList.length && this.renderList(parksList, job)) 
+        <div>
+          <Subheader style={{color: '#52B3D9'}} className="text-center">{[<i className="fa fa-futbol-o" aria-hidden="true" key="FontAwesome soccer ball glyph icon"></i>,`\tParks`]}</Subheader>
+          <div>
+            <ul>{(parksList.length && this.renderList(parksList, job))
               || 'There are no results for this area'}
-            </ul> 
-          </div>
-        </div>
-        <div className="restaurantContainer">
-          <h5>Gyms & Fitness</h5>
-          <div className="overlay">
-            <ul className='busList container'>{gymsList.length && this.renderList(gymsList, job) 
-              || 'There are no results for this area' }
             </ul>
           </div>
         </div>
+        <div>
+          <Subheader style={{color: '#52B3D9'}} className="text-center">Gyms & Fitness</Subheader>
+          <div>
+            <ul>{gymsList.length && this.renderList(gymsList, job) || 'There are no results for this area' }</ul>
+          </div>
+        </div>
       </div>
-    ); 
+    );
   }
 }
 

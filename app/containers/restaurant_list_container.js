@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Subheader from 'material-ui/Subheader';
 
 import RestaurantItem from '../components/restaurant_item_component';
 
@@ -7,7 +8,7 @@ import RestaurantItem from '../components/restaurant_item_component';
 class RetaurantList extends Component {
   renderList() {
     let selectedJob = this.props.activeJob,
-        chunkedArr = [];   
+        chunkedArr = [];
 
     return this.props.activeYelp.map((restaurant) => {
       return (
@@ -22,29 +23,23 @@ class RetaurantList extends Component {
   render() {
     return (
       (this.props.loading) ?
-      <div className="restaurantContainer">
-        <i className="fa fa-cog fa-spin fa-5x fa-fw"></i> Loading...
+      <div className="col-xs-12 text-center">
+        <i className="fa fa-cog fa-spin fa-2x fa-fw"></i> <span>Loading...</span>
       </div> :
-      <div className="restaurantContainer">
+      <div>
         <div>
-          <h5>
-            <a href="https://www.yelp.com" target="_blank">
-              <i className="fa fa-yelp" aria-hidden="true" alt="Yelp corporate logo (black glyph icon)"></i>
-            </a> Nearby Eats
-          </h5>
+          <Subheader style={{color: '#52B3D9'}} className="text-center"><i className="fa fa-yelp" aria-hidden="true" alt="Yelp corporate logo (black glyph icon)"></i> Nearby Eats</Subheader>
         </div>
-        <div className="overlay">
-          <ul className="restaurantList container">
-            { this.renderList() }
-          </ul>
+        <div className="col-xs-12 mobilePaddingLeftRight0">
+          <ul className="col-xs-12 mobilePaddingLeftRight0" style={{listStyle: 'none'}}>{ this.renderList() }</ul>
         </div>
       </div>
-    ); 
+    );
   }
 }
 
 let mapStateToProps = (state) => ({
-  activeJob: state.activeJob, 
+  activeJob: state.activeJob,
   activeYelp: state.activeYelp,
   loading: state.loading
 });

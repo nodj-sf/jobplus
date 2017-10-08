@@ -53,7 +53,7 @@ export const fetchTrains = (lat, long) => {
       long: long
     },
     _csrf: getCookie('_csrf'),
-    type: 'subway_station|train_station' 
+    type: 'subway_station|train_station'
   });
   return {
     type: FETCH_TRAINS,
@@ -83,7 +83,7 @@ export const fetchParks = (lat, long) => {
       long: long
     },
     _csrf: getCookie('_csrf'),
-    type: 'park' 
+    type: 'park'
 
   });
   return {
@@ -99,7 +99,7 @@ export const fetchGyms = (lat, long) => {
       long: long
     },
     _csrf: getCookie('_csrf'),
-    type: 'gym' 
+    type: 'gym'
   });
   return {
     type: FETCH_GYMS,
@@ -162,3 +162,9 @@ export const loading = (val) => {
     payload: val
   };
 };
+
+export const displayInfoBoxOnListClick = () => {
+  return {
+    type: 'DISPLAY_INFO_BOX_ON_LIST_CLICK'
+  }
+}

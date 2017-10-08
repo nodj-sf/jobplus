@@ -13,7 +13,7 @@ import { fetchJobs, selectJob, toggleModalOn } from '../actions/index';
 import fontawesome from 'fontawesome-markers';
 
 
-export default class GMap_Modal extends BaseComponent {
+class GMap_Modal extends BaseComponent {
   constructor(props) {
     super(props);
   }
@@ -52,10 +52,10 @@ export default class GMap_Modal extends BaseComponent {
         break;
     }
 
-    this.setState({ 
+    this.setState({
       markers: typeRef.map(marker => {
         return marker === targetMarker ? Object.assign(marker, {showInfo: true}) : marker;
-      }) 
+      })
     });
     this.centerMap();
   }
@@ -89,7 +89,7 @@ export default class GMap_Modal extends BaseComponent {
   handleClickOutside(evt) {
     this.closeIt();
   }
-  
+
   renderInfoWindow(marker, ref) {
     const onCloseclick = this.handleMarkerClose.bind(this, marker);
 
@@ -103,7 +103,7 @@ export default class GMap_Modal extends BaseComponent {
             <hr />
             <p>{marker.formattedLocation}</p>
           </div>
-         
+
       </InfoWindow>
     );
   }
@@ -152,7 +152,7 @@ export default class GMap_Modal extends BaseComponent {
         PIN_SCALE = 1 / 8;
         break;
       default:
-        PIN_FILL_COLOR = '#FFF'; 
+        PIN_FILL_COLOR = '#FFF';
         break;
     }
 
@@ -181,7 +181,7 @@ export default class GMap_Modal extends BaseComponent {
       </Marker>
     );
   }
-  
+
   jobMarkerCallbackHandler() {
     return this.props.jobMarkers.map((marker, index) => {
       return this.addMarker(marker, index);
@@ -229,9 +229,9 @@ export default class GMap_Modal extends BaseComponent {
             <div className="GMap_Modal" style={{height: "90vh", width: "90vw"}} />
           }
           googleMapElement={
-            <GoogleMap 
+            <GoogleMap
               defaultCenter={this.props.center}
-              defaultZoom={13} 
+              defaultZoom={13}
               maxZoom={14}
               defaultOptions={{styles: mapStylesObject}}
               scrollwheel={false}
@@ -256,13 +256,13 @@ export default class GMap_Modal extends BaseComponent {
 
 let mapStateToProps = (state) => {
   return {
-    jobMarkers: state.jobs.map(job => ({ 
+    jobMarkers: state.jobs.map(job => ({
       markerType: 'job',
       coords: { "lat": job.latitude, "lng": job.longitude },
       // jobKey: job.jobkey,
       markerKey: job.jobkey,
       markerTitle: job.jobtitle,
-      company: job.company, 
+      company: job.company,
       formattedLocation: job.formattedLocation,
       showInfo: false
     })),

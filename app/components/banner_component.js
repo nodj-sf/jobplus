@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AppBar from 'material-ui/AppBar';
 
 import SearchBar from '../containers/search_bar_container';
 
@@ -10,16 +11,11 @@ export default class Banner extends Component {
 
   render() {
     return (
-      <div className='bannerCont'>
-        <a href='/'>
-          <h1 className='intro-logo'>
-            {["Job",
-              <span key={"logo-Plus_Span"}>+</span>
-            ]}
-          </h1>
-        </a>
-        <SearchBar className='twelve columns' /> 
-      </div>
+        <AppBar
+          iconElementLeft={<h1 style={{margin: '3px 0px', padding: '0px 5px', "fontSize": "2.5em", color: '#FFF', font: '2em Oswald, Raleway, sans-serif'}}>{["Job",<span style={{color: '#7A7A7A'}} key={1}>+</span>]}</h1>}
+          children={<SearchBar />}
+          style={{background: 'url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/footer_lodyas.png")'}}
+        />
     );
   };
 }

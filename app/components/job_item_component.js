@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
+import { ListItem } from 'material-ui/List';
+import Divider from 'material-ui/Divider';
 
 import BaseComponent from './base_component';
+import { displayInfoBoxOnListClick } from '../actions/index';
 
 
-export default class JobItem extends BaseComponent {
+class JobItem extends BaseComponent {
   constructor(props) {
     super(props);
   }
@@ -16,17 +20,27 @@ export default class JobItem extends BaseComponent {
   render() {
     return (
       <div>
-        <li className={this.props.setActive(this.props.job)} onClick={() => this.props.jobFunc(this.props.job) }>
-          <h2 className="textEllipsis">{ this.parseAndFormatJobTitle(this.props.job.jobtitle) }</h2>
-          <div className="jobLI_MetaInfo">
-            <h6>
-              <b>{this.props.job.company || 'Unlisted'}</b>
-            </h6>
-            <i className="daysSincePosted">{ this.parseAndFormatDaysSincePosted(this.props.job.formattedRelativeTime) }</i>
-          </div>
-        </li>
-        <hr />
+        <ListItem
+          className={this.props.setActive(this.props.job)}
+          onClick={() => {
+            this.props.jobFunc(this.props.job);
+            this.props.displayInfoBoxOnListClick();
+            this.props.handleToggle();
+          }}
+          primaryText={this.props.job.company || 'Unlisted'}
+          secondaryText={this.parseAndFormatJobTitle(this.props.job.jobtitle)}
+          rightIconButton={<i style={{fontSize: '.7em', color: 'rgba(0, 0, 0, 0.54)'}}>{ this.parseAndFormatDaysSincePosted(this.props.job.formattedRelativeTime) }</i>}
+        />
+        <Divider />
       </div>
     );
   }
-}
+};
+
+const mapStateToProps = (state) => {
+  return {};
+};
+
+export default connect(mapStateToProps, {
+  displayInfoBoxOnListClick
+})(JobItem)

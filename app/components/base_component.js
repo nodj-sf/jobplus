@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-// New class `BaseComponent` extends React `Component`, but is modified to include 
+// New class `BaseComponent` extends React `Component`, but is modified to include
 // a variety of static helper class methods that may be shared by all sub-classes.
 export default class BaseComponent extends Component {
   constructor(props) {
@@ -53,11 +53,11 @@ export default class BaseComponent extends Component {
   parseAndFormatDaysSincePosted(days) {
     return days
       .match(/(\w+){1,}/gmi)
-      .map(str => `${str[0].toUpperCase()}${str.slice(1)}`)
+      .map(str => `${str[0].toLowerCase()}${str.slice(1)}`)
       .join(' ');
   }
 
-  // Modifies plain-text nine-digit phone number [Format: XXXXXXXXX] to 
+  // Modifies plain-text nine-digit phone number [Format: XXXXXXXXX] to
   // conform to the desired style [Format: +1 (XXX) XXX-XXX]:
   parsePhoneNumber(num) {
     if (num) {
@@ -72,8 +72,8 @@ export default class BaseComponent extends Component {
 
   // Removes all embedded HTML tags from the `job` object's `snippet` value:
   tagFreeSnippet(descrip) {
-    return descrip ? 
-      descrip.replace(/<[^>]+>|\.(?=\.{3,})/gmi, '') : 
+    return descrip ?
+      descrip.replace(/<[^>]+>|\.(?=\.{3,})/gmi, '') :
       descrip;
   }
 
@@ -89,8 +89,8 @@ export default class BaseComponent extends Component {
 
     let [dLat, dLon] = [this.deg2rad(lat2 - lat1), this.deg2rad(lon2 - lon1)];  // Class method `deg2rad` defined above
     let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * 
-            Math.sin(dLon / 2) * Math.sin(dLon / 2); 
+            Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
     let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)),
         d = R * c;        // Distance (d) in kilometers (km)
     return +`${(d * kmToMilesConversionFactor).toFixed(2)}`; // Convert kilometers (km) to miles (mi)

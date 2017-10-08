@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import { List } from 'material-ui/List';
+import Subheader from 'material-ui/Subheader';
 
 import { selectJob, fetchYelp, fetchBus, fetchTrains, fetchParks, fetchGyms, scrapDetail, loading, activeJob } from '../actions/index';
 import JobItem from '../components/job_item_component';
@@ -20,7 +22,7 @@ class JobList extends BaseComponent {
 
   setActive(job) {
     return job === this.props.activeJob ? 'active jobLI' : 'jobLI';
-  } 
+  }
 
   jobFunc(job) {
     this.props.loading(true);
@@ -30,7 +32,7 @@ class JobList extends BaseComponent {
   getData(job) {
     let props = this.props,
         [lat, lng] = [job.latitude, job.longitude];
-    
+
     props.selectJob(job);
     props.fetchYelp(job.city, lat, lng);
     props.fetchTrains(lat, lng);
@@ -38,13 +40,12 @@ class JobList extends BaseComponent {
     props.fetchParks(lat, lng);
     props.fetchGyms(lat, lng);
     props.scrapDetail(job.url);
-    
+
     props.loading(false);
   }
 
   renderList() {
     let jobList = '';
-
     if (this.props.jobs.length > 0) {
       jobList = this.props.jobs.map((job) => {
         return (
@@ -52,57 +53,54 @@ class JobList extends BaseComponent {
             key={job.jobkey}
             setActive={this.setActive}
             jobFunc={this.jobFunc}
-            job={job} />
+            job={job}
+            handleToggle={this.props.handleToggle}
+          />
         );
       });
     } else {
       if (this.init > 0) {
-        jobList = <div className="noResultsShown">
-          <h4 className="noResultsShown">No Results Now</h4>
+        jobList = <div>
+          <h4>No Results Now</h4>
         </div>;
       } else {
         this.init++;
-        jobList = <div id="placesContainer">
+        jobList = <div>
           <i className="fa fa-cog fa-spin fa-5x fa-fw"></i> Loading...
         </div>;
       }
     }
-
     return jobList;
   }
 
   render() {
+    const listHeight = this.props.listHeight;
     return (
-      <div id="jobsContainer" className="jobsPaneLeft appCols">
-        <b>
-          {["Results for ",
-           <i key="jobTermTitle">{this.props.jobTerm}</i>,
-           " in ",
-           <i key="locationTermTitle">{this.props.locationTerm}</i>
-          ]}
-        </b>
-        <div>
-          <ul className="jobsList">{ this.renderList() }</ul>
+      <div className="col-xs-12" style={{padding: 0, backgroundColor: 'white'}}>
+        <div className="col-xs-12" style={{padding: '0px 5px'}}>
+          <List className="mobileHeightUnset" style={{height: listHeight, overflow: 'hidden', overflowY: 'scroll'}}>{ this.renderList() }</List>
         </div>
       </div>
     );
   }
 }
 
-let mapStateToProps = (state) => ({ 
-  jobs: state.jobs, 
-  jobTerm: state.jobInputTerm, 
-  locationTerm: state.locationInputTerm,
-  activeJob: state.activeJob
-});
+let mapStateToProps = (state) => {
+  return {
+    jobs: state.jobs,
+    jobTerm: state.jobInputTerm,
+    locationTerm: state.locationInputTerm,
+    activeJob: state.activeJob
+  }
+};
 
 let mapDispatchToProps = (dispatch) =>  {
-  return bindActionCreators({ 
-    selectJob, 
-    fetchYelp, 
-    fetchBus, 
-    fetchTrains, 
-    fetchParks, 
+  return bindActionCreators({
+    selectJob,
+    fetchYelp,
+    fetchBus,
+    fetchTrains,
+    fetchParks,
     fetchGyms,
     scrapDetail,
     loading
