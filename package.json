@@ -4,7 +4,7 @@
   "description": "[![Stories in Ready](https://badge.waffle.io/mks-sf-40-nodj/nodj.svg?label=ready&title=Ready)](http://waffle.io/mks-sf-40-nodj/nodj)",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon",
+    "start": "node server.js",
     "lint": "eslint app",
     "test": "mocha -w app/test/helpers/browser.js app/test/*_test.js",
     "dev": "webpack-dev-server --progress --profile --colors"
