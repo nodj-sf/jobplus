@@ -30,7 +30,8 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: true,
   saveUninitialized: true,
-  store: new RedisStore()
+  store: new RedisStore(
+     url: process.env.REDIS_URL || 'redis://localhost:6379')
 }));
 
 app.use(function (req, res, next) {
