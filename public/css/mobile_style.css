@@ -8,4 +8,15 @@
   .mobilePaddingLeftRight0 {
     padding: 0px 0px !important;
   }
+  .mobileFullHeight {
+    height: -webkit-fill-available !important;
+  }
+  .mobileTopUnset {
+    top: unset !important;
+  }
+  .mobileLandingSearchBar {
+    position: fixed !important;
+    top: 50% !important;
+    padding-right: 30px !important;
+  }
 }
