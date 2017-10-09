@@ -7,8 +7,7 @@ const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const lusca = require('lusca');
 const expressValidator = require('express-validator');
-const path = require('path');
-
+const fs = require('fs');
 
 /*
 ** Load local environment variables from .env 
@@ -16,7 +15,7 @@ const path = require('path');
 */
 
 
-if (path.existsSync('.env')) { 
+if (fs.existsSync('.env')) { 
   let dotenv;
   dotenv = require('dotenv');
   dotenv.load({ path: '.env' });
