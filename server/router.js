@@ -7,6 +7,7 @@ const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const lusca = require('lusca');
 const expressValidator = require('express-validator');
+const path = require('path');
 
 
 /*
