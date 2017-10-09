@@ -14,9 +14,12 @@ const expressValidator = require('express-validator');
 ** file where secrets and keys are configured.
 */
 
-let dotenv;
-dotenv = require('dotenv');
-dotenv.load({ path: '.env' });
+
+if (path.existsSync('.env')) { 
+  let dotenv;
+  dotenv = require('dotenv');
+  dotenv.load({ path: '.env' });
+} 
 
 //Middleware
 app.use(bodyParser.json());
