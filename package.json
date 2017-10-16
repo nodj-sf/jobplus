@@ -4,7 +4,8 @@
   "description": "[![Stories in Ready](https://badge.waffle.io/mks-sf-40-nodj/nodj.svg?label=ready&title=Ready)](http://waffle.io/mks-sf-40-nodj/nodj)",
   "main": "server.js",
   "engines": {
-    "node": "8.6.0"
+    "node": "8.6.0",
+    "npm": "5.3.0"
   },
   "scripts": {
     "start": "node server.js",
