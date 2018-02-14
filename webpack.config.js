@@ -17,12 +17,16 @@ module.exports = {
       test: /\.jsx?$/,
       loaders: ['react-hot', 'babel'],
       include: path.join(__dirname, 'app')
-    }, { 
-      test: /\.json$/, 
+    }, {
+      test: /\.json$/,
       loader: 'json'
     }, {
       test: /\.(jpe?g|png|gif|svg)$/i,
       loader: 'file'
+    },
+    {
+    test: /\.css$/,
+    loader: "style-loader!css-loader"
     }]
   },
   devServer: {
