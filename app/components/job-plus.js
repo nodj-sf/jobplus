@@ -92,7 +92,7 @@ class JobPlus extends Component {
   render() {
     console.log('this.state', this.state)
     return (
-      <div style={{height: 705, width: '100%', padding: 0, position: 'fixed'}}>
+      <div style={{height: '100%', width: '100%', padding: 0, position: 'fixed'}}>
         <SearchBar />
         <Prompt />
         <ListWidget />
