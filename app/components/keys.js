@@ -11,7 +11,7 @@ class Keys extends Component {
       left: '88%'
     };
     const mobileKeysStyle = {
-      fontSize: '1em',
+      fontSize: '.8em',
       display: 'inline-block'
     };
     const mobileKeysContainerStyle = {
