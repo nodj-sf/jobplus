@@ -11,13 +11,16 @@ class Keys extends Component {
       left: '88%'
     };
     const mobileKeysStyle = {
-      fontSize: '.8em',
+      fontSize: '1em',
       display: 'inline-block'
     };
     const mobileKeysContainerStyle = {
       position: 'absolute',
       width: '100%',
-      display: this.props.displayKeys ? 'block' : 'none'
+      display: this.props.displayKeys ? 'block' : 'none',
+      height: 50,
+      paddingTop: 10,
+      paddingLeft: 10
     }
     const listItemStyle = {
       fontSize: '1em',
