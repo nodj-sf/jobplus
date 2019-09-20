@@ -1,0 +1,25 @@
+/* .direction-icon {
+  font-size: 1.1em;
+} */
+
+.mat-ripple-element {
+    display: none;
+}
+
+@media only screen and (max-width: 767px) {
+  .search-button {
+    left: 56.3% !important;
+  }
+  .search-bar-style {
+    margin-left: 75px;
+  }
+}
+
+@media only screen and (min-width: 767px) {
+  .desktop-list-style {
+    max-height: 650px !important;
+  }
+  .floating-search-button-style {
+    top: 87% !important;
+  }
+}

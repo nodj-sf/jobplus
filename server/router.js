@@ -7,16 +7,19 @@ const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const lusca = require('lusca');
 const expressValidator = require('express-validator');
-
+const fs = require('fs');
 
 /*
 ** Load local environment variables from .env 
 ** file where secrets and keys are configured.
 */
 
-let dotenv;
-dotenv = require('dotenv');
-dotenv.load({ path: '.env' });
+
+if (fs.existsSync('.env')) { 
+  let dotenv;
+  dotenv = require('dotenv');
+  dotenv.load({ path: '.env' });
+} 
 
 //Middleware
 app.use(bodyParser.json());
@@ -27,7 +30,9 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: true,
   saveUninitialized: true,
-  store: new RedisStore()
+  store: new RedisStore({
+    url: process.env.REDIS_URL || 'redis://localhost:6379'
+  })
 }));
 
 app.use(function (req, res, next) {

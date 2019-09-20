@@ -1,6 +1,5 @@
 const scrapDetail = require('../models/details');
-const redisClient = require('redis').createClient;
-const redis = redisClient(6379, 'localhost');
+const redis = require('./redisClient');
 
 
 exports.post = (req, res) => {

@@ -62,8 +62,8 @@
     "featureType": "road",
     "elementType": "labels",
     "stylers": [
-      { "weight": 0.1 }, 
-      { "visibility": "off" }
+      { "weight": 0.1 },
+      { "visibility": "on" }
     ]
   }
 ]

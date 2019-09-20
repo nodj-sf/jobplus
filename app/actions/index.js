@@ -1,13 +1,32 @@
 import axios from 'axios';
-
-const FETCH_JOBS = 'FETCH_JOBS';
-const JOB_SELECTED = 'JOB_SELECTED';
-const FETCH_YELP = 'FETCH_YELP';
-const FETCH_TRAINS = 'FETCH_TRAINS';
-const FETCH_BUS = 'FETCH_BUS';
-const FETCH_PARKS = 'FETCH_PARKS';
-const FETCH_GYMS = 'FETCH_GYMS';
-const SCRAP_DATA = 'SCRAP_DATA';
+import {
+  FETCH_JOBS,
+  JOB_SELECTED,
+  FETCH_YELP,
+  FETCH_TRAINS,
+  FETCH_BUS,
+  FETCH_PARKS,
+  FETCH_GYMS,
+  SCRAP_DATA,
+  SELECT_LIST_ITEM,
+  HIDE_PROMPT,
+  TOGGLE_DRAWER,
+  SHOW_FLOATING_LIST_BUTTON,
+  SET_JOB_DATA,
+  SET_QUERIES,
+  SET_INIT_LONG_LAT,
+  SET_RESTAURANTS,
+  SET_TRAINS,
+  SET_GYMS,
+  SET_PARKS,
+  SET_BUS,
+  SET_ORIGIN,
+  SET_DESTINATION,
+  UN_SET_ORIGIN,
+  UN_SET_DESTINATION,
+  TOGGLE_KEYS,
+  TOGGLE_DIALOG
+} from '../types';
 
 
 const getCookie = (name) => {
@@ -17,131 +36,6 @@ const getCookie = (name) => {
     return decodeURIComponent(parts.pop().split(';').shift());
   }
   return '';
-};
-
-export const fetchJobs = (jobSearch, city) => {
-  const request = axios.post('/api/v1/jobs', {
-    jobTitle: jobSearch,
-    city: city,
-    _csrf: getCookie('_csrf')
-  });
-  return {
-    type: FETCH_JOBS,
-    payload: request
-  };
-};
-
-export const fetchYelp = (city, lat, long) => {
-  const request = axios.post('/api/v1/food', {
-    city: city,
-    coordinate: {
-      latitude: lat,
-      longitude: long
-    },
-    _csrf: getCookie('_csrf')
-  });
-  return {
-    type: FETCH_YELP,
-    payload: request
-  };
-};
-
-export const fetchTrains = (lat, long) => {
-  const request = axios.post('/api/v1/places', {
-    coordinate: {
-      lat: lat,
-      long: long
-    },
-    _csrf: getCookie('_csrf'),
-    type: 'subway_station|train_station' 
-  });
-  return {
-    type: FETCH_TRAINS,
-    payload: request
-  };
-};
-
-export const fetchBus = (lat, long) => {
-  const request = axios.post('/api/v1/places', {
-    coordinate: {
-      lat: lat,
-      long: long
-    },
-    _csrf: getCookie('_csrf'),
-    type: 'bus_station',
-  });
-  return {
-    type: FETCH_BUS,
-    payload: request
-  };
-};
-
-export const fetchParks = (lat, long) => {
-  const request = axios.post('/api/v1/places', {
-    coordinate: {
-      lat: lat,
-      long: long
-    },
-    _csrf: getCookie('_csrf'),
-    type: 'park' 
-
-  });
-  return {
-    type: FETCH_PARKS,
-    payload: request
-  };
-};
-
-export const fetchGyms = (lat, long) => {
-  const request = axios.post('/api/v1/places', {
-    coordinate: {
-      lat: lat,
-      long: long
-    },
-    _csrf: getCookie('_csrf'),
-    type: 'gym' 
-  });
-  return {
-    type: FETCH_GYMS,
-    payload: request
-  };
-};
-
-export const selectJob = (job) => {
-  return {
-    type: JOB_SELECTED,
-    payload: job
-  };
-};
-
-export const jobInputTerm = (jobTerm) => {
-  return {
-    type: 'JOB_INPUT_TERM',
-    payload: { jobTerm }
-  };
-};
-
-export const locationInputTerm = (locationTerm) => {
-  return {
-    type: 'LOCATION_INPUT_TERM',
-    payload: { locationTerm }
-  };
-};
-
-export const toggleModal = () => {
-  // console.log(`Google Maps Modal view toggled ON!`);
-  return {
-    type: 'TOGGLE_MODAL_ON',
-    payload: true
-  };
-};
-
-export const toggleModalOff = () => {
-  // console.log(`Google Maps Modal view toggled OFF!`);
-  return {
-    type: 'TOGGLE_MODAL_OFF',
-    payload: false
-  };
 };
 
 export const scrapDetail = (url) => {
@@ -156,9 +50,202 @@ export const scrapDetail = (url) => {
   }
 }
 
-export const loading = (val) => {
+export const fetchJobs = (jobSearch, city) => {
+  return dispatch => {
+    return axios.post('/api/v1/jobs', {
+      jobTitle: jobSearch,
+      city: city,
+      _csrf: getCookie('_csrf')
+    })
+  }
+};
+
+export const setJobs = (jobs) => {
   return {
-    type: 'LOADING',
-    payload: val
+    type: SET_JOB_DATA,
+    jobs
+  }
+};
+
+export const setQueries = (title, city) => {
+  return {
+    type: SET_QUERIES,
+    title,
+    city
+  };
+};
+
+export const setInitialLongLat = (initialLongitude, initialLatitude) => {
+  return {
+    type: SET_INIT_LONG_LAT,
+    initialLongitude,
+    initialLatitude
+  };
+};
+
+export const fetchRestaurants = (city, lat, long) => {
+  return dispatch => {
+    return axios.post('/api/v1/food', {
+      city: city,
+      coordinate: {
+        latitude: lat,
+        longitude: long
+      },
+      _csrf: getCookie('_csrf')
+    })
+  }
+};
+
+export const setRestaurants = (restaurants) => {
+  return {
+    type: SET_RESTAURANTS,
+    restaurants
+  };
+};
+
+export const fetchTrains = (lat, long) => {
+  return dispatch => {
+    return axios.post('/api/v1/places', {
+      coordinate: {
+        lat: lat,
+        long: long
+      },
+      _csrf: getCookie('_csrf'),
+      type: 'subway_station|train_station'
+    });
+  }
+};
+
+export const setTrains = (trains) => {
+  return {
+    type: SET_TRAINS,
+    trains
+  };
+};
+
+export const fetchGyms = (lat, long) => {
+  return dispatch => {
+    return axios.post('/api/v1/places', {
+      coordinate: {
+        lat: lat,
+        long: long
+      },
+      _csrf: getCookie('_csrf'),
+      type: 'gym'
+    });
+  }
+};
+
+export const setGyms = (gyms) => {
+  return {
+    type: SET_GYMS,
+    gyms
+  };
+}
+
+export const fetchParks = (lat, long) => {
+  return dispatch => {
+    return axios.post('/api/v1/places', {
+      coordinate: {
+        lat: lat,
+        long: long
+      },
+      _csrf: getCookie('_csrf'),
+      type: 'park'
+    });
+  }
+};
+
+export const setParks = (parks) => {
+  return {
+    type: SET_PARKS,
+    parks
+  };
+}
+
+export const fetchBus = (lat, long) => {
+  return dispatch => {
+    return axios.post('/api/v1/places', {
+      coordinate: {
+        lat: lat,
+        long: long
+      },
+      _csrf: getCookie('_csrf'),
+      type: 'bus_station',
+    });
+  }
+};
+
+export const setBus = (bus) => {
+  return {
+    type: SET_BUS,
+    bus
+  };
+};
+
+export const selectItem = (index, type) => {
+  const selectedItem = {
+    index,
+    type
+  };
+  return {
+    type: SELECT_LIST_ITEM,
+    selectedItem
+  };
+};
+
+export const hidePrompt = () => {
+  return {
+    type: HIDE_PROMPT
+  };
+};
+
+export const toggleDrawer = () => {
+  return {
+    type: TOGGLE_DRAWER
+  };
+};
+
+export const showFloatingListButton = () => {
+  return {
+    type: SHOW_FLOATING_LIST_BUTTON
+  };
+};
+
+export const setOrigin = (latitude, longitude) => {
+  return {
+    type: SET_ORIGIN,
+    points: { latitude, longitude }
+  };
+};
+
+export const setDestination = (latitude, longitude) => {
+  return {
+    type: SET_DESTINATION,
+    points: { latitude, longitude }
+  };
+};
+
+export const unSetOrigin = () => {
+  return {
+    type: UN_SET_ORIGIN
+  };
+};
+
+export const unSetDestination = () => {
+  return {
+    type: UN_SET_DESTINATION
+  };
+};
+
+export const toggleKeys = () => {
+  return {
+    type: TOGGLE_KEYS
+  };
+};
+
+export const toggleDialog = () => {
+  return {
+    type: TOGGLE_DIALOG
   };
 };

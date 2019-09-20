@@ -1,7 +1,6 @@
 'use strict';
 const getPlace = require('../models/place');
-const redisClient = require('redis').createClient;
-const redis = redisClient(6379, 'localhost');
+const redis = require('./redisClient');
 const util = require('util');
 
 

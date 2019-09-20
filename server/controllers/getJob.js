@@ -1,16 +1,15 @@
 'use strict';
 const getIndeed = require('../models/jobs');
-const redisClient = require('redis').createClient;
-const redis = redisClient(6379, 'localhost');
+const redis = require('./redisClient');
 const util = require('util');
 
 exports.post = (req, res) => {
-  // console.log("Request:", req.body);
   let reqBody = req.body,
       jobTitle = reqBody.jobTitle,
       city = reqBody.city,
       key = JSON.stringify(reqBody).toLowerCase();
   // remove _csrf from req.body to presist caching
+
   if (reqBody._csrf) {
     try {
       delete reqBody._csrf;
@@ -35,13 +34,12 @@ exports.post = (req, res) => {
   /*
    * Return data from cache if exists
   */
-  
   redis.get(key, (err, result) => {
+    if(err){ return res.json({err: err})};
 
     res.setHeader('Content-Type', 'application/json');
 
     if (result) {
-      // console.log('return from redis');
       res.send(JSON.parse(result));
       res.end();
     } else {
@@ -50,7 +48,6 @@ exports.post = (req, res) => {
             || req.socket.remoteAddress
             || req.connection.socket.remoteAddress;
       
-      // console.log('make api call');
 
       /*
        * Search Indeed API and cache data
